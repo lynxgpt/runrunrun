@@ -3017,6 +3017,31 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       }
     }
   },
+  "Acadia_carriage_roads": {
+    "id": "Acadia_carriage_roads",
+    "name": "Acadia carriage roads",
+    "stats": {
+      "name": "Acadia carriage roads",
+      "distanceKm": 41.297,
+      "movingSec": 8328,
+      "elapsedSec": 15475,
+      "paceSecPerKm": 202,
+      "elevationM": 630,
+      "avgHr": 117,
+      "startTime": "2025-10-19T15:10:27Z",
+      "endTime": "2025-10-19T19:28:22Z",
+      "startLat": 44.38849,
+      "startLon": -68.213758,
+      "meanLat": 44.365178,
+      "meanLon": -68.243807,
+      "bbox": {
+        "minLat": 44.315389,
+        "maxLat": 44.407647,
+        "minLon": -68.265997,
+        "maxLon": -68.202388
+      }
+    }
+  },
   "long-interval-16227784214": {
     "id": "long-interval-16227784214",
     "name": "Long interval",
