@@ -225,7 +225,7 @@ function processFile(path, id) {
     const dt = curr.t - prev.t;
     const dk = curr.km - prev.km;
     if (curr.lat === prev.lat && curr.lon === prev.lon) repeatedSteps += 1;
-    const kph = dt > 0 ? (dk / dt) * 3600 : Infinity;
+    const kph = dt > 0 ? (dk / dt) * 3600 : 0;
     if (kph > maxSegmentKph) maxSegmentKph = kph;
     if (dt >= 600 && dk >= 1) hasTeleportGap = true;
   }

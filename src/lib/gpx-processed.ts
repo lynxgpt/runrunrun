@@ -139,7 +139,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 1,
-        "maxSegmentKph": null,
+        "maxSegmentKph": 21.60000000000082,
         "hasTeleportGap": false
       }
     }
