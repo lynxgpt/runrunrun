@@ -6,6 +6,7 @@
 import { gpxSummaries, type GpxSummary } from "./gpx-processed";
 import rawMeta from "../../public/strava-meta.json";
 const worldAtlas = require("world-atlas/countries-10m.json");
+const usAtlas = require("us-atlas/states-10m.json");
 const { feature } = require("topojson-client");
 const isoCountries = require("i18n-iso-countries");
 
@@ -71,6 +72,17 @@ const US_STATE_NAME: Record<string, string> = {
   VA: "Virginia", WA: "Washington", WV: "West Virginia", WI: "Wisconsin", WY: "Wyoming",
 };
 
+const US_STATE_BY_FIPS: Record<string, string> = {
+  "01": "AL", "02": "AK", "04": "AZ", "05": "AR", "06": "CA", "08": "CO", "09": "CT",
+  "10": "DE", "11": "DC", "12": "FL", "13": "GA", "15": "HI", "16": "ID", "17": "IL",
+  "18": "IN", "19": "IA", "20": "KS", "21": "KY", "22": "LA", "23": "ME", "24": "MD",
+  "25": "MA", "26": "MI", "27": "MN", "28": "MS", "29": "MO", "30": "MT", "31": "NE",
+  "32": "NV", "33": "NH", "34": "NJ", "35": "NM", "36": "NY", "37": "NC", "38": "ND",
+  "39": "OH", "40": "OK", "41": "OR", "42": "PA", "44": "RI", "45": "SC", "46": "SD",
+  "47": "TN", "48": "TX", "49": "UT", "50": "VT", "51": "VA", "53": "WA", "54": "WV",
+  "55": "WI", "56": "WY",
+};
+
 interface Region {
   countryCode: string;
   country: string;
@@ -96,58 +108,6 @@ const REGIONS: Region[] = [
   { countryCode: "US", country: "United States", region: "CO", city: "Denver",        bbox: { minLat: 39.60, maxLat: 39.90, minLon: -105.15, maxLon: -104.80 } },
   { countryCode: "US", country: "United States", region: "WA", city: "Seattle",       bbox: { minLat: 47.40, maxLat: 47.80, minLon: -122.50, maxLon: -122.20 } },
   { countryCode: "US", country: "United States", region: "MA", city: "Boston",        bbox: { minLat: 42.20, maxLat: 42.45, minLon: -71.20, maxLon: -70.95 } },
-  // All 50 US state bboxes — catch any run not matched by a city above.
-  // NJ before NY so Hoboken/Jersey City runs don't fall into the NY box.
-  { countryCode: "US", country: "United States", region: "NJ", bbox: { minLat: 38.90, maxLat: 41.36, minLon: -75.60, maxLon: -73.89 } },
-  { countryCode: "US", country: "United States", region: "NY", bbox: { minLat: 40.48, maxLat: 45.02, minLon: -79.76, maxLon: -71.86 } },
-  { countryCode: "US", country: "United States", region: "CT", bbox: { minLat: 40.95, maxLat: 42.05, minLon: -73.73, maxLon: -71.79 } },
-  { countryCode: "US", country: "United States", region: "RI", bbox: { minLat: 41.15, maxLat: 42.02, minLon: -71.90, maxLon: -71.10 } },
-  { countryCode: "US", country: "United States", region: "MA", bbox: { minLat: 41.19, maxLat: 42.89, minLon: -73.53, maxLon: -69.93 } },
-  { countryCode: "US", country: "United States", region: "VT", bbox: { minLat: 42.73, maxLat: 45.02, minLon: -73.44, maxLon: -71.50 } },
-  { countryCode: "US", country: "United States", region: "NH", bbox: { minLat: 42.70, maxLat: 45.31, minLon: -72.56, maxLon: -70.70 } },
-  { countryCode: "US", country: "United States", region: "ME", bbox: { minLat: 43.06, maxLat: 47.46, minLon: -71.08, maxLon: -67.00 } },
-  { countryCode: "US", country: "United States", region: "PA", bbox: { minLat: 39.72, maxLat: 42.27, minLon: -80.52, maxLon: -74.69 } },
-  { countryCode: "US", country: "United States", region: "DE", bbox: { minLat: 38.45, maxLat: 39.84, minLon: -75.79, maxLon: -74.98 } },
-  { countryCode: "US", country: "United States", region: "MD", bbox: { minLat: 37.91, maxLat: 39.72, minLon: -79.49, maxLon: -74.99 } },
-  { countryCode: "US", country: "United States", region: "VA", bbox: { minLat: 36.54, maxLat: 39.47, minLon: -83.68, maxLon: -75.17 } },
-  { countryCode: "US", country: "United States", region: "WV", bbox: { minLat: 37.20, maxLat: 40.64, minLon: -82.65, maxLon: -77.72 } },
-  { countryCode: "US", country: "United States", region: "NC", bbox: { minLat: 33.84, maxLat: 36.59, minLon: -84.32, maxLon: -75.46 } },
-  { countryCode: "US", country: "United States", region: "SC", bbox: { minLat: 32.05, maxLat: 35.22, minLon: -83.35, maxLon: -78.55 } },
-  { countryCode: "US", country: "United States", region: "GA", bbox: { minLat: 30.36, maxLat: 35.00, minLon: -85.61, maxLon: -80.84 } },
-  { countryCode: "US", country: "United States", region: "FL", bbox: { minLat: 24.40, maxLat: 31.00, minLon: -87.63, maxLon: -79.97 } },
-  { countryCode: "US", country: "United States", region: "OH", bbox: { minLat: 38.40, maxLat: 42.32, minLon: -84.83, maxLon: -80.52 } },
-  { countryCode: "US", country: "United States", region: "IN", bbox: { minLat: 37.77, maxLat: 41.76, minLon: -88.10, maxLon: -84.79 } },
-  { countryCode: "US", country: "United States", region: "MI", bbox: { minLat: 41.70, maxLat: 48.31, minLon: -90.42, maxLon: -82.41 } },
-  { countryCode: "US", country: "United States", region: "IL", bbox: { minLat: 36.97, maxLat: 42.51, minLon: -91.51, maxLon: -87.02 } },
-  { countryCode: "US", country: "United States", region: "WI", bbox: { minLat: 42.49, maxLat: 47.08, minLon: -92.89, maxLon: -86.25 } },
-  { countryCode: "US", country: "United States", region: "MN", bbox: { minLat: 43.50, maxLat: 49.38, minLon: -97.24, maxLon: -89.49 } },
-  { countryCode: "US", country: "United States", region: "IA", bbox: { minLat: 40.38, maxLat: 43.50, minLon: -96.64, maxLon: -90.14 } },
-  { countryCode: "US", country: "United States", region: "MO", bbox: { minLat: 35.99, maxLat: 40.61, minLon: -95.77, maxLon: -89.10 } },
-  { countryCode: "US", country: "United States", region: "KY", bbox: { minLat: 36.50, maxLat: 39.15, minLon: -89.57, maxLon: -81.96 } },
-  { countryCode: "US", country: "United States", region: "TN", bbox: { minLat: 34.98, maxLat: 36.68, minLon: -90.31, maxLon: -81.65 } },
-  { countryCode: "US", country: "United States", region: "AL", bbox: { minLat: 30.14, maxLat: 35.01, minLon: -88.47, maxLon: -84.89 } },
-  { countryCode: "US", country: "United States", region: "MS", bbox: { minLat: 30.17, maxLat: 35.01, minLon: -91.65, maxLon: -88.10 } },
-  { countryCode: "US", country: "United States", region: "AR", bbox: { minLat: 33.00, maxLat: 36.50, minLon: -94.62, maxLon: -89.64 } },
-  { countryCode: "US", country: "United States", region: "LA", bbox: { minLat: 28.92, maxLat: 33.02, minLon: -94.04, maxLon: -88.82 } },
-  { countryCode: "US", country: "United States", region: "TX", bbox: { minLat: 25.84, maxLat: 36.50, minLon: -106.65, maxLon: -93.51 } },
-  { countryCode: "US", country: "United States", region: "OK", bbox: { minLat: 33.62, maxLat: 37.00, minLon: -103.00, maxLon: -94.43 } },
-  { countryCode: "US", country: "United States", region: "KS", bbox: { minLat: 36.99, maxLat: 40.00, minLon: -102.05, maxLon: -94.59 } },
-  { countryCode: "US", country: "United States", region: "NE", bbox: { minLat: 40.00, maxLat: 43.00, minLon: -104.05, maxLon: -95.31 } },
-  { countryCode: "US", country: "United States", region: "SD", bbox: { minLat: 42.48, maxLat: 45.94, minLon: -104.06, maxLon: -96.44 } },
-  { countryCode: "US", country: "United States", region: "ND", bbox: { minLat: 45.94, maxLat: 49.00, minLon: -104.05, maxLon: -96.56 } },
-  { countryCode: "US", country: "United States", region: "MT", bbox: { minLat: 44.36, maxLat: 49.00, minLon: -116.05, maxLon: -104.04 } },
-  { countryCode: "US", country: "United States", region: "WY", bbox: { minLat: 40.99, maxLat: 45.01, minLon: -111.05, maxLon: -104.05 } },
-  { countryCode: "US", country: "United States", region: "CO", bbox: { minLat: 37.00, maxLat: 41.00, minLon: -109.06, maxLon: -102.04 } },
-  { countryCode: "US", country: "United States", region: "NM", bbox: { minLat: 31.33, maxLat: 37.00, minLon: -109.05, maxLon: -103.00 } },
-  { countryCode: "US", country: "United States", region: "AZ", bbox: { minLat: 31.33, maxLat: 37.00, minLon: -114.82, maxLon: -109.05 } },
-  { countryCode: "US", country: "United States", region: "UT", bbox: { minLat: 37.00, maxLat: 42.00, minLon: -114.05, maxLon: -109.05 } },
-  { countryCode: "US", country: "United States", region: "ID", bbox: { minLat: 41.99, maxLat: 49.00, minLon: -117.24, maxLon: -111.04 } },
-  { countryCode: "US", country: "United States", region: "WA", bbox: { minLat: 45.54, maxLat: 49.00, minLon: -124.84, maxLon: -116.92 } },
-  { countryCode: "US", country: "United States", region: "OR", bbox: { minLat: 41.99, maxLat: 46.24, minLon: -124.57, maxLon: -116.46 } },
-  { countryCode: "US", country: "United States", region: "CA", bbox: { minLat: 32.53, maxLat: 42.01, minLon: -124.48, maxLon: -114.13 } },
-  { countryCode: "US", country: "United States", region: "NV", bbox: { minLat: 35.00, maxLat: 42.00, minLon: -120.00, maxLon: -114.04 } },
-  { countryCode: "US", country: "United States", region: "HI", bbox: { minLat: 18.91, maxLat: 22.24, minLon: -160.25, maxLon: -154.81 } },
-  { countryCode: "US", country: "United States", region: "AK", bbox: { minLat: 54.50, maxLat: 71.55, minLon: -168.00, maxLon: -130.00 } },
   // Fallback country boxes
   // Mexico city-level (ordered more-specific → less-specific)
   { countryCode: "MX", country: "Mexico", region: "CDMX",     city: "Mexico City",  bbox: { minLat: 19.18, maxLat: 19.60, minLon: -99.35, maxLon: -98.95 } },
@@ -203,6 +163,17 @@ const COUNTRY_FEATURES = feature(
   };
 }>;
 
+const US_STATE_FEATURES = feature(
+  usAtlas,
+  usAtlas.objects.states,
+).features as Array<{
+  id: string | number;
+  geometry: {
+    type: "Polygon" | "MultiPolygon";
+    coordinates: number[][][] | number[][][][];
+  };
+}>;
+
 function pointInRing(ring: number[][], point: [number, number]): boolean {
   let inside = false;
   for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
@@ -245,6 +216,23 @@ function lookupCountry(lat: number, lon: number): { country: string; countryCode
         : country.properties.name,
       countryCode: alpha2,
     };
+  }
+  return null;
+}
+
+function lookupUsState(lat: number, lon: number): { region: string } | null {
+  const point: [number, number] = [lon, lat];
+  for (const state of US_STATE_FEATURES) {
+    const fips = String(state.id).padStart(2, "0");
+    const region = US_STATE_BY_FIPS[fips];
+    if (!region) continue;
+    const contains =
+      state.geometry.type === "Polygon"
+        ? polygonContainsPoint(state.geometry.coordinates as number[][][], point)
+        : (state.geometry.coordinates as number[][][][]).some((polygon) =>
+            polygonContainsPoint(polygon, point),
+          );
+    if (contains) return { region };
   }
   return null;
 }
@@ -336,6 +324,10 @@ function locationFor(t: GpxSummary): ActivityLocation {
     }
   }
   const country = lookupCountry(lat, lon);
+  if (country?.countryCode === "US") {
+    const state = lookupUsState(lat, lon);
+    if (state) return { ...country, ...state, lat, lon };
+  }
   if (country) return { ...country, lat, lon };
   return { country: "Unknown", countryCode: "??", lat, lon };
 }
