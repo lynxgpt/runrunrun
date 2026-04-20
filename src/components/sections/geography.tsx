@@ -24,6 +24,7 @@ const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const STATE_FLAG_IMG: Record<string, string> = {
   WA: `${basePath}/images/flag-wa-cascadia.svg`,
   CA: `${basePath}/images/flag-ca.svg`,
+  WY: `${basePath}/images/flag-wy.svg`,
 };
 
 type Kind = "country" | "state" | "city";

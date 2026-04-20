@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" role="img" aria-labelledby="title desc">
+  <title id="title">Wyoming state flag</title>
+  <desc id="desc">Stylized Wyoming state flag with blue field, white and red border, and bison silhouette.</desc>
+  <rect width="1000" height="700" fill="#0f4ea8"/>
+  <rect x="36" y="36" width="928" height="628" fill="none" stroke="#ffffff" stroke-width="44"/>
+  <rect x="78" y="78" width="844" height="544" fill="none" stroke="#b3192d" stroke-width="26"/>
+  <path
+    d="M183 448c18-26 61-55 104-64 7-38 33-82 83-108 58-31 141-39 225-22 34 7 70 13 97 31 23 15 35 35 53 49 15 12 43 26 66 28 13 1 28-1 42-5-13 25-36 42-67 46-10 1-21 1-32-1 15 20 22 42 20 63-3 30-29 47-55 58-28 12-61 16-93 16H468c-8 0-15 5-18 12l-13 33h-72l12-49c2-9-4-18-14-18h-39c-9 0-16 8-15 17l3 50h-74l-15-97c-2-10-7-20-15-27-15-13-23-38-25-62-1-14 0-29 5-40Z"
+    fill="#ffffff"
+  />
+  <circle cx="537" cy="351" r="59" fill="#f5c04a" stroke="#0f4ea8" stroke-width="14"/>
+  <circle cx="537" cy="351" r="29" fill="#0f4ea8"/>
+</svg>
