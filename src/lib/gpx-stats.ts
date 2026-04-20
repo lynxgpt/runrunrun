@@ -161,6 +161,13 @@ const REGIONS: Region[] = [
   { countryCode: "ZA", country: "South Africa",  bbox: { minLat: -35, maxLat: -22.1, minLon: 16.5, maxLon: 32.9 } },
 ];
 
+const NYC_BOROUGHS = new Set([
+  "Brooklyn",
+  "Queens",
+  "Bronx",
+  "Staten Island",
+]);
+
 const COUNTRY_FEATURES = feature(
   worldAtlas,
   worldAtlas.objects.countries,
@@ -323,6 +330,15 @@ function locationFor(t: GpxSummary): ActivityLocation {
       lat >= r.bbox.minLat && lat <= r.bbox.maxLat &&
       lon >= r.bbox.minLon && lon <= r.bbox.maxLon
     ) {
+      if (
+        r.countryCode === "US" &&
+        r.region === "NY" &&
+        r.city &&
+        NYC_BOROUGHS.has(r.city)
+      ) {
+        const state = lookupUsState(lat, lon);
+        if (state?.region !== "NY") continue;
+      }
       if (r.countryCode === "US" && !r.region) {
         const state = lookupUsState(lat, lon);
         if (state) {

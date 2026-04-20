@@ -84,9 +84,10 @@ function percentileMedian(values: number[]): number {
   if (!values.length) return 0;
   const sorted = values.slice().sort((a, b) => a - b);
   const mid = Math.floor(sorted.length / 2);
-  return sorted.length % 2 === 0
+  const median = sorted.length % 2 === 0
     ? Math.round((sorted[mid - 1] + sorted[mid]) / 2)
     : sorted[mid];
+  return Math.round(median);
 }
 
 export function paceBinIndexFor(secPerKm: number): number {
