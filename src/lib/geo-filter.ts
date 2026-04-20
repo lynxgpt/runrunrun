@@ -12,7 +12,8 @@ export type GeoFilter =
   | { kind: "state"; code: string; name: string }
   | { kind: "city"; code: string; name: string };
 
-let current: GeoFilter = { kind: "none" };
+const GEO_FILTER_NONE: GeoFilter = { kind: "none" };
+let current: GeoFilter = GEO_FILTER_NONE;
 const listeners = new Set<() => void>();
 
 function notify() {
@@ -57,6 +58,6 @@ export function useGeoFilter(): GeoFilter {
   return useSyncExternalStore(
     subscribe,
     () => current,
-    () => ({ kind: "none" }) as GeoFilter,
+    () => GEO_FILTER_NONE,
   );
 }
