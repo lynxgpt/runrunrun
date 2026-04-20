@@ -22,38 +22,26 @@ export function Statistics() {
       </h2>
 
       <div className="grid gap-12 md:grid-cols-2 xl:grid-cols-4 mb-16">
-        <ChartCard
-          title="ANNUAL DISTANCE"
-          caption="kilometers logged per streak year"
-        >
+        <ChartCard title="ANNUAL DISTANCE">
           <BarChart
             data={annualMileage.map((a) => ({ label: String(a.year), value: a.km }))}
-            xAxisLabel="streak year"
+            xAxisLabel="year"
             yAxisLabel="km"
           />
         </ChartCard>
 
-        <ChartCard
-          title="WORKOUT ACTIVITY BY TIME"
-          caption="distribution of start times across the day"
-        >
+        <ChartCard title="WORKOUT ACTIVITY BY TIME">
           <PolarClock data={workoutByTime} />
         </ChartCard>
 
-        <ChartCard
-          title="AVERAGE DAILY DISTANCE BY DAY"
-          caption="kilometers by day of week"
-        >
+        <ChartCard title="AVERAGE DAILY DISTANCE BY DAY">
           <RadarChart
             data={avgByWeekday}
             labels={["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]}
           />
         </ChartCard>
 
-        <ChartCard
-          title="RUN DISTANCES"
-          caption="count of runs bucketed by distance"
-        >
+        <ChartCard title="RUN DISTANCES">
           {/* No hardcoded yTicks — auto-normalises to the largest bucket */}
           <BarChart
             data={runDistances.map((b) => ({ label: b.label, value: b.count }))}
@@ -62,10 +50,7 @@ export function Statistics() {
       </div>
 
       <div className="grid gap-12 md:grid-cols-2 xl:grid-cols-2 mb-16">
-        <ChartCard
-          title="PACE DISTRIBUTION"
-          caption="distribution of average pace across runs"
-        >
+        <ChartCard title="PACE DISTRIBUTION">
           <DensityChart
             bins={paceDistribution.bins}
             axisLabels={paceDistribution.axisLabels}
@@ -76,7 +61,7 @@ export function Statistics() {
           />
         </ChartCard>
 
-        <ChartCard title="HEART RATE ZONES" caption="count of runs by average heart rate zone">
+        <ChartCard title="HEART RATE ZONES">
           <HorizontalBars data={heartRateZones.map((z) => ({ label: z.label, sub: z.bpm, value: z.count }))} />
         </ChartCard>
 

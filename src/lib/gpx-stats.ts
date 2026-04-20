@@ -31,8 +31,11 @@ import type {
 // ---------------------------------------------------------------------------
 // Track list, sorted by start time.
 
+const TRACK_CUTOFF = new Date("2025-01-01T00:00:00.000Z");
+
 export const tracks: GpxSummary[] = Object.values(gpxSummaries)
   .filter((t) => t.stats.startTime)
+  .filter((t) => new Date(t.stats.startTime!).getTime() >= TRACK_CUTOFF.getTime())
   .sort(
     (a, b) =>
       new Date(a.stats.startTime!).getTime() - new Date(b.stats.startTime!).getTime(),
@@ -480,10 +483,10 @@ function streakYearOf(d: Date, streakStart: Date): number {
   return years + 1;
 }
 
-// Annual km by streak year
+// Annual km by calendar year
 const annualMap = new Map<number, number>();
 for (const t of tracks) {
-  const y = streakYearOf(dateOf(t), first);
+  const y = dateOf(t).getUTCFullYear();
   annualMap.set(y, (annualMap.get(y) ?? 0) + t.stats.distanceKm);
 }
 const annualYearNumbers = [...annualMap.keys()].sort((a, b) => a - b);
