@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: var(--bg);
+  --color-foreground: var(--fg);
+  --font-sans: var(--font-jost), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Tamzen7x14", "Tamzen", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+/* Dark palette — original site look. Only set bg/fg; leave the neutral-*
+   scale at Tailwind defaults so all existing classes render unchanged. */
+:root,
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0a0a0a;
+  --fg: #ededed;
+}
+
+/* Light palette — low-saturation grey. Mix is ~0.7 white / 0.3 black for the
+   page background, with the rest of the neutral scale remapped into a narrow
+   greyscale band so existing neutral-* classes keep working.
+   The scale is inverted: neutral-950 (previously the darkest bg) becomes the
+   lightest surface, and neutral-50 (previously bright text) becomes the
+   darkest text. All values are pure greys — zero saturation. */
+html[data-theme="light"] {
+  color-scheme: light;
+  --bg: #b3b3b3;    /* 0.7 white + 0.3 black */
+  --fg: #1f1f1f;
+
+  --color-neutral-50:  #1f1f1f;
+  --color-neutral-100: #2a2a2a;
+  --color-neutral-200: #3a3a3a;
+  --color-neutral-300: #4a4a4a;
+  --color-neutral-400: #5c5c5c;
+  --color-neutral-500: #6e6e6e;
+  --color-neutral-600: #858585;
+  --color-neutral-700: #9a9a9a;
+  --color-neutral-800: #a8a8a8;
+  --color-neutral-900: #b3b3b3;
+  --color-neutral-950: #bdbdbd;
+}
+
+/* Tamzen bitmap monospace — self-hosted TTFs from sunaku/tamzen-font */
+@font-face { font-family: "Tamzen5x9"; font-weight: 400; font-style: normal; src: url("/fonts/Tamzen5x9r.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Tamzen5x9"; font-weight: 700; font-style: normal; src: url("/fonts/Tamzen5x9b.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Tamzen6x12"; font-weight: 400; font-style: normal; src: url("/fonts/Tamzen6x12r.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Tamzen6x12"; font-weight: 700; font-style: normal; src: url("/fonts/Tamzen6x12b.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Tamzen7x13"; font-weight: 400; font-style: normal; src: url("/fonts/Tamzen7x13r.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Tamzen7x13"; font-weight: 700; font-style: normal; src: url("/fonts/Tamzen7x13b.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Tamzen7x14"; font-weight: 400; font-style: normal; src: url("/fonts/Tamzen7x14r.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Tamzen7x14"; font-weight: 700; font-style: normal; src: url("/fonts/Tamzen7x14b.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Tamzen8x15"; font-weight: 400; font-style: normal; src: url("/fonts/Tamzen8x15r.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Tamzen8x15"; font-weight: 700; font-style: normal; src: url("/fonts/Tamzen8x15b.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Tamzen8x16"; font-weight: 400; font-style: normal; src: url("/fonts/Tamzen8x16r.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Tamzen8x16"; font-weight: 700; font-style: normal; src: url("/fonts/Tamzen8x16b.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Tamzen10x20"; font-weight: 400; font-style: normal; src: url("/fonts/Tamzen10x20r.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Tamzen10x20"; font-weight: 700; font-style: normal; src: url("/fonts/Tamzen10x20b.ttf") format("truetype"); font-display: swap; }
+
+@layer base {
+  html {
+    background: var(--bg);
+  }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  /* Tamzen bitmap fonts render crisp without smoothing */
+  .font-mono-tamzen,
+  .font-mono-tamzen * {
+    font-family: "Tamzen7x14", "Tamzen", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: unset;
+    font-feature-settings: "liga" 0;
+    image-rendering: pixelated;
+  }
+  .font-tamzen-sm { font-family: "Tamzen5x9", "Tamzen", ui-monospace, monospace; -webkit-font-smoothing: none; }
+  .font-tamzen-md { font-family: "Tamzen6x12", "Tamzen", ui-monospace, monospace; -webkit-font-smoothing: none; }
+  .font-tamzen-lg { font-family: "Tamzen8x16", "Tamzen", ui-monospace, monospace; -webkit-font-smoothing: none; }
+
+  /* Thin, unobtrusive scrollbar for fixed-height scroll regions. */
+  .scroll-thin { scrollbar-width: thin; scrollbar-color: #525252 transparent; }
+  .scroll-thin::-webkit-scrollbar { width: 6px; }
+  .scroll-thin::-webkit-scrollbar-track { background: transparent; }
+  .scroll-thin::-webkit-scrollbar-thumb { background: #525252; border-radius: 3px; }
+  .scroll-thin::-webkit-scrollbar-thumb:hover { background: #737373; }
+}

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600">
+  <!-- Cascadia Republic flag: green / white / blue tricolor + Douglas fir -->
+  <rect width="900" height="200" fill="#009b3a"/>
+  <rect y="200" width="900" height="200" fill="#ffffff"/>
+  <rect y="400" width="900" height="200" fill="#003f87"/>
+  <!-- simplified Douglas fir silhouette -->
+  <polygon points="450,60 510,200 480,200 530,310 495,310 550,420 350,420 405,310 370,310 420,200 390,200" fill="#005c24"/>
+  <rect x="425" y="420" width="50" height="60" fill="#5c3a1e"/>
+</svg>

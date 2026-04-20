@@ -1,0 +1,77 @@
+name: Deploy to GitHub Pages
+
+# Builds the Next.js static export and publishes it to GitHub Pages.
+# Runs on every push to main, and can be triggered manually.
+
+on:
+  push:
+    branches: [master, main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Only one deploy at a time; cancel in-progress runs when a newer commit lands.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Resolve base path
+        id: base
+        run: |
+          # GitHub Pages serves the repo under /<repo-name>/ unless a custom
+          # domain is configured. Extract the repo name from GITHUB_REPOSITORY
+          # (format: owner/repo) so assets resolve correctly.
+          REPO_NAME="${GITHUB_REPOSITORY##*/}"
+          echo "base_path=/$REPO_NAME" >> "$GITHUB_OUTPUT"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Process GPX files
+        # Reprocesses ALL .gpx files from scratch on every run — no incremental
+        # cache. Writes src/lib/gpx-processed.ts (summaries) and public/tracks/
+        # (per-track JSON payloads). Drop a new .gpx into public/gpx/ and push;
+        # this step picks it up automatically before the build.
+        run: node scripts/process-gpx.mjs
+
+      - name: Build static export
+        env:
+          NEXT_PUBLIC_BASE_PATH: ${{ steps.base.outputs.base_path }}
+        run: npm run build
+
+      - name: Disable Jekyll
+        # Without .nojekyll, Pages strips files/folders starting with an
+        # underscore — which breaks Next's /_next/ static bundles.
+        run: touch out/.nojekyll
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
