@@ -5,6 +5,9 @@
 
 import { gpxSummaries, type GpxSummary } from "./gpx-processed";
 import rawMeta from "../../public/strava-meta.json";
+const worldAtlas = require("world-atlas/countries-10m.json");
+const { feature } = require("topojson-client");
+const isoCountries = require("i18n-iso-countries");
 
 interface StravaMeta {
   tempC?: number;
@@ -188,6 +191,64 @@ const REGIONS: Region[] = [
   { countryCode: "ZA", country: "South Africa",  bbox: { minLat: -35, maxLat: -22.1, minLon: 16.5, maxLon: 32.9 } },
 ];
 
+const COUNTRY_FEATURES = feature(
+  worldAtlas,
+  worldAtlas.objects.countries,
+).features as Array<{
+  id: string;
+  properties: { name: string };
+  geometry: {
+    type: "Polygon" | "MultiPolygon";
+    coordinates: number[][][] | number[][][][];
+  };
+}>;
+
+function pointInRing(ring: number[][], point: [number, number]): boolean {
+  let inside = false;
+  for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+    const [xi, yi] = ring[i];
+    const [xj, yj] = ring[j];
+    const intersects =
+      (yi > point[1]) !== (yj > point[1]) &&
+      point[0] < ((xj - xi) * (point[1] - yi)) / (yj - yi) + xi;
+    if (intersects) inside = !inside;
+  }
+  return inside;
+}
+
+function polygonContainsPoint(polygon: number[][][], point: [number, number]): boolean {
+  if (!pointInRing(polygon[0], point)) return false;
+  for (const hole of polygon.slice(1)) {
+    if (pointInRing(hole, point)) return false;
+  }
+  return true;
+}
+
+function lookupCountry(lat: number, lon: number): { country: string; countryCode: string } | null {
+  const point: [number, number] = [lon, lat];
+  for (const country of COUNTRY_FEATURES) {
+    const { geometry } = country;
+    const contains =
+      geometry.type === "Polygon"
+        ? polygonContainsPoint(geometry.coordinates as number[][][], point)
+        : (geometry.coordinates as number[][][][]).some((polygon) =>
+            polygonContainsPoint(polygon, point),
+          );
+    if (!contains) continue;
+
+    const numeric = country.id.padStart(3, "0");
+    const alpha2 = isoCountries.numericToAlpha2(numeric);
+    if (!alpha2) return null;
+    return {
+      country: country.properties.name === "United States of America"
+        ? "United States"
+        : country.properties.name,
+      countryCode: alpha2,
+    };
+  }
+  return null;
+}
+
 // Piecewise approximation of Manhattan's EAST shoreline (East River edge).
 // Each entry is [latitude, easternmost_land_longitude] going south→north.
 // A centroid west of this line is on Manhattan land; east of it is in the
@@ -234,13 +295,11 @@ function manhattanEastLon(lat: number): number {
 }
 
 function locationFor(t: GpxSummary): ActivityLocation {
-  // Classify by track centroid (bbox midpoint). This is the correct signal
-  // for "which borough does this run belong to" — a run that spends most of
-  // its distance in Queens will have its centroid in Queens even if it briefly
-  // crosses a bridge into Manhattan.
+  // Use the mean of all track points when available. This is a better signal
+  // than the bbox midpoint for coastal and oddly-shaped routes.
   const { minLat, maxLat, minLon, maxLon } = t.stats.bbox;
-  const lat = (minLat + maxLat) / 2;
-  const lon = (minLon + maxLon) / 2;
+  const lat = t.stats.meanLat ?? (minLat + maxLat) / 2;
+  const lon = t.stats.meanLon ?? (minLon + maxLon) / 2;
 
   // --- Manhattan / East River special case ---
   // Manhattan is not in REGIONS because a simple bbox would swallow the East
@@ -276,6 +335,8 @@ function locationFor(t: GpxSummary): ActivityLocation {
       };
     }
   }
+  const country = lookupCountry(lat, lon);
+  if (country) return { ...country, lat, lon };
   return { country: "Unknown", countryCode: "??", lat, lon };
 }
 

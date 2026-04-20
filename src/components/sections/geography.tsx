@@ -20,9 +20,10 @@ function codeToFlag(code?: string) {
 
 // State codes → local flag image path (relative, no basePath prefix).
 // Uses regional/cultural flags: Cascadia Republic for WA, Bear Flag for CA.
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const STATE_FLAG_IMG: Record<string, string> = {
-  WA: "/runrunrun/images/flag-wa-cascadia.svg",
-  CA: "/runrunrun/images/flag-ca.svg",
+  WA: `${basePath}/images/flag-wa-cascadia.svg`,
+  CA: `${basePath}/images/flag-ca.svg`,
 };
 
 type Kind = "country" | "state" | "city";

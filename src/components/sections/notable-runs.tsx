@@ -35,6 +35,7 @@ const WEATHER_ICON: Record<WeatherCondition, React.ComponentType<{ className?: s
 // top-10. When they scroll past row 10, we preload the next 10, and so on.
 const PAGE = 10;
 const INITIAL_PRELOAD = 20;
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export function NotableRuns() {
   const visibleTabs = TABS.filter((t) => (notableRuns[t.id] ?? []).length > 0);
@@ -355,7 +356,7 @@ function DetailsPanel({ run }: { run: NotableRun }) {
       </div>
       {run.photoPath ? (
         <a
-          href={`/runrunrun${run.photoPath}`}
+          href={`${basePath}${run.photoPath}`}
           target="_blank"
           rel="noopener noreferrer"
           className="font-sans font-bold text-neutral-100 underline hover:text-neutral-300 text-sm"

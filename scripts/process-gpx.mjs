@@ -84,6 +84,13 @@ function aggregate(points, gpxName) {
   let totalKm = 0;
   let movingSec = 0;
   let gainM = 0;
+  let sumLat = 0;
+  let sumLon = 0;
+
+  for (let i = 0; i < points.length; i++) {
+    sumLat += points[i].lat;
+    sumLon += points[i].lon;
+  }
 
   for (let i = 1; i < points.length; i++) {
     const a = points[i - 1];
@@ -137,6 +144,8 @@ function aggregate(points, gpxName) {
     endTime: points[points.length - 1]?.time ?? null,
     startLat: +points[0].lat.toFixed(6),
     startLon: +points[0].lon.toFixed(6),
+    meanLat: +(sumLat / points.length).toFixed(6),
+    meanLon: +(sumLon / points.length).toFixed(6),
     bbox,
   };
 }
@@ -284,6 +293,8 @@ export interface GpxStats {
   endTime: string | null;
   startLat?: number;
   startLon?: number;
+  meanLat?: number;
+  meanLon?: number;
   bbox: { minLat: number; maxLat: number; minLon: number; maxLon: number };
 }
 
