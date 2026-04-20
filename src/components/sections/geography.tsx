@@ -2,21 +2,10 @@
 
 import { countriesVisited, usStatesVisited, nycBoroughsVisited } from "@/lib/mock-data";
 import { DataTable } from "@/components/primitives/data-table";
+import { CountryFlag } from "@/components/primitives/country-flag";
 import type { GeoRow } from "@/types/activity";
 import { formatNumber } from "@/lib/format";
 import { toggleCity, toggleCountry, toggleState, useGeoFilter } from "@/lib/geo-filter";
-
-// ISO 3166 alpha-2 → regional indicator emoji. Antarctica (AQ) has no flag,
-// so we draw a snowflake there.
-function codeToFlag(code?: string) {
-  if (!code || code.length !== 2) return "";
-  if (code.toUpperCase() === "AQ") return "\u2744\uFE0F";
-  if (code === "??") return "";
-  const cc = code.toUpperCase();
-  return String.fromCodePoint(
-    ...[...cc].map((c) => 0x1f1e6 + (c.charCodeAt(0) - 65)),
-  );
-}
 
 // State codes → local flag image path (relative, no basePath prefix).
 // Uses regional/cultural flags: Cascadia Republic for WA, Bear Flag for CA.
@@ -71,7 +60,7 @@ export function Geography() {
           style={{ paddingLeft: r.level * 20 }}
         >
           {r.level === 0 ? (
-            <span aria-hidden className="text-base leading-none">{codeToFlag(r.code)}</span>
+            <CountryFlag code={r.code} className="text-base leading-none shrink-0" />
           ) : r.level === 1 && r.code && STATE_FLAG_IMG[r.code] ? (
             // State with a flag image (Cascadia/WA, Bear Flag/CA, …)
             // eslint-disable-next-line @next/next/no-img-element

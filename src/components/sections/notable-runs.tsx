@@ -11,6 +11,7 @@ import { GpxMap } from "@/components/charts/gpx-map";
 import { GpxElevation } from "@/components/charts/gpx-elevation";
 import { GpxPace } from "@/components/charts/gpx-pace";
 import { GpxHeartRate } from "@/components/charts/gpx-heartrate";
+import { CountryFlag } from "@/components/primitives/country-flag";
 import { prefetchTrack, useGpxTrack } from "@/lib/use-gpx-track";
 import { setGeoFilter, useGeoFilter } from "@/lib/geo-filter";
 
@@ -310,18 +311,8 @@ function ChartsPanel({ run }: { run: NotableRun }) {
 }
 
 // ISO 3166 alpha-2 → regional indicator emoji (AQ has no flag → snowflake).
-function codeToFlag(code?: string) {
-  if (!code || code.length !== 2) return "";
-  if (code.toUpperCase() === "AQ") return "\u2744\uFE0F";
-  if (code === "??") return "";
-  return String.fromCodePoint(
-    ...[...code.toUpperCase()].map((c) => 0x1f1e6 + (c.charCodeAt(0) - 65)),
-  );
-}
-
 function DetailsPanel({ run }: { run: NotableRun }) {
   const Icon = WEATHER_ICON[run.weather];
-  const flag = codeToFlag(run.location.countryCode);
   return (
     <div className="flex flex-col items-start gap-4 font-mono-tamzen text-sm">
       <h3 className="font-sans text-lg font-bold text-neutral-100">
@@ -346,7 +337,7 @@ function DetailsPanel({ run }: { run: NotableRun }) {
       ) : null}
       <div>
         <div className="font-sans text-lg font-bold text-neutral-100 flex items-center gap-2">
-          {flag ? <span aria-hidden className="text-base">{flag}</span> : null}
+          <CountryFlag code={run.location.countryCode} className="text-base leading-none shrink-0" />
           <span>{run.location.city ?? run.location.country}</span>
         </div>
         <div className="text-xs uppercase text-neutral-500">
