@@ -39,6 +39,7 @@ const TRACK_CUTOFF = new Date("2025-01-01T00:00:00.000Z");
 export const tracks: GpxSummary[] = Object.values(gpxSummaries)
   .filter((t) => t.stats.startTime)
   .filter((t) => new Date(t.stats.startTime!).getTime() >= TRACK_CUTOFF.getTime())
+  .filter((t) => !t.stats.activityType || t.stats.activityType === "running")
   .sort(
     (a, b) =>
       new Date(a.stats.startTime!).getTime() - new Date(b.stats.startTime!).getTime(),
@@ -278,6 +279,43 @@ const MANHATTAN_EAST_SHORE: [number, number][] = [
   [40.878, -73.910], // Inwood / north tip
 ];
 
+// Western boundary for Manhattan classification — approximately the eastern
+// edge of the NJ waterfront (Hoboken / Weehawken / Fort Lee). Points whose
+// mean longitude is west of this line started from NJ and should not be
+// attributed to Manhattan, even though GPS multipath can push Manhattan
+// tracks ~10–15 m westward into the Hudson. The center-channel would be
+// too aggressive; the NJ waterfront edge is the right cut.
+// Each entry: [latitude, minimum_longitude_to_be_Manhattan].
+// More positive (less negative) = tighter boundary.
+// This sits between the NJ waterfront (~-74.024 to -74.030) and the
+// GPS-offset Manhattan runs (~-74.018), excluding the NJ side.
+const MANHATTAN_WEST_BOUNDARY: [number, number][] = [
+  [40.700, -74.021], // south of Battery Park / Liberty State Park
+  [40.727, -74.022], // Hoboken south level
+  [40.750, -74.022], // Hoboken north / central level
+  [40.765, -74.021], // Weehawken / Port Imperial
+  [40.780, -74.017], // Weehawken Heights / Palisades
+  [40.800, -73.997], // Fort Lee / Palisades cliffs
+  [40.830, -73.965], // Fort Lee north
+  [40.860, -73.942], // Alpine NJ
+  [40.878, -73.929], // Alpine / state line
+];
+
+function hudsonCenterlineWestOf(lat: number): number {
+  const s = MANHATTAN_WEST_BOUNDARY;
+  if (lat <= s[0][0]) return s[0][1];
+  if (lat >= s[s.length - 1][0]) return s[s.length - 1][1];
+  for (let i = 0; i < s.length - 1; i++) {
+    const [lat0, lon0] = s[i];
+    const [lat1, lon1] = s[i + 1];
+    if (lat >= lat0 && lat <= lat1) {
+      const t = (lat - lat0) / (lat1 - lat0);
+      return lon0 + t * (lon1 - lon0);
+    }
+  }
+  return s[0][1];
+}
+
 // Returns the easternmost longitude that is still Manhattan land at a given
 // latitude. Points east of this value are in the East River.
 function manhattanEastLon(lat: number): number {
@@ -307,8 +345,7 @@ function locationFor(t: GpxSummary): ActivityLocation {
   // River and misclassify LIC / Greenpoint / DUMBO runs. Instead we check the
   // actual land boundary with a piecewise shoreline polyline.
   const MAN_LAT_MIN = 40.700, MAN_LAT_MAX = 40.880;
-  const MAN_LON_MIN = -74.025; // Hudson River / NJ boundary (generous)
-  if (lat >= MAN_LAT_MIN && lat <= MAN_LAT_MAX && lon >= MAN_LON_MIN) {
+  if (lat >= MAN_LAT_MIN && lat <= MAN_LAT_MAX && lon >= hudsonCenterlineWestOf(lat)) {
     const eastEdge = manhattanEastLon(lat);
     if (lon <= eastEdge) {
       // On Manhattan island land
@@ -562,20 +599,24 @@ export const treadmillVsOutdoor = { treadmill: 0, outdoor: tracks.length };
 const minutePaceSamples = tracks.flatMap((t) => t.stats.paceSamples ?? []);
 export const paceDistribution = buildPaceDistributionFromSamples(minutePaceSamples);
 
-const HR_ZONES: { label: string; bpm: string; max: number }[] = [
-  { label: "Easy",      bpm: "<139bpm",    max: 139 },
-  { label: "Tempo",     bpm: "140-159bpm", max: 159 },
-  { label: "Threshold", bpm: "160-166bpm", max: 166 },
-  { label: "VO2 Max",   bpm: ">167bpm",    max: 999 },
+const HR_ZONE_META = [
+  { label: "Easy",      bpm: "<139bpm"    },
+  { label: "Tempo",     bpm: "140-159bpm" },
+  { label: "Threshold", bpm: "160-166bpm" },
+  { label: "VO2 Max",   bpm: ">167bpm"   },
 ];
-export const heartRateZones = HR_ZONES.map((z, i) => {
-  const prevMax = i === 0 ? 0 : HR_ZONES[i - 1].max;
-  const count = tracks.filter((t) => {
-    const hr = t.stats.avgHr ?? 0;
-    return hr > prevMax && hr <= z.max;
-  }).length;
-  return { label: z.label, bpm: z.bpm, count };
-});
+const hrZoneTotals = [0, 0, 0, 0];
+for (const t of tracks) {
+  const z = t.stats.hrZoneSec;
+  if (!z) continue;
+  for (let i = 0; i < 4; i++) hrZoneTotals[i] += z[i] ?? 0;
+}
+const hrZoneTotal = hrZoneTotals.reduce((a, b) => a + b, 0);
+export const heartRateZones = HR_ZONE_META.map((z, i) => ({
+  label: z.label,
+  bpm: z.bpm,
+  pct: hrZoneTotal > 0 ? +((hrZoneTotals[i] / hrZoneTotal) * 100).toFixed(1) : 0,
+}));
 
 // Temperature/weather placeholders. Real values need an external API.
 export const temperatureBuckets: HistogramBucket[] = [

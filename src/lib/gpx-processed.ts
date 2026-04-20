@@ -29,7 +29,9 @@ export interface GpxStats {
   meanLat?: number;
   meanLon?: number;
   bbox: { minLat: number; maxLat: number; minLon: number; maxLon: number };
+  activityType?: string;
   paceSamples?: number[];
+  hrZoneSec?: number[];
   pbQuality?: {
     repeatedShare: number;
     movingShare: number;
@@ -87,12 +89,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         371.15492600860256,
         615.1794432580729
       ],
+      "hrZoneSec": [
+        0,
+        0,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0.068,
         "movingShare": 0.7077338129496403,
         "maxSegmentKph": 17.99999999999999,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "first-run-after-holiday-trip-aborted-due-14737174154": {
@@ -136,12 +145,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         483.275994400845,
         535.7013702589609
       ],
+      "hrZoneSec": [
+        0,
+        832,
+        134,
+        10
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 1,
         "maxSegmentKph": 21.60000000000082,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "lunch-run-14737201661": {
@@ -202,12 +218,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         430.0429504717718,
         461.7729609566209
       ],
+      "hrZoneSec": [
+        26,
+        991,
+        533,
+        434
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9706457925636007,
         "maxSegmentKph": 16.80000000000028,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "afternoon-run-14737228449": {
@@ -277,12 +300,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         277.792210847476,
         391.62552637612237
       ],
+      "hrZoneSec": [
+        0,
+        0,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.6786867599569429,
         "maxSegmentKph": 22.31999999999978,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "afternoon-run-14737183589": {
@@ -338,12 +368,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         388.50731132260864,
         433.36833025868197
       ],
+      "hrZoneSec": [
+        0,
+        1236,
+        443,
+        38
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 1,
         "maxSegmentKph": 18.000000000000416,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-13433736397": {
@@ -403,12 +440,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         310.84045524243186,
         358.7151299382686
       ],
+      "hrZoneSec": [
+        234,
+        1302,
+        398,
+        3
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9753272910372608,
         "maxSegmentKph": 21.599999999999994,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-13441737874": {
@@ -473,12 +517,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         344.13230036762457,
         332.8638616509089
       ],
+      "hrZoneSec": [
+        11,
+        961,
+        1170,
+        108
+      ],
       "pbQuality": {
         "repeatedShare": 0.004,
         "movingShare": 0.9648370497427101,
         "maxSegmentKph": 15.120000000000573,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-13451942159": {
@@ -604,12 +655,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         360.9394571626324,
         401.3857548272881
       ],
+      "hrZoneSec": [
+        196,
+        5251,
+        361,
+        74
+      ],
       "pbQuality": {
         "repeatedShare": 0.008,
         "movingShare": 0.9570452326716563,
         "maxSegmentKph": 24.59999999999969,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "sprint-try-13463080850": {
@@ -642,12 +700,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         255.90486438849473,
         255.053663761572
       ],
+      "hrZoneSec": [
+        50,
+        143,
+        82,
+        68
+      ],
       "pbQuality": {
         "repeatedShare": 0.122,
         "movingShare": 0.34964322120285424,
         "maxSegmentKph": 25.200000000000024,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-13475249312": {
@@ -685,12 +750,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         353.9203232309065,
         350.57349419741945
       ],
+      "hrZoneSec": [
+        259,
+        148,
+        227,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0.416,
         "movingShare": 0.32166412988330795,
         "maxSegmentKph": 107.28000000000002,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-13484062189": {
@@ -747,12 +819,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         364.4069173491254,
         353.0597094314769
       ],
+      "hrZoneSec": [
+        11,
+        580,
+        991,
+        205
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 1,
         "maxSegmentKph": 19.800000000000217,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-13497348820": {
@@ -817,12 +896,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         305.85159380459294,
         278.7252393714868
       ],
+      "hrZoneSec": [
+        806,
+        1425,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9902352418996893,
         "maxSegmentKph": 18.000000000000682,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-13513779925": {
@@ -984,12 +1070,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         330.64421593289,
         301.34626184594936
       ],
+      "hrZoneSec": [
+        288,
+        1289,
+        2830,
+        3647
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.948757215219696,
         "maxSegmentKph": 13.499999999999712,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-13543430964": {
@@ -1043,12 +1136,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         370.42936917484695,
         324.56579175215114
       ],
+      "hrZoneSec": [
+        28,
+        1390,
+        157,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9800871188550093,
         "maxSegmentKph": 19.80000000000002,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-13551717252": {
@@ -1101,12 +1201,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         353.59424696573933,
         316.09285926580026
       ],
+      "hrZoneSec": [
+        592,
+        435,
+        34,
+        440
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 1,
         "maxSegmentKph": 19.800000000000217,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-13566129284": {
@@ -1164,12 +1271,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         293.46889356137336,
         311.0400285506108
       ],
+      "hrZoneSec": [
+        44,
+        843,
+        677,
+        242
+      ],
       "pbQuality": {
         "repeatedShare": 0.006,
         "movingShare": 0.974635725849973,
         "maxSegmentKph": 37.80000000000064,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "3-13576826295": {
@@ -1377,12 +1491,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         364.79401711474856,
         378.9493164308336
       ],
+      "hrZoneSec": [
+        887,
+        8634,
+        1302,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.861703821656051,
         "maxSegmentKph": 23.321739130434924,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-13620417805": {
@@ -1438,12 +1559,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         335.8224498815779,
         348.1324092301483
       ],
+      "hrZoneSec": [
+        132,
+        1107,
+        154,
+        289
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9958555358200119,
         "maxSegmentKph": 24.000000000000004,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-13636364719": {
@@ -1494,12 +1622,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         299.66692686813786,
         264.02771399159235
       ],
+      "hrZoneSec": [
+        0,
+        120,
+        599,
+        692
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 1,
         "maxSegmentKph": 28.800000000000026,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-13654045258": {
@@ -1555,12 +1690,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         393.46162095468856,
         388.82532592002076
       ],
+      "hrZoneSec": [
+        112,
+        1398,
+        179,
+        1
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 1,
         "maxSegmentKph": 19.800000000000217,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-13669566048": {
@@ -1625,12 +1767,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         397.666275807337,
         375.6444114074162
       ],
+      "hrZoneSec": [
+        261,
+        1449,
+        348,
+        217
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.658465991316932,
         "maxSegmentKph": 17.99999999999999,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-13682569537": {
@@ -1725,12 +1874,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         333.62228615032313,
         327.1794125210847
       ],
+      "hrZoneSec": [
+        711,
+        2945,
+        333,
+        86
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.6769102990033222,
         "maxSegmentKph": 14.40000000000024,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-13728418649": {
@@ -1808,12 +1964,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         409.80211874849067,
         411.3199500005966
       ],
+      "hrZoneSec": [
+        143,
+        1371,
+        1184,
+        308
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8718097447795824,
         "maxSegmentKph": 17.280000000000655,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-13744928359": {
@@ -1865,12 +2028,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         279.1008123541518,
         293.9827766243037
       ],
+      "hrZoneSec": [
+        11,
+        138,
+        485,
+        816
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 1,
         "maxSegmentKph": 25.199999999999623,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-13762788859": {
@@ -1970,12 +2140,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         282.38373405877866,
         323.52898059373575
       ],
+      "hrZoneSec": [
+        834,
+        1578,
+        890,
+        1024
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8676293622141997,
         "maxSegmentKph": 18.44999999999977,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-13791246934": {
@@ -2025,12 +2202,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         265.45126449388295,
         252.35638466177838
       ],
+      "hrZoneSec": [
+        14,
+        162,
+        864,
+        316
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 1,
         "maxSegmentKph": 23.40000000000002,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-13808084646": {
@@ -2093,12 +2277,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         325.4217645006774,
         275.0336152007418
       ],
+      "hrZoneSec": [
+        904,
+        1224,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9300699300699301,
         "maxSegmentKph": 30.960000000000008,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-13837633853": {
@@ -2206,12 +2397,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         327.4794285494041,
         321.85368899821424
       ],
+      "hrZoneSec": [
+        1215,
+        3187,
+        84,
+        314
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8224811514736121,
         "maxSegmentKph": 14.760000000000133,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "2-13857266913": {
@@ -2274,12 +2472,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         325.23084843189764,
         243.50994946813572
       ],
+      "hrZoneSec": [
+        167,
+        234,
+        232,
+        1496
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.7699819168173598,
         "maxSegmentKph": 29.700000000000003,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-13876254946": {
@@ -2332,12 +2537,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         312.8388776166461,
         346.1142964907789
       ],
+      "hrZoneSec": [
+        107,
+        1363,
+        58,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9782330345710627,
         "maxSegmentKph": 23.40000000000062,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-13892658656": {
@@ -2457,12 +2669,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         452.63141977584166,
         467.73281342074023
       ],
+      "hrZoneSec": [
+        3384,
+        1972,
+        143,
+        62
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.6850209411185021,
         "maxSegmentKph": 15.97499999999994,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-13922094049": {
@@ -2523,12 +2742,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         261.02083286838615,
         290.7536051307324
       ],
+      "hrZoneSec": [
+        360,
+        1280,
+        352,
+        6
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.5080091533180778,
         "maxSegmentKph": 22.800000000000153,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-13931651950": {
@@ -2603,12 +2829,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         405.23649138343086,
         395.6968954348496
       ],
+      "hrZoneSec": [
+        54,
+        290,
+        448,
+        2069
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9429795649307845,
         "maxSegmentKph": 31.50000000000003,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-13966290727": {
@@ -2737,12 +2970,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         325.86052375627065,
         319.13581053884974
       ],
+      "hrZoneSec": [
+        2819,
+        2728,
+        303,
+        238
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.6878318834030053,
         "maxSegmentKph": 14.400000000000013,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-13982671579": {
@@ -2794,12 +3034,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         369.7210773547061,
         366.85154103346315
       ],
+      "hrZoneSec": [
+        135,
+        1312,
+        5,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8768115942028986,
         "maxSegmentKph": 25.200000000000422,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-14016204988": {
@@ -2849,12 +3096,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         286.94527374811315,
         287.95820453537334
       ],
+      "hrZoneSec": [
+        229,
+        861,
+        276,
+        8
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9404517453798767,
         "maxSegmentKph": 28.800000000000026,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-14034777630": {
@@ -2905,12 +3159,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         297.08171821577616,
         282.3892472261786
       ],
+      "hrZoneSec": [
+        141,
+        637,
+        513,
+        112
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.924851680949242,
         "maxSegmentKph": 55.19999999999925,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-14072909359": {
@@ -2966,12 +3227,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         322.7998638773658,
         351.12727273403254
       ],
+      "hrZoneSec": [
+        690,
+        969,
+        79,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9147368421052632,
         "maxSegmentKph": 40.499999999999936,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-14081674353": {
@@ -3029,12 +3297,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         299.20096181514907,
         339.29364371034484
       ],
+      "hrZoneSec": [
+        846,
+        467,
+        468,
+        70
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8637424171721885,
         "maxSegmentKph": 18.000000000000014,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-14100496597": {
@@ -3083,12 +3358,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         198.23121290112363,
         226.45296353153867
       ],
+      "hrZoneSec": [
+        377,
+        811,
+        70,
+        10
+      ],
       "pbQuality": {
         "repeatedShare": 0.05,
         "movingShare": 0.5270157938487116,
         "maxSegmentKph": 62.99999999999996,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-14121831047": {
@@ -3155,12 +3437,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         237.58185934304862,
         279.00674271635546
       ],
+      "hrZoneSec": [
+        230,
+        1336,
+        493,
+        307
+      ],
       "pbQuality": {
         "repeatedShare": 0.002,
         "movingShare": 0.8307584269662921,
         "maxSegmentKph": 40.320000000000036,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-14139516325": {
@@ -3239,12 +3528,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         362.4237221325706,
         363.00808309518897
       ],
+      "hrZoneSec": [
+        747,
+        2316,
+        3,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0.004,
         "movingShare": 0.9501084598698482,
         "maxSegmentKph": 16.200000000000614,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-14165368226": {
@@ -3371,12 +3667,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         239.25903767166844,
         244.71472592711504
       ],
+      "hrZoneSec": [
+        15,
+        80,
+        511,
+        5384
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.99983308295777,
         "maxSegmentKph": 19.80000000000075,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-14193815591": {
@@ -3466,12 +3769,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         412.159940455922,
         396.38024363183706
       ],
+      "hrZoneSec": [
+        2556,
+        1183,
+        29,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8177083333333334,
         "maxSegmentKph": 13.371428571428574,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-14209038777": {
@@ -3530,12 +3840,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         386.616242634256,
         376.26327676661754
       ],
+      "hrZoneSec": [
+        337,
+        1316,
+        244,
+        11
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8238341968911918,
         "maxSegmentKph": 16.200000000000614,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-14222840776": {
@@ -3595,12 +3912,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         419.80815907740305,
         372.3898983804021
       ],
+      "hrZoneSec": [
+        776,
+        1176,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8320545609548167,
         "maxSegmentKph": 17.100000000000115,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-14257505627": {
@@ -3715,12 +4039,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         356.2104871704109,
         339.86372719054543
       ],
+      "hrZoneSec": [
+        694,
+        2849,
+        1049,
+        632
+      ],
       "pbQuality": {
         "repeatedShare": 0.008,
         "movingShare": 0.79816653934301,
         "maxSegmentKph": 514.0800000000004,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-14277977480": {
@@ -3768,12 +4099,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         307.5315156143811,
         304.4308353549634
       ],
+      "hrZoneSec": [
+        447,
+        630,
+        82,
+        69
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.48768864177918986,
         "maxSegmentKph": 80.99999999999987,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-14296101190": {
@@ -3903,12 +4241,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         389.2261942890748,
         401.25672092947457
       ],
+      "hrZoneSec": [
+        2799,
+        2842,
+        303,
+        205
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.7770756982181221,
         "maxSegmentKph": 12.30000000000011,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-14327874351": {
@@ -3977,12 +4322,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         373.1937185613747,
         367.63551904518494
       ],
+      "hrZoneSec": [
+        168,
+        2116,
+        212,
+        11
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9446119065561417,
         "maxSegmentKph": 16.199999999999815,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "2-15324609383": {
@@ -4043,12 +4395,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         303.1957798655993,
         424.2793590888165
       ],
+      "hrZoneSec": [
+        405,
+        666,
+        614,
+        342
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9670801526717557,
         "maxSegmentKph": 20.700000000000117,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-14338879259": {
@@ -4101,12 +4460,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         272.42472490005173,
         256.4557117790763
       ],
+      "hrZoneSec": [
+        253,
+        940,
+        147,
+        165
+      ],
       "pbQuality": {
         "repeatedShare": 0.0028653295128939827,
         "movingShare": 0.9537389100126743,
         "maxSegmentKph": 18.000000000000014,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-14379562863": {
@@ -4263,12 +4629,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         323.7840677764673,
         324.3352295069858
       ],
+      "hrZoneSec": [
+        2268,
+        4559,
+        520,
+        409
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.6256857050661504,
         "maxSegmentKph": 58.909090909090814,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-14400654643": {
@@ -4317,12 +4690,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         259.39313586023053,
         231.99354811969872
       ],
+      "hrZoneSec": [
+        12,
+        139,
+        422,
+        746
+      ],
       "pbQuality": {
         "repeatedShare": 0.003205128205128205,
         "movingShare": 0.9806691449814127,
         "maxSegmentKph": 18.000000000002814,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-14473159151": {
@@ -4383,12 +4763,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         370.709961843065,
         386.5308444856291
       ],
+      "hrZoneSec": [
+        1977,
+        60,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0.046,
         "movingShare": 0.7380434782608696,
         "maxSegmentKph": 18.000000000001215,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-14493850213": {
@@ -4445,12 +4832,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         424.29247209843805,
         399.496621892367
       ],
+      "hrZoneSec": [
+        718,
+        859,
+        152,
+        50
+      ],
       "pbQuality": {
         "repeatedShare": 0.029106029106029108,
         "movingShare": 0.6638059701492537,
         "maxSegmentKph": 23.40000000000002,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-14513588170": {
@@ -4519,12 +4913,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         302.3123398571797,
         365.4848457871117
       ],
+      "hrZoneSec": [
+        2147,
+        349,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.7241079199303743,
         "maxSegmentKph": 15.119999999999933,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-14524902301": {
@@ -4600,12 +5001,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         299.00715574858464,
         380.2325717308542
       ],
+      "hrZoneSec": [
+        2425,
+        455,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8500590318772137,
         "maxSegmentKph": 13.799999999999812,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-14534865309": {
@@ -4696,12 +5104,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         287.26934282235607,
         282.7799691757908
       ],
+      "hrZoneSec": [
+        3263,
+        573,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.6441645675902603,
         "maxSegmentKph": 17.099999999999717,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-14545937562": {
@@ -4782,12 +5197,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         445.1728465021487,
         599.0196144180426
       ],
+      "hrZoneSec": [
+        3140,
+        86,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0.01,
         "movingShare": 0.5545813993467423,
         "maxSegmentKph": 11.828571428571724,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-14556501645": {
@@ -4912,12 +5334,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         412.85651262577255,
         410.3928270895115
       ],
+      "hrZoneSec": [
+        5023,
+        816,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8195087719298245,
         "maxSegmentKph": 14.399999999999997,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-14634172928": {
@@ -4978,12 +5407,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         340.6503955360644,
         390.7388829275633
       ],
+      "hrZoneSec": [
+        421,
+        789,
+        196,
+        577
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 1,
         "maxSegmentKph": 18.899999999999917,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-14645450289": {
@@ -5049,12 +5485,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         326.55486284683644,
         318.676665037895
       ],
+      "hrZoneSec": [
+        182,
+        1620,
+        537,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0.008,
         "movingShare": 0.9578214578214578,
         "maxSegmentKph": 17.280000000000015,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "evening-run-14667737027": {
@@ -5137,12 +5580,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         327.1017246866643,
         327.21025693350765
       ],
+      "hrZoneSec": [
+        3119,
+        214,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0.012,
         "movingShare": 0.7913105413105413,
         "maxSegmentKph": 19.200000000000017,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "interval-tuesday-14689420086": {
@@ -5200,12 +5650,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         471.8741506891899,
         532.4658793344959
       ],
+      "hrZoneSec": [
+        962,
+        863,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0.006,
         "movingShare": 0.6419275413295814,
         "maxSegmentKph": 24.30000000000012,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "fart-lek-14725832895": {
@@ -5261,12 +5718,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         367.9022779206495,
         339.4923668126654
       ],
+      "hrZoneSec": [
+        258,
+        1130,
+        287,
+        10
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9946871310507674,
         "maxSegmentKph": 18.00000000000015,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "weekly-long-14739061268": {
@@ -5377,12 +5841,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         480.65823478212224,
         387.6041153929489
       ],
+      "hrZoneSec": [
+        2338,
+        2653,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8625993778085033,
         "maxSegmentKph": 14.760000000000133,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-14760707327": {
@@ -5444,12 +5915,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         401.44301721269096,
         344.99167804188767
       ],
+      "hrZoneSec": [
+        515,
+        1526,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0.008,
         "movingShare": 0.841996699669967,
         "maxSegmentKph": 17.099999999999916,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-14781113994": {
@@ -5503,12 +5981,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         391.05880610044034,
         389.84223125437154
       ],
+      "hrZoneSec": [
+        1034,
+        562,
+        2,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0.056,
         "movingShare": 0.8103448275862069,
         "maxSegmentKph": 19.80000000000002,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "evening-run-14790828732": {
@@ -5558,12 +6043,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         326.1054363238264,
         297.2757875843822
       ],
+      "hrZoneSec": [
+        1322,
+        0,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0.004,
         "movingShare": 0.7632794457274826,
         "maxSegmentKph": 16.199999999999815,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "weekly-long-14811110138": {
@@ -5705,12 +6197,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         352.17771946606723,
         419.5893629802748
       ],
+      "hrZoneSec": [
+        4991,
+        1877,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.7981406159209762,
         "maxSegmentKph": 14.399999999999785,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "interval-tuesday-14833764524": {
@@ -5784,12 +6283,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         250.4931339508623,
         251.48363866571583
       ],
+      "hrZoneSec": [
+        2408,
+        326,
+        38,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.740780331373597,
         "maxSegmentKph": 28.19999999999982,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "morning-run-14860117292": {
@@ -5842,12 +6348,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         301.9191389094348,
         277.78232509896566
       ],
+      "hrZoneSec": [
+        730,
+        825,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9616573902288188,
         "maxSegmentKph": 32.4,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "roasted-14876024487": {
@@ -5901,12 +6414,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         366.34441422736853,
         381.7141712148247
       ],
+      "hrZoneSec": [
+        1344,
+        242,
+        3,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.6451481932602517,
         "maxSegmentKph": 49.20000000000044,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "compare-14882498874": {
@@ -5958,12 +6478,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         444.4866179833512,
         384.3874285430158
       ],
+      "hrZoneSec": [
+        894,
+        555,
+        26,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.6602506714413607,
         "maxSegmentKph": 21.60000000000002,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "taco-tuesday-14906534107": {
@@ -6017,12 +6544,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         295.7255613951967,
         257.6417011468509
       ],
+      "hrZoneSec": [
+        104,
+        737,
+        350,
+        377
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9855436832181018,
         "maxSegmentKph": 17.999999999999982,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "weekly-long-14958779542": {
@@ -6182,12 +6716,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         293.83506092357345,
         312.03671829723146
       ],
+      "hrZoneSec": [
+        4388,
+        3548,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.6908077994428969,
         "maxSegmentKph": 16.559999999999775,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "zone-2-14974128587": {
@@ -6271,12 +6812,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         397.85515830065935,
         376.372409349316
       ],
+      "hrZoneSec": [
+        3343,
+        32,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8754863813229572,
         "maxSegmentKph": 18.00000000000007,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "lunch-run-14987429942": {
@@ -6365,12 +6913,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         362.78541855770635,
         389.2687301117068
       ],
+      "hrZoneSec": [
+        2441,
+        1239,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9064039408866995,
         "maxSegmentKph": 16.45714285714276,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "recovery-15041689539": {
@@ -6449,12 +7004,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         552.8291701508525,
         455.7411204702283
       ],
+      "hrZoneSec": [
+        3042,
+        73,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.6304391823517507,
         "maxSegmentKph": 11.400000000000077,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "weekly-long-15064184428": {
@@ -6603,12 +7165,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         403.6520511611335,
         393.3295181143615
       ],
+      "hrZoneSec": [
+        2155,
+        5077,
+        38,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.520848259062903,
         "maxSegmentKph": 613.8782608695653,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "interval-tuesday-15128405471": {
@@ -6664,12 +7233,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         377.68096762120695,
         343.4666905930982
       ],
+      "hrZoneSec": [
+        1155,
+        459,
+        105,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0.006,
         "movingShare": 0.8883720930232558,
         "maxSegmentKph": 20.40000000000015,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "interval-crisp-tuesday-15197996896": {
@@ -6723,12 +7299,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         359.27875450336495,
         316.4451256281108
       ],
+      "hrZoneSec": [
+        1358,
+        240,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0.014,
         "movingShare": 0.625440313111546,
         "maxSegmentKph": 26.400000000000023,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "weekly-kind-of-long-15215679112": {
@@ -6800,12 +7383,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         354.5549682228572,
         347.44845832255726
       ],
+      "hrZoneSec": [
+        1280,
+        1315,
+        55,
+        10
+      ],
       "pbQuality": {
         "repeatedShare": 0.002,
         "movingShare": 0.9747160131916452,
         "maxSegmentKph": 18.720000000000496,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "weekly-kind-of-long-15619323922": {
@@ -6857,12 +7447,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         250.1648989526094,
         234.10628623599334
       ],
+      "hrZoneSec": [
+        225,
+        1142,
+        70,
+        5
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8857493857493858,
         "maxSegmentKph": 26.400000000000006,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "tempo-15246529531": {
@@ -6915,12 +7512,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         281.09086182819425,
         270.66811699085093
       ],
+      "hrZoneSec": [
+        221,
+        464,
+        271,
+        574
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.879815986198965,
         "maxSegmentKph": 16.80000000000028,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "interval-15304042318": {
@@ -6979,12 +7583,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         367.9391860729396,
         323.81726096713675
       ],
+      "hrZoneSec": [
+        789,
+        695,
+        392,
+        35
+      ],
       "pbQuality": {
         "repeatedShare": 0.002,
         "movingShare": 0.8737997256515775,
         "maxSegmentKph": 20.700000000000117,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "easy-15313533827": {
@@ -7055,12 +7666,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         362.23283748948336,
         324.04190307101504
       ],
+      "hrZoneSec": [
+        1916,
+        699,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0.008,
         "movingShare": 0.9808702175543886,
         "maxSegmentKph": 21.60000000000018,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "weekly-looong-15320040579": {
@@ -7239,12 +7857,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         312.8647821181233,
         324.6564176728418
       ],
+      "hrZoneSec": [
+        1325,
+        4167,
+        1531,
+        2086
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8992990423536381,
         "maxSegmentKph": 16.000000000000014,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "interval-tuesday-15359534059": {
@@ -7303,12 +7928,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         451.6168051849632,
         430.5353934646478
       ],
+      "hrZoneSec": [
+        1227,
+        420,
+        230,
+        33
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.6586206896551724,
         "maxSegmentKph": 26.099999999999923,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "afternoon-run-15370050312": {
@@ -7350,12 +7982,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         352.5326756256191,
         355.38767984466153
       ],
+      "hrZoneSec": [
+        898,
+        0,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0.014,
         "movingShare": 0.9868131868131869,
         "maxSegmentKph": 14.400000000000013,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "evening-run-15371476873": {
@@ -7435,12 +8074,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         651.0541301978441,
         678.8925942783865
       ],
+      "hrZoneSec": [
+        2983,
+        189,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9551339957844023,
         "maxSegmentKph": 13.200000000000012,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-15383211944": {
@@ -7492,12 +8138,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         314.46803074124193,
         313.8114870539184
       ],
+      "hrZoneSec": [
+        242,
+        1239,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.942711648631445,
         "maxSegmentKph": 80.99999999999987,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "weekly-long-15401664360": {
@@ -7627,12 +8280,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         359.09085332650255,
         290.69638284991703
       ],
+      "hrZoneSec": [
+        3289,
+        2848,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.6890860094318437,
         "maxSegmentKph": 17.699999999999914,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "afternoon-run-15438693660": {
@@ -7723,12 +8383,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         270.05519970600824,
         283.9515680799912
       ],
+      "hrZoneSec": [
+        973,
+        2551,
+        230,
+        29
+      ],
       "pbQuality": {
         "repeatedShare": 0.004,
         "movingShare": 0.7317214700193424,
         "maxSegmentKph": 28.8,
         "hasTeleportGap": true
-      }
+      },
+      "activityType": "running"
     }
   },
   "run-15472644965": {
@@ -7842,12 +8509,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         320.9127486697016,
         293.8791495592691
       ],
+      "hrZoneSec": [
+        3550,
+        1655,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.791033434650456,
         "maxSegmentKph": 17.345454545454597,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "interval-tuesday-15518961033": {
@@ -7912,12 +8586,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         285.91775401590473,
         277.4254206008284
       ],
+      "hrZoneSec": [
+        998,
+        1174,
+        76,
+        27
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.6524232864926871,
         "maxSegmentKph": 22.50000000000032,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "evening-run-15552270046": {
@@ -7987,12 +8668,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         286.27800129178513,
         259.1219406216313
       ],
+      "hrZoneSec": [
+        1975,
+        471,
+        118,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.754339511621065,
         "maxSegmentKph": 17.280000000000015,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "weekly-not-very-long-15561794874": {
@@ -8112,12 +8800,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         466.80865052684777,
         523.4898749132349
       ],
+      "hrZoneSec": [
+        3872,
+        1093,
+        37,
+        543
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.7869713312517741,
         "maxSegmentKph": 11.454545454545428,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "interval-tuesday-15599761130": {
@@ -8171,12 +8866,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         245.9601658649642,
         230.0217071884865
       ],
+      "hrZoneSec": [
+        566,
+        1021,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.7514204545454546,
         "maxSegmentKph": 18.00000000000015,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "afternoon-run-15610329019": {
@@ -8257,12 +8959,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         373.93030763322815,
         459.1575925148087
       ],
+      "hrZoneSec": [
+        3133,
+        74,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0.002,
         "movingShare": 0.9100454029511919,
         "maxSegmentKph": 13.371428571428584,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "weekly-long-15644788734": {
@@ -8379,12 +9088,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         313.30899073658264,
         260.61337334140944
       ],
+      "hrZoneSec": [
+        4677,
+        703,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8515352959797404,
         "maxSegmentKph": 32.07272727272723,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "morning-run-15691069335": {
@@ -8471,12 +9187,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         471.06290547707874,
         411.4851864592786
       ],
+      "hrZoneSec": [
+        3557,
+        0,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.6587037037037037,
         "maxSegmentKph": 19.800000000000217,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "Skoga_Falls": {
@@ -8619,12 +9342,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         556.0381002683746,
         417.35211011937685
       ],
+      "hrZoneSec": [
+        6350,
+        399,
+        157,
+        27
+      ],
       "pbQuality": {
         "repeatedShare": 0.004,
         "movingShare": 0.7383386581469649,
         "maxSegmentKph": 11.781818181818181,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "hiking"
     }
   },
   "interval-tuesday-15751879664": {
@@ -8675,12 +9405,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         259.15737288875675,
         236.91138765017388
       ],
+      "hrZoneSec": [
+        588,
+        702,
+        94,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.6464269033162073,
         "maxSegmentKph": 21.60000000000002,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "evening-run-15769631391": {
@@ -8762,12 +9499,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         300.7743128279115,
         328.1349456808822
       ],
+      "hrZoneSec": [
+        1244,
+        2025,
+        22,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9716563330380869,
         "maxSegmentKph": 16.971428571428532,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "tempo-15791132536": {
@@ -8824,12 +9568,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         246.53130714394104,
         274.43574506193875
       ],
+      "hrZoneSec": [
+        387,
+        1141,
+        268,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9359041167274622,
         "maxSegmentKph": 20.399999999999885,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "night-run-15838162676": {
@@ -8887,12 +9638,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         354.7144135421486,
         358.3935244688441
       ],
+      "hrZoneSec": [
+        1299,
+        548,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.97467018469657,
         "maxSegmentKph": 172.79999999999998,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "evening-run-15848000761": {
@@ -8950,12 +9708,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         346.34586576292685,
         449.9517235941011
       ],
+      "hrZoneSec": [
+        1742,
+        81,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9733048585157501,
         "maxSegmentKph": 16.8,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "interval-thuesday-15860730482": {
@@ -9019,12 +9784,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         275.6368326869775,
         254.77385816186364
       ],
+      "hrZoneSec": [
+        1095,
+        1011,
+        62,
+        10
+      ],
       "pbQuality": {
         "repeatedShare": 0.004,
         "movingShare": 0.750775594622544,
         "maxSegmentKph": 19.440000000000015,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "weekly-long-15891685507": {
@@ -9156,12 +9928,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         413.7655692356273,
         419.5058436176093
       ],
+      "hrZoneSec": [
+        3874,
+        2405,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9910037878787878,
         "maxSegmentKph": 19.349999999999998,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "evening-run-15916589349": {
@@ -9225,12 +10004,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         423.80902346343447,
         238.07069482264126
       ],
+      "hrZoneSec": [
+        1076,
+        997,
+        98,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.608293639674979,
         "maxSegmentKph": 21.60000000000018,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "night-run-15938260568": {
@@ -9290,12 +10076,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         376.9469206522531,
         395.7209218547399
       ],
+      "hrZoneSec": [
+        1919,
+        15,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0.004,
         "movingShare": 0.9152863227638429,
         "maxSegmentKph": 14.400000000000013,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "shake-out-16033671436": {
@@ -9340,12 +10133,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         355.00724393648017,
         332.030875878352
       ],
+      "hrZoneSec": [
+        843,
+        229,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0.002,
         "movingShare": 0.7034120734908137,
         "maxSegmentKph": 21.60000000000002,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "jc-5k-16041791208": {
@@ -9394,12 +10194,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         234.5572548531521,
         225.61944802989507
       ],
+      "hrZoneSec": [
+        57,
+        556,
+        439,
+        214
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 1,
         "maxSegmentKph": 25.199999999998823,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "afternoon-run-16079179784": {
@@ -9438,12 +10245,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         299.1041279652474,
         287.85244146612473
       ],
+      "hrZoneSec": [
+        416,
+        233,
+        11,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0.046,
         "movingShare": 0.24220183486238533,
         "maxSegmentKph": 93.60000000000008,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "mp-16143290429": {
@@ -9523,12 +10337,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         270.3614471534336,
         264.7214417010909
       ],
+      "hrZoneSec": [
+        322,
+        2493,
+        308,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9576816927322908,
         "maxSegmentKph": 16.799999999999216,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "interval-16164831451": {
@@ -9600,12 +10421,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         290.5597991723978,
         262.4204233710728
       ],
+      "hrZoneSec": [
+        569,
+        1434,
+        334,
+        319
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8415716096324461,
         "maxSegmentKph": 19.800000000000217,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "afternoon-run-16174015038": {
@@ -9663,12 +10491,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         304.621824325101,
         326.10710658509504
       ],
+      "hrZoneSec": [
+        1314,
+        542,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0.002,
         "movingShare": 0.928928928928929,
         "maxSegmentKph": 20.400000000000002,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "Acadia_carriage_roads": {
@@ -9834,12 +10669,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         274.25415622618897,
         327.5129112973239
       ],
+      "hrZoneSec": [
+        7316,
+        876,
+        107,
+        29
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.5381583198707592,
         "maxSegmentKph": 40.628571428571746,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "cycling"
     }
   },
   "long-interval-16227784214": {
@@ -9936,12 +10778,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         349.4759023279412,
         260.8262193665685
       ],
+      "hrZoneSec": [
+        1465,
+        986,
+        788,
+        914
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.788195103435187,
         "maxSegmentKph": 16.400000000000148,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "evening-run-16237295864": {
@@ -9994,12 +10843,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         338.5086874374165,
         331.8382567981861
       ],
+      "hrZoneSec": [
+        791,
+        715,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0.012,
         "movingShare": 0.9647661755285074,
         "maxSegmentKph": 14.400000000000013,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "weekly-long-16266092522": {
@@ -10131,12 +10987,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         341.01840293336113,
         318.1204122335721
       ],
+      "hrZoneSec": [
+        1673,
+        4049,
+        372,
+        147
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8979856115107914,
         "maxSegmentKph": 16.338461538461523,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "evening-run-16286885478": {
@@ -10193,12 +11056,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         382.60162942263077,
         359.84740426527577
       ],
+      "hrZoneSec": [
+        1066,
+        644,
+        43,
+        4
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9881889763779528,
         "maxSegmentKph": 27.600000000000023,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "evening-run-16298007160": {
@@ -10260,12 +11130,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         299.99759317172004,
         351.76019327970164
       ],
+      "hrZoneSec": [
+        1035,
+        1040,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9610930986567855,
         "maxSegmentKph": 17.999999999999616,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "afternoon-run-16315503706": {
@@ -10325,12 +11202,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         285.18873118935915,
         310.75746483352117
       ],
+      "hrZoneSec": [
+        928,
+        943,
+        91,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8889895786135025,
         "maxSegmentKph": 52.8,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "afternoon-run-16378056716": {
@@ -10385,12 +11269,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         351.52489186177735,
         367.4746018711803
       ],
+      "hrZoneSec": [
+        643,
+        975,
+        21,
+        30
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9355381165919282,
         "maxSegmentKph": 20.400000000000418,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "afternoon-run-16398147079": {
@@ -10490,12 +11381,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         445.32672791571935,
         425.83368141565546
       ],
+      "hrZoneSec": [
+        3682,
+        492,
+        113,
+        64
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8123599701269604,
         "maxSegmentKph": 19.600000000000506,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "afternoon-run-16438391743": {
@@ -10564,12 +11462,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         359.0265333186776,
         298.8966712143938
       ],
+      "hrZoneSec": [
+        918,
+        1559,
+        35,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9279645363871445,
         "maxSegmentKph": 18.000000000000256,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "afternoon-run-16450106167": {
@@ -10678,12 +11583,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         350.33308391747073,
         312.7082761381562
       ],
+      "hrZoneSec": [
+        3516,
+        1365,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.786243556701031,
         "maxSegmentKph": 16.559999999999775,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "afternoon-run-16498641156": {
@@ -10762,12 +11674,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         332.22671134492424,
         300.74253309797206
       ],
+      "hrZoneSec": [
+        2194,
+        913,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.6192943990432529,
         "maxSegmentKph": 15.59999999999988,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "afternoon-run-16518333870": {
@@ -10850,12 +11769,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         335.2490701732072,
         384.10399274459576
       ],
+      "hrZoneSec": [
+        521,
+        2676,
+        129,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9223516361619523,
         "maxSegmentKph": 14.40000000000024,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "afternoon-run-16537169088": {
@@ -10969,12 +11895,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         356.50260752396287,
         340.6369825837859
       ],
+      "hrZoneSec": [
+        3694,
+        1511,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8673554407598734,
         "maxSegmentKph": 12.857142857142858,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "afternoon-run-16555482750": {
@@ -11032,12 +11965,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         288.7751782077361,
         281.0992987996699
       ],
+      "hrZoneSec": [
+        515,
+        895,
+        419,
+        20
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9162537165510406,
         "maxSegmentKph": 19.200000000000017,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "afternoon-run-16575046256": {
@@ -11106,12 +12046,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         236.0254286197198,
         211.39147207206562
       ],
+      "hrZoneSec": [
+        1077,
+        1352,
+        73,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9131386861313868,
         "maxSegmentKph": 38.699999999999996,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "night-run-16615515418": {
@@ -11160,12 +12107,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         285.35926852779147,
         256.76115415642204
       ],
+      "hrZoneSec": [
+        258,
+        635,
+        346,
+        31
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.98145285935085,
         "maxSegmentKph": 26.399999999999224,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "night-run-16634907980": {
@@ -11220,12 +12174,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         358.73180957981816,
         339.10185531706156
       ],
+      "hrZoneSec": [
+        661,
+        853,
+        153,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8890666666666667,
         "maxSegmentKph": 20.400000000000002,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "i-16651061254": {
@@ -11285,12 +12246,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         233.64048818468905,
         262.8125185268252
       ],
+      "hrZoneSec": [
+        891,
+        752,
+        229,
+        67
+      ],
       "pbQuality": {
         "repeatedShare": 0.002,
         "movingShare": 0.624275595621378,
         "maxSegmentKph": 22.499999999999996,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "afternoon-run-16669151216": {
@@ -11380,12 +12348,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         345.4609067717471,
         320.67158656802883
       ],
+      "hrZoneSec": [
+        1768,
+        1628,
+        328,
+        31
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.777915889786617,
         "maxSegmentKph": 19.800000000000217,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "afternoon-run-16708000039": {
@@ -11449,12 +12424,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         312.16765493730344,
         286.51258980576
       ],
+      "hrZoneSec": [
+        231,
+        1796,
+        182,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9604347826086956,
         "maxSegmentKph": 25.199999999999623,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "afternoon-run-16715634618": {
@@ -11505,12 +12487,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         252.7700630051326,
         255.31504572088716
       ],
+      "hrZoneSec": [
+        106,
+        953,
+        218,
+        159
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9216944801026957,
         "maxSegmentKph": 40.8,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "evening-run-16726039930": {
@@ -11566,12 +12555,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         328.6274769079029,
         338.5637794987114
       ],
+      "hrZoneSec": [
+        696,
+        997,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9221132897603486,
         "maxSegmentKph": 27.900000000000023,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "afternoon-run-16762158023": {
@@ -11628,12 +12624,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         307.342246713937,
         321.5029639796713
       ],
+      "hrZoneSec": [
+        1363,
+        420,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9014155712841254,
         "maxSegmentKph": 19.200000000000017,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "i-16779219917": {
@@ -11719,12 +12722,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         231.68496583180834,
         253.54253025475506
       ],
+      "hrZoneSec": [
+        1374,
+        1519,
+        301,
+        308
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.6892344026766385,
         "maxSegmentKph": 20.571428571428363,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "afternoon-run-16788355061": {
@@ -11796,12 +12806,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         323.6758567148952,
         300.7325609007458
       ],
+      "hrZoneSec": [
+        2322,
+        322,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9126682775284778,
         "maxSegmentKph": 16.560000000000414,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "long-16805717036": {
@@ -11936,12 +12953,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         390.08160876759933,
         334.5382894726222
       ],
+      "hrZoneSec": [
+        3541,
+        2906,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9024356103023516,
         "maxSegmentKph": 16.615384615384755,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "night-run-16825538567": {
@@ -11979,12 +13003,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         322.7488237572003,
         304.50531517467147
       ],
+      "hrZoneSec": [
+        595,
+        21,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.6929133858267716,
         "maxSegmentKph": 90,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "morning-run-16837439050": {
@@ -12069,12 +13100,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         285.5309359293484,
         277.58865766319286
       ],
+      "hrZoneSec": [
+        601,
+        2658,
+        56,
+        138
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8282561765411369,
         "maxSegmentKph": 16.971428571429215,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "morning-run-16845468105": {
@@ -12133,12 +13171,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         354.7858867556404,
         327.8709681353155
       ],
+      "hrZoneSec": [
+        1094,
+        785,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9068532818532818,
         "maxSegmentKph": 15.59999999999988,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "morning-run-16885443622": {
@@ -12190,12 +13235,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         411.2520038786704,
         377.2491895834252
       ],
+      "hrZoneSec": [
+        1350,
+        136,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9167180752621839,
         "maxSegmentKph": 13.199999999999878,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "afternoon-run-16962283458": {
@@ -12257,12 +13309,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         336.0628388975442,
         341.81544988765575
       ],
+      "hrZoneSec": [
+        755,
+        1276,
+        24,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.879708904109589,
         "maxSegmentKph": 24.300000000000022,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "afternoon-run-16983523095": {
@@ -12313,12 +13372,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         278.35230079879057,
         263.0121163232874
       ],
+      "hrZoneSec": [
+        147,
+        670,
+        383,
+        208
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.7959299039005088,
         "maxSegmentKph": 21.60000000000082,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "afternoon-run-16994341185": {
@@ -12408,12 +13474,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         322.62208771972485,
         334.22663795205756
       ],
+      "hrZoneSec": [
+        2726,
+        765,
+        103,
+        129
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8772384542884072,
         "maxSegmentKph": 18.00000000000007,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "afternoon-run-17038531172": {
@@ -12473,12 +13546,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         324.4946958120866,
         294.42246013559685
       ],
+      "hrZoneSec": [
+        950,
+        871,
+        139,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9486931268151017,
         "maxSegmentKph": 21.599999999999994,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "afternoon-run-17053170884": {
@@ -12583,12 +13663,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         365.77047494947715,
         335.76064159030125
       ],
+      "hrZoneSec": [
+        4036,
+        593,
+        21,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8877434135166093,
         "maxSegmentKph": 17.99999999999997,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "afternoon-run-17084758502": {
@@ -12644,12 +13731,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         337.74399134139463,
         343.057979511875
       ],
+      "hrZoneSec": [
+        1321,
+        374,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0.004,
         "movingShare": 0.738562091503268,
         "maxSegmentKph": 16.799999999999997,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "afternoon-run-17143602718": {
@@ -12734,12 +13828,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         375.2156245540398,
         352.53586963994377
       ],
+      "hrZoneSec": [
+        1163,
+        1593,
+        400,
+        319
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.6538099717779868,
         "maxSegmentKph": 22.114285714285337,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "afternoon-run-17197139902": {
@@ -12797,12 +13898,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         298.5940997406123,
         317.1935676740914
       ],
+      "hrZoneSec": [
+        448,
+        1407,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.7534524776604387,
         "maxSegmentKph": 18.000000000000014,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "afternoon-run-17220802254": {
@@ -12854,12 +13962,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         272.42166292948616,
         261.04121970270756
       ],
+      "hrZoneSec": [
+        242,
+        907,
+        328,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8110928061504667,
         "maxSegmentKph": 18.00000000000015,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "afternoon-run-17242836090": {
@@ -12977,12 +14092,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         368.0882000957752,
         360.0160610501053
       ],
+      "hrZoneSec": [
+        916,
+        3898,
+        592,
+        49
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.7993845252051582,
         "maxSegmentKph": 16.03636363636405,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "afternoon-run-17275266944": {
@@ -13036,12 +14158,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         315.2921231959721,
         319.05997338207254
       ],
+      "hrZoneSec": [
+        116,
+        1502,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0.004,
         "movingShare": 0.9859841560024375,
         "maxSegmentKph": 16.79999999999975,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "afternoon-run-17299652019": {
@@ -13104,12 +14233,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         297.01711900749314,
         293.08912447153193
       ],
+      "hrZoneSec": [
+        995,
+        1141,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8739770867430442,
         "maxSegmentKph": 15.119999999999933,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "afternoon-run-17322270905": {
@@ -13162,12 +14298,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         246.60658238404616,
         325.40179465805295
       ],
+      "hrZoneSec": [
+        268,
+        719,
+        524,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.7253960633701392,
         "maxSegmentKph": 18.000000000000682,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "afternoon-run-17344738804": {
@@ -13232,12 +14375,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         363.3931475741451,
         344.0727378836024
       ],
+      "hrZoneSec": [
+        2199,
+        77,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9689229459344402,
         "maxSegmentKph": 12.600000000000211,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "afternoon-run-17356679662": {
@@ -13292,12 +14442,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         324.34562122775304,
         292.47389126558113
       ],
+      "hrZoneSec": [
+        279,
+        1346,
+        16,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9126807563959956,
         "maxSegmentKph": 15.600000000000016,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "morning-run-17373716844": {
@@ -13346,12 +14503,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         379.7933388541778,
         383.3718237243642
       ],
+      "hrZoneSec": [
+        1149,
+        166,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0.016,
         "movingShare": 0.9835452505609573,
         "maxSegmentKph": 16.200000000000014,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "afternoon-run-17389092903": {
@@ -13471,12 +14635,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         340.4041711762895,
         284.8393986676933
       ],
+      "hrZoneSec": [
+        4206,
+        1358,
+        6,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0.016,
         "movingShare": 0.8262869010532562,
         "maxSegmentKph": 15.05454545454525,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "afternoon-run-17420273770": {
@@ -13536,12 +14707,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         352.9938256509529,
         402.8757660808755
       ],
+      "hrZoneSec": [
+        643,
+        1291,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8527336860670194,
         "maxSegmentKph": 16.199999999999815,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "t-17453848055": {
@@ -13608,12 +14786,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         287.8408975699026,
         285.372930776339
       ],
+      "hrZoneSec": [
+        57,
+        1906,
+        425,
+        8
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 1,
         "maxSegmentKph": 17.100000000000115,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "long-1-17477316478": {
@@ -13771,12 +14956,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         357.41984576717647,
         373.25129761834677
       ],
+      "hrZoneSec": [
+        806,
+        5114,
+        1352,
+        565
+      ],
       "pbQuality": {
         "repeatedShare": 0.002,
         "movingShare": 0.8907706296885656,
         "maxSegmentKph": 15.750000000000064,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "evening-run-17534733796": {
@@ -13824,12 +15016,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         372.34136862037695,
         331.0321759423924
       ],
+      "hrZoneSec": [
+        394,
+        840,
+        12,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8719384184744576,
         "maxSegmentKph": 21.60000000000002,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "t-17534211801": {
@@ -13885,12 +15084,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         284.4992069680698,
         279.8014761665236
       ],
+      "hrZoneSec": [
+        38,
+        606,
+        570,
+        494
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 1,
         "maxSegmentKph": 25.200000000000422,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "long-17559478474": {
@@ -14039,12 +15245,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         314.3921049203377,
         363.151721292159
       ],
+      "hrZoneSec": [
+        2005,
+        4889,
+        421,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0.008,
         "movingShare": 0.7805164319248826,
         "maxSegmentKph": 12.342857142857152,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "afternoon-run-17571802701": {
@@ -14133,12 +15346,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         389.41341628165696,
         379.6006743616149
       ],
+      "hrZoneSec": [
+        938,
+        2335,
+        419,
+        5
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.5970607235142119,
         "maxSegmentKph": 16.649999999999963,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "evening-run-17583633562": {
@@ -14215,12 +15435,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         331.3135923041864,
         358.2461172095046
       ],
+      "hrZoneSec": [
+        1280,
+        1705,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.4821515102568244,
         "maxSegmentKph": 13.200000000000145,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "afternoon-run-17595716432": {
@@ -14305,12 +15532,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         338.8989018442561,
         230.84720383597696
       ],
+      "hrZoneSec": [
+        1347,
+        2060,
+        67,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.44487130234344985,
         "maxSegmentKph": 18.5142857142855,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "afternoon-run-17608442477": {
@@ -14386,12 +15620,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         340.2423548460059,
         323.8772605388805
       ],
+      "hrZoneSec": [
+        2650,
+        259,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.7069258809234508,
         "maxSegmentKph": 12.600000000000477,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "morning-run-17627720292": {
@@ -14457,12 +15698,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         362.0146183049167,
         359.52251301547693
       ],
+      "hrZoneSec": [
+        1076,
+        732,
+        371,
+        104
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.7143304130162703,
         "maxSegmentKph": 15.300000000000313,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "evening-run-17655624188": {
@@ -14532,12 +15780,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         393.40451511419826,
         393.54414161566336
       ],
+      "hrZoneSec": [
+        1099,
+        1283,
+        121,
+        19
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.7339930151338766,
         "maxSegmentKph": 16.560000000000414,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "long-17679611720": {
@@ -14685,12 +15940,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         373.54182602280576,
         376.4776288407326
       ],
+      "hrZoneSec": [
+        498,
+        6306,
+        430,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8812279205749787,
         "maxSegmentKph": 15.840000000000172,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "i-17713548999": {
@@ -14760,12 +16022,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         421.22021321394294,
         399.85001863290984
       ],
+      "hrZoneSec": [
+        1652,
+        738,
+        142,
+        29
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.626774351443955,
         "maxSegmentKph": 19.440000000000097,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "long-17735532162": {
@@ -14944,12 +16213,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         353.9236328758026,
         349.78653860350386
       ],
+      "hrZoneSec": [
+        1838,
+        6851,
+        387,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8269703872437357,
         "maxSegmentKph": 14.599999999999989,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "afternoon-run-17760572734": {
@@ -15028,12 +16304,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         391.7578688366451,
         389.0588434655998
       ],
+      "hrZoneSec": [
+        1389,
+        658,
+        219,
+        807
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.7785659994932861,
         "maxSegmentKph": 18.00000000000015,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "evening-run-17797236470": {
@@ -15117,12 +16400,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         356.47158733549713,
         355.02135616275604
       ],
+      "hrZoneSec": [
+        1373,
+        2003,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.7591634809984259,
         "maxSegmentKph": 14.40000000000024,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "long-17822488749": {
@@ -15348,12 +16638,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         357.6475429735242,
         360.0735825644748
       ],
+      "hrZoneSec": [
+        6918,
+        2625,
+        2309,
+        77
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9225117933647823,
         "maxSegmentKph": 13.773913043478412,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "night-run-17872646670": {
@@ -15399,12 +16696,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         280.3722940986709,
         395.00926844565197
       ],
+      "hrZoneSec": [
+        710,
+        333,
+        63,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9087921117502055,
         "maxSegmentKph": 19.80000000000002,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "long-17894509408": {
@@ -15552,12 +16856,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         358.635699079204,
         344.55818322398767
       ],
+      "hrZoneSec": [
+        6637,
+        577,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8462170087976539,
         "maxSegmentKph": 14.657142857142498,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "night-run-17933034234": {
@@ -15653,12 +16964,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         387.91600943462,
         349.2827897093682
       ],
+      "hrZoneSec": [
+        1926,
+        1417,
+        357,
+        394
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.6352211016291699,
         "maxSegmentKph": 24.750000000000004,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "afternoon-run-17966408470": {
@@ -15718,12 +17036,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         359.2309631240484,
         357.59100918626854
       ],
+      "hrZoneSec": [
+        1819,
+        113,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9438202247191011,
         "maxSegmentKph": 14.400000000000013,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "long-7-17980924738": {
@@ -15931,12 +17256,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         368.33369655963827,
         369.0926273397781
       ],
+      "hrZoneSec": [
+        4500,
+        5877,
+        478,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8945199835187474,
         "maxSegmentKph": 15.218181818181815,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "long-8-18072448520": {
@@ -16071,12 +17403,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         327.0623807514196,
         354.3510968688325
       ],
+      "hrZoneSec": [
+        2137,
+        4256,
+        44,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0.052,
         "movingShare": 0.7776032858178304,
         "maxSegmentKph": 218.57142857142858,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "afternoon-run-18111656948": {
@@ -16140,12 +17479,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         369.9560617789533,
         359.11642133074514
       ],
+      "hrZoneSec": [
+        1402,
+        790,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.5400344912540035,
         "maxSegmentKph": 25.200000000000024,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   },
   "long-9-18164090984": {
@@ -16270,12 +17616,19 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         387.97986348726505,
         350.2687699985337
       ],
+      "hrZoneSec": [
+        4705,
+        1161,
+        0,
+        0
+      ],
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.6999164777472855,
         "maxSegmentKph": 13.499999999999979,
         "hasTeleportGap": false
-      }
+      },
+      "activityType": "running"
     }
   }
 };

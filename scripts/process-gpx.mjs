@@ -97,6 +97,26 @@ function interpolateDistanceAt(timeline, movingSec) {
   return last.distanceKm;
 }
 
+// HR zone boundaries (max bpm for zones 0-2; zone 3 is everything above zone 2)
+const HR_ZONE_MAX = [139, 159, 166];
+
+function hrZoneSecFromPoints(points) {
+  const zones = [0, 0, 0, 0];
+  for (let i = 1; i < points.length; i++) {
+    const a = points[i - 1];
+    const b = points[i];
+    if (a.hr == null || b.hr == null || !a.time || !b.time) continue;
+    const dt = (Date.parse(b.time) - Date.parse(a.time)) / 1000;
+    if (dt <= 0 || dt > MAX_SAMPLE_GAP_SEC) continue;
+    const segKm = haversineKm(a, b);
+    if ((segKm * 1000) / dt < MIN_MOVING_MPS) continue;
+    const hr = (a.hr + b.hr) / 2;
+    const z = HR_ZONE_MAX.findIndex((max) => hr <= max);
+    zones[z === -1 ? 3 : z] += dt;
+  }
+  return zones.map(Math.round);
+}
+
 function minutePacesFromMovingTimeline(timeline) {
   if (timeline.length < 2) return [];
   const totalMovingSec = timeline[timeline.length - 1].movingSec;
@@ -191,12 +211,14 @@ function aggregate(points, gpxName) {
     meanLon: +(sumLon / points.length).toFixed(6),
     bbox,
     paceSamples: minutePacesFromMovingTimeline(timeline),
+    hrZoneSec: hrZoneSecFromPoints(points),
   };
 }
 
 function processFile(path, id) {
   const xml = readFileSync(path, "utf8");
   const name = matchStr(xml, /<trk>\s*<name>([^<]+)<\/name>/) ?? id;
+  const activityType = matchStr(xml, /<trk>[\s\S]*?<type>([^<]+)<\/type>/)?.toLowerCase().trim() ?? "running";
   const all = parseTrkpts(xml);
   if (!all.length) throw new Error(`No trkpt in ${path}`);
   const stats = aggregate(all, name);
@@ -236,6 +258,7 @@ function processFile(path, id) {
     maxSegmentKph,
     hasTeleportGap,
   };
+  stats.activityType = activityType;
 
   return { id, name, stats, rawPointCount: all.length, points };
 }
@@ -363,7 +386,9 @@ export interface GpxStats {
   meanLat?: number;
   meanLon?: number;
   bbox: { minLat: number; maxLat: number; minLon: number; maxLon: number };
+  activityType?: string;
   paceSamples?: number[];
+  hrZoneSec?: number[];
   pbQuality?: {
     repeatedShare: number;
     movingShare: number;

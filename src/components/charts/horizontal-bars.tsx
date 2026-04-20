@@ -1,10 +1,11 @@
 interface HorizontalBarsProps {
   data: { label: string; sub?: string; value: number }[];
+  unit?: string;
   width?: number;
   height?: number;
 }
 
-export function HorizontalBars({ data, width = 360, height = 200 }: HorizontalBarsProps) {
+export function HorizontalBars({ data, unit, width = 360, height = 200 }: HorizontalBarsProps) {
   const padL = 110;
   const padR = 40;
   const padT = 10;
@@ -28,7 +29,7 @@ export function HorizontalBars({ data, width = 360, height = 200 }: HorizontalBa
             </text>
             <rect x={padL} y={y} width={w} height={bh} fill="#d4d4d4" />
             <text x={padL + w + 4} y={y + bh * 0.7} className="fill-neutral-400 font-tamzen-sm" fontSize={9}>
-              {d.value.toLocaleString("en-US")}
+              {d.value.toLocaleString("en-US")}{unit ?? ""}
             </text>
           </g>
         );

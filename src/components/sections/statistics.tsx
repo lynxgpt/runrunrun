@@ -62,7 +62,7 @@ export function Statistics() {
         </ChartCard>
 
         <ChartCard title="HEART RATE ZONES">
-          <HorizontalBars data={heartRateZones.map((z) => ({ label: z.label, sub: z.bpm, value: z.count }))} />
+          <HorizontalBars data={heartRateZones.map((z) => ({ label: z.label, sub: z.bpm, value: z.pct }))} unit="%" />
         </ChartCard>
 
         {/* EQUIPMENT: hidden — no shoe data in GPX files. */}
