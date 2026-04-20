@@ -313,6 +313,18 @@ function locationFor(t: GpxSummary): ActivityLocation {
       lat >= r.bbox.minLat && lat <= r.bbox.maxLat &&
       lon >= r.bbox.minLon && lon <= r.bbox.maxLon
     ) {
+      if (r.countryCode === "US" && !r.region) {
+        const state = lookupUsState(lat, lon);
+        if (state) {
+          return {
+            country: r.country,
+            countryCode: r.countryCode,
+            region: state.region,
+            lat,
+            lon,
+          };
+        }
+      }
       return {
         country: r.country,
         countryCode: r.countryCode,
