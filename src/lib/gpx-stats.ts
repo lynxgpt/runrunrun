@@ -491,10 +491,12 @@ const byElevation = rankBy(tracks, (t) => t.stats.elevationM).map((t, i) =>
 // Personal bests: for each distance bucket, pick the fastest run that
 // reached at least that distance.
 const PB_BUCKETS: { label: string; minKm: number; tag: string }[] = [
+  { label: "400m",        minKm: 0.4,  tag: "400m PB" },
+  { label: "1K",          minKm: 1.0,  tag: "1K PB" },
   { label: "5K",          minKm: 5,    tag: "5K PB" },
   { label: "10K",         minKm: 10,   tag: "10K PB" },
-  { label: "Half Marathon", minKm: 21.0975, tag: "Half PB" },
-  { label: "Marathon",    minKm: 42.195, tag: "Marathon PB" },
+  { label: "Half Marathon", minKm: 21.0975, tag: "HM PB" },
+  { label: "Marathon",    minKm: 42.195, tag: "FM PB" },
 ];
 
 // PB-only drift detection: we keep the rest of the site unchanged, but

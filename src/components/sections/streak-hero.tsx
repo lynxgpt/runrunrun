@@ -16,8 +16,8 @@ export function StreakHero() {
         <StatCell size="lg" value={formatNumber(streakStats.totalHours)} label="hours" />
         <StatCell
           size="lg"
-          value={`${Math.round(streakStats.totalElevationM / 1000)} km`}
-          label="climbed"
+          value={String(Math.round(streakStats.totalElevationM / 1000))}
+          label="km climbed"
         />
       </div>
     </div>
