@@ -5,6 +5,7 @@ import yaml from "js-yaml";
 export interface FooterLine {
   text: string;
   url?: string;
+  linkText?: string;
 }
 
 export interface SiteContent {

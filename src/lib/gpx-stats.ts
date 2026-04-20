@@ -345,6 +345,17 @@ function locationFor(t: GpxSummary): ActivityLocation {
   // River and misclassify LIC / Greenpoint / DUMBO runs. Instead we check the
   // actual land boundary with a piecewise shoreline polyline.
   const MAN_LAT_MIN = 40.700, MAN_LAT_MAX = 40.880;
+
+  // NJ waterfront early exit: if the run STARTED west of the NJ east shore
+  // (-74.018), it originated in NJ regardless of where the mean falls.
+  // GPS multipath never pushes a Manhattan-start this far west (~500m margin).
+  if (
+    lat >= MAN_LAT_MIN && lat <= MAN_LAT_MAX &&
+    t.stats.startLon != null && t.stats.startLon < -74.018
+  ) {
+    return { country: "United States", countryCode: "US", region: "NJ", lat, lon };
+  }
+
   if (lat >= MAN_LAT_MIN && lat <= MAN_LAT_MAX && lon >= hudsonCenterlineWestOf(lat)) {
     const eastEdge = manhattanEastLon(lat);
     if (lon <= eastEdge) {

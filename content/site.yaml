@@ -25,5 +25,6 @@ foreword:
 #   text: (required) the display text
 #   url:  (optional) makes the line a clickable link
 footer:
-  - text: "Replicated from nodaysoff.run"
+  - text: "Replicated from "
+    linkText: "nodaysoff.run"
     url: "https://nodaysoff.run"

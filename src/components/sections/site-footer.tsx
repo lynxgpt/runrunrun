@@ -6,14 +6,28 @@ export function SiteFooter() {
       {siteContent.footer.map((line, i) =>
         line.url ? (
           <p key={i}>
-            <a
-              href={line.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline hover:text-neutral-300"
-            >
-              {line.text}
-            </a>
+            {line.linkText ? (
+              <>
+                {line.text}
+                <a
+                  href={line.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:text-neutral-300"
+                >
+                  {line.linkText}
+                </a>
+              </>
+            ) : (
+              <a
+                href={line.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:text-neutral-300"
+              >
+                {line.text}
+              </a>
+            )}
           </p>
         ) : (
           <p key={i}>{line.text}</p>
