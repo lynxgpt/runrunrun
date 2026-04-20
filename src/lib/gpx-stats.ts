@@ -615,15 +615,25 @@ export const countriesVisited: GeoRow[] = (() => {
     .sort((a, b) => b.km - a.km);
 })();
 
+function usStateForTrack(t: GpxSummary): string | null {
+  const loc = locationFor(t);
+  if (loc.countryCode !== "US") return null;
+  if (loc.region) return loc.region;
+  const { bbox } = t.stats;
+  const lat = t.stats.meanLat ?? (bbox.minLat + bbox.maxLat) / 2;
+  const lon = t.stats.meanLon ?? (bbox.minLon + bbox.maxLon) / 2;
+  return lookupUsState(lat, lon)?.region ?? null;
+}
+
 export const usStatesVisited: GeoRow[] = (() => {
   const map = new Map<string, { km: number; days: Set<string> }>();
   for (const t of tracks) {
-    const loc = locationFor(t);
-    if (loc.countryCode !== "US" || !loc.region) continue;
-    const entry = map.get(loc.region) ?? { km: 0, days: new Set() };
+    const region = usStateForTrack(t);
+    if (!region) continue;
+    const entry = map.get(region) ?? { km: 0, days: new Set() };
     entry.km += t.stats.distanceKm;
     entry.days.add(isoDate(dateOf(t)));
-    map.set(loc.region, entry);
+    map.set(region, entry);
   }
   return [...map.entries()]
     .map(([code, v]) => ({
