@@ -5,6 +5,8 @@
 
 import { gpxSummaries, type GpxSummary } from "./gpx-processed";
 import rawMeta from "../../public/strava-meta.json";
+const fs = require("node:fs");
+const path = require("node:path");
 const worldAtlas = require("world-atlas/countries-10m.json");
 const usAtlas = require("us-atlas/states-10m.json");
 const { feature } = require("topojson-client");
@@ -430,13 +432,79 @@ const PB_BUCKETS: { label: string; minKm: number; tag: string }[] = [
   { label: "Marathon",    minKm: 42.195, tag: "Marathon PB" },
 ];
 
-// GPS drift detection: a run is considered drifted/corrupt when the raw
-// bbox diagonal is implausibly large relative to the recorded distance.
-// A 10 km loop that drifts to a 50 km bbox diagonal is almost certainly
-// a GPS glitch. Threshold: bbox diagonal must be ≤ 3× the run distance.
-// Also require at least 60s moving time per km (pace ≤ 17 min/km) to
-// exclude "ghost" tracks where the device recorded zero motion.
-function hasBadGps(t: GpxSummary): boolean {
+interface RawTrackPoint {
+  lat: number;
+  lon: number;
+  km: number;
+  t: number;
+}
+
+interface RawTrackFile {
+  points?: RawTrackPoint[];
+}
+
+interface PbTrackQuality {
+  repeatedShare: number;
+  movingShare: number;
+  maxSegmentKph: number;
+  hasTeleportGap: boolean;
+}
+
+const pbTrackQualityCache = new Map<string, PbTrackQuality>();
+
+function pbTrackQualityFor(t: GpxSummary): PbTrackQuality {
+  const cached = pbTrackQualityCache.get(t.id);
+  if (cached) return cached;
+
+  const fallback: PbTrackQuality = {
+    repeatedShare: 0,
+    movingShare: t.stats.elapsedSec ? t.stats.movingSec / t.stats.elapsedSec : 0,
+    maxSegmentKph: 0,
+    hasTeleportGap: false,
+  };
+
+  const trackPath = path.join(process.cwd(), "public", "tracks", `${t.id}.json`);
+  if (!fs.existsSync(trackPath)) {
+    pbTrackQualityCache.set(t.id, fallback);
+    return fallback;
+  }
+
+  const raw = JSON.parse(fs.readFileSync(trackPath, "utf8")) as RawTrackFile;
+  const points = raw.points ?? [];
+  if (points.length < 2) {
+    pbTrackQualityCache.set(t.id, fallback);
+    return fallback;
+  }
+
+  let repeatedSteps = 0;
+  let maxSegmentKph = 0;
+  let hasTeleportGap = false;
+
+  for (let i = 1; i < points.length; i += 1) {
+    const prev = points[i - 1];
+    const curr = points[i];
+    const dt = curr.t - prev.t;
+    const dk = curr.km - prev.km;
+    if (curr.lat === prev.lat && curr.lon === prev.lon) repeatedSteps += 1;
+    const kph = dt > 0 ? (dk / dt) * 3600 : Infinity;
+    if (kph > maxSegmentKph) maxSegmentKph = kph;
+    if (dt >= 600 && dk >= 1) hasTeleportGap = true;
+  }
+
+  const quality: PbTrackQuality = {
+    repeatedShare: repeatedSteps / Math.max(points.length - 1, 1),
+    movingShare: fallback.movingShare,
+    maxSegmentKph,
+    hasTeleportGap,
+  };
+  pbTrackQualityCache.set(t.id, quality);
+  return quality;
+}
+
+// PB-only drift detection: we keep the rest of the site unchanged, but
+// exclude runs whose raw traces show either stop-heavy corrupted motion or
+// a giant mid-run teleport after the watch stopped recording for a while.
+function hasBadPbTrace(t: GpxSummary): boolean {
   const { bbox, distanceKm, paceSecPerKm } = t.stats;
   if (!distanceKm) return true;
   // Diagonal of the bbox in degrees × 111 km/deg ≈ km (rough, equirectangular)
@@ -446,6 +514,15 @@ function hasBadGps(t: GpxSummary): boolean {
   if (bboxDiagKm > distanceKm * 3) return true;
   // Impossibly fast pace (< 2 min/km = 120 sec/km) → likely GPS jump
   if (paceSecPerKm != null && paceSecPerKm < 120) return true;
+  const quality = pbTrackQualityFor(t);
+  if (
+    quality.movingShare < 0.55 &&
+    quality.repeatedShare > 0.15 &&
+    quality.maxSegmentKph > 25
+  ) {
+    return true;
+  }
+  if (quality.hasTeleportGap) return true;
   return false;
 }
 
@@ -454,7 +531,7 @@ const personalBests: NotableRun[] = PB_BUCKETS.flatMap((b, i) => {
     (t) =>
       t.stats.distanceKm >= b.minKm &&
       t.stats.paceSecPerKm != null &&
-      !hasBadGps(t),
+      !hasBadPbTrace(t),
   );
   if (!eligible.length) return [];
   const fastest = eligible.reduce((a, c) =>
