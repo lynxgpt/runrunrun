@@ -5,6 +5,11 @@
 
 import { gpxSummaries, type GpxSummary } from "./gpx-processed";
 import rawMeta from "../../public/strava-meta.json";
+import {
+  buildPaceDistributionFromSamples,
+  minutePacesFromTrackPoints,
+  type GpxTrackPointInput,
+} from "./pace-distribution";
 const fs = require("node:fs");
 const path = require("node:path");
 const worldAtlas = require("world-atlas/countries-10m.json");
@@ -451,6 +456,7 @@ interface PbTrackQuality {
 }
 
 const pbTrackQualityCache = new Map<string, PbTrackQuality>();
+const paceMinuteCache = new Map<string, number[]>();
 
 function pbTrackQualityFor(t: GpxSummary): PbTrackQuality {
   const cached = pbTrackQualityCache.get(t.id);
@@ -499,6 +505,37 @@ function pbTrackQualityFor(t: GpxSummary): PbTrackQuality {
   };
   pbTrackQualityCache.set(t.id, quality);
   return quality;
+}
+
+function paceMinuteSamplesFor(t: GpxSummary): number[] {
+  const cached = paceMinuteCache.get(t.id);
+  if (cached) return cached;
+
+  const gpxPath = path.join(process.cwd(), "public", "gpx", `${t.id}.gpx`);
+  if (!fs.existsSync(gpxPath)) {
+    paceMinuteCache.set(t.id, []);
+    return [];
+  }
+
+  const xml = fs.readFileSync(gpxPath, "utf8") as string;
+  const points: GpxTrackPointInput[] = [];
+  const re = /<trkpt\s+lat="([^"]+)"\s+lon="([^"]+)">([\s\S]*?)<\/trkpt>/g;
+  let match: RegExpExecArray | null;
+  while ((match = re.exec(xml)) !== null) {
+    const lat = Number.parseFloat(match[1]);
+    const lon = Number.parseFloat(match[2]);
+    const body = match[3];
+    const timeMatch = body.match(/<time>([^<]+)<\/time>/);
+    points.push({
+      lat,
+      lon,
+      time: timeMatch ? timeMatch[1] : null,
+    });
+  }
+
+  const samples = minutePacesFromTrackPoints(points);
+  paceMinuteCache.set(t.id, samples);
+  return samples;
 }
 
 // PB-only drift detection: we keep the rest of the site unchanged, but
@@ -610,32 +647,8 @@ export const runDistances: HistogramBucket[] = DIST_BUCKETS.map((b) => ({
 
 export const treadmillVsOutdoor = { treadmill: 0, outdoor: tracks.length };
 
-// Pace distribution — 60 bins across 3:00 → 8:00/km (running-friendly range)
-const paceVals = tracks.map((t) => t.stats.paceSecPerKm).filter((v): v is number => v != null);
-const PACE_MIN = 3 * 60;
-const PACE_MAX = 8 * 60;
-const PACE_BINS = 60;
-const paceBins = new Array<number>(PACE_BINS).fill(0);
-for (const p of paceVals) {
-  const t = (p - PACE_MIN) / (PACE_MAX - PACE_MIN);
-  const idx = Math.min(PACE_BINS - 1, Math.max(0, Math.floor(t * PACE_BINS)));
-  for (let i = 0; i < PACE_BINS; i++) {
-    const x = (i - idx) / 4;
-    paceBins[i] += Math.exp(-x * x);
-  }
-}
-const meanSec = paceVals.length
-  ? Math.round(paceVals.reduce((a, b) => a + b, 0) / paceVals.length)
-  : 0;
-const medianSec = paceVals.length
-  ? paceVals.slice().sort((a, b) => a - b)[Math.floor(paceVals.length / 2)]
-  : 0;
-export const paceDistribution = {
-  meanSec,
-  medianSec,
-  bins: paceBins.map((v) => +(v * 100).toFixed(0)),
-  axisLabels: ["3:00/km", "4:00/km", "5:00/km", "6:00/km", "7:00/km", "8:00/km"],
-};
+const minutePaceSamples = tracks.flatMap((t) => paceMinuteSamplesFor(t));
+export const paceDistribution = buildPaceDistributionFromSamples(minutePaceSamples);
 
 const HR_ZONES: { label: string; bpm: string; max: number }[] = [
   { label: "Easy",      bpm: "<139bpm",    max: 139 },

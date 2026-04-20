@@ -54,8 +54,8 @@ export function Statistics() {
           <DensityChart
             bins={paceDistribution.bins}
             axisLabels={paceDistribution.axisLabels}
-            meanBin={Math.round(paceDistribution.bins.length * 0.55)}
-            medianBin={Math.round(paceDistribution.bins.length * 0.5)}
+            meanBin={paceDistribution.meanBin ?? undefined}
+            medianBin={paceDistribution.medianBin ?? undefined}
             meanLabel={`mean: ${formatPace(paceDistribution.meanSec)}`}
             medianLabel={`median: ${formatPace(paceDistribution.medianSec)}`}
           />
