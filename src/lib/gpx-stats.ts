@@ -7,11 +7,7 @@ import { gpxSummaries, type GpxSummary } from "./gpx-processed";
 import rawMeta from "../../public/strava-meta.json";
 import {
   buildPaceDistributionFromSamples,
-  minutePacesFromTrackPoints,
-  type GpxTrackPointInput,
 } from "./pace-distribution";
-const fs = require("node:fs");
-const path = require("node:path");
 const worldAtlas = require("world-atlas/countries-10m.json");
 const usAtlas = require("us-atlas/states-10m.json");
 const { feature } = require("topojson-client");
@@ -453,112 +449,11 @@ const PB_BUCKETS: { label: string; minKm: number; tag: string }[] = [
   { label: "Marathon",    minKm: 42.195, tag: "Marathon PB" },
 ];
 
-interface RawTrackPoint {
-  lat: number;
-  lon: number;
-  km: number;
-  t: number;
-}
-
-interface RawTrackFile {
-  points?: RawTrackPoint[];
-}
-
-interface PbTrackQuality {
-  repeatedShare: number;
-  movingShare: number;
-  maxSegmentKph: number;
-  hasTeleportGap: boolean;
-}
-
-const pbTrackQualityCache = new Map<string, PbTrackQuality>();
-const paceMinuteCache = new Map<string, number[]>();
-
-function pbTrackQualityFor(t: GpxSummary): PbTrackQuality {
-  const cached = pbTrackQualityCache.get(t.id);
-  if (cached) return cached;
-
-  const fallback: PbTrackQuality = {
-    repeatedShare: 0,
-    movingShare: t.stats.elapsedSec ? t.stats.movingSec / t.stats.elapsedSec : 0,
-    maxSegmentKph: 0,
-    hasTeleportGap: false,
-  };
-
-  const trackPath = path.join(process.cwd(), "public", "tracks", `${t.id}.json`);
-  if (!fs.existsSync(trackPath)) {
-    pbTrackQualityCache.set(t.id, fallback);
-    return fallback;
-  }
-
-  const raw = JSON.parse(fs.readFileSync(trackPath, "utf8")) as RawTrackFile;
-  const points = raw.points ?? [];
-  if (points.length < 2) {
-    pbTrackQualityCache.set(t.id, fallback);
-    return fallback;
-  }
-
-  let repeatedSteps = 0;
-  let maxSegmentKph = 0;
-  let hasTeleportGap = false;
-
-  for (let i = 1; i < points.length; i += 1) {
-    const prev = points[i - 1];
-    const curr = points[i];
-    const dt = curr.t - prev.t;
-    const dk = curr.km - prev.km;
-    if (curr.lat === prev.lat && curr.lon === prev.lon) repeatedSteps += 1;
-    const kph = dt > 0 ? (dk / dt) * 3600 : Infinity;
-    if (kph > maxSegmentKph) maxSegmentKph = kph;
-    if (dt >= 600 && dk >= 1) hasTeleportGap = true;
-  }
-
-  const quality: PbTrackQuality = {
-    repeatedShare: repeatedSteps / Math.max(points.length - 1, 1),
-    movingShare: fallback.movingShare,
-    maxSegmentKph,
-    hasTeleportGap,
-  };
-  pbTrackQualityCache.set(t.id, quality);
-  return quality;
-}
-
-function paceMinuteSamplesFor(t: GpxSummary): number[] {
-  const cached = paceMinuteCache.get(t.id);
-  if (cached) return cached;
-
-  const gpxPath = path.join(process.cwd(), "public", "gpx", `${t.id}.gpx`);
-  if (!fs.existsSync(gpxPath)) {
-    paceMinuteCache.set(t.id, []);
-    return [];
-  }
-
-  const xml = fs.readFileSync(gpxPath, "utf8") as string;
-  const points: GpxTrackPointInput[] = [];
-  const re = /<trkpt\s+lat="([^"]+)"\s+lon="([^"]+)">([\s\S]*?)<\/trkpt>/g;
-  let match: RegExpExecArray | null;
-  while ((match = re.exec(xml)) !== null) {
-    const lat = Number.parseFloat(match[1]);
-    const lon = Number.parseFloat(match[2]);
-    const body = match[3];
-    const timeMatch = body.match(/<time>([^<]+)<\/time>/);
-    points.push({
-      lat,
-      lon,
-      time: timeMatch ? timeMatch[1] : null,
-    });
-  }
-
-  const samples = minutePacesFromTrackPoints(points);
-  paceMinuteCache.set(t.id, samples);
-  return samples;
-}
-
 // PB-only drift detection: we keep the rest of the site unchanged, but
 // exclude runs whose raw traces show either stop-heavy corrupted motion or
 // a giant mid-run teleport after the watch stopped recording for a while.
 function hasBadPbTrace(t: GpxSummary): boolean {
-  const { bbox, distanceKm, paceSecPerKm } = t.stats;
+  const { bbox, distanceKm, paceSecPerKm, pbQuality } = t.stats;
   if (!distanceKm) return true;
   // Diagonal of the bbox in degrees × 111 km/deg ≈ km (rough, equirectangular)
   const dLat = bbox.maxLat - bbox.minLat;
@@ -567,15 +462,16 @@ function hasBadPbTrace(t: GpxSummary): boolean {
   if (bboxDiagKm > distanceKm * 3) return true;
   // Impossibly fast pace (< 2 min/km = 120 sec/km) → likely GPS jump
   if (paceSecPerKm != null && paceSecPerKm < 120) return true;
-  const quality = pbTrackQualityFor(t);
-  if (
-    quality.movingShare < 0.55 &&
-    quality.repeatedShare > 0.15 &&
-    quality.maxSegmentKph > 25
-  ) {
-    return true;
+  if (pbQuality) {
+    if (
+      pbQuality.movingShare < 0.55 &&
+      pbQuality.repeatedShare > 0.15 &&
+      pbQuality.maxSegmentKph > 25
+    ) {
+      return true;
+    }
+    if (pbQuality.hasTeleportGap) return true;
   }
-  if (quality.hasTeleportGap) return true;
   return false;
 }
 
@@ -663,7 +559,7 @@ export const runDistances: HistogramBucket[] = DIST_BUCKETS.map((b) => ({
 
 export const treadmillVsOutdoor = { treadmill: 0, outdoor: tracks.length };
 
-const minutePaceSamples = tracks.flatMap((t) => paceMinuteSamplesFor(t));
+const minutePaceSamples = tracks.flatMap((t) => t.stats.paceSamples ?? []);
 export const paceDistribution = buildPaceDistributionFromSamples(minutePaceSamples);
 
 const HR_ZONES: { label: string; bpm: string; max: number }[] = [

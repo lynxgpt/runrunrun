@@ -80,6 +80,40 @@ function downsample(points, target) {
   return out;
 }
 
+function interpolateDistanceAt(timeline, movingSec) {
+  if (!timeline.length) return 0;
+  if (movingSec <= 0) return 0;
+  const last = timeline[timeline.length - 1];
+  if (movingSec >= last.movingSec) return last.distanceKm;
+  for (let i = 1; i < timeline.length; i += 1) {
+    const start = timeline[i - 1];
+    const end = timeline[i];
+    if (movingSec > end.movingSec) continue;
+    const spanSec = end.movingSec - start.movingSec;
+    if (spanSec <= 0) return end.distanceKm;
+    const ratio = (movingSec - start.movingSec) / spanSec;
+    return start.distanceKm + (end.distanceKm - start.distanceKm) * ratio;
+  }
+  return last.distanceKm;
+}
+
+function minutePacesFromMovingTimeline(timeline) {
+  if (timeline.length < 2) return [];
+  const totalMovingSec = timeline[timeline.length - 1].movingSec;
+  const fullMinutes = Math.floor(totalMovingSec / 60);
+  const paces = [];
+  for (let minute = 0; minute < fullMinutes; minute += 1) {
+    const startSec = minute * 60;
+    const endSec = startSec + 60;
+    const kmCovered =
+      interpolateDistanceAt(timeline, endSec) -
+      interpolateDistanceAt(timeline, startSec);
+    if (kmCovered <= 0) continue;
+    paces.push(60 / kmCovered);
+  }
+  return paces;
+}
+
 function aggregate(points, gpxName) {
   let totalKm = 0;
   let movingSec = 0;
@@ -92,6 +126,10 @@ function aggregate(points, gpxName) {
     sumLon += points[i].lon;
   }
 
+  const timeline = [{ movingSec: 0, distanceKm: 0 }];
+  let movingSecAcc = 0;
+  let distanceKmAcc = 0;
+
   for (let i = 1; i < points.length; i++) {
     const a = points[i - 1];
     const b = points[i];
@@ -102,7 +140,12 @@ function aggregate(points, gpxName) {
       const dt = (Date.parse(b.time) - Date.parse(a.time)) / 1000;
       if (dt > 0 && dt <= MAX_SAMPLE_GAP_SEC) {
         const mps = (segKm * 1000) / dt;
-        if (mps >= MIN_MOVING_MPS) movingSec += dt;
+        if (mps >= MIN_MOVING_MPS) {
+          movingSec += dt;
+          movingSecAcc += dt;
+        }
+        distanceKmAcc += segKm;
+        timeline.push({ movingSec: movingSecAcc, distanceKm: distanceKmAcc });
       }
     }
 
@@ -147,6 +190,7 @@ function aggregate(points, gpxName) {
     meanLat: +(sumLat / points.length).toFixed(6),
     meanLon: +(sumLon / points.length).toFixed(6),
     bbox,
+    paceSamples: minutePacesFromMovingTimeline(timeline),
   };
 }
 
@@ -170,6 +214,29 @@ function processFile(path, id) {
     km: +cumKm[i].toFixed(3),
     t: t0Ms != null && p.time ? Math.round((Date.parse(p.time) - t0Ms) / 1000) : null,
   }));
+
+  let repeatedSteps = 0;
+  let maxSegmentKph = 0;
+  let hasTeleportGap = false;
+
+  for (let i = 1; i < points.length; i++) {
+    const prev = points[i - 1];
+    const curr = points[i];
+    const dt = curr.t - prev.t;
+    const dk = curr.km - prev.km;
+    if (curr.lat === prev.lat && curr.lon === prev.lon) repeatedSteps += 1;
+    const kph = dt > 0 ? (dk / dt) * 3600 : Infinity;
+    if (kph > maxSegmentKph) maxSegmentKph = kph;
+    if (dt >= 600 && dk >= 1) hasTeleportGap = true;
+  }
+
+  stats.pbQuality = {
+    repeatedShare: repeatedSteps / Math.max(points.length - 1, 1),
+    movingShare: stats.elapsedSec ? stats.movingSec / stats.elapsedSec : 0,
+    maxSegmentKph,
+    hasTeleportGap,
+  };
+
   return { id, name, stats, rawPointCount: all.length, points };
 }
 
@@ -296,6 +363,13 @@ export interface GpxStats {
   meanLat?: number;
   meanLon?: number;
   bbox: { minLat: number; maxLat: number; minLon: number; maxLon: number };
+  paceSamples?: number[];
+  pbQuality?: {
+    repeatedShare: number;
+    movingShare: number;
+    maxSegmentKph: number;
+    hasTeleportGap: boolean;
+  };
 }
 
 export interface GpxSummary {
