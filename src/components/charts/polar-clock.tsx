@@ -134,7 +134,43 @@ export function PolarClock({ data }: PolarClockProps) {
       <svg viewBox={`0 0 ${width} ${height}`} className="h-auto w-full overflow-visible">
         <defs>
           <filter id="polarClockSoftBloom" x="-25%" y="-25%" width="150%" height="150%">
-            <feGaussianBlur stdDeviation="2.8" result="blur" />
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="0.013 0.041"
+              numOctaves="2"
+              seed="8"
+              result="noise"
+            >
+              <animate
+                attributeName="baseFrequency"
+                values="0.013 0.041;0.019 0.032;0.012 0.046;0.013 0.041"
+                dur="12s"
+                repeatCount="indefinite"
+              />
+            </feTurbulence>
+            <feDisplacementMap
+              in="SourceGraphic"
+              in2="noise"
+              scale="5"
+              xChannelSelector="R"
+              yChannelSelector="G"
+              result="warped"
+            >
+              <animate
+                attributeName="scale"
+                values="3;7;4;6;3"
+                dur="9s"
+                repeatCount="indefinite"
+              />
+            </feDisplacementMap>
+            <feGaussianBlur in="warped" stdDeviation="2.8" result="blur">
+              <animate
+                attributeName="stdDeviation"
+                values="2.1;3.4;2.5;3;2.1"
+                dur="8s"
+                repeatCount="indefinite"
+              />
+            </feGaussianBlur>
             <feColorMatrix
               in="blur"
               type="matrix"
@@ -143,13 +179,43 @@ export function PolarClock({ data }: PolarClockProps) {
             />
             <feMerge>
               <feMergeNode in="soft" />
-              <feMergeNode in="SourceGraphic" />
+              <feMergeNode in="warped" />
             </feMerge>
+          </filter>
+          <filter id="polarClockEdgeStatic" x="-25%" y="-25%" width="150%" height="150%">
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="0.09"
+              numOctaves="3"
+              seed="21"
+              result="static"
+            >
+              <animate
+                attributeName="seed"
+                values="21;31;18;44;21"
+                dur="1.8s"
+                repeatCount="indefinite"
+              />
+            </feTurbulence>
+            <feDisplacementMap
+              in="SourceGraphic"
+              in2="static"
+              scale="2.4"
+              xChannelSelector="R"
+              yChannelSelector="B"
+            />
           </filter>
           <radialGradient id="polarClockCore" cx="50%" cy="50%" r="50%">
             <stop offset="0%" stopColor="#050505" />
             <stop offset="58%" stopColor="#050505" />
             <stop offset="100%" stopColor="#111" />
+          </radialGradient>
+          <radialGradient id="polarClockScan" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#fff" stopOpacity="0" />
+            <stop offset="58%" stopColor="#fff" stopOpacity="0" />
+            <stop offset="72%" stopColor="#fff" stopOpacity="0.22" />
+            <stop offset="76%" stopColor="#fff" stopOpacity="0" />
+            <stop offset="100%" stopColor="#fff" stopOpacity="0" />
           </radialGradient>
           <linearGradient id="polarClockField" x1="20%" y1="15%" x2="85%" y2="88%">
             <stop offset="0%" stopColor="#fff" stopOpacity="0.78" />
@@ -202,21 +268,32 @@ export function PolarClock({ data }: PolarClockProps) {
           );
         })}
 
-        <path
-          d={annulusPath(cx, cy, field)}
-          fill="url(#polarClockField)"
-          opacity="0.98"
-          filter="url(#polarClockSoftBloom)"
-        />
-        <path
-          d={annulusPath(cx, cy, field.map((point, index) => ({
-            ...point,
-            inner: point.inner + 2,
-            outer: point.outer - 5 - Math.max(0, roughness(index)) * 5,
-          })))}
-          fill="#fff"
-          opacity="0.88"
-        />
+        <g className="origin-center animate-[polar-breathe_7s_ease-in-out_infinite]">
+          <path
+            d={annulusPath(cx, cy, field)}
+            fill="url(#polarClockField)"
+            opacity="0.98"
+            filter="url(#polarClockSoftBloom)"
+          />
+          <path
+            d={annulusPath(cx, cy, field.map((point, index) => ({
+              ...point,
+              inner: point.inner + 2,
+              outer: point.outer - 5 - Math.max(0, roughness(index)) * 5,
+            })))}
+            className="animate-[polar-flicker_3.8s_steps(6,end)_infinite]"
+            fill="#fff"
+            opacity="0.88"
+            filter="url(#polarClockEdgeStatic)"
+          />
+        </g>
+
+        <g className="origin-center animate-[polar-scan_13s_linear_infinite]" opacity="0.5">
+          <path
+            d={`M${cx},${cy} L${cx + 8},${cy - gridRadius} A${gridRadius},${gridRadius} 0 0 1 ${cx + 48},${cy - gridRadius + 10} Z`}
+            fill="url(#polarClockScan)"
+          />
+        </g>
 
         <circle cx={cx} cy={cy} r="60" fill="url(#polarClockCore)" />
         <circle cx={cx} cy={cy} r="72" fill="none" stroke="#ededed" strokeWidth="1.4" opacity="0.72" />

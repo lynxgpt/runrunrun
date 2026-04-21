@@ -86,3 +86,31 @@ html[data-theme="light"] {
   .scroll-thin::-webkit-scrollbar-thumb { background: #525252; border-radius: 3px; }
   .scroll-thin::-webkit-scrollbar-thumb:hover { background: #737373; }
 }
+
+@keyframes polar-breathe {
+  0%, 100% {
+    opacity: 0.9;
+    transform: scale(0.988);
+  }
+  44% {
+    opacity: 1;
+    transform: scale(1.018);
+  }
+  63% {
+    opacity: 0.96;
+    transform: scale(1.006);
+  }
+}
+
+@keyframes polar-flicker {
+  0%, 100% { opacity: 0.8; }
+  18% { opacity: 0.96; }
+  34% { opacity: 0.74; }
+  52% { opacity: 0.92; }
+  71% { opacity: 0.78; }
+}
+
+@keyframes polar-scan {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
