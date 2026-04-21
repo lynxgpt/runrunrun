@@ -2,144 +2,253 @@ interface PolarClockProps {
   data: number[]; // length 24, index = hour of day
 }
 
-// 24-hour polar histogram: each hour is an individual wedge bar.
-// Angle = hour (0 = midnight at top, clockwise). Radius = normalised value.
-// Matches the source site's "clock face" style with discrete radial bars.
+interface PolarPoint {
+  angle: number;
+  inner: number;
+  outer: number;
+  value: number;
+}
 
-function wedgePath(
-  cx: number,
-  cy: number,
-  rInner: number,
-  rOuter: number,
-  startAngle: number, // radians
-  endAngle: number,
-): string {
-  const cos = Math.cos;
-  const sin = Math.sin;
-  // Shrink slightly for inter-bar gap
-  const mid = (startAngle + endAngle) / 2;
-  const halfSpan = (endAngle - startAngle) / 2 * 0.88;
-  const a0 = mid - halfSpan;
-  const a1 = mid + halfSpan;
+const TAU = Math.PI * 2;
 
-  const x0o = cx + rOuter * cos(a0), y0o = cy + rOuter * sin(a0);
-  const x1o = cx + rOuter * cos(a1), y1o = cy + rOuter * sin(a1);
-  const x1i = cx + rInner * cos(a1), y1i = cy + rInner * sin(a1);
-  const x0i = cx + rInner * cos(a0), y0i = cy + rInner * sin(a0);
-  const large = a1 - a0 > Math.PI ? 1 : 0;
+function polarToCartesian(cx: number, cy: number, radius: number, angle: number) {
+  return {
+    x: cx + Math.cos(angle) * radius,
+    y: cy + Math.sin(angle) * radius,
+  };
+}
 
-  return [
-    `M${x0o.toFixed(2)},${y0o.toFixed(2)}`,
-    `A${rOuter.toFixed(2)},${rOuter.toFixed(2)} 0 ${large} 1 ${x1o.toFixed(2)},${y1o.toFixed(2)}`,
-    `L${x1i.toFixed(2)},${y1i.toFixed(2)}`,
-    `A${rInner.toFixed(2)},${rInner.toFixed(2)} 0 ${large} 0 ${x0i.toFixed(2)},${y0i.toFixed(2)}`,
-    "Z",
-  ].join(" ");
+function closedPath(points: { x: number; y: number }[]) {
+  if (!points.length) return "";
+
+  return points
+    .map((point, index) => {
+      const previous = points[(index - 1 + points.length) % points.length];
+      const next = points[(index + 1) % points.length];
+      const startControl = {
+        x: point.x - (next.x - previous.x) / 6,
+        y: point.y - (next.y - previous.y) / 6,
+      };
+      const endControl = {
+        x: point.x + (next.x - previous.x) / 6,
+        y: point.y + (next.y - previous.y) / 6,
+      };
+
+      if (index === 0) return `M${point.x.toFixed(2)},${point.y.toFixed(2)}`;
+      return `C${startControl.x.toFixed(2)},${startControl.y.toFixed(2)} ${endControl.x.toFixed(2)},${endControl.y.toFixed(2)} ${point.x.toFixed(2)},${point.y.toFixed(2)}`;
+    })
+    .join(" ") + " Z";
+}
+
+function annulusPath(cx: number, cy: number, points: PolarPoint[]) {
+  const outer = points.map((point) => polarToCartesian(cx, cy, point.outer, point.angle));
+  const inner = [...points]
+    .reverse()
+    .map((point) => polarToCartesian(cx, cy, point.inner, point.angle));
+
+  return closedPath([...outer, ...inner]);
+}
+
+function hourValue(data: number[], hour: number) {
+  const h = ((hour % 24) + 24) % 24;
+  const base = Math.floor(h);
+  const next = (base + 1) % 24;
+  const t = h - base;
+  const a = data[base] ?? 0;
+  const b = data[next] ?? 0;
+  return a + (b - a) * t;
+}
+
+function roughness(index: number) {
+  return (
+    Math.sin(index * 1.91) * 0.55 +
+    Math.sin(index * 4.37 + 1.4) * 0.32 +
+    Math.sin(index * 9.83 + 0.7) * 0.13
+  );
+}
+
+function buildDivergenceField(data: number[]) {
+  const samples = 144;
+  const max = Math.max(...data, 1);
+  const baseRadius = 74;
+
+  return Array.from({ length: samples }, (_, index): PolarPoint => {
+    const hour = (index / samples) * 24;
+    const angle = (hour / 24) * TAU - Math.PI / 2;
+    const smoothed =
+      hourValue(data, hour - 0.8) * 0.18 +
+      hourValue(data, hour - 0.35) * 0.26 +
+      hourValue(data, hour) * 0.32 +
+      hourValue(data, hour + 0.35) * 0.18 +
+      hourValue(data, hour + 0.8) * 0.06;
+    const strength = Math.max(0, Math.min(1, smoothed / max));
+    const noise = roughness(index);
+    const flare = Math.pow(strength, 1.28);
+
+    return {
+      angle,
+      value: smoothed,
+      inner: baseRadius - 4 - flare * 9 + noise * (0.8 + flare * 1.6),
+      outer: baseRadius + 6 + flare * 63 + noise * (2.4 + flare * 8),
+    };
+  });
+}
+
+function radialLine(cx: number, cy: number, hour: number, inner: number, outer: number) {
+  const angle = (hour / 24) * TAU - Math.PI / 2;
+  const a = polarToCartesian(cx, cy, inner, angle);
+  const b = polarToCartesian(cx, cy, outer, angle);
+  return { x1: a.x, y1: a.y, x2: b.x, y2: b.y };
+}
+
+function labelPosition(cx: number, cy: number, hour: number, radius: number) {
+  const angle = (hour / 24) * TAU - Math.PI / 2;
+  return polarToCartesian(cx, cy, radius, angle);
 }
 
 export function PolarClock({ data }: PolarClockProps) {
-  const width = 300;
-  const height = 300;
+  const width = 340;
+  const height = 340;
   const cx = width / 2;
   const cy = height / 2;
-  const rMax = Math.min(width, height) / 2 - 28;
-  const rMin = rMax * 0.18; // inner dead-zone radius
+  const gridRadius = 138;
+  const field = buildDivergenceField(data);
   const max = Math.max(...data, 1);
+  const peakHour = data.reduce((best, value, hour) => (value > data[best] ? hour : best), 0);
+  const peakLabel = `${String(peakHour).padStart(2, "0")}:00`;
 
-  const cardinals = [
-    { h: 0,  label: "12am" },
-    { h: 6,  label: "6am" },
+  const ringRadii = [42, 58, 74, 90, 106, 122, 138];
+  const labels = [
+    { h: 0, label: "12am" },
+    { h: 3, label: "3am" },
+    { h: 6, label: "6am" },
+    { h: 9, label: "9am" },
     { h: 12, label: "12pm" },
-    { h: 18, label: "6pm" },
-  ];
-
-  const intermediates = [
-    { h: 3,  label: "3am" },
-    { h: 9,  label: "9am" },
     { h: 15, label: "3pm" },
+    { h: 18, label: "6pm" },
     { h: 21, label: "9pm" },
   ];
 
   return (
-    <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-auto">
-      {/* Reference rings at 33%, 66%, 100% */}
-      {[0.33, 0.66, 1.0].map((t) => (
-        <circle
-          key={t}
-          cx={cx} cy={cy}
-          r={rMin + (rMax - rMin) * t}
-          fill="none"
-          stroke="#222"
-          strokeWidth={0.5}
-        />
-      ))}
+    <figure className="w-full max-w-[360px]">
+      <svg viewBox={`0 0 ${width} ${height}`} className="h-auto w-full overflow-visible">
+        <defs>
+          <filter id="polarClockSoftBloom" x="-25%" y="-25%" width="150%" height="150%">
+            <feGaussianBlur stdDeviation="2.8" result="blur" />
+            <feColorMatrix
+              in="blur"
+              type="matrix"
+              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.58 0"
+              result="soft"
+            />
+            <feMerge>
+              <feMergeNode in="soft" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+          <radialGradient id="polarClockCore" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#050505" />
+            <stop offset="58%" stopColor="#050505" />
+            <stop offset="100%" stopColor="#111" />
+          </radialGradient>
+          <linearGradient id="polarClockField" x1="20%" y1="15%" x2="85%" y2="88%">
+            <stop offset="0%" stopColor="#fff" stopOpacity="0.78" />
+            <stop offset="54%" stopColor="#fff" stopOpacity="0.98" />
+            <stop offset="100%" stopColor="#d9d9d9" stopOpacity="0.88" />
+          </linearGradient>
+        </defs>
 
-      {/* Inner dead-zone */}
-      <circle cx={cx} cy={cy} r={rMin} fill="#111" />
+        <rect width={width} height={height} fill="transparent" />
 
-      {/* 24 wedge bars */}
-      {data.map((v, i) => {
-        const startAngle = (i / 24) * Math.PI * 2 - Math.PI / 2;
-        const endAngle   = ((i + 1) / 24) * Math.PI * 2 - Math.PI / 2;
-        const ratio = v / max;
-        const rOuter = rMin + (rMax - rMin) * ratio;
-        if (rOuter <= rMin + 0.5) return null;
-
-        // Brightness: dim at 0, full at max
-        const lightness = Math.round(25 + ratio * 70);
-
-        return (
-          <path
-            key={i}
-            d={wedgePath(cx, cy, rMin, rOuter, startAngle, endAngle)}
-            fill={`oklch(${lightness}% 0 0)`}
+        {ringRadii.map((radius, index) => (
+          <circle
+            key={radius}
+            cx={cx}
+            cy={cy}
+            r={radius}
+            fill="none"
+            stroke={index === 2 ? "#2f2f2f" : "#202020"}
+            strokeWidth={index === 2 ? 1.1 : 0.75}
           />
-        );
-      })}
+        ))}
 
-      {/* Cardinal tick marks */}
-      {cardinals.map(({ h }) => {
-        const angle = (h / 24) * Math.PI * 2 - Math.PI / 2;
-        const x1 = cx + Math.cos(angle) * (rMax + 2);
-        const y1 = cy + Math.sin(angle) * (rMax + 2);
-        const x2 = cx + Math.cos(angle) * (rMax + 8);
-        const y2 = cy + Math.sin(angle) * (rMax + 8);
-        return <line key={h} x1={x1} y1={y1} x2={x2} y2={y2} stroke="#444" strokeWidth={1} />;
-      })}
+        {Array.from({ length: 24 }, (_, hour) => {
+          const line = radialLine(cx, cy, hour, 34, gridRadius);
+          return (
+            <line
+              key={hour}
+              {...line}
+              stroke={hour % 6 === 0 ? "#2d2d2d" : "#1b1b1b"}
+              strokeWidth={hour % 6 === 0 ? 1 : 0.6}
+            />
+          );
+        })}
 
-      {/* Cardinal labels */}
-      {cardinals.map(({ h, label }) => {
-        const angle = (h / 24) * Math.PI * 2 - Math.PI / 2;
-        const x = cx + Math.cos(angle) * (rMax + 18);
-        const y = cy + Math.sin(angle) * (rMax + 18);
-        return (
-          <text
-            key={h} x={x} y={y + 3}
-            textAnchor="middle"
-            className="fill-neutral-400 font-tamzen-sm"
-            fontSize={9}
-          >
-            {label}
-          </text>
-        );
-      })}
+        {[5, 10, 15].map((pct, index) => {
+          const y = cy - 74 - index * 18;
+          return (
+            <g key={pct}>
+              <rect x={cx - 18} y={y - 11} width="36" height="18" fill="#070707" opacity="0.82" />
+              <text
+                x={cx}
+                y={y + 2}
+                textAnchor="middle"
+                className="fill-neutral-500 font-mono-tamzen"
+                fontSize={12}
+              >
+                {pct}%
+              </text>
+            </g>
+          );
+        })}
 
-      {/* Intermediate labels (smaller, muted) */}
-      {intermediates.map(({ h, label }) => {
-        const angle = (h / 24) * Math.PI * 2 - Math.PI / 2;
-        const x = cx + Math.cos(angle) * (rMax + 18);
-        const y = cy + Math.sin(angle) * (rMax + 18);
-        return (
-          <text
-            key={h} x={x} y={y + 3}
-            textAnchor="middle"
-            className="fill-neutral-600 font-tamzen-sm"
-            fontSize={8}
-          >
-            {label}
-          </text>
-        );
-      })}
-    </svg>
+        <path
+          d={annulusPath(cx, cy, field)}
+          fill="url(#polarClockField)"
+          opacity="0.98"
+          filter="url(#polarClockSoftBloom)"
+        />
+        <path
+          d={annulusPath(cx, cy, field.map((point, index) => ({
+            ...point,
+            inner: point.inner + 2,
+            outer: point.outer - 5 - Math.max(0, roughness(index)) * 5,
+          })))}
+          fill="#fff"
+          opacity="0.88"
+        />
+
+        <circle cx={cx} cy={cy} r="60" fill="url(#polarClockCore)" />
+        <circle cx={cx} cy={cy} r="72" fill="none" stroke="#ededed" strokeWidth="1.4" opacity="0.72" />
+        <circle cx={cx} cy={cy} r="73.8" fill="none" stroke="#fff" strokeWidth="0.55" opacity="0.62" />
+
+        {labels.map(({ h, label }) => {
+          const pos = labelPosition(cx, cy, h, h % 6 === 0 ? 55 : 79);
+          return (
+            <text
+              key={h}
+              x={pos.x}
+              y={pos.y + 4}
+              textAnchor="middle"
+              className={h % 6 === 0 ? "fill-neutral-500 font-mono-tamzen" : "fill-neutral-600 font-mono-tamzen"}
+              fontSize={h % 6 === 0 ? 13 : 12}
+            >
+              {label}
+            </text>
+          );
+        })}
+
+        <text
+          x={cx}
+          y={height - 18}
+          textAnchor="middle"
+          className="fill-neutral-600 font-mono-tamzen"
+          fontSize={11}
+          letterSpacing={1.4}
+        >
+          peak {peakLabel} / {max.toFixed(1)}%
+        </text>
+      </svg>
+    </figure>
   );
 }
