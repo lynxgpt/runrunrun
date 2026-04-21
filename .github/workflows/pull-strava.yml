@@ -20,6 +20,10 @@ name: Pull Strava Activities
 # If you don't want token auto-rotation, skip the PAT and manually update
 # the two token secrets once a week — the access token expires in 6 hours
 # but the refresh token usually lasts months.
+#
+# Strava API limits for this app:
+#   Overall: 200 requests / 15 minutes, 2,000 / day
+#   Read:    100 requests / 15 minutes, 1,000 / day
 
 on:
   schedule:
@@ -32,6 +36,8 @@ permissions:
 jobs:
   pull:
     runs-on: ubuntu-latest
+    env:
+      HAS_ROTATE_PAT: ${{ secrets.STRAVA_ROTATE_PAT != '' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -54,9 +60,8 @@ jobs:
         run: node scripts/pull-strava.mjs
 
       - name: Rotate Strava tokens (if PAT configured)
-        if: ${{ env.HAS_PAT == 'true' }}
+        if: ${{ env.HAS_ROTATE_PAT == 'true' }}
         env:
-          HAS_PAT: ${{ secrets.STRAVA_ROTATE_PAT != '' }}
           GH_TOKEN: ${{ secrets.STRAVA_ROTATE_PAT }}
         run: |
           # Read new tokens from .env.local and push them back as secrets.

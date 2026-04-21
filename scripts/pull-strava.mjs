@@ -25,6 +25,23 @@ const GPX_DIR = join(ROOT, "public", "gpx");
 const PHOTOS_DIR = join(ROOT, "public", "photos");
 const META_PATH = join(ROOT, "public", "strava-meta.json");
 
+// Strava API limits for this app:
+//   Overall: 200 requests / 15 minutes, 2,000 / day
+//   Read:    100 requests / 15 minutes, 1,000 / day
+// Keep reads below the stricter 100 / 15 minutes bucket.
+const STRAVA_READ_LIMIT_PER_15_MIN = 100;
+const STRAVA_READ_WINDOW_MS = 15 * 60 * 1000;
+const STRAVA_READ_GAP_MS = Math.ceil(STRAVA_READ_WINDOW_MS / STRAVA_READ_LIMIT_PER_15_MIN);
+let nextStravaReadAt = 0;
+
+async function waitForStravaReadSlot() {
+  const now = Date.now();
+  if (now < nextStravaReadAt) {
+    await new Promise((r) => setTimeout(r, nextStravaReadAt - now));
+  }
+  nextStravaReadAt = Date.now() + STRAVA_READ_GAP_MS;
+}
+
 // ──────────────────────────────────────────────────────────────── env ──
 function parseEnv(src) {
   const env = {};
@@ -76,6 +93,7 @@ for (const k of need) {
 
 // ────────────────────────────────────────────────────────────── auth ──
 async function strava(path, { method = "GET", token, body, qs } = {}) {
+  await waitForStravaReadSlot();
   const url = new URL(`https://www.strava.com${path}`);
   if (qs) for (const [k, v] of Object.entries(qs)) url.searchParams.set(k, String(v));
   const headers = { Authorization: `Bearer ${token}` };
@@ -206,6 +224,7 @@ function slugify(s, id) {
 
 // ─────────────────────────────────────────────────── photos + meta ──
 async function fetchFirstPhoto(activityId, token) {
+  await waitForStravaReadSlot();
   const url = new URL(`https://www.strava.com/api/v3/activities/${activityId}/photos`);
   url.searchParams.set("photo_sources", "true");
   url.searchParams.set("size", "800");
@@ -299,8 +318,6 @@ function saveMeta(meta) {
     } catch (e) {
       console.error(`  ↳ failed: ${e.message}`);
     }
-    // Rate-limit: stay well under 100/15min
-    await new Promise((r) => setTimeout(r, 500));
   }
 
   console.log(`\n${written} new GPX files, ${skipped} already present`);
