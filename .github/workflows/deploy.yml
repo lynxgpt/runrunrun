@@ -53,6 +53,8 @@ jobs:
       - name: Build static export
         env:
           NEXT_PUBLIC_BASE_PATH: ${{ steps.base.outputs.base_path }}
+          # Optional. When unset, the visitor tracker is fully disabled.
+          NEXT_PUBLIC_ANALYTICS_ENDPOINT: ${{ vars.NEXT_PUBLIC_ANALYTICS_ENDPOINT }}
         run: npm run build
 
       - name: Disable Jekyll

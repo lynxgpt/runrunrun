@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Jost } from "next/font/google";
+import { PageVisitTracker } from "@/components/analytics/page-visit-tracker";
 import "flag-icons/css/flag-icons.min.css";
 import "./globals.css";
 
@@ -28,6 +29,7 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeInit }} />
       </head>
       <body className="min-h-full antialiased font-sans">
+        <PageVisitTracker />
         {children}
       </body>
     </html>

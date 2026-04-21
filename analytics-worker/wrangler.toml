@@ -1,0 +1,12 @@
+name = "runrunrun-analytics"
+main = "worker.js"
+compatibility_date = "2026-04-21"
+account_id = "b3c5ab2228da670f1164d69763bdb46f"
+
+[[d1_databases]]
+binding = "ANALYTICS_DB"
+database_name = "runrunrun_analytics"
+database_id = "889c6a2a-03bc-4ef1-b34c-b6548bb28148"
+
+[vars]
+ALLOWED_ORIGIN = "https://lynxgpt.github.io"

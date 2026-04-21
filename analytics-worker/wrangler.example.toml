@@ -1,0 +1,16 @@
+name = "runrunrun-analytics"
+main = "worker.js"
+compatibility_date = "2026-04-21"
+account_id = "REPLACE_WITH_CLOUDFLARE_ACCOUNT_ID"
+
+# Replace after creating the D1 database:
+# wrangler d1 create runrunrun_analytics
+[[d1_databases]]
+binding = "ANALYTICS_DB"
+database_name = "runrunrun_analytics"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"
+
+[vars]
+# Set this to your hosted site origin before deploying, for example:
+# ALLOWED_ORIGIN = "https://lynxgpt.github.io"
+ALLOWED_ORIGIN = "http://127.0.0.1:3000"
