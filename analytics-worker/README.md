@@ -68,3 +68,16 @@ wrangler d1 execute runrunrun_analytics --command "SELECT created_at, event, cou
 ```bash
 wrangler d1 execute runrunrun_analytics --command "SELECT country, region, city, COUNT(*) AS events FROM visits GROUP BY country, region, city ORDER BY events DESC LIMIT 20"
 ```
+
+## Daily Email Report
+
+GitHub Actions sends a daily analytics summary at 06:00 New York time during daylight time. It uses secrets, so the recipient email is not committed.
+
+Required GitHub Actions secrets:
+
+- `CLOUDFLARE_API_TOKEN`
+- `RESEND_API_KEY`
+- `ANALYTICS_REPORT_TO`
+- `ANALYTICS_REPORT_FROM` optional, defaults to Resend's onboarding sender if omitted
+
+The report queries the last 24 hours and groups rows by session id, showing page views, total events, max observed duration, approximate IP location, browser/OS, viewport, paths, and origin.
