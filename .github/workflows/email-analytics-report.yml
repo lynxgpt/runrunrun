@@ -1,4 +1,4 @@
-name: Email Analytics Report
+name: Daily Analytics Report
 
 on:
   schedule:
@@ -32,10 +32,12 @@ jobs:
             echo "send=false" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Send report
+      - name: Publish report
         if: github.event_name == 'workflow_dispatch' || steps.report_time.outputs.send == 'true'
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          RUN_LOGS_TOKEN: ${{ secrets.RUN_LOGS_TOKEN }}
+          RUN_LOGS_REPO: lynxgpt/run_logs
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           ANALYTICS_REPORT_TO: ${{ secrets.ANALYTICS_REPORT_TO }}
           ANALYTICS_REPORT_FROM: ${{ secrets.ANALYTICS_REPORT_FROM }}
