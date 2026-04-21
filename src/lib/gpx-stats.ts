@@ -10,6 +10,7 @@ import {
 } from "./pace-distribution";
 const worldAtlas = require("world-atlas/countries-10m.json");
 const usAtlas = require("us-atlas/states-10m.json");
+const usCountiesAtlas = require("us-atlas/counties-10m.json");
 const { feature } = require("topojson-client");
 const isoCountries = require("i18n-iso-countries");
 
@@ -188,6 +189,47 @@ const US_STATE_FEATURES = feature(
   };
 }>;
 
+const US_COUNTY_FEATURES = feature(
+  usCountiesAtlas,
+  usCountiesAtlas.objects.counties,
+).features as Array<{
+  id: string | number;
+  properties: { name: string };
+  geometry: {
+    type: "Polygon" | "MultiPolygon";
+    coordinates: number[][][] | number[][][][];
+  };
+}>;
+
+const US_COUNTIES = US_COUNTY_FEATURES.map((county) => {
+  const id = String(county.id).padStart(5, "0");
+  const stateFips = id.slice(0, 2);
+  let minLat = Infinity;
+  let maxLat = -Infinity;
+  let minLon = Infinity;
+  let maxLon = -Infinity;
+  const polygons =
+    county.geometry.type === "Polygon"
+      ? [county.geometry.coordinates as number[][][]]
+      : (county.geometry.coordinates as number[][][][]);
+  for (const polygon of polygons) {
+    for (const ring of polygon) {
+      for (const [lon, lat] of ring) {
+        if (lat < minLat) minLat = lat;
+        if (lat > maxLat) maxLat = lat;
+        if (lon < minLon) minLon = lon;
+        if (lon > maxLon) maxLon = lon;
+      }
+    }
+  }
+  return {
+    ...county,
+    stateFips,
+    centerLat: (minLat + maxLat) / 2,
+    centerLon: (minLon + maxLon) / 2,
+  };
+});
+
 function pointInRing(ring: number[][], point: [number, number]): boolean {
   let inside = false;
   for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
@@ -249,6 +291,204 @@ function lookupUsState(lat: number, lon: number): { region: string } | null {
     if (contains) return { region };
   }
   return null;
+}
+
+function lookupUsCounty(lat: number, lon: number): { county: string } | null {
+  const point: [number, number] = [lon, lat];
+  for (const county of US_COUNTIES) {
+    const contains =
+      county.geometry.type === "Polygon"
+        ? polygonContainsPoint(county.geometry.coordinates as number[][][], point)
+        : (county.geometry.coordinates as number[][][][]).some((polygon) =>
+            polygonContainsPoint(polygon, point),
+          );
+    if (contains) return { county: county.properties.name };
+  }
+  return null;
+}
+
+function lookupNearestUsCounty(
+  lat: number,
+  lon: number,
+  region?: string,
+): { county: string; region?: string } | null {
+  const stateFips = region
+    ? Object.entries(US_STATE_BY_FIPS).find(([, code]) => code === region)?.[0]
+    : null;
+  let best: { county: string; d2: number; stateFips: string } | null = null;
+  for (const county of US_COUNTIES) {
+    if (stateFips && county.stateFips !== stateFips) continue;
+    const dLat = county.centerLat - lat;
+    const dLon = county.centerLon - lon;
+    const d2 = dLat * dLat + dLon * dLon;
+    if (!best || d2 < best.d2) {
+      best = { county: county.properties.name, d2, stateFips: county.stateFips };
+    }
+  }
+  // About ~55km squared-ish upper bound; enough to catch shore/water means
+  // without inventing counties across a whole state.
+  if (!best || best.d2 >= 0.25) return null;
+  return {
+    county: best.county,
+    region: region ?? US_STATE_BY_FIPS[best.stateFips],
+  };
+}
+
+function withUsCountyFallback(
+  loc: ActivityLocation,
+  lat: number,
+  lon: number,
+): ActivityLocation {
+  // Keep NYC on its dedicated borough path; generic county fallback should
+  // only fill in otherwise-unspecified U.S. locations.
+  if (loc.countryCode !== "US" || loc.city) return loc;
+  const county = lookupUsCounty(lat, lon) ?? lookupNearestUsCounty(lat, lon, loc.region);
+  return county ? { ...loc, county: county.county } : loc;
+}
+
+function formatCountyLabel(county: string): string {
+  return /\bCounty$/i.test(county) ? county : `${county} County`;
+}
+
+const DISPLAY_CITY_HINTS: Array<{
+  countryCode: string;
+  region?: string;
+  city: string;
+  lat: number;
+  lon: number;
+  radiusKm: number;
+}> = [
+  { countryCode: "US", region: "NJ", city: "Jersey City", lat: 40.7178, lon: -74.0431, radiusKm: 6.5 },
+  { countryCode: "US", region: "NJ", city: "Hoboken", lat: 40.7440, lon: -74.0324, radiusKm: 4.5 },
+  { countryCode: "US", region: "NJ", city: "Weehawken", lat: 40.7695, lon: -74.0204, radiusKm: 4.5 },
+  { countryCode: "US", region: "NJ", city: "West New York", lat: 40.7879, lon: -74.0143, radiusKm: 3.5 },
+  { countryCode: "US", region: "NJ", city: "West Orange", lat: 40.7987, lon: -74.2390, radiusKm: 7 },
+  { countryCode: "US", region: "NJ", city: "Englewood Cliffs", lat: 40.8859, lon: -73.9521, radiusKm: 5 },
+  { countryCode: "US", region: "NJ", city: "Alpine", lat: 40.9559, lon: -73.9313, radiusKm: 5 },
+  { countryCode: "US", region: "LA", city: "New Orleans", lat: 29.9511, lon: -90.0715, radiusKm: 14 },
+  { countryCode: "US", region: "PA", city: "Philadelphia", lat: 39.9526, lon: -75.1652, radiusKm: 14 },
+  { countryCode: "US", region: "PA", city: "Lebanon", lat: 40.3409, lon: -76.4113, radiusKm: 24 },
+  { countryCode: "US", region: "FL", city: "Miami Beach", lat: 25.7907, lon: -80.1300, radiusKm: 10 },
+  { countryCode: "US", region: "VA", city: "Richmond", lat: 37.5407, lon: -77.4360, radiusKm: 12 },
+  { countryCode: "US", region: "GA", city: "Savannah", lat: 32.0809, lon: -81.0912, radiusKm: 12 },
+  { countryCode: "US", region: "WY", city: "Jackson", lat: 43.4799, lon: -110.7624, radiusKm: 40 },
+  { countryCode: "US", region: "WY", city: "Pinedale", lat: 42.8666, lon: -109.8630, radiusKm: 12 },
+  { countryCode: "US", region: "CA", city: "Palm Springs", lat: 33.8303, lon: -116.5453, radiusKm: 14 },
+  { countryCode: "US", region: "CA", city: "Coronado", lat: 32.6859, lon: -117.1831, radiusKm: 7 },
+  { countryCode: "US", region: "CA", city: "Chula Vista", lat: 32.6401, lon: -117.0842, radiusKm: 14 },
+  { countryCode: "US", region: "CA", city: "Encinitas", lat: 33.0369, lon: -117.2919, radiusKm: 10 },
+  { countryCode: "US", region: "CA", city: "Carlsbad", lat: 33.1581, lon: -117.3506, radiusKm: 12 },
+  { countryCode: "US", region: "NY", city: "Beacon", lat: 41.5048, lon: -73.9696, radiusKm: 10 },
+  { countryCode: "US", region: "NY", city: "Cold Spring", lat: 41.4201, lon: -73.9546, radiusKm: 8 },
+  { countryCode: "US", region: "NY", city: "Lake Placid", lat: 44.2795, lon: -73.9799, radiusKm: 12 },
+  { countryCode: "US", region: "SC", city: "Charleston", lat: 32.7765, lon: -79.9311, radiusKm: 12 },
+  { countryCode: "US", region: "UT", city: "Salt Lake City", lat: 40.7608, lon: -111.8910, radiusKm: 14 },
+  { countryCode: "GB", city: "London", lat: 51.5074, lon: -0.1278, radiusKm: 18 },
+  { countryCode: "FR", city: "Paris", lat: 48.8566, lon: 2.3522, radiusKm: 14 },
+];
+
+function distanceKm(lat0: number, lon0: number, lat1: number, lon1: number): number {
+  const kmPerLat = 111.32;
+  const kmPerLon = 111.32 * Math.cos(((lat0 + lat1) / 2) * (Math.PI / 180));
+  const dLat = (lat1 - lat0) * kmPerLat;
+  const dLon = (lon1 - lon0) * kmPerLon;
+  return Math.sqrt(dLat * dLat + dLon * dLon);
+}
+
+function lookupDisplayCityHint(loc: ActivityLocation): { city: string; region?: string } | null {
+  if (loc.lat == null || loc.lon == null) {
+    return loc.city ? { city: loc.city, region: loc.region } : null;
+  }
+  const lon = loc.lon;
+  const hints = DISPLAY_CITY_HINTS.filter((hint) => {
+    if (hint.countryCode !== loc.countryCode) return false;
+    if (loc.region === "NJ") return hint.region === "NJ";
+    if (hint.region && loc.region && hint.region !== loc.region) {
+      // Allow explicit overrides when the stored region is obviously wrong
+      // but only for far-away outliers like travel runs.
+      const farFromStoredRegion = loc.region === "NJ" && Math.abs(lon) > 100;
+      return farFromStoredRegion;
+    }
+    return true;
+  });
+  let best: { city: string; region?: string; distance: number } | null = null;
+  for (const hint of hints) {
+    const d = distanceKm(loc.lat, loc.lon, hint.lat, hint.lon);
+    if (d > hint.radiusKm) continue;
+    if (!best || d < best.distance) {
+      best = { city: hint.city, region: hint.region, distance: d };
+    }
+  }
+  if (best) return { city: best.city, region: best.region };
+  return loc.city ? { city: loc.city, region: loc.region } : null;
+}
+
+function displayLocationForNotable(loc: ActivityLocation): {
+  primary: string;
+  secondary: string;
+} {
+  let displayRegion = loc.region;
+  const hinted = lookupDisplayCityHint(loc);
+  let city = hinted?.city ?? null;
+  if (hinted?.region) displayRegion = hinted.region;
+
+  if (
+    !city &&
+    loc.countryCode === "US" &&
+    loc.region !== "NJ" &&
+    loc.lat != null &&
+    loc.lon != null
+  ) {
+    const lat = loc.lat;
+    const lon = loc.lon;
+    const MAN_LAT_MIN = 40.700;
+    const MAN_LAT_MAX = 40.880;
+    if (
+      (loc.region === "NY" || !loc.region) &&
+      lat >= MAN_LAT_MIN &&
+      lat <= MAN_LAT_MAX &&
+      lon >= hudsonCenterlineWestOf(lat)
+    ) {
+      city = lon <= manhattanEastLon(lat) ? "Manhattan" : lat > 40.726 ? "Queens" : "Brooklyn";
+      displayRegion = "NY";
+    } else if (loc.region === "NY" || !loc.region) {
+      const borough = REGIONS.find((r) =>
+        r.countryCode === "US" &&
+        r.region === "NY" &&
+        r.city &&
+        NYC_BOROUGHS.has(r.city) &&
+        lat >= r.bbox.minLat &&
+        lat <= r.bbox.maxLat &&
+        lon >= r.bbox.minLon &&
+        lon <= r.bbox.maxLon,
+      );
+      if (borough?.city) {
+        city = borough.city;
+        displayRegion = "NY";
+      }
+    }
+  }
+
+  let countyLabel: string | null = null;
+  if (!city && loc.countryCode === "US" && loc.lat != null && loc.lon != null) {
+    const exactCounty = lookupUsCounty(loc.lat, loc.lon);
+    const nearestCounty =
+      (loc.region !== "NJ" && loc.county ? { county: loc.county, region: displayRegion } : null) ??
+      (exactCounty ? { county: exactCounty.county, region: displayRegion } : null) ??
+      (loc.region !== "NJ" ? lookupNearestUsCounty(loc.lat, loc.lon, displayRegion) : null);
+    if (nearestCounty) {
+      countyLabel = formatCountyLabel(nearestCounty.county);
+      displayRegion = displayRegion ?? nearestCounty.region;
+    }
+  }
+
+  const primary =
+    city ??
+    countyLabel ??
+    loc.country;
+  const secondary =
+    displayRegion ? `${displayRegion} · ${loc.country.toUpperCase()}` : loc.country.toUpperCase();
+  return { primary, secondary };
 }
 
 // Piecewise approximation of Manhattan's EAST shoreline (East River edge).
@@ -386,29 +626,29 @@ function locationFor(t: GpxSummary): ActivityLocation {
       if (r.countryCode === "US" && !r.region) {
         const state = lookupUsState(lat, lon);
         if (state) {
-          return {
+          return withUsCountyFallback({
             country: r.country,
             countryCode: r.countryCode,
             region: state.region,
             lat,
             lon,
-          };
+          }, lat, lon);
         }
       }
-      return {
+      return withUsCountyFallback({
         country: r.country,
         countryCode: r.countryCode,
         region: r.region,
         city: r.city,
         lat,
         lon,
-      };
+      }, lat, lon);
     }
   }
   const country = lookupCountry(lat, lon);
   if (country?.countryCode === "US") {
     const state = lookupUsState(lat, lon);
-    if (state) return { ...country, ...state, lat, lon };
+    if (state) return withUsCountyFallback({ ...country, ...state, lat, lon }, lat, lon);
   }
   if (country) return { ...country, lat, lon };
   return { country: "Unknown", countryCode: "??", lat, lon };
@@ -457,6 +697,8 @@ export const streakStats: StreakStats = {
 function toNotableRun(t: GpxSummary, rank: number, weather: WeatherCondition): NotableRun {
   const d = dateOf(t);
   const meta = stravaMeta[t.id] ?? {};
+  const location = locationFor(t);
+  const displayLocation = displayLocationForNotable(location);
   return {
     rank,
     date: niceDate(d),
@@ -467,7 +709,9 @@ function toNotableRun(t: GpxSummary, rank: number, weather: WeatherCondition): N
     ...(meta.tempC != null ? { tempC: meta.tempC } : {}),
     weather,
     title: t.name,
-    location: locationFor(t),
+    location,
+    displayLocationPrimary: displayLocation.primary,
+    displayLocationSecondary: displayLocation.secondary,
     gpxId: t.id,
     gpxPath: `/gpx/${t.id}.gpx`,
     ...(meta.photoPath != null ? { photoPath: meta.photoPath } : {}),
@@ -537,14 +781,23 @@ const personalBests: NotableRun[] = PB_BUCKETS.flatMap((b, i) => {
   const eligible = tracks.filter(
     (t) =>
       t.stats.distanceKm >= b.minKm &&
-      t.stats.paceSecPerKm != null &&
-      !hasBadPbTrace(t),
+      t.stats.pbElapsedPaceSecPerKm?.[b.label] != null,
   );
   if (!eligible.length) return [];
   const fastest = eligible.reduce((a, c) =>
-    (c.stats.paceSecPerKm ?? Infinity) < (a.stats.paceSecPerKm ?? Infinity) ? c : a,
+    (c.stats.pbElapsedPaceSecPerKm?.[b.label] ?? Infinity) <
+    (a.stats.pbElapsedPaceSecPerKm?.[b.label] ?? Infinity)
+      ? c
+      : a,
   );
-  return [{ ...toNotableRun(fastest, i + 1, "clear"), title: `${b.tag} · ${fastest.name}` }];
+  return [
+    {
+      ...toNotableRun(fastest, i + 1, "clear"),
+      displayRank: b.label,
+      title: `${b.tag} · ${fastest.name}`,
+      paceSecPerKm: Math.round(fastest.stats.pbElapsedPaceSecPerKm?.[b.label] ?? 0),
+    },
+  ];
 });
 
 export const notableRuns: Record<NotableRunCategory, NotableRun[]> = {

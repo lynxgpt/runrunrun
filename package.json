@@ -31,7 +31,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "node --test --experimental-strip-types src/lib/pace-distribution.test.mts",
+    "test": "node --test --experimental-strip-types src/lib/pace-distribution.test.mts scripts/pb-window.test.mjs",
     "typecheck": "tsc --noEmit",
     "check": "npm run lint && npm run typecheck && npm run build"
   },

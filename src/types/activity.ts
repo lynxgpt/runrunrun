@@ -9,6 +9,7 @@ export interface ActivityLocation {
   countryCode: string;
   region?: string;
   city?: string;
+  county?: string;
   lat?: number;
   lon?: number;
 }
@@ -41,6 +42,7 @@ export interface Activity {
 
 export interface NotableRun {
   rank: number;
+  displayRank?: string;
   date: string;
   distanceKm: number;
   movingSec: number;
@@ -50,6 +52,8 @@ export interface NotableRun {
   weather: WeatherCondition;
   title?: string;
   location: ActivityLocation;
+  displayLocationPrimary?: string;
+  displayLocationSecondary?: string;
   gpxPath?: string;
   /** Key into `gpxTracks` when this run has a real GPS trace. */
   gpxId?: string;

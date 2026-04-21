@@ -98,6 +98,7 @@ export function NotableRuns() {
           const active = category === t.id;
           return (
             <button
+              type="button"
               key={t.id}
               ref={(el) => {
                 tabRefs.current[i] = el;
@@ -122,8 +123,11 @@ export function NotableRuns() {
           );
         })}
       </div>
-      <p className="text-center text-xs italic text-neutral-500 font-mono-tamzen mb-2">
-        {tab.caption}
+      <p
+        className="pointer-events-none text-center text-xs italic text-neutral-500 font-mono-tamzen mb-2 invisible"
+        aria-hidden="true"
+      >
+        {tab.caption ?? "\u00A0"}
       </p>
       {filter.kind !== "none" ? (
         <p className="text-center text-xs font-mono-tamzen text-neutral-400 mb-4">
@@ -212,7 +216,12 @@ function Panel({ rows, category }: PanelProps) {
           highlightedIndex={selectedIdx}
           onRowClick={(_, i) => setSelectedIdx(i)}
           columns={[
-            { key: "rank", header: "RANK", cell: (r: NotableRun) => `#${r.rank}` },
+            {
+              key: "rank",
+              header: category === "personal-bests" ? "PB" : "RANK",
+              cell: (r: NotableRun) =>
+                category === "personal-bests" ? (r.displayRank ?? "") : `#${r.rank}`,
+            },
             { key: "date", header: "DATE", cell: (r: NotableRun) => r.date },
             {
               key: "distance",
@@ -338,11 +347,10 @@ function DetailsPanel({ run }: { run: NotableRun }) {
       <div>
         <div className="font-sans text-lg font-bold text-neutral-100 flex items-center gap-2">
           <CountryFlag code={run.location.countryCode} className="text-base leading-none shrink-0" />
-          <span>{run.location.city ?? run.location.country}</span>
+          <span>{run.displayLocationPrimary ?? run.location.city ?? run.location.county ?? run.location.country}</span>
         </div>
         <div className="text-xs uppercase text-neutral-500">
-          {run.location.region ? `${run.location.region} · ` : ""}
-          {run.location.country.toUpperCase()}
+          {run.displayLocationSecondary ?? `${run.location.region ? `${run.location.region} · ` : ""}${run.location.country.toUpperCase()}`}
         </div>
       </div>
       {run.photoPath ? (

@@ -31,6 +31,7 @@ export interface GpxStats {
   bbox: { minLat: number; maxLat: number; minLon: number; maxLon: number };
   activityType?: string;
   paceSamples?: number[];
+  pbElapsedPaceSecPerKm?: Record<string, number>;
   hrZoneSec?: number[];
   pbQuality?: {
     repeatedShare: number;
@@ -95,6 +96,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 325.05109890997886,
+        "1K": 333.78840818571825
+      },
       "pbQuality": {
         "repeatedShare": 0.068,
         "movingShare": 0.7077338129496403,
@@ -151,6 +156,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         134,
         10
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 331.8132155713779,
+        "1K": 367.90894848159996
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 1,
@@ -224,6 +233,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         533,
         434
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 385.6606292824996,
+        "1K": 399.8224156175078
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9706457925636007,
@@ -306,6 +319,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 308.69337762173416,
+        "1K": 346.0079547006799,
+        "5K": 410.3210051247079
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.6786867599569429,
@@ -374,6 +392,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         443,
         38
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 309.04119710906065,
+        "1K": 341.92975253420707
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 1,
@@ -446,6 +468,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         398,
         3
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 331.655895904687,
+        "1K": 360.73352610511006
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9753272910372608,
@@ -523,6 +549,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         1170,
         108
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 321.6150149818945,
+        "1K": 338.01579663679877,
+        "5K": 387.1765398868124
+      },
       "pbQuality": {
         "repeatedShare": 0.004,
         "movingShare": 0.9648370497427101,
@@ -661,6 +692,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         361,
         74
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 324.9269747023618,
+        "1K": 357.5035858123347,
+        "5K": 375.2417208799093,
+        "10K": 393.645678115328
+      },
       "pbQuality": {
         "repeatedShare": 0.008,
         "movingShare": 0.9570452326716563,
@@ -706,6 +743,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         82,
         68
       ],
+      "pbElapsedPaceSecPerKm": {},
       "pbQuality": {
         "repeatedShare": 0.122,
         "movingShare": 0.34964322120285424,
@@ -756,6 +794,9 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         227,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 349.5106101643938
+      },
       "pbQuality": {
         "repeatedShare": 0.416,
         "movingShare": 0.32166412988330795,
@@ -825,6 +866,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         991,
         205
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 336.86665237305306,
+        "1K": 348.16935407077574
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 1,
@@ -902,6 +947,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 282.635366076164,
+        "1K": 338.4849578823969,
+        "5K": 361.95814924975537
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9902352418996893,
@@ -1076,6 +1126,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         2830,
         3647
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 298.83790429092414,
+        "1K": 318.82352728188994,
+        "5K": 347.4940143367188,
+        "10K": 380.6621692530354
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.948757215219696,
@@ -1142,6 +1198,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         157,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 319.40101175323946,
+        "1K": 334.13836136769714
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9800871188550093,
@@ -1207,6 +1267,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         34,
         440
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 294.8000783085746,
+        "1K": 299.88551073862027
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 1,
@@ -1277,6 +1341,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         677,
         242
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 294.8714778095666,
+        "1K": 323.4969655650989
+      },
       "pbQuality": {
         "repeatedShare": 0.006,
         "movingShare": 0.974635725849973,
@@ -1497,6 +1565,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         1302,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 281.4645065921286,
+        "1K": 321.2759600102826,
+        "5K": 347.93044242477583,
+        "10K": 397.9822537418201
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.861703821656051,
@@ -1565,6 +1639,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         154,
         289
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 286.84418773441666,
+        "1K": 305.6385367912948,
+        "5K": 335.32015339239376
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9958555358200119,
@@ -1628,6 +1707,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         599,
         692
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 267.74510750795116,
+        "1K": 277.0573878181958
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 1,
@@ -1696,6 +1779,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         179,
         1
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 314.4821886928843,
+        "1K": 332.98230420613174
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 1,
@@ -1773,6 +1860,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         348,
         217
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 309.8188902657834,
+        "1K": 325.90390869091254,
+        "5K": 550.4130496964082
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.658465991316932,
@@ -1880,6 +1972,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         333,
         86
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 290.61798491389936,
+        "1K": 330.74454791827156,
+        "5K": 440.2839440860045,
+        "10K": 479.40967148176685
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.6769102990033222,
@@ -1970,6 +2068,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         1184,
         308
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 249.66092377466907,
+        "1K": 289.63610226428546,
+        "5K": 326.3206449392774
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8718097447795824,
@@ -2034,6 +2137,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         485,
         816
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 266.3805256008675,
+        "1K": 273.5612074690355,
+        "5K": 288.68280187106484
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 1,
@@ -2146,6 +2254,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         890,
         1024
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 268.11094324565147,
+        "1K": 292.7504228736525,
+        "5K": 381.92586222450774
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8676293622141997,
@@ -2208,6 +2321,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         864,
         316
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 252.23831703631907,
+        "1K": 266.7321037649093
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 1,
@@ -2283,6 +2400,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 277.9911795426142,
+        "1K": 309.48879373672116,
+        "5K": 361.7746277387515
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9300699300699301,
@@ -2403,6 +2525,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         84,
         314
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 267.1214621288277,
+        "1K": 284.7361276691654,
+        "5K": 345.2955226588847,
+        "10K": 378.6355958076895
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8224811514736121,
@@ -2478,6 +2606,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         232,
         1496
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 243.51355984104998,
+        "1K": 265.86985966540806,
+        "5K": 319.5971954429506
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.7699819168173598,
@@ -2543,6 +2676,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         58,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 281.1865163003086,
+        "1K": 295.01223162439567
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9782330345710627,
@@ -2675,6 +2812,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         143,
         62
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 271.77898438202647,
+        "1K": 355.8113777289409
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.6850209411185021,
@@ -2748,6 +2889,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         352,
         6
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 233.8880871007268,
+        "1K": 441.17542877336746,
+        "5K": 521.9975196383008
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.5080091533180778,
@@ -2835,6 +2981,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         448,
         2069
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 334.2773415674162,
+        "1K": 346.81648496371963,
+        "5K": 365.0442565472201
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9429795649307845,
@@ -2976,6 +3127,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         303,
         238
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 307.72258697911184,
+        "1K": 340.930224608318,
+        "5K": 443.01852044777706,
+        "10K": 569.2626167957158
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.6878318834030053,
@@ -3040,6 +3197,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         5,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 323.3397272881544,
+        "1K": 363.2077475163064
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8768115942028986,
@@ -3102,6 +3263,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         276,
         8
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 272.30709490371197,
+        "1K": 291.52936648560785
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9404517453798767,
@@ -3165,6 +3330,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         513,
         112
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 250.28099834877708,
+        "1K": 269.46102496395804
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.924851680949242,
@@ -3233,6 +3402,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         79,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 267.9191905319175,
+        "1K": 291.0492646837174
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9147368421052632,
@@ -3303,6 +3476,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         468,
         70
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 262.07230000166874,
+        "1K": 290.79115526222256,
+        "5K": 407.2363537033715
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8637424171721885,
@@ -3364,6 +3542,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         70,
         10
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 221.86116637611377,
+        "1K": 410.3883161886131
+      },
       "pbQuality": {
         "repeatedShare": 0.05,
         "movingShare": 0.5270157938487116,
@@ -3443,6 +3625,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         493,
         307
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 257.99393478466527,
+        "1K": 266.96572686781576,
+        "5K": 276.0976687748769
+      },
       "pbQuality": {
         "repeatedShare": 0.002,
         "movingShare": 0.8307584269662921,
@@ -3534,6 +3721,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         3,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 345.72343175641834,
+        "1K": 366.76675818657895,
+        "5K": 391.3415325548958
+      },
       "pbQuality": {
         "repeatedShare": 0.004,
         "movingShare": 0.9501084598698482,
@@ -3673,6 +3865,13 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         511,
         5384
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 219.06645902061172,
+        "1K": 250.31686296210802,
+        "5K": 269.95370078775284,
+        "10K": 278.95022976895876,
+        "Half Marathon": 280.2583269309128
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.99983308295777,
@@ -3775,6 +3974,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         29,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 376.01324121937637,
+        "1K": 401.71210195091965,
+        "5K": 508.22512102101643
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8177083333333334,
@@ -3846,6 +4050,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         244,
         11
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 350.56956946392233,
+        "1K": 373.51940168129204,
+        "5K": 453.75775088317744
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8238341968911918,
@@ -3918,6 +4127,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 290.1911305868754,
+        "1K": 314.1654518734099,
+        "5K": 436.2435185963783
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8320545609548167,
@@ -4045,6 +4259,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         1049,
         632
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 226.8587232693551,
+        "1K": 276.28871963006895,
+        "5K": 333.66965600285965
+      },
       "pbQuality": {
         "repeatedShare": 0.008,
         "movingShare": 0.79816653934301,
@@ -4105,6 +4324,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         82,
         69
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 226.78064737518156,
+        "1K": 380.97134341647745
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.48768864177918986,
@@ -4247,6 +4470,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         303,
         205
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 345.4285267012074,
+        "1K": 352.13511488254517,
+        "5K": 400.7388345630164,
+        "10K": 429.2012945569245
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.7770756982181221,
@@ -4328,6 +4557,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         212,
         11
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 332.4453739453274,
+        "1K": 371.9705465313678,
+        "5K": 386.9222587582628
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9446119065561417,
@@ -4401,6 +4635,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         614,
         342
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 261.6131216401425,
+        "1K": 274.69317214979077,
+        "5K": 330.4479975597662
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9670801526717557,
@@ -4466,6 +4705,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         147,
         165
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 256.3733982486542,
+        "1K": 263.688730196757,
+        "5K": 299.0015031750299
+      },
       "pbQuality": {
         "repeatedShare": 0.0028653295128939827,
         "movingShare": 0.9537389100126743,
@@ -4635,6 +4879,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         520,
         409
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 275.51425634399493,
+        "1K": 305.08884211620716,
+        "5K": 401.9620863287741,
+        "10K": 441.80929749544487
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.6256857050661504,
@@ -4696,6 +4946,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         422,
         746
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 231.48665181069532,
+        "1K": 249.36492208622076,
+        "5K": 268.4502593710767
+      },
       "pbQuality": {
         "repeatedShare": 0.003205128205128205,
         "movingShare": 0.9806691449814127,
@@ -4769,6 +5024,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 233.63897599395386,
+        "1K": 399.6477939185122,
+        "5K": 455.59423811758126
+      },
       "pbQuality": {
         "repeatedShare": 0.046,
         "movingShare": 0.7380434782608696,
@@ -4838,6 +5098,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         152,
         50
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 232.45179529878442,
+        "1K": 275.84713776984654,
+        "5K": 402.9810295531981
+      },
       "pbQuality": {
         "repeatedShare": 0.029106029106029108,
         "movingShare": 0.6638059701492537,
@@ -4919,6 +5184,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 352.85282631150267,
+        "1K": 420.66522221403284,
+        "5K": 581.6812484526396
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.7241079199303743,
@@ -5007,6 +5277,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 326.63635759489466,
+        "1K": 368.2025960153146,
+        "5K": 440.37150497220154
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8500590318772137,
@@ -5110,6 +5385,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 267.4063801656871,
+        "1K": 292.49511472928134,
+        "5K": 509.3553868082916
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.6441645675902603,
@@ -5203,6 +5483,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 395.8795551059029,
+        "1K": 512.1466732745739,
+        "5K": 1074.5417960662483
+      },
       "pbQuality": {
         "repeatedShare": 0.01,
         "movingShare": 0.5545813993467423,
@@ -5340,6 +5625,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 377.1947113205181,
+        "1K": 435.63906919187707,
+        "5K": 546.7729090021519,
+        "10K": 590.7129595849029
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8195087719298245,
@@ -5413,6 +5704,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         196,
         577
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 236.0626176051008,
+        "1K": 272.8312740854679,
+        "5K": 309.6398161903432
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 1,
@@ -5491,6 +5787,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         537,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 279.61623941358295,
+        "1K": 286.33472527518154,
+        "5K": 317.98043356447084
+      },
       "pbQuality": {
         "repeatedShare": 0.008,
         "movingShare": 0.9578214578214578,
@@ -5586,6 +5887,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 290.9253188534899,
+        "1K": 343.99327112494166,
+        "5K": 477.17535825179203
+      },
       "pbQuality": {
         "repeatedShare": 0.012,
         "movingShare": 0.7913105413105413,
@@ -5656,6 +5962,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 203.29238985502315,
+        "1K": 326.95606654929634,
+        "5K": 409.9916509292451
+      },
       "pbQuality": {
         "repeatedShare": 0.006,
         "movingShare": 0.6419275413295814,
@@ -5724,6 +6035,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         287,
         10
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 232.5387445000831,
+        "1K": 262.22339285009673,
+        "5K": 295.7809616599325
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9946871310507674,
@@ -5847,6 +6163,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 274.9356504113621,
+        "1K": 308.6802340093718,
+        "5K": 405.9775778842331,
+        "10K": 417.10825007852634
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8625993778085033,
@@ -5921,6 +6243,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 254.3120551024407,
+        "1K": 257.5361224331066,
+        "5K": 285.4404505978884
+      },
       "pbQuality": {
         "repeatedShare": 0.008,
         "movingShare": 0.841996699669967,
@@ -5987,6 +6314,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         2,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 223.04573514877546,
+        "1K": 313.72869472219384
+      },
       "pbQuality": {
         "repeatedShare": 0.056,
         "movingShare": 0.8103448275862069,
@@ -6049,6 +6380,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 294.062433049325,
+        "1K": 410.4018361395258
+      },
       "pbQuality": {
         "repeatedShare": 0.004,
         "movingShare": 0.7632794457274826,
@@ -6203,6 +6538,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 280.9943279981519,
+        "1K": 293.02954671949055,
+        "5K": 384.947651775214,
+        "10K": 414.25017869569575
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.7981406159209762,
@@ -6289,6 +6630,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         38,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 241.40080212352927,
+        "1K": 360.38999068793555
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.740780331373597,
@@ -6354,6 +6699,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 258.01585993133995,
+        "1K": 277.3974162413043,
+        "5K": 309.0316646192714
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9616573902288188,
@@ -6420,6 +6770,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         3,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 243.26767396093032,
+        "1K": 410.2891080142899
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.6451481932602517,
@@ -6484,6 +6838,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         26,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 243.550900720943,
+        "1K": 393.1486335181389
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.6602506714413607,
@@ -6550,6 +6908,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         350,
         377
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 264.6449500427855,
+        "1K": 277.35212594106866,
+        "5K": 300.0951286501934
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9855436832181018,
@@ -6722,6 +7085,13 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 255.48684339568354,
+        "1K": 303.3946108122582,
+        "5K": 330.9772110540336,
+        "10K": 363.8352442721553,
+        "Half Marathon": 490.5773578739502
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.6908077994428969,
@@ -6818,6 +7188,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 323.60640633394326,
+        "1K": 366.0739644807629,
+        "5K": 424.30898776939966
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8754863813229572,
@@ -6919,6 +7294,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 285.40497457914654,
+        "1K": 311.48996116539865,
+        "5K": 375.7379015558639,
+        "10K": 397.99870574953746
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9064039408866995,
@@ -7010,6 +7391,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 369.9270982875356,
+        "1K": 387.44099311354285,
+        "5K": 629.0137387210101
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.6304391823517507,
@@ -7171,6 +7557,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         38,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 256.27757257594453,
+        "1K": 277.81975077996685,
+        "5K": 315.51795971953527,
+        "10K": 363.0406198203838
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.520848259062903,
@@ -7239,6 +7631,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         105,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 215.2784667159044,
+        "1K": 292.9842394793724,
+        "5K": 363.5949047894206
+      },
       "pbQuality": {
         "repeatedShare": 0.006,
         "movingShare": 0.8883720930232558,
@@ -7305,6 +7702,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 218.3666764562676,
+        "1K": 337.1647302893457,
+        "5K": 461.9661974308859
+      },
       "pbQuality": {
         "repeatedShare": 0.014,
         "movingShare": 0.625440313111546,
@@ -7389,6 +7791,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         55,
         10
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 276.63912461168195,
+        "1K": 323.5583702823874,
+        "5K": 347.3138923642065
+      },
       "pbQuality": {
         "repeatedShare": 0.002,
         "movingShare": 0.9747160131916452,
@@ -7453,6 +7860,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         70,
         5
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 240.89511700516198,
+        "1K": 259.069514439728
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8857493857493858,
@@ -7518,6 +7929,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         271,
         574
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 259.2809600587439,
+        "1K": 264.15846894215224,
+        "5K": 320.7888637292727
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.879815986198965,
@@ -7589,6 +8005,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         392,
         35
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 232.557958494001,
+        "1K": 324.0438414906098,
+        "5K": 346.92396646540885
+      },
       "pbQuality": {
         "repeatedShare": 0.002,
         "movingShare": 0.8737997256515775,
@@ -7672,6 +8093,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 265.70565952601385,
+        "1K": 314.3723174879076,
+        "5K": 342.76030152512965
+      },
       "pbQuality": {
         "repeatedShare": 0.008,
         "movingShare": 0.9808702175543886,
@@ -7863,6 +8289,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         1531,
         2086
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 272.7775369722258,
+        "1K": 287.6502563830627,
+        "5K": 299.47857587793277,
+        "10K": 321.0493585318276
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8992990423536381,
@@ -7934,6 +8366,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         230,
         33
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 184.1986870139405,
+        "1K": 334.6878494252587,
+        "5K": 491.94442591609203
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.6586206896551724,
@@ -7988,6 +8425,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 338.20531949796646,
+        "1K": 358.5247997824051
+      },
       "pbQuality": {
         "repeatedShare": 0.014,
         "movingShare": 0.9868131868131869,
@@ -8080,6 +8521,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 368.1292540678112,
+        "1K": 400.92805986711755,
+        "5K": 461.1740496168477
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9551339957844023,
@@ -8144,6 +8590,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 234.0239924816663,
+        "1K": 253.91461732665402
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.942711648631445,
@@ -8286,6 +8736,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 263.722023125365,
+        "1K": 288.667632930393,
+        "5K": 335.0535840296279,
+        "10K": 421.4021339262762
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.6890860094318437,
@@ -8389,6 +8845,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         230,
         29
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 266.3707972610905,
+        "1K": 272.06443449712333,
+        "5K": 341.7222896798515,
+        "10K": 354.1859552407048
+      },
       "pbQuality": {
         "repeatedShare": 0.004,
         "movingShare": 0.7317214700193424,
@@ -8515,6 +8977,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 275.8922517456722,
+        "1K": 297.93857969892724,
+        "5K": 359.4490814509807,
+        "10K": 394.9099037092775
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.791033434650456,
@@ -8592,6 +9060,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         76,
         27
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 259.0918632030514,
+        "1K": 262.5945756300655,
+        "5K": 327.9710194365398
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.6524232864926871,
@@ -8674,6 +9147,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         118,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 245.81131871819906,
+        "1K": 270.80109312216246,
+        "5K": 379.2847483192951
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.754339511621065,
@@ -8806,6 +9284,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         37,
         543
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 359.8793170706699,
+        "1K": 393.0483840874358,
+        "5K": 429.1956378355186,
+        "10K": 582.8733448978318
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.7869713312517741,
@@ -8872,6 +9356,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 232.13603211456189,
+        "1K": 241.20370365479016,
+        "5K": 330.1202569603685
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.7514204545454546,
@@ -8965,6 +9454,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 312.241961795408,
+        "1K": 349.96295724572246,
+        "5K": 398.18847103460075
+      },
       "pbQuality": {
         "repeatedShare": 0.002,
         "movingShare": 0.9100454029511919,
@@ -9094,6 +9588,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 261.91894156105263,
+        "1K": 309.4862456060937,
+        "5K": 406.9541595830623,
+        "10K": 418.4304408331759
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8515352959797404,
@@ -9193,6 +9693,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 218.2829167176817,
+        "1K": 395.52792877445427,
+        "5K": 497.7327457564987
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.6587037037037037,
@@ -9348,6 +9853,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         157,
         27
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 369.8248183134092,
+        "1K": 594.3318449660619,
+        "5K": 792.0508656318158,
+        "10K": 884.0841874077726
+      },
       "pbQuality": {
         "repeatedShare": 0.004,
         "movingShare": 0.7383386581469649,
@@ -9411,6 +9922,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         94,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 210.83983346281173,
+        "1K": 324.0299247618095,
+        "5K": 390.30040834590284
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.6464269033162073,
@@ -9505,6 +10021,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         22,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 259.4815693645853,
+        "1K": 279.9549744132073,
+        "5K": 323.35662081160956
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9716563330380869,
@@ -9574,6 +10095,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         268,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 247.91302538468642,
+        "1K": 262.0838646846182,
+        "5K": 277.8833761662213
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9359041167274622,
@@ -9644,6 +10170,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 288.63697781764927,
+        "1K": 322.2627779609461,
+        "5K": 362.2175781380838
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.97467018469657,
@@ -9714,6 +10245,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 325.37723077019507,
+        "1K": 332.95956092977974,
+        "5K": 354.2658899862978
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9733048585157501,
@@ -9790,6 +10326,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         62,
         10
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 223.53286491722656,
+        "1K": 315.15014727307755,
+        "5K": 409.1853243853064
+      },
       "pbQuality": {
         "repeatedShare": 0.004,
         "movingShare": 0.750775594622544,
@@ -9934,6 +10475,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 301.8283886256063,
+        "1K": 327.4010031670382,
+        "5K": 345.2547659829009,
+        "10K": 371.52005332898045
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9910037878787878,
@@ -10010,6 +10557,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         98,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 230.86528569328834,
+        "1K": 272.35294304933313,
+        "5K": 386.4097795214769
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.608293639674979,
@@ -10082,6 +10634,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 352.7380371771193,
+        "1K": 365.45536963420045,
+        "5K": 416.28971222343836
+      },
       "pbQuality": {
         "repeatedShare": 0.004,
         "movingShare": 0.9152863227638429,
@@ -10139,6 +10696,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 289.7074315470971,
+        "1K": 310.5464384135579
+      },
       "pbQuality": {
         "repeatedShare": 0.002,
         "movingShare": 0.7034120734908137,
@@ -10200,6 +10761,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         439,
         214
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 218.36015218966827,
+        "1K": 227.5056547834152,
+        "5K": 248.1752044795547
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 1,
@@ -10251,6 +10817,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         11,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 246.42218553636894,
+        "1K": 355.1948385015662
+      },
       "pbQuality": {
         "repeatedShare": 0.046,
         "movingShare": 0.24220183486238533,
@@ -10343,6 +10913,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         308,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 259.95344186372677,
+        "1K": 270.05649472751065,
+        "5K": 283.7361148607336,
+        "10K": 303.4521734220385
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9576816927322908,
@@ -10427,6 +11003,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         334,
         319
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 225.43877928960228,
+        "1K": 257.90244124029095,
+        "5K": 310.5218522690819
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8415716096324461,
@@ -10497,6 +11078,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 308.3513849581101,
+        "1K": 322.15102308119344,
+        "5K": 365.1280263650573
+      },
       "pbQuality": {
         "repeatedShare": 0.002,
         "movingShare": 0.928928928928929,
@@ -10675,6 +11261,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         107,
         29
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 156.5182473190589,
+        "1K": 171.31540982745082
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.5381583198707592,
@@ -10784,6 +11374,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         788,
         914
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 244.1030071277669,
+        "1K": 254.37845683249816,
+        "5K": 315.2602725514039,
+        "10K": 332.4468568080225
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.788195103435187,
@@ -10849,6 +11445,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 319.0890178856347,
+        "1K": 345.909550633706
+      },
       "pbQuality": {
         "repeatedShare": 0.012,
         "movingShare": 0.9647661755285074,
@@ -10993,6 +11593,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         372,
         147
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 256.18637409052326,
+        "1K": 279.89435085647165,
+        "5K": 300.5660863177189,
+        "10K": 309.6076902387892
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8979856115107914,
@@ -11062,6 +11668,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         43,
         4
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 278.1597680240131,
+        "1K": 299.3149443651122
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9881889763779528,
@@ -11136,6 +11746,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 305.4566850221818,
+        "1K": 316.0572362978678,
+        "5K": 346.49892678868844
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9610930986567855,
@@ -11208,6 +11823,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         91,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 173.30539955501226,
+        "1K": 193.19528369621793,
+        "5K": 341.11336500555325
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8889895786135025,
@@ -11275,6 +11895,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         21,
         30
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 229.31817685975716,
+        "1K": 286.82190222151587,
+        "5K": 332.8563814143929
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9355381165919282,
@@ -11387,6 +12012,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         113,
         64
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 209.6624339146956,
+        "1K": 303.7744341830239,
+        "5K": 349.2838524900877,
+        "10K": 361.5474701002229
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8123599701269604,
@@ -11468,6 +12099,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         35,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 269.25030284889715,
+        "1K": 279.7837685105751,
+        "5K": 340.8791088565347
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9279645363871445,
@@ -11589,6 +12225,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 252.43913336723836,
+        "1K": 271.6654937255662,
+        "5K": 341.7078508531123,
+        "10K": 387.83403184594863
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.786243556701031,
@@ -11680,6 +12322,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 296.248468698426,
+        "1K": 319.7329972826137,
+        "5K": 679.9912895016423
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.6192943990432529,
@@ -11775,6 +12422,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         129,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 266.91785861498033,
+        "1K": 276.0507391284682,
+        "5K": 339.9770921328685,
+        "10K": 354.1188626922091
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9223516361619523,
@@ -11901,6 +12554,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 316.66348042386517,
+        "1K": 324.015244026132,
+        "5K": 338.5231678711101,
+        "10K": 416.3925877280065
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8673554407598734,
@@ -11971,6 +12630,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         419,
         20
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 270.0865437754024,
+        "1K": 290.59204566442577,
+        "5K": 318.9106143118938
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9162537165510406,
@@ -12052,6 +12716,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         73,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 209.95137180208076,
+        "1K": 272.4168434483299,
+        "5K": 349.4792042333932
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9131386861313868,
@@ -12113,6 +12782,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         346,
         31
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 250.7916672984388,
+        "1K": 270.36048885851585
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.98145285935085,
@@ -12180,6 +12853,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         153,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 273.5020920918083,
+        "1K": 286.4820560928688,
+        "5K": 359.66837966004925
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8890666666666667,
@@ -12252,6 +12930,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         229,
         67
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 225.82433965788482,
+        "1K": 280.4933983913261
+      },
       "pbQuality": {
         "repeatedShare": 0.002,
         "movingShare": 0.624275595621378,
@@ -12354,6 +13036,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         328,
         31
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 260.82216635851637,
+        "1K": 266.5556658132077,
+        "5K": 344.7642067238735,
+        "10K": 374.26321805793975
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.777915889786617,
@@ -12430,6 +13118,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         182,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 256.5410474854991,
+        "1K": 275.4753861500851,
+        "5K": 329.15026999717827
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9604347826086956,
@@ -12493,6 +13186,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         218,
         159
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 248.9171138473489,
+        "1K": 257.9023419447881,
+        "5K": 301.41517853298444
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9216944801026957,
@@ -12561,6 +13259,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 270.38631604144086,
+        "1K": 277.7261061813781,
+        "5K": 353.2747124785651
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9221132897603486,
@@ -12630,6 +13333,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 305.65071292800667,
+        "1K": 320.4097144934301,
+        "5K": 372.8558790495099
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9014155712841254,
@@ -12728,6 +13436,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         301,
         308
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 199.99701327555613,
+        "1K": 262.14437895313176,
+        "5K": 370.50206068766266,
+        "10K": 409.09399012310325
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.6892344026766385,
@@ -12812,6 +13526,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 296.2074921894248,
+        "1K": 328.95913940104765,
+        "5K": 387.99695538923277
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9126682775284778,
@@ -12959,6 +13678,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 274.16003278777566,
+        "1K": 289.53343186427264,
+        "5K": 343.6592117781629,
+        "10K": 371.67446981742177
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9024356103023516,
@@ -13009,6 +13734,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 287.8717542218686,
+        "1K": 413.94976955309096
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.6929133858267716,
@@ -13106,6 +13835,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         56,
         138
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 269.19658715645255,
+        "1K": 295.79755953087624,
+        "5K": 322.81302460503247,
+        "10K": 352.6285960536954
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8282561765411369,
@@ -13177,6 +13912,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 291.97648164843656,
+        "1K": 323.08785663387994,
+        "5K": 387.1021097555331
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9068532818532818,
@@ -13241,6 +13981,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 378.67570637589864,
+        "1K": 433.722641855007
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9167180752621839,
@@ -13315,6 +14059,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         24,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 260.5471050716318,
+        "1K": 267.0095934435669,
+        "5K": 369.0099569158011
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.879708904109589,
@@ -13378,6 +14127,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         383,
         208
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 247.89064820697433,
+        "1K": 257.242940569865,
+        "5K": 342.7401168420016
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.7959299039005088,
@@ -13480,6 +14234,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         103,
         129
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 269.14986790487205,
+        "1K": 266.5749246247756,
+        "5K": 354.5330965127788,
+        "10K": 382.4151618488915
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8772384542884072,
@@ -13552,6 +14312,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         139,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 269.56690831349107,
+        "1K": 286.95463903764994,
+        "5K": 326.4476055600471
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9486931268151017,
@@ -13669,6 +14434,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         21,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 291.3383518453233,
+        "1K": 313.9322599186394,
+        "5K": 385.21985854838823,
+        "10K": 404.6766643737402
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8877434135166093,
@@ -13737,6 +14508,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 324.99387396865103,
+        "1K": 377.44911901663534,
+        "5K": 437.5824759495907
+      },
       "pbQuality": {
         "repeatedShare": 0.004,
         "movingShare": 0.738562091503268,
@@ -13834,6 +14610,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         400,
         319
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 211.3567292892469,
+        "1K": 299.0933011273198,
+        "5K": 406.43467530311216,
+        "10K": 448.43342580816477
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.6538099717779868,
@@ -13904,6 +14686,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 288.4181626352864,
+        "1K": 303.76312223221794,
+        "5K": 428.42130106828415
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.7534524776604387,
@@ -13968,6 +14755,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         328,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 261.3289655426496,
+        "1K": 308.12579557332356,
+        "5K": 354.68199588745125
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8110928061504667,
@@ -14098,6 +14890,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         592,
         49
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 255.01676386813756,
+        "1K": 265.24443255206734,
+        "5K": 345.3532429763586,
+        "10K": 384.31493180064837
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.7993845252051582,
@@ -14164,6 +14962,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 295.9870284411812,
+        "1K": 303.24365840409905,
+        "5K": 323.24944679001436
+      },
       "pbQuality": {
         "repeatedShare": 0.004,
         "movingShare": 0.9859841560024375,
@@ -14239,6 +15042,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 283.53223675999516,
+        "1K": 314.18636527492527,
+        "5K": 373.98544761412484
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8739770867430442,
@@ -14304,6 +15112,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         524,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 256.43254578273184,
+        "1K": 272.6652772146185,
+        "5K": 397.5691830952395
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.7253960633701392,
@@ -14381,6 +15194,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 342.49850148932563,
+        "1K": 349.8688241853286,
+        "5K": 367.4642449602126
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9689229459344402,
@@ -14448,6 +15266,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         16,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 291.32494722634243,
+        "1K": 314.62443323309844,
+        "5K": 351.5631009964618
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9126807563959956,
@@ -14509,6 +15332,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 304.84746024662576,
+        "1K": 343.0338649250216
+      },
       "pbQuality": {
         "repeatedShare": 0.016,
         "movingShare": 0.9835452505609573,
@@ -14641,6 +15468,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         6,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 297.34006702205875,
+        "1K": 305.7106238676033,
+        "5K": 365.97563280117885,
+        "10K": 393.3863416174884
+      },
       "pbQuality": {
         "repeatedShare": 0.016,
         "movingShare": 0.8262869010532562,
@@ -14713,6 +15546,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 310.2517958757102,
+        "1K": 333.4703739538659,
+        "5K": 385.31124396562143
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8527336860670194,
@@ -14792,6 +15630,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         425,
         8
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 272.37322954195406,
+        "1K": 280.6374732701777,
+        "5K": 294.31432296766116
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 1,
@@ -14962,6 +15805,13 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         1352,
         565
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 244.60294936298055,
+        "1K": 263.006747402595,
+        "5K": 300.26577562430765,
+        "10K": 316.2017505524971,
+        "Half Marathon": 345.8934816268011
+      },
       "pbQuality": {
         "repeatedShare": 0.002,
         "movingShare": 0.8907706296885656,
@@ -15022,6 +15872,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         12,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 286.19100191873724,
+        "1K": 349.3938116810351
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8719384184744576,
@@ -15090,6 +15944,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         570,
         494
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 248.56170961780663,
+        "1K": 263.7772852352946,
+        "5K": 276.20002577232356
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 1,
@@ -15251,6 +16110,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         421,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 310.4280888742983,
+        "1K": 323.2211755003582,
+        "5K": 377.7453367920417,
+        "10K": 406.94820592689973
+      },
       "pbQuality": {
         "repeatedShare": 0.008,
         "movingShare": 0.7805164319248826,
@@ -15352,6 +16217,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         419,
         5
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 285.932138087328,
+        "1K": 339.2655743448199,
+        "5K": 465.3855756080301,
+        "10K": 606.6968788892339
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.5970607235142119,
@@ -15441,6 +16312,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 314.40260176124184,
+        "1K": 331.9621090502719,
+        "5K": 456.76772273335826
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.4821515102568244,
@@ -15538,6 +16414,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         67,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 217.4438059827935,
+        "1K": 324.5334452349498,
+        "5K": 531.2184372706159,
+        "10K": 629.0938168048259
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.44487130234344985,
@@ -15626,6 +16508,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 320.794118959808,
+        "1K": 373.42130857899383,
+        "5K": 480.6555705670072
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.7069258809234508,
@@ -15704,6 +16591,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         371,
         104
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 258.2332074340411,
+        "1K": 262.4381614154604,
+        "5K": 406.2454444145136
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.7143304130162703,
@@ -15786,6 +16678,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         121,
         19
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 260.75539194382685,
+        "1K": 306.2818469333888,
+        "5K": 467.51945509198015
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.7339930151338766,
@@ -15946,6 +16843,13 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         430,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 292.9978222101545,
+        "1K": 307.7539621804299,
+        "5K": 344.555628274789,
+        "10K": 356.3875413207452,
+        "Half Marathon": 373.575691829136
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8812279205749787,
@@ -16028,6 +16932,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         142,
         29
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 218.02413732495495,
+        "1K": 333.54852461264636,
+        "5K": 425.01304456537054
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.626774351443955,
@@ -16219,6 +17128,13 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         387,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 274.3085393709657,
+        "1K": 283.4002262891772,
+        "5K": 314.18198274203644,
+        "10K": 322.30675243878096,
+        "Half Marathon": 347.53129904731276
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8269703872437357,
@@ -16310,6 +17226,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         219,
         807
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 243.29110930127285,
+        "1K": 254.51563930186603,
+        "5K": 341.87960069749886
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.7785659994932861,
@@ -16406,6 +17327,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 307.77721678311366,
+        "1K": 314.2040993700619,
+        "5K": 368.05099237460155
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.7591634809984259,
@@ -16644,6 +17570,13 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         2309,
         77
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 280.21680823832867,
+        "1K": 294.35521812501975,
+        "5K": 321.1205436197706,
+        "10K": 325.9148858003764,
+        "Half Marathon": 370.84108677655416
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9225117933647823,
@@ -16702,6 +17635,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         63,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 255.46124583103818,
+        "1K": 297.694798072956
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9087921117502055,
@@ -16862,6 +17799,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 331.3911449857892,
+        "1K": 335.529740555,
+        "5K": 386.1115622837153,
+        "10K": 391.85252443224607
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8462170087976539,
@@ -16970,6 +17913,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         357,
         394
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 248.99861506181253,
+        "1K": 251.0460687577813,
+        "5K": 372.94046698416224,
+        "10K": 442.97157191909474
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.6352211016291699,
@@ -17042,6 +17991,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 333.74683238249787,
+        "1K": 354.7637989095763,
+        "5K": 390.5192754005694
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.9438202247191011,
@@ -17262,6 +18216,13 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         478,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 265.10427388957396,
+        "1K": 274.07899959536735,
+        "5K": 309.17603044209517,
+        "10K": 340.75212874536265,
+        "Half Marathon": 358.286749579398
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.8945199835187474,
@@ -17409,6 +18370,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         44,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 264.4050904309131,
+        "1K": 289.7990912688365,
+        "5K": 321.32707567318676,
+        "10K": 358.26358163028345
+      },
       "pbQuality": {
         "repeatedShare": 0.052,
         "movingShare": 0.7776032858178304,
@@ -17485,6 +18452,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 331.63085137448775,
+        "1K": 369.6848642928783,
+        "5K": 668.314159434108
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.5400344912540035,
@@ -17622,6 +18594,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         0,
         0
       ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 322.430635605258,
+        "1K": 349.78576608393905,
+        "5K": 388.08624154930385,
+        "10K": 414.88455979311345
+      },
       "pbQuality": {
         "repeatedShare": 0,
         "movingShare": 0.6999164777472855,

@@ -7,8 +7,11 @@ export function DailyLog() {
       <h3 className="text-center font-sans text-lg font-bold uppercase tracking-wide text-neutral-100">
         DAILY LOG
       </h3>
-      <p className="text-center text-xs italic text-neutral-500 font-mono-tamzen mb-8">
-        every. single. day.
+      <p
+        className="text-center text-xs italic text-neutral-500 font-mono-tamzen mb-8 invisible"
+        aria-hidden="true"
+      >
+        {"\u00A0"}
       </p>
       <div className="mx-auto max-w-5xl space-y-8">
         {streakYears.map((y) => (

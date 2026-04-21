@@ -24,6 +24,10 @@ import {
 } from "node:fs";
 import { join, dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import {
+  buildElapsedDistanceTimeline,
+  personalBestElapsedPaces,
+} from "./pb-window.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, "..");
@@ -222,6 +226,8 @@ function processFile(path, id) {
   const all = parseTrkpts(xml);
   if (!all.length) throw new Error(`No trkpt in ${path}`);
   const stats = aggregate(all, name);
+  const pbTimeline = buildElapsedDistanceTimeline(all, haversineKm);
+  stats.pbElapsedPaceSecPerKm = personalBestElapsedPaces(pbTimeline);
   const sampled = downsample(all, TARGET_POINTS);
   const cumKm = [0];
   for (let i = 1; i < sampled.length; i++) {
@@ -388,6 +394,7 @@ export interface GpxStats {
   bbox: { minLat: number; maxLat: number; minLon: number; maxLon: number };
   activityType?: string;
   paceSamples?: number[];
+  pbElapsedPaceSecPerKm?: Record<string, number>;
   hrZoneSec?: number[];
   pbQuality?: {
     repeatedShare: number;
