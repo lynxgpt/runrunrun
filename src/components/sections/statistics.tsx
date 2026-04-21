@@ -30,11 +30,11 @@ export function Statistics() {
           />
         </ChartCard>
 
-        <ChartCard title="WORKOUT ACTIVITY BY TIME">
+        <ChartCard title="WHAT TIME">
           <PolarClock data={workoutByTime} />
         </ChartCard>
 
-        <ChartCard title="AVERAGE DAILY DISTANCE BY DAY">
+        <ChartCard title="DAILY DISTANCE">
           <RadarChart
             data={avgByWeekday}
             labels={["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]}

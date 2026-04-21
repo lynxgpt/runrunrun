@@ -124,9 +124,6 @@ export function PolarClock({ data }: PolarClockProps) {
   const cy = height / 2;
   const gridRadius = 138;
   const field = buildDivergenceField(data);
-  const max = Math.max(...data, 1);
-  const peakHour = data.reduce((best, value, hour) => (value > data[best] ? hour : best), 0);
-  const peakLabel = `${String(peakHour).padStart(2, "0")}:00`;
 
   const ringRadii = [42, 58, 74, 90, 106, 122, 138];
   const labels = [
@@ -163,14 +160,19 @@ export function PolarClock({ data }: PolarClockProps) {
             <stop offset="100%" stopColor="#111" />
           </radialGradient>
           <linearGradient id="polarClockField" x1="20%" y1="15%" x2="85%" y2="88%">
-            <stop offset="0%" stopColor="#72f7ff" stopOpacity="0.78" />
-            <stop offset="48%" stopColor="#f7fbff" stopOpacity="0.98" />
-            <stop offset="100%" stopColor="#ff9f45" stopOpacity="0.86" />
+            <stop offset="0%" stopColor="#101a56" stopOpacity="0.84" />
+            <stop offset="31%" stopColor="#7de9ff" stopOpacity="0.9" />
+            <stop offset="50%" stopColor="#fff1a6" stopOpacity="1" />
+            <stop offset="63%" stopColor="#f6af2f" stopOpacity="0.92" />
+            <stop offset="88%" stopColor="#18215f" stopOpacity="0.9" />
+            <stop offset="100%" stopColor="#080d2e" stopOpacity="0.88" />
           </linearGradient>
           <linearGradient id="polarClockHeat" x1="25%" y1="10%" x2="80%" y2="90%">
-            <stop offset="0%" stopColor="#5ee7ff" stopOpacity="0.34" />
-            <stop offset="52%" stopColor="#ffffff" stopOpacity="0.72" />
-            <stop offset="100%" stopColor="#ff6d2d" stopOpacity="0.5" />
+            <stop offset="0%" stopColor="#10206c" stopOpacity="0.24" />
+            <stop offset="33%" stopColor="#8ff2ff" stopOpacity="0.42" />
+            <stop offset="52%" stopColor="#ffe27a" stopOpacity="0.76" />
+            <stop offset="75%" stopColor="#2444a2" stopOpacity="0.38" />
+            <stop offset="100%" stopColor="#04091f" stopOpacity="0.36" />
           </linearGradient>
         </defs>
 
@@ -261,16 +263,6 @@ export function PolarClock({ data }: PolarClockProps) {
           );
         })}
 
-        <text
-          x={cx}
-          y={height - 18}
-          textAnchor="middle"
-          className="fill-neutral-600 font-mono-tamzen"
-          fontSize={11}
-          letterSpacing={1.4}
-        >
-          peak {peakLabel} / {max.toFixed(1)}%
-        </text>
       </svg>
     </figure>
   );
