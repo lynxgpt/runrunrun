@@ -159,11 +159,10 @@ function renderHtml(rows) {
           <td>${escapeHtml(osLabel(row.user_agent, device))}</td>
           <td>${escapeHtml(device.viewport || "")}</td>
           <td>${escapeHtml(row.paths || "")}</td>
-          <td>${escapeHtml(row.origin || "")}</td>
         </tr>
       `;
     }).join("")
-    : `<tr><td colspan="12">No visits in the last 24 hours.</td></tr>`;
+    : `<tr><td colspan="11">No visits in the last 24 hours.</td></tr>`;
 
   return `
 <!doctype html>
@@ -185,7 +184,6 @@ function renderHtml(rows) {
           <th>OS</th>
           <th>Viewport</th>
           <th>Paths</th>
-          <th>Origin</th>
         </tr>
       </thead>
       <tbody>${bodyRows}</tbody>
@@ -207,7 +205,7 @@ function renderText(rows) {
         `${fmtEasternSecond(row.first_seen)} first seen ET | ${fmtEasternSecond(row.last_seen)} last seen ET`,
         `${row.page_views} page views | ${row.events} events | ${row.max_duration_sec ?? 0} seconds | ${fmtDuration(row.max_duration_sec)}`,
         `${[row.city, row.region, row.country].filter(Boolean).join(", ")} | ${browserLabel(row.user_agent)} | ${osLabel(row.user_agent, device)} | ${device.viewport || ""}`,
-        `${row.paths || ""} | ${row.origin || ""}`,
+        `${row.paths || ""}`,
       ].join("\n");
     }),
   ].join("\n\n");
