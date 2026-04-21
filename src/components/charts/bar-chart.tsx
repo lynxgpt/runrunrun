@@ -1,5 +1,5 @@
 interface BarChartProps {
-  data: { label: string; value: number }[];
+  data: { label: string; value: number; opacity?: number }[];
   width?: number;
   height?: number;
   yTicks?: number[];
@@ -48,7 +48,7 @@ export function BarChart({
         const y = padT + innerH - h;
         return (
           <g key={d.label}>
-            <rect x={x} y={y} width={barW} height={h} fill="#d4d4d4" />
+            <rect x={x} y={y} width={barW} height={h} fill="#d4d4d4" fillOpacity={d.opacity ?? 1} />
             {showValues ? (
               <text
                 x={x + barW / 2}

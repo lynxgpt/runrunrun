@@ -44,7 +44,11 @@ export function Statistics() {
         <ChartCard title="RUN DISTANCES">
           {/* No hardcoded yTicks — auto-normalises to the largest bucket */}
           <BarChart
-            data={runDistances.map((b) => ({ label: b.label, value: b.count }))}
+            data={runDistances.map((b, i) => ({
+              label: b.label,
+              value: b.count,
+              opacity: 0.8 + (i / Math.max(runDistances.length - 1, 1)) * 0.2,
+            }))}
           />
         </ChartCard>
       </div>
