@@ -67,6 +67,9 @@ sessions AS (
 )
 SELECT *
 FROM sessions
+WHERE
+  user_agent NOT LIKE '%PowerShell/%'
+  AND device_json NOT LIKE '%"test"%'
 ORDER BY last_seen DESC
 LIMIT 50;
 `;
