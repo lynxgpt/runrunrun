@@ -9,4 +9,4 @@ database_name = "runrunrun_analytics"
 database_id = "889c6a2a-03bc-4ef1-b34c-b6548bb28148"
 
 [vars]
-ALLOWED_ORIGIN = "https://lynxgpt.github.io"
+ALLOWED_ORIGIN = "*"

@@ -11,6 +11,5 @@ database_name = "runrunrun_analytics"
 database_id = "REPLACE_WITH_D1_DATABASE_ID"
 
 [vars]
-# Set this to your hosted site origin before deploying, for example:
-# ALLOWED_ORIGIN = "https://lynxgpt.github.io"
-ALLOWED_ORIGIN = "http://127.0.0.1:3000"
+# Use "*" when local/staging/prod should exercise the same Worker path.
+ALLOWED_ORIGIN = "*"

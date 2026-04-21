@@ -59,7 +59,12 @@ export default {
       return json({ ok: false, error: "method not allowed" }, 405, origin, env);
     }
 
-    if (env.ALLOWED_ORIGIN && origin && origin !== env.ALLOWED_ORIGIN) {
+    if (
+      env.ALLOWED_ORIGIN &&
+      env.ALLOWED_ORIGIN !== "*" &&
+      origin &&
+      origin !== env.ALLOWED_ORIGIN
+    ) {
       return json({ ok: false, error: "origin not allowed" }, 403, origin, env);
     }
 
