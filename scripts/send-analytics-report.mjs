@@ -46,9 +46,39 @@ WITH recent AS (
   FROM visits
   WHERE created_at >= datetime('now', '-24 hours')
 ),
+ordered AS (
+  SELECT
+    recent.*,
+    LAG(created_at) OVER (
+      PARTITION BY session_id
+      ORDER BY created_at
+    ) AS previous_seen
+  FROM recent
+),
+marked AS (
+  SELECT
+    ordered.*,
+    CASE
+      WHEN previous_seen IS NULL THEN 1
+      WHEN strftime('%s', created_at) - strftime('%s', previous_seen) > 300 THEN 1
+      ELSE 0
+    END AS starts_new_visit
+  FROM ordered
+),
+visitized AS (
+  SELECT
+    marked.*,
+    SUM(starts_new_visit) OVER (
+      PARTITION BY session_id
+      ORDER BY created_at
+      ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+    ) AS visit_number
+  FROM marked
+),
 sessions AS (
   SELECT
     session_id,
+    visit_number,
     MIN(created_at) AS first_seen,
     MAX(created_at) AS last_seen,
     COUNT(*) AS events,
@@ -62,8 +92,8 @@ sessions AS (
     MAX(timezone) AS timezone,
     MAX(user_agent) AS user_agent,
     MAX(device_json) AS device_json
-  FROM recent
-  GROUP BY session_id
+  FROM visitized
+  GROUP BY session_id, visit_number
 )
 SELECT *
 FROM sessions
@@ -176,8 +206,8 @@ function renderHtml(rows) {
     <table cellspacing="0" cellpadding="6" border="1" style="border-collapse: collapse; font-size: 12px;">
       <thead>
         <tr>
-          <th>First seen ET</th>
-          <th>Last seen ET</th>
+          <th>First seen EDT/EST</th>
+          <th>Last seen EDT/EST</th>
           <th>Page views</th>
           <th>Events</th>
           <th>Max stay seconds</th>
@@ -205,7 +235,7 @@ function renderText(rows) {
     ...rows.map((row) => {
       const device = parseDevice(row);
       return [
-        `${fmtEasternSecond(row.first_seen)} first seen ET | ${fmtEasternSecond(row.last_seen)} last seen ET`,
+        `${fmtEasternSecond(row.first_seen)} first seen Eastern | ${fmtEasternSecond(row.last_seen)} last seen Eastern`,
         `${row.page_views} page views | ${row.events} events | ${row.max_duration_sec ?? 0} seconds | ${fmtDuration(row.max_duration_sec)}`,
         `${[row.city, row.region, row.country].filter(Boolean).join(", ")} | ${browserLabel(row.user_agent)} | ${osLabel(row.user_agent, device)} | ${device.viewport || ""}`,
         `${row.paths || ""}`,

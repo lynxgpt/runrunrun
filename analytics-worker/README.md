@@ -80,4 +80,4 @@ Required GitHub Actions secrets:
 - `ANALYTICS_REPORT_TO`
 - `ANALYTICS_REPORT_FROM` optional, defaults to Resend's onboarding sender if omitted
 
-The report queries the last 24 hours and groups rows by session id internally, showing page views, total events, max observed duration, approximate IP location, browser/OS, viewport, and paths. Session ids, origins, raw IPs, full user-agent strings, and smoke-test clients are not shown in the report.
+The report queries the last 24 hours and groups rows into visits internally. A new visit starts when the same browser session has a gap of more than 5 minutes. It shows page views, total events, max observed duration, approximate IP location, browser/OS, viewport, paths, and exact Eastern visit times to the second. Session ids, origins, raw IPs, full user-agent strings, and smoke-test clients are not shown in the report.
