@@ -513,11 +513,19 @@ function hasBadPbTrace(t: GpxSummary): boolean {
   // Impossibly fast pace (< 2 min/km = 120 sec/km) → likely GPS jump
   if (paceSecPerKm != null && paceSecPerKm < 120) return true;
   if (pbQuality) {
-    if (
+    const avgKph = paceSecPerKm ? 3600 / paceSecPerKm : null;
+    const stopHeavyDrift =
       pbQuality.movingShare < 0.55 &&
       pbQuality.repeatedShare > 0.15 &&
-      pbQuality.maxSegmentKph > 25
-    ) {
+      pbQuality.maxSegmentKph > 25;
+    const shortRunCorruption =
+      pbQuality.movingShare < 0.4 &&
+      pbQuality.repeatedShare > 0.1 &&
+      pbQuality.maxSegmentKph > 24;
+    const severeSpeedSpike =
+      avgKph != null &&
+      pbQuality.maxSegmentKph > Math.max(40, avgKph * 4);
+    if (stopHeavyDrift || shortRunCorruption || severeSpeedSpike) {
       return true;
     }
     if (pbQuality.hasTeleportGap) return true;
