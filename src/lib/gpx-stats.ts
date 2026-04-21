@@ -853,8 +853,8 @@ export const avgByWeekday: number[] = weekdaySum.map((s, i) =>
 // Distance histogram, metric buckets
 const DIST_BUCKETS: { label: string; min: number; max: number }[] = [
   { label: "<5",    min: 0,  max: 5 },
-  { label: "5-8",   min: 5,  max: 8 },
-  { label: "8-10",  min: 8,  max: 10 },
+  { label: "5-7",   min: 5,  max: 7 },
+  { label: "7-10",  min: 7,  max: 10 },
   { label: "10-13", min: 10, max: 13 },
   { label: "13-16", min: 13, max: 16 },
   { label: "16-22", min: 16, max: 22 },
