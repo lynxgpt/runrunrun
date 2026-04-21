@@ -38,6 +38,7 @@ const OUT_TS = join(ROOT, "src", "lib", "gpx-processed.ts");
 const TARGET_POINTS = 500;
 const MAX_SAMPLE_GAP_SEC = 15;
 const MIN_MOVING_MPS = 0.4;
+const PACE_FILTER_LOW_MPS = 1.5;
 
 function haversineKm(a, b) {
   const R = 6371.0088;
@@ -138,6 +139,41 @@ function minutePacesFromMovingTimeline(timeline) {
   return paces;
 }
 
+function overlappingSec(seg, startSec, endSec) {
+  return Math.max(0, Math.min(seg.endMovingSec, endSec) - Math.max(seg.startMovingSec, startSec));
+}
+
+function minutePaceQualityFromMovingTimeline(timeline, movingSegments) {
+  if (timeline.length < 2) return [];
+  const totalMovingSec = timeline[timeline.length - 1].movingSec;
+  const fullMinutes = Math.floor(totalMovingSec / 60);
+  const details = [];
+  for (let minute = 0; minute < fullMinutes; minute += 1) {
+    const startSec = minute * 60;
+    const endSec = startSec + 60;
+    const kmCovered =
+      interpolateDistanceAt(timeline, endSec) -
+      interpolateDistanceAt(timeline, startSec);
+    if (kmCovered <= 0) continue;
+
+    let lowSpeedSec = 0;
+    let skippedBeforeSec = 0;
+    for (const seg of movingSegments) {
+      const overlap = overlappingSec(seg, startSec, endSec);
+      if (overlap <= 0) continue;
+      if (seg.mps < PACE_FILTER_LOW_MPS) lowSpeedSec += overlap;
+      skippedBeforeSec += seg.skippedBeforeSec;
+    }
+
+    details.push({
+      paceSecPerKm: 60 / kmCovered,
+      lowSpeedSec: +lowSpeedSec.toFixed(3),
+      skippedBeforeSec: +skippedBeforeSec.toFixed(3),
+    });
+  }
+  return details;
+}
+
 function aggregate(points, gpxName) {
   let totalKm = 0;
   let movingSec = 0;
@@ -151,8 +187,10 @@ function aggregate(points, gpxName) {
   }
 
   const timeline = [{ movingSec: 0, distanceKm: 0 }];
+  const movingSegments = [];
   let movingSecAcc = 0;
   let distanceKmAcc = 0;
+  let skippedBeforeSec = 0;
 
   for (let i = 1; i < points.length; i++) {
     const a = points[i - 1];
@@ -165,11 +203,23 @@ function aggregate(points, gpxName) {
       if (dt > 0 && dt <= MAX_SAMPLE_GAP_SEC) {
         const mps = (segKm * 1000) / dt;
         if (mps >= MIN_MOVING_MPS) {
+          const startMovingSec = movingSecAcc;
           movingSec += dt;
           movingSecAcc += dt;
+          movingSegments.push({
+            startMovingSec,
+            endMovingSec: movingSecAcc,
+            mps,
+            skippedBeforeSec,
+          });
+          skippedBeforeSec = 0;
+        } else {
+          skippedBeforeSec += dt;
         }
         distanceKmAcc += segKm;
         timeline.push({ movingSec: movingSecAcc, distanceKm: distanceKmAcc });
+      } else if (dt > 0) {
+        skippedBeforeSec += dt;
       }
     }
 
@@ -215,6 +265,7 @@ function aggregate(points, gpxName) {
     meanLon: +(sumLon / points.length).toFixed(6),
     bbox,
     paceSamples: minutePacesFromMovingTimeline(timeline),
+    paceSampleDetails: minutePaceQualityFromMovingTimeline(timeline, movingSegments),
     hrZoneSec: hrZoneSecFromPoints(points),
   };
 }
@@ -394,6 +445,11 @@ export interface GpxStats {
   bbox: { minLat: number; maxLat: number; minLon: number; maxLon: number };
   activityType?: string;
   paceSamples?: number[];
+  paceSampleDetails?: {
+    paceSecPerKm: number;
+    lowSpeedSec: number;
+    skippedBeforeSec: number;
+  }[];
   pbElapsedPaceSecPerKm?: Record<string, number>;
   hrZoneSec?: number[];
   pbQuality?: {

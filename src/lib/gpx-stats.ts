@@ -870,8 +870,22 @@ export const runDistances: HistogramBucket[] = DIST_BUCKETS.map((b) => ({
 
 export const treadmillVsOutdoor = { treadmill: 0, outdoor: tracks.length };
 
+const PACE_FILTER_LOW_SPEED_SEC = 15;
+const PACE_FILTER_SKIPPED_BEFORE_SEC = 30;
+
 const minutePaceSamples = tracks.flatMap((t) => t.stats.paceSamples ?? []);
 export const paceDistribution = buildPaceDistributionFromSamples(minutePaceSamples);
+const filteredMinutePaceSamples = tracks.flatMap((t) =>
+  (t.stats.paceSampleDetails ?? [])
+    .filter(
+      (sample) =>
+        sample.lowSpeedSec < PACE_FILTER_LOW_SPEED_SEC &&
+        sample.skippedBeforeSec < PACE_FILTER_SKIPPED_BEFORE_SEC,
+    )
+    .map((sample) => sample.paceSecPerKm),
+);
+export const filteredPaceDistribution =
+  buildPaceDistributionFromSamples(filteredMinutePaceSamples);
 
 const HR_ZONE_META = [
   { label: "Easy",      bpm: "<139bpm"    },

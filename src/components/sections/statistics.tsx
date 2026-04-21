@@ -2,17 +2,17 @@ import { ChartCard } from "@/components/primitives/chart-card";
 import { BarChart } from "@/components/charts/bar-chart";
 import { PolarClock } from "@/components/charts/polar-clock";
 import { RadarChart } from "@/components/charts/radar-chart";
-import { DensityChart } from "@/components/charts/density-chart";
 import { HorizontalBars } from "@/components/charts/horizontal-bars";
+import { PaceDistributionToggle } from "@/components/sections/pace-distribution-toggle";
 import {
   annualMileage,
   avgByWeekday,
+  filteredPaceDistribution,
   heartRateZones,
   paceDistribution,
   runDistances,
   workoutByTime,
 } from "@/lib/mock-data";
-import { formatPace } from "@/lib/format";
 
 export function Statistics() {
   return (
@@ -51,13 +51,9 @@ export function Statistics() {
 
       <div className="grid gap-12 md:grid-cols-2 xl:grid-cols-2 mb-16">
         <ChartCard title="PACE DISTRIBUTION">
-          <DensityChart
-            bins={paceDistribution.bins}
-            axisLabels={paceDistribution.axisLabels}
-            meanBin={paceDistribution.meanBin ?? undefined}
-            medianBin={paceDistribution.medianBin ?? undefined}
-            meanLabel={`mean: ${formatPace(paceDistribution.meanSec)}`}
-            medianLabel={`median: ${formatPace(paceDistribution.medianSec)}`}
+          <PaceDistributionToggle
+            original={paceDistribution}
+            filtered={filteredPaceDistribution}
           />
         </ChartCard>
 

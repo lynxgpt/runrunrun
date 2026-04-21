@@ -11,6 +11,7 @@ export {
   runDistances,
   treadmillVsOutdoor,
   paceDistribution,
+  filteredPaceDistribution,
   heartRateZones,
   temperatureBuckets,
   temperatureRanges,
