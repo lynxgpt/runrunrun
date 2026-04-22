@@ -168,13 +168,13 @@ function labelPosition(cx: number, cy: number, hour: number, radius: number) {
 
 export function PolarClock({ data }: PolarClockProps) {
   const width = 340;
-  const height = 340;
+  const height = 300;
   const cx = width / 2;
   const cy = height / 2;
-  const gridRadius = 138;
+  const gridRadius = 122;
   const field = buildDivergenceField(data);
 
-  const ringRadii = [42, 58, 74, 90, 106, 122, 138];
+  const ringRadii = [42, 55, 68, 81, 94, 107, 120];
   const labels = [
     { h: 0, label: "12am" },
     { h: 3, label: "3am" },

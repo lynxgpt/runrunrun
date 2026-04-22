@@ -22,23 +22,23 @@ export function Statistics() {
         STATISTICS
       </h2>
 
-      <div className="grid gap-12 md:grid-cols-2 xl:grid-cols-4 mb-16">
-        <ChartCard title="MONTHLY DISTANCE">
+      <div className="grid items-stretch gap-12 md:grid-cols-2 xl:grid-cols-4 mb-16">
+        <ChartCard title="MONTHLY DISTANCE" className="h-full">
           <MonthlyDistanceChart data={monthlyMileage} />
         </ChartCard>
 
-        <ChartCard title="WHAT TIME">
+        <ChartCard title="WHAT TIME" className="h-full">
           <PolarClock data={workoutByTime} />
         </ChartCard>
 
-        <ChartCard title="DAILY DISTANCE">
+        <ChartCard title="DAILY DISTANCE" className="h-full">
           <RadarChart
             data={avgByWeekday}
             labels={["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]}
           />
         </ChartCard>
 
-        <ChartCard title="RUN DISTANCES">
+        <ChartCard title="RUN DISTANCES" className="h-full">
           {/* No hardcoded yTicks — auto-normalises to the largest bucket */}
           <BarChart
             data={runDistances.map((b, i) => ({

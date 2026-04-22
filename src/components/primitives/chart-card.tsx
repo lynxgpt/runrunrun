@@ -19,7 +19,7 @@ export function ChartCard({ title, caption, className, children }: ChartCardProp
       >
         {caption ?? "\u00A0"}
       </p>
-      <div className="mt-4 w-full flex justify-center">{children}</div>
+      <div className="mt-4 flex h-[220px] w-full items-center justify-center">{children}</div>
     </div>
   );
 }

@@ -6,7 +6,7 @@ interface RadarChartProps {
   ticks?: number[];
 }
 
-export function RadarChart({ data, labels, width = 300, height = 300, ticks }: RadarChartProps) {
+export function RadarChart({ data, labels, width = 300, height = 220, ticks }: RadarChartProps) {
   const cx = width / 2;
   const cy = height / 2;
   const rMax = Math.min(width, height) / 2 - 32;
