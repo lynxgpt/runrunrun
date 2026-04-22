@@ -148,10 +148,10 @@ function mixColor(a: string, b: string, t: number) {
 }
 
 function timeColor(hour: number) {
-  if (hour < 6 || hour >= 21) return "#07113b";
-  if (hour < 12) return mixColor("#8beaff", "#ffd95d", (hour - 6) / 6);
-  if (hour < 18) return mixColor("#ffd95d", "#f08a32", (hour - 12) / 6);
-  return mixColor("#f08a32", "#07113b", (hour - 18) / 3);
+  if (hour < 6 || hour >= 21) return "#171a24";
+  if (hour < 12) return mixColor("#9fb0b6", "#c9bd93", (hour - 6) / 6);
+  if (hour < 18) return mixColor("#c9bd93", "#b59c7a", (hour - 12) / 6);
+  return mixColor("#b59c7a", "#171a24", (hour - 18) / 3);
 }
 
 function radialLine(cx: number, cy: number, hour: number, inner: number, outer: number) {
