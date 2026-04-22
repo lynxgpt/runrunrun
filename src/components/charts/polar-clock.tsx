@@ -219,8 +219,9 @@ export function PolarClock({ data }: PolarClockProps) {
             cy={cy}
             r={radius}
             fill="none"
-            stroke={index === 2 ? "#2f2f2f" : "#202020"}
-            strokeWidth={index === 2 ? 1.1 : 0.75}
+            stroke={index === 2 ? "#565656" : "#333"}
+            strokeWidth={index === 2 ? 1.3 : 0.95}
+            opacity={index === 2 ? 0.86 : 0.7}
           />
         ))}
 
@@ -230,8 +231,9 @@ export function PolarClock({ data }: PolarClockProps) {
             <line
               key={hour}
               {...line}
-              stroke={hour % 6 === 0 ? "#2d2d2d" : "#1b1b1b"}
-              strokeWidth={hour % 6 === 0 ? 1 : 0.6}
+              stroke={hour % 6 === 0 ? "#505050" : "#2e2e2e"}
+              strokeWidth={hour % 6 === 0 ? 1.15 : 0.75}
+              opacity={hour % 6 === 0 ? 0.78 : 0.54}
             />
           );
         })}
