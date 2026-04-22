@@ -51,6 +51,16 @@ function dateOf(t: GpxSummary): Date {
   return new Date(t.stats.startTime!);
 }
 
+function hourInNewYork(t: GpxSummary): number {
+  return Number(
+    new Intl.DateTimeFormat("en-US", {
+      timeZone: "America/New_York",
+      hour: "numeric",
+      hour12: false,
+    }).format(dateOf(t)),
+  );
+}
+
 function isoDate(d: Date): string {
   return d.toISOString().slice(0, 10);
 }
@@ -866,10 +876,10 @@ for (const d = new Date(monthlyStart); d <= monthlyEnd; d.setUTCMonth(d.getUTCMo
   });
 }
 
-// Hour-of-day percentages (24 bins). Use LOCAL time so the distribution
-// reflects when the user actually runs ("morning", "evening"), not UTC.
+// Hour-of-day percentages (24 bins). Pin to New York time so localhost and
+// GitHub Pages produce the same "when I run" shape regardless of build host.
 const hourCounts = new Array<number>(24).fill(0);
-for (const t of tracks) hourCounts[dateOf(t).getHours()] += 1;
+for (const t of tracks) hourCounts[hourInNewYork(t)] += 1;
 const hourTotal = hourCounts.reduce((a, b) => a + b, 0) || 1;
 export const workoutByTime: number[] = hourCounts.map((c) => +((c / hourTotal) * 100).toFixed(1));
 
