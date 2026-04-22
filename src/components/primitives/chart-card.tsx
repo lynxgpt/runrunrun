@@ -4,11 +4,19 @@ interface ChartCardProps {
   title: string;
   caption?: string;
   showCaption?: boolean;
+  fixedChartHeight?: boolean;
   className?: string;
   children: React.ReactNode;
 }
 
-export function ChartCard({ title, caption, showCaption = false, className, children }: ChartCardProps) {
+export function ChartCard({
+  title,
+  caption,
+  showCaption = false,
+  fixedChartHeight = false,
+  className,
+  children,
+}: ChartCardProps) {
   return (
     <div className={cn("flex flex-col items-center text-center", className)}>
       <h3 className="font-sans text-lg font-bold uppercase tracking-wide text-neutral-100">
@@ -23,7 +31,14 @@ export function ChartCard({ title, caption, showCaption = false, className, chil
       >
         {caption ?? "\u00A0"}
       </p>
-      <div className="mt-2 flex h-[220px] w-full items-start justify-center">{children}</div>
+      <div
+        className={cn(
+          "mt-2 flex w-full justify-center",
+          fixedChartHeight ? "h-[220px] items-start" : "items-center",
+        )}
+      >
+        {children}
+      </div>
     </div>
   );
 }
