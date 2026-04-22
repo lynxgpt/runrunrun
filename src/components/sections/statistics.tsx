@@ -1,14 +1,15 @@
 import { ChartCard } from "@/components/primitives/chart-card";
 import { BarChart } from "@/components/charts/bar-chart";
+import { MonthlyDistanceChart } from "@/components/charts/monthly-distance-chart";
 import { PolarClock } from "@/components/charts/polar-clock";
 import { RadarChart } from "@/components/charts/radar-chart";
 import { HorizontalBars } from "@/components/charts/horizontal-bars";
 import { PaceDistributionToggle } from "@/components/sections/pace-distribution-toggle";
 import {
-  annualMileage,
   avgByWeekday,
   filteredPaceDistribution,
   heartRateZones,
+  monthlyMileage,
   paceDistribution,
   runDistances,
   workoutByTime,
@@ -22,12 +23,8 @@ export function Statistics() {
       </h2>
 
       <div className="grid gap-12 md:grid-cols-2 xl:grid-cols-4 mb-16">
-        <ChartCard title="ANNUAL DISTANCE">
-          <BarChart
-            data={annualMileage.map((a) => ({ label: String(a.year), value: a.km }))}
-            xAxisLabel="year"
-            yAxisLabel="km"
-          />
+        <ChartCard title="MONTHLY DISTANCE">
+          <MonthlyDistanceChart data={monthlyMileage} />
         </ChartCard>
 
         <ChartCard title="WHAT TIME">

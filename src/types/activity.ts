@@ -90,6 +90,14 @@ export interface AnnualMileage {
   km: number;
 }
 
+export interface MonthlyMileage {
+  month: string; // YYYY-MM
+  label: string;
+  km: number;
+  monthIndex: number;
+  marker?: "half-star" | "star";
+}
+
 export interface HistogramBucket {
   label: string;
   count: number;

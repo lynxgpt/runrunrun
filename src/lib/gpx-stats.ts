@@ -24,6 +24,7 @@ import type {
   GeoRow,
   HeatmapCell,
   HistogramBucket,
+  MonthlyMileage,
   NotableRun,
   NotableRunCategory,
   StreakStats,
@@ -830,6 +831,39 @@ const annualYearNumbers = [...annualMap.keys()].sort((a, b) => a - b);
 export const annualMileage: AnnualMileage[] = annualYearNumbers.length
   ? annualYearNumbers.map((y) => ({ year: y, km: Math.round(annualMap.get(y) ?? 0) }))
   : [{ year: 1, km: 0 }];
+
+function monthKey(d: Date): string {
+  return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, "0")}`;
+}
+
+function monthLabel(d: Date): string {
+  const month = d.toLocaleDateString("en-US", { month: "short", timeZone: "UTC" });
+  return d.getUTCMonth() === 0 ? `${month} ${String(d.getUTCFullYear()).slice(2)}` : month;
+}
+
+const monthlyMap = new Map<string, number>();
+for (const t of tracks) {
+  const d = dateOf(t);
+  monthlyMap.set(monthKey(d), (monthlyMap.get(monthKey(d)) ?? 0) + t.stats.distanceKm);
+}
+
+const monthlyStart = new Date(Date.UTC(2025, 0, 1));
+const monthlyEnd = tracks.length
+  ? new Date(Date.UTC(dateOf(tracks[tracks.length - 1]).getUTCFullYear(), dateOf(tracks[tracks.length - 1]).getUTCMonth(), 1))
+  : monthlyStart;
+
+export const monthlyMileage: MonthlyMileage[] = [];
+for (const d = new Date(monthlyStart); d <= monthlyEnd; d.setUTCMonth(d.getUTCMonth() + 1)) {
+  const key = monthKey(d);
+  monthlyMileage.push({
+    month: key,
+    label: monthLabel(d),
+    km: Math.round(monthlyMap.get(key) ?? 0),
+    monthIndex: d.getUTCMonth(),
+    ...(key === "2025-04" ? { marker: "half-star" as const } : {}),
+    ...(key === "2026-05" ? { marker: "star" as const } : {}),
+  });
+}
 
 // Hour-of-day percentages (24 bins). Use LOCAL time so the distribution
 // reflects when the user actually runs ("morning", "evening"), not UTC.

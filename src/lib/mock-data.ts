@@ -6,6 +6,7 @@ export {
   streakStats,
   notableRuns,
   annualMileage,
+  monthlyMileage,
   workoutByTime,
   avgByWeekday,
   runDistances,
