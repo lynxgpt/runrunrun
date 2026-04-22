@@ -27,7 +27,7 @@ export function Statistics() {
           <MonthlyDistanceChart data={monthlyMileage} />
         </ChartCard>
 
-        <ChartCard title="WHAT TIME" className="h-full">
+        <ChartCard title="WHAT TIME" caption="get up at 7 to run?" showCaption className="h-full">
           <PolarClock data={workoutByTime} />
         </ChartCard>
 

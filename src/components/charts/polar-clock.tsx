@@ -105,7 +105,7 @@ function roughness(index: number) {
 function buildDivergenceField(data: number[]) {
   const samples = 144;
   const max = Math.max(...data, 1);
-  const baseRadius = 74;
+  const baseRadius = 57;
 
   return Array.from({ length: samples }, (_, index): PolarPoint => {
     const hour = (index / samples) * 24;
@@ -124,8 +124,8 @@ function buildDivergenceField(data: number[]) {
       angle,
       value: smoothed,
       strength,
-      inner: baseRadius - 5 - flare * 6 + noise * 0.6,
-      outer: baseRadius + 8 + flare * 60 + noise * (1.4 + flare * 4),
+      inner: baseRadius - 4 - flare * 4 + noise * 0.5,
+      outer: baseRadius + 6 + flare * 43 + noise * (1.1 + flare * 3),
     };
   });
 }
@@ -167,14 +167,14 @@ function labelPosition(cx: number, cy: number, hour: number, radius: number) {
 }
 
 export function PolarClock({ data }: PolarClockProps) {
-  const width = 340;
-  const height = 300;
+  const width = 300;
+  const height = 220;
   const cx = width / 2;
   const cy = height / 2;
-  const gridRadius = 122;
+  const gridRadius = 94;
   const field = buildDivergenceField(data);
 
-  const ringRadii = [42, 55, 68, 81, 94, 107, 120];
+  const ringRadii = [34, 44, 54, 64, 74, 84, 94];
   const labels = [
     { h: 0, label: "12am" },
     { h: 3, label: "3am" },
@@ -239,7 +239,7 @@ export function PolarClock({ data }: PolarClockProps) {
         })}
 
         {[5, 10, 15].map((pct, index) => {
-          const y = cy - 74 - index * 18;
+          const y = cy - 57 - index * 15;
           return (
             <g key={pct}>
               <rect x={cx - 18} y={y - 11} width="36" height="18" fill="#070707" opacity="0.82" />
@@ -248,7 +248,7 @@ export function PolarClock({ data }: PolarClockProps) {
                 y={y + 2}
                 textAnchor="middle"
                 className="fill-neutral-500 font-mono-tamzen"
-                fontSize={12}
+                fontSize={10}
               >
                 {pct}%
               </text>
@@ -334,12 +334,12 @@ export function PolarClock({ data }: PolarClockProps) {
           })}
         </g>
 
-        <circle cx={cx} cy={cy} r="60" fill="url(#polarClockCore)" />
-        <circle cx={cx} cy={cy} r="72" fill="none" stroke="#ededed" strokeWidth="1.4" opacity="0.72" />
-        <circle cx={cx} cy={cy} r="73.8" fill="none" stroke="#fff" strokeWidth="0.55" opacity="0.62" />
+        <circle cx={cx} cy={cy} r="45" fill="url(#polarClockCore)" />
+        <circle cx={cx} cy={cy} r="56" fill="none" stroke="#ededed" strokeWidth="1.2" opacity="0.72" />
+        <circle cx={cx} cy={cy} r="57.5" fill="none" stroke="#fff" strokeWidth="0.5" opacity="0.62" />
 
         {labels.map(({ h, label }) => {
-          const pos = labelPosition(cx, cy, h, h % 6 === 0 ? 55 : 79);
+          const pos = labelPosition(cx, cy, h, h % 6 === 0 ? 42 : 61);
           return (
             <text
               key={h}
@@ -347,7 +347,7 @@ export function PolarClock({ data }: PolarClockProps) {
               y={pos.y + 4}
               textAnchor="middle"
               className={h % 6 === 0 ? "fill-neutral-500 font-mono-tamzen" : "fill-neutral-600 font-mono-tamzen"}
-              fontSize={h % 6 === 0 ? 13 : 12}
+              fontSize={h % 6 === 0 ? 11 : 10}
             >
               {label}
             </text>
