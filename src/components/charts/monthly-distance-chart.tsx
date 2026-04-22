@@ -10,10 +10,10 @@ interface MonthlyDistanceChartProps {
 }
 
 const SEASON_COLORS = {
-  winter: "#48505a",
-  spring: "#4d554b",
-  summer: "#5b4d4c",
-  fall: "#5b5348",
+  winter: "#6f8294",
+  spring: "#75866f",
+  summer: "#946f6a",
+  fall: "#967f5c",
 };
 
 export function MonthlyDistanceChart({
@@ -36,6 +36,20 @@ export function MonthlyDistanceChart({
 
   return (
     <svg viewBox={`0 0 ${width} ${height}`} className="h-auto w-full overflow-visible">
+      <defs>
+        {data.map((month) => {
+          const gradientId = monthGradientId(month.month);
+          const [left, center, right] = monthGradientStops(month.monthIndex);
+          return (
+            <linearGradient key={gradientId} id={gradientId} x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor={left} />
+              <stop offset="52%" stopColor={center} />
+              <stop offset="100%" stopColor={right} />
+            </linearGradient>
+          );
+        })}
+      </defs>
+
       {ticks.map((tick) => {
         const y = padT + innerH - (tick / yMax) * innerH;
         return (
@@ -84,8 +98,8 @@ export function MonthlyDistanceChart({
               width={barW}
               height={h}
               rx={1.5}
-              fill={seasonColor(month.monthIndex)}
-              fillOpacity={active ? 0.95 : 0.62}
+              fill={`url(#${monthGradientId(month.month)})`}
+              fillOpacity={active ? 1 : 0.86}
               stroke={active ? "#d6d6d6" : "transparent"}
               strokeWidth={active ? 0.9 : 0}
             />
@@ -125,15 +139,30 @@ export function MonthlyDistanceChart({
   );
 }
 
-function seasonColor(monthIndex: number) {
+function monthGradientId(month: string) {
+  return `month-gradient-${month}`;
+}
+
+function monthGradientStops(monthIndex: number) {
+  return [
+    seasonColor(monthIndex - 0.45),
+    seasonColor(monthIndex),
+    seasonColor(monthIndex + 0.45),
+  ];
+}
+
+function seasonColor(monthPosition: number) {
   const anchors = [
     { month: 0, color: SEASON_COLORS.winter },
     { month: 1, color: SEASON_COLORS.winter },
-    { month: 3, color: SEASON_COLORS.spring },
-    { month: 6, color: SEASON_COLORS.summer },
-    { month: 9, color: SEASON_COLORS.fall },
-    { month: 11, color: SEASON_COLORS.winter },
+    { month: 3.25, color: SEASON_COLORS.spring },
+    { month: 5.5, color: SEASON_COLORS.summer },
+    { month: 6.5, color: SEASON_COLORS.summer },
+    { month: 9.25, color: SEASON_COLORS.fall },
+    { month: 12, color: SEASON_COLORS.winter },
   ];
+  const monthIndex = ((monthPosition % 12) + 12) % 12;
+
   for (let i = 0; i < anchors.length - 1; i++) {
     const a = anchors[i];
     const b = anchors[i + 1];
