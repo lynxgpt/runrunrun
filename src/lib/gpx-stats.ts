@@ -41,7 +41,7 @@ const TRACK_CUTOFF = new Date("2025-01-01T00:00:00.000Z");
 export const tracks: GpxSummary[] = Object.values(gpxSummaries)
   .filter((t) => t.stats.startTime)
   .filter((t) => new Date(t.stats.startTime!).getTime() >= TRACK_CUTOFF.getTime())
-  .filter((t) => !t.stats.activityType || t.stats.activityType === "running")
+  .filter((t) => !t.stats.activityType || t.stats.activityType === "running" || t.stats.activityType === "trailrun")
   .sort(
     (a, b) =>
       new Date(a.stats.startTime!).getTime() - new Date(b.stats.startTime!).getTime(),

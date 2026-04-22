@@ -263,24 +263,25 @@ function saveMeta(meta) {
   const token = await refreshTokenIfNeeded();
 
   const acts = await listAllRuns(token);
-  // Keep road runs only. Strava's `type` field distinguishes:
-  //   "Run" → road/path running (what we want)
-  //   "TrailRun", "VirtualRun", "Ride", "Hike", "Walk", ... → excluded
-  const longRuns = acts.filter((a) => a.type === "Run");
+  // Keep run-like activities only. Strava's `type` field distinguishes:
+  //   "Run" → road/path running
+  //   "TrailRun" → trail running
+  //   "VirtualRun", "Ride", "Hike", "Walk", ... → excluded
+  const longRuns = acts.filter((a) => a.type === "Run" || a.type === "TrailRun");
 
   // Summarize what got filtered out so the excluded buckets are visible.
   const typeCounts = {};
   for (const a of acts) typeCounts[a.type] = (typeCounts[a.type] ?? 0) + 1;
   const excluded = Object.entries(typeCounts)
-    .filter(([t]) => t !== "Run")
+    .filter(([t]) => t !== "Run" && t !== "TrailRun")
     .map(([t, n]) => `${n} ${t}`)
     .join(", ");
   console.log(
-    `• ${longRuns.length} Run activities (excluded: ${excluded || "none"})`,
+    `• ${longRuns.length} Run/TrailRun activities (excluded: ${excluded || "none"})`,
   );
 
   if (!longRuns.length) {
-    console.log("\nNo Run activities found.");
+    console.log("\nNo Run/TrailRun activities found.");
     return;
   }
 
