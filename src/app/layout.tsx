@@ -14,6 +14,10 @@ const jost = Jost({
 export const metadata: Metadata = {
   title: "run run run",
   description: "a running log derived directly from GPX files.",
+  icons: {
+    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+    shortcut: [{ url: "/icon.svg", type: "image/svg+xml" }],
+  },
 };
 
 // Inline pre-hydration script: set data-theme from localStorage before first paint
