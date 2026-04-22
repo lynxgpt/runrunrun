@@ -10,7 +10,8 @@ export type GeoFilter =
   | { kind: "none" }
   | { kind: "country"; code: string; name: string }
   | { kind: "state"; code: string; name: string }
-  | { kind: "city"; code: string; name: string };
+  | { kind: "city"; code: string; name: string }
+  | { kind: "month"; code: string; name: string };
 
 const GEO_FILTER_NONE: GeoFilter = { kind: "none" };
 let current: GeoFilter = GEO_FILTER_NONE;
@@ -51,6 +52,14 @@ export function toggleCity(code: string, name: string) {
     setGeoFilter({ kind: "none" });
   } else {
     setGeoFilter({ kind: "city", code, name });
+  }
+}
+
+export function toggleMonth(code: string, name: string) {
+  if (current.kind === "month" && current.code === code) {
+    setGeoFilter({ kind: "none" });
+  } else {
+    setGeoFilter({ kind: "month", code, name });
   }
 }
 

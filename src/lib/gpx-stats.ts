@@ -703,6 +703,7 @@ function toNotableRun(t: GpxSummary, rank: number, weather: WeatherCondition): N
   return {
     rank,
     date: niceDate(d),
+    dateMonth: monthKey(d),
     distanceKm: +t.stats.distanceKm.toFixed(2),
     movingSec: t.stats.movingSec,
     paceSecPerKm: t.stats.paceSecPerKm ?? 0,

@@ -131,7 +131,7 @@ export function NotableRuns() {
       </p>
       {filter.kind !== "none" ? (
         <p className="text-center text-xs font-mono-tamzen text-neutral-400 mb-4">
-          filtered to {filter.kind === "country" ? "country" : "state"}:{" "}
+          filtered to {filter.kind}:{" "}
           <span className="text-neutral-100">{filter.name}</span>
           {" · "}
           <button
@@ -166,6 +166,7 @@ function applyFilter(
     if (filter.kind === "country") return r.location.countryCode === filter.code;
     if (filter.kind === "state") return r.location.region === filter.code;
     if (filter.kind === "city") return r.location.city === filter.code;
+    if (filter.kind === "month") return r.dateMonth === filter.code;
     return true;
   });
   return matched.map((r, i) => ({ ...r, rank: i + 1 }));

@@ -1,4 +1,7 @@
+"use client";
+
 import type { MonthlyMileage } from "@/types/activity";
+import { toggleMonth, useGeoFilter } from "@/lib/geo-filter";
 
 interface MonthlyDistanceChartProps {
   data: MonthlyMileage[];
@@ -7,10 +10,10 @@ interface MonthlyDistanceChartProps {
 }
 
 const SEASON_COLORS = {
-  winter: "#8f9daa",
-  spring: "#9eae98",
-  summer: "#b08a84",
-  fall: "#b19b7b",
+  winter: "#48505a",
+  spring: "#4d554b",
+  summer: "#5b4d4c",
+  fall: "#5b5348",
 };
 
 export function MonthlyDistanceChart({
@@ -18,6 +21,7 @@ export function MonthlyDistanceChart({
   width = 380,
   height = 220,
 }: MonthlyDistanceChartProps) {
+  const filter = useGeoFilter();
   const padL = 38;
   const padR = 10;
   const padT = 24;
@@ -49,9 +53,31 @@ export function MonthlyDistanceChart({
         const h = (month.km / yMax) * innerH;
         const y = padT + innerH - h;
         const shouldLabel = index === 0 || month.monthIndex === 0 || month.monthIndex % 3 === 0;
+        const active = filter.kind === "month" && filter.code === month.month;
 
         return (
-          <g key={month.month}>
+          <g
+            key={month.month}
+            role="button"
+            tabIndex={0}
+            aria-pressed={active}
+            aria-label={`Filter to ${month.label}, ${month.km} kilometers`}
+            className="cursor-pointer outline-none"
+            onClick={() => toggleMonth(month.month, month.label)}
+            onKeyDown={(event) => {
+              if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                toggleMonth(month.month, month.label);
+              }
+            }}
+          >
+            <rect
+              x={x - (slot - barW) / 2}
+              y={padT}
+              width={slot}
+              height={innerH}
+              fill="transparent"
+            />
             <rect
               x={x}
               y={y}
@@ -59,7 +85,9 @@ export function MonthlyDistanceChart({
               height={h}
               rx={1.5}
               fill={seasonColor(month.monthIndex)}
-              fillOpacity={0.88}
+              fillOpacity={active ? 0.95 : 0.62}
+              stroke={active ? "#d6d6d6" : "transparent"}
+              strokeWidth={active ? 0.9 : 0}
             />
             {month.marker ? (
               <MilestoneStar
@@ -98,11 +126,22 @@ export function MonthlyDistanceChart({
 }
 
 function seasonColor(monthIndex: number) {
-  if (monthIndex === 11 || monthIndex <= 1) return SEASON_COLORS.winter;
-  if (monthIndex >= 2 && monthIndex <= 4) return mix(SEASON_COLORS.winter, SEASON_COLORS.spring, (monthIndex - 2) / 2);
-  if (monthIndex >= 5 && monthIndex <= 6) return SEASON_COLORS.summer;
-  if (monthIndex >= 7 && monthIndex <= 8) return mix(SEASON_COLORS.summer, SEASON_COLORS.fall, monthIndex - 7);
-  return mix(SEASON_COLORS.fall, SEASON_COLORS.winter, (monthIndex - 9) / 2);
+  const anchors = [
+    { month: 0, color: SEASON_COLORS.winter },
+    { month: 1, color: SEASON_COLORS.winter },
+    { month: 3, color: SEASON_COLORS.spring },
+    { month: 6, color: SEASON_COLORS.summer },
+    { month: 9, color: SEASON_COLORS.fall },
+    { month: 11, color: SEASON_COLORS.winter },
+  ];
+  for (let i = 0; i < anchors.length - 1; i++) {
+    const a = anchors[i];
+    const b = anchors[i + 1];
+    if (monthIndex >= a.month && monthIndex <= b.month) {
+      return mix(a.color, b.color, (monthIndex - a.month) / (b.month - a.month || 1));
+    }
+  }
+  return SEASON_COLORS.winter;
 }
 
 function MilestoneStar({ cx, cy, kind }: { cx: number; cy: number; kind: "half-star" | "star" }) {

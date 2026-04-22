@@ -44,6 +44,7 @@ export interface NotableRun {
   rank: number;
   displayRank?: string;
   date: string;
+  dateMonth?: string;
   distanceKm: number;
   movingSec: number;
   paceSecPerKm: number;
