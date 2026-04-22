@@ -23,7 +23,7 @@ export function Statistics() {
       </h2>
 
       <div className="grid items-stretch gap-12 md:grid-cols-2 xl:grid-cols-4 mb-16">
-        <ChartCard title="MONTHLY DISTANCE" className="h-full">
+        <ChartCard title="MONTHLY DISTANCE" caption="it's too cold then it's too hot" showCaption className="h-full">
           <MonthlyDistanceChart data={monthlyMileage} />
         </ChartCard>
 

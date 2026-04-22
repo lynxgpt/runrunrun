@@ -10,10 +10,10 @@ interface MonthlyDistanceChartProps {
 }
 
 const SEASON_COLORS = {
-  winter: "#6f8294",
-  spring: "#75866f",
-  summer: "#946f6a",
-  fall: "#967f5c",
+  winter: "#9fb0b6",
+  spring: "#c9c1a4",
+  summer: "#c9bd93",
+  fall: "#7f7355",
 };
 
 export function MonthlyDistanceChart({
