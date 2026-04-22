@@ -7,6 +7,7 @@ interface PolarPoint {
   inner: number;
   outer: number;
   value: number;
+  strength: number;
 }
 
 const TAU = Math.PI * 2;
@@ -49,15 +50,38 @@ function annulusPath(cx: number, cy: number, points: PolarPoint[]) {
   return closedPath([...outer, ...inner]);
 }
 
-function scaleField(points: PolarPoint[], outerScale: number, innerOffset = 0) {
-  return points.map((point) => {
-    const span = point.outer - point.inner;
-    return {
-      ...point,
-      inner: point.inner + innerOffset,
-      outer: point.inner + span * outerScale,
-    };
-  });
+function segmentPath(cx: number, cy: number, a: PolarPoint, b: PolarPoint) {
+  const ao = polarToCartesian(cx, cy, a.outer, a.angle);
+  const bo = polarToCartesian(cx, cy, b.outer, b.angle);
+  const bi = polarToCartesian(cx, cy, b.inner, b.angle);
+  const ai = polarToCartesian(cx, cy, a.inner, a.angle);
+
+  return [
+    `M${ao.x.toFixed(2)},${ao.y.toFixed(2)}`,
+    `L${bo.x.toFixed(2)},${bo.y.toFixed(2)}`,
+    `L${bi.x.toFixed(2)},${bi.y.toFixed(2)}`,
+    `L${ai.x.toFixed(2)},${ai.y.toFixed(2)}`,
+    "Z",
+  ].join(" ");
+}
+
+function pulsePoint(point: PolarPoint, amount = 7) {
+  const movement = Math.pow(point.strength, 1.45) * amount;
+  if (movement < 0.2) return point;
+
+  return {
+    ...point,
+    inner: point.inner - movement * 0.12,
+    outer: point.outer + movement,
+  };
+}
+
+function innerPoint(point: PolarPoint) {
+  return {
+    ...point,
+    inner: point.inner + 6,
+    outer: point.inner + (point.outer - point.inner) * 0.64,
+  };
 }
 
 function hourValue(data: number[], hour: number) {
@@ -99,10 +123,35 @@ function buildDivergenceField(data: number[]) {
     return {
       angle,
       value: smoothed,
+      strength,
       inner: baseRadius - 5 - flare * 6 + noise * 0.6,
       outer: baseRadius + 8 + flare * 60 + noise * (1.4 + flare * 4),
     };
   });
+}
+
+function hexToRgb(hex: string) {
+  const normalized = hex.replace("#", "");
+  return {
+    r: parseInt(normalized.slice(0, 2), 16),
+    g: parseInt(normalized.slice(2, 4), 16),
+    b: parseInt(normalized.slice(4, 6), 16),
+  };
+}
+
+function mixColor(a: string, b: string, t: number) {
+  const ca = hexToRgb(a);
+  const cb = hexToRgb(b);
+  const clamped = Math.max(0, Math.min(1, t));
+  const channel = (from: number, to: number) => Math.round(from + (to - from) * clamped);
+  return `rgb(${channel(ca.r, cb.r)}, ${channel(ca.g, cb.g)}, ${channel(ca.b, cb.b)})`;
+}
+
+function timeColor(hour: number) {
+  if (hour < 6 || hour >= 21) return "#07113b";
+  if (hour < 12) return mixColor("#8beaff", "#ffd95d", (hour - 6) / 6);
+  if (hour < 18) return mixColor("#ffd95d", "#f08a32", (hour - 12) / 6);
+  return mixColor("#f08a32", "#07113b", (hour - 18) / 3);
 }
 
 function radialLine(cx: number, cy: number, hour: number, inner: number, outer: number) {
@@ -159,21 +208,6 @@ export function PolarClock({ data }: PolarClockProps) {
             <stop offset="58%" stopColor="#050505" />
             <stop offset="100%" stopColor="#111" />
           </radialGradient>
-          <linearGradient id="polarClockField" x1="20%" y1="15%" x2="85%" y2="88%">
-            <stop offset="0%" stopColor="#101a56" stopOpacity="0.84" />
-            <stop offset="31%" stopColor="#7de9ff" stopOpacity="0.9" />
-            <stop offset="50%" stopColor="#fff1a6" stopOpacity="1" />
-            <stop offset="63%" stopColor="#f6af2f" stopOpacity="0.92" />
-            <stop offset="88%" stopColor="#18215f" stopOpacity="0.9" />
-            <stop offset="100%" stopColor="#080d2e" stopOpacity="0.88" />
-          </linearGradient>
-          <linearGradient id="polarClockHeat" x1="25%" y1="10%" x2="80%" y2="90%">
-            <stop offset="0%" stopColor="#10206c" stopOpacity="0.24" />
-            <stop offset="33%" stopColor="#8ff2ff" stopOpacity="0.42" />
-            <stop offset="52%" stopColor="#ffe27a" stopOpacity="0.76" />
-            <stop offset="75%" stopColor="#2444a2" stopOpacity="0.38" />
-            <stop offset="100%" stopColor="#04091f" stopOpacity="0.36" />
-          </linearGradient>
         </defs>
 
         <rect width={width} height={height} fill="transparent" />
@@ -220,27 +254,82 @@ export function PolarClock({ data }: PolarClockProps) {
           );
         })}
 
-        <g
-          className="animate-[polar-flame-bloom_2.8s_ease-in-out_infinite]"
-          style={{ transformOrigin: `${cx}px ${cy}px` }}
-        >
-          <path
-            d={annulusPath(cx, cy, scaleField(field, 1.22, -2))}
-            fill="url(#polarClockHeat)"
-            opacity="0.42"
-            filter="url(#polarClockSoftBloom)"
-          />
-          <path
-            d={annulusPath(cx, cy, field)}
-            fill="url(#polarClockField)"
-            opacity="0.94"
-          />
-          <path
-            d={annulusPath(cx, cy, scaleField(field, 0.74, 5))}
-            className="animate-[polar-flame-core_2.8s_ease-in-out_infinite]"
-            fill="#fff"
-            opacity="0.86"
-          />
+        <g filter="url(#polarClockSoftBloom)">
+          {field.map((point, index) => {
+            const next = field[(index + 1) % field.length];
+            const pulse = pulsePoint(point);
+            const nextPulse = pulsePoint(next);
+            const hour = (index / field.length) * 24;
+            return (
+              <path
+                key={`glow-${index}`}
+                d={segmentPath(cx, cy, point, next)}
+                fill={timeColor(hour)}
+                opacity={0.18 + point.strength * 0.28}
+              >
+                {point.strength > 0.03 ? (
+                  <animate
+                    attributeName="d"
+                    values={`${segmentPath(cx, cy, point, next)};${segmentPath(cx, cy, pulse, nextPulse)};${segmentPath(cx, cy, point, next)}`}
+                    dur="3.4s"
+                    repeatCount="indefinite"
+                  />
+                ) : null}
+              </path>
+            );
+          })}
+        </g>
+
+        <g>
+          {field.map((point, index) => {
+            const next = field[(index + 1) % field.length];
+            const pulse = pulsePoint(point, 5);
+            const nextPulse = pulsePoint(next, 5);
+            const hour = (index / field.length) * 24;
+            return (
+              <path
+                key={`field-${index}`}
+                d={segmentPath(cx, cy, point, next)}
+                fill={timeColor(hour)}
+                opacity={0.78 + point.strength * 0.18}
+              >
+                {point.strength > 0.03 ? (
+                  <animate
+                    attributeName="d"
+                    values={`${segmentPath(cx, cy, point, next)};${segmentPath(cx, cy, pulse, nextPulse)};${segmentPath(cx, cy, point, next)}`}
+                    dur="3.4s"
+                    repeatCount="indefinite"
+                  />
+                ) : null}
+              </path>
+            );
+          })}
+        </g>
+
+        <g opacity="0.62">
+          {field.map((point, index) => {
+            const inner = innerPoint(point);
+            const nextInner = innerPoint(field[(index + 1) % field.length]);
+            const pulse = innerPoint(pulsePoint(point, 3));
+            const nextPulse = innerPoint(pulsePoint(field[(index + 1) % field.length], 3));
+            return (
+              <path
+                key={`core-${index}`}
+                d={segmentPath(cx, cy, inner, nextInner)}
+                fill="#fff"
+                opacity={0.18 + point.strength * 0.55}
+              >
+                {point.strength > 0.03 ? (
+                  <animate
+                    attributeName="d"
+                    values={`${segmentPath(cx, cy, inner, nextInner)};${segmentPath(cx, cy, pulse, nextPulse)};${segmentPath(cx, cy, inner, nextInner)}`}
+                    dur="3.4s"
+                    repeatCount="indefinite"
+                  />
+                ) : null}
+              </path>
+            );
+          })}
         </g>
 
         <circle cx={cx} cy={cy} r="60" fill="url(#polarClockCore)" />
