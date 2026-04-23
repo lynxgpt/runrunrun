@@ -28,3 +28,6 @@ footer:
   - text: "Replicated from "
     linkText: "nodaysoff.run"
     url: "https://nodaysoff.run"
+  - text: "Map imagery: "
+    linkText: "Powered by Esri"
+    url: "https://www.esri.com/"

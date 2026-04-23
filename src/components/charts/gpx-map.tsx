@@ -49,6 +49,12 @@ export function GpxMap({
   const [sx, sy] = project(points[0].lat, points[0].lon);
   const [ex, ey] = project(points[points.length - 1].lat, points[points.length - 1].lon);
   const tiles = mapTilesForBounds(zoom, minX, maxX, minY, maxY, offsetX, offsetY, scale);
+  const maskId = `mapFade-${safeId(track.id)}`;
+  const leftFadeId = `${maskId}-left`;
+  const rightFadeId = `${maskId}-right`;
+  const topFadeId = `${maskId}-top`;
+  const bottomFadeId = `${maskId}-bottom`;
+  const fade = Math.min(width, height) * 0.05;
 
   return (
     <svg
@@ -57,8 +63,37 @@ export function GpxMap({
       role="img"
       aria-label={`GPX trace for ${stats.name}`}
     >
+      <defs>
+        <linearGradient id={leftFadeId} x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="black" />
+          <stop offset="100%" stopColor="white" />
+        </linearGradient>
+        <linearGradient id={rightFadeId} x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="white" />
+          <stop offset="100%" stopColor="black" />
+        </linearGradient>
+        <linearGradient id={topFadeId} x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="black" />
+          <stop offset="100%" stopColor="white" />
+        </linearGradient>
+        <linearGradient id={bottomFadeId} x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="white" />
+          <stop offset="100%" stopColor="black" />
+        </linearGradient>
+        <mask id={maskId}>
+          <rect width={width} height={height} fill="white" />
+          <rect x="0" y="0" width={fade} height={height} fill={`url(#${leftFadeId})`} />
+          <rect x={width - fade} y="0" width={fade} height={height} fill={`url(#${rightFadeId})`} />
+          <rect x="0" y="0" width={width} height={fade} fill={`url(#${topFadeId})`} />
+          <rect x="0" y={height - fade} width={width} height={fade} fill={`url(#${bottomFadeId})`} />
+        </mask>
+      </defs>
       <rect width={width} height={height} fill="#0d0d0d" />
-      <g opacity="0.3" style={{ filter: "saturate(1.35) contrast(1.08) brightness(0.68)" }}>
+      <g
+        opacity="0.3"
+        mask={`url(#${maskId})`}
+        style={{ filter: "saturate(1.35) contrast(1.08) brightness(0.68)" }}
+      >
         {tiles.map((tile) => (
           <image
             key={`${tile.z}/${tile.x}/${tile.y}`}
@@ -106,18 +141,12 @@ export function GpxMap({
           <circle cx={ex} cy={ey} r={3} fill="#0d0d0d" stroke={color} strokeWidth={1.2} />
         </>
       ) : null}
-      <text
-        x={width - 5}
-        y={height - 5}
-        textAnchor="end"
-        className="fill-neutral-500 font-tamzen-sm"
-        fontSize={5}
-        opacity="0.38"
-      >
-        Imagery © Esri
-      </text>
     </svg>
   );
+}
+
+function safeId(value: string) {
+  return value.replace(/[^a-zA-Z0-9_-]/g, "-");
 }
 
 function tileZoomForBounds(
