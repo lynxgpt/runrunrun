@@ -15,8 +15,8 @@ export const metadata: Metadata = {
   title: "run run run",
   description: "a running log derived directly from GPX files.",
   icons: {
-    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
-    shortcut: [{ url: "/icon.svg", type: "image/svg+xml" }],
+    icon: [{ url: "/icon.jpeg", type: "image/jpeg" }],
+    shortcut: [{ url: "/icon.jpeg", type: "image/jpeg" }],
   },
 };
 
