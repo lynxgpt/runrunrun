@@ -858,10 +858,14 @@ function buildRunDistanceFlow(distances: number[]) {
 
   return Array.from({ length: Math.floor(xMax / step) + 1 }, (_, i) => {
     const km = +(i * step).toFixed(1);
-    const frequency = usable.reduce((sum, distance) => {
+    const density = usable.reduce((sum, distance) => {
       const z = (km - distance) / bandwidth;
       return sum + Math.exp(-0.5 * z * z);
     }, 0);
+    const tailStart = xMax * 0.78;
+    const tailT = Math.max(0, Math.min(1, (km - tailStart) / (xMax - tailStart || 1)));
+    const tailTaper = km <= tailStart ? 1 : 1 - Math.pow(tailT, 1.45) * 0.92;
+    const frequency = density * Math.max(0.08, tailTaper);
     return { km, frequency: +frequency.toFixed(3) };
   });
 }
