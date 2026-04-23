@@ -9,9 +9,7 @@ interface GpxMapProps {
   showStartEnd?: boolean;
 }
 
-// Simple equirectangular projection — fine for the ~10-mile extents of a run.
-// Scales to fit the viewBox while preserving aspect ratio (keeps the trace
-// geographically correct, so Brooklyn doesn't look stretched).
+// Web Mercator projection so the GPX trace aligns with real map tiles.
 export function GpxMap({
   track,
   width = 400,
@@ -22,17 +20,21 @@ export function GpxMap({
 }: GpxMapProps) {
   const { points, stats } = track;
   const { minLat, maxLat, minLon, maxLon } = stats.bbox;
-  const latMid = (minLat + maxLat) / 2;
-  const latRange = maxLat - minLat;
-  const lonRange = (maxLon - minLon) * Math.cos((latMid * Math.PI) / 180);
   const pad = 12;
-  const scale = Math.min((width - pad * 2) / lonRange, (height - pad * 2) / latRange);
-  const offsetX = (width - lonRange * scale) / 2;
-  const offsetY = (height - latRange * scale) / 2;
+  const zoom = tileZoomForBounds(minLat, maxLat, minLon, maxLon, width, height, pad);
+  const minX = lonToTileX(minLon, zoom);
+  const maxX = lonToTileX(maxLon, zoom);
+  const minY = latToTileY(maxLat, zoom);
+  const maxY = latToTileY(minLat, zoom);
+  const worldW = Math.max(maxX - minX, 0.0001);
+  const worldH = Math.max(maxY - minY, 0.0001);
+  const scale = Math.min((width - pad * 2) / worldW, (height - pad * 2) / worldH);
+  const offsetX = (width - worldW * scale) / 2;
+  const offsetY = (height - worldH * scale) / 2;
 
   const project = (lat: number, lon: number) => {
-    const x = offsetX + (lon - minLon) * Math.cos((latMid * Math.PI) / 180) * scale;
-    const y = offsetY + (maxLat - lat) * scale; // invert Y
+    const x = offsetX + (lonToTileX(lon, zoom) - minX) * scale;
+    const y = offsetY + (latToTileY(lat, zoom) - minY) * scale;
     return [x, y] as const;
   };
 
@@ -46,8 +48,7 @@ export function GpxMap({
 
   const [sx, sy] = project(points[0].lat, points[0].lon);
   const [ex, ey] = project(points[points.length - 1].lat, points[points.length - 1].lon);
-  const sketch = satelliteSketch(width, height, `${track.id}:${minLat}:${minLon}`);
-  const textureId = `satelliteTexture-${safeId(track.id)}`;
+  const tiles = mapTilesForBounds(zoom, minX, maxX, minY, maxY, offsetX, offsetY, scale);
 
   return (
     <svg
@@ -56,51 +57,17 @@ export function GpxMap({
       role="img"
       aria-label={`GPX trace for ${stats.name}`}
     >
-      <defs>
-        <filter id={textureId} x="-8%" y="-8%" width="116%" height="116%">
-          <feTurbulence
-            type="fractalNoise"
-            baseFrequency="0.018 0.035"
-            numOctaves="4"
-            seed={sketch.seed}
-          />
-          <feColorMatrix
-            type="matrix"
-            values="0.18 0 0 0 0.02  0 0.2 0 0 0.025  0 0 0.15 0 0.025  0 0 0 0.42 0"
-          />
-        </filter>
-      </defs>
       <rect width={width} height={height} fill="#0d0d0d" />
-      <g opacity="0.3">
-        <rect width={width} height={height} fill="#24251f" filter={`url(#${textureId})`} />
-        {sketch.fields.map((field, i) => (
-          <path
-            key={`field-${i}`}
-            d={field.d}
-            fill={field.fill}
-            opacity={field.opacity}
-          />
-        ))}
-        {sketch.water.map((water, i) => (
-          <path
-            key={`water-${i}`}
-            d={water}
-            fill="#101823"
-            stroke="#34414a"
-            strokeWidth="0.6"
-            opacity="0.58"
-          />
-        ))}
-        {sketch.roads.map((road, i) => (
-          <path
-            key={`road-${i}`}
-            d={road.d}
-            stroke={road.major ? "#c6bfa4" : "#8e8a79"}
-            strokeWidth={road.major ? 1.25 : 0.55}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            fill="none"
-            opacity={road.major ? 0.56 : 0.34}
+      <g opacity="0.3" style={{ filter: "grayscale(1) contrast(1.15) brightness(0.72)" }}>
+        {tiles.map((tile) => (
+          <image
+            key={`${tile.z}/${tile.x}/${tile.y}`}
+            href={`https://tile.openstreetmap.org/${tile.z}/${tile.x}/${tile.y}.png`}
+            x={tile.screenX}
+            y={tile.screenY}
+            width={tile.size}
+            height={tile.size}
+            preserveAspectRatio="none"
           />
         ))}
       </g>
@@ -139,79 +106,85 @@ export function GpxMap({
           <circle cx={ex} cy={ey} r={3} fill="#0d0d0d" stroke={color} strokeWidth={1.2} />
         </>
       ) : null}
+      <text
+        x={width - 5}
+        y={height - 5}
+        textAnchor="end"
+        className="fill-neutral-500 font-tamzen-sm"
+        fontSize={7}
+        opacity="0.7"
+      >
+        © OpenStreetMap contributors
+      </text>
     </svg>
   );
 }
 
-function safeId(value: string) {
-  return value.replace(/[^a-zA-Z0-9_-]/g, "-");
-}
-
-function satelliteSketch(width: number, height: number, seedKey: string) {
-  const rand = seededRandom(hashString(seedKey));
-  const fields = Array.from({ length: 7 }, () => {
-    const cx = rand() * width;
-    const cy = rand() * height;
-    const rx = 45 + rand() * 85;
-    const ry = 28 + rand() * 65;
-    const points = Array.from({ length: 9 }, (_, i) => {
-      const a = (i / 9) * Math.PI * 2;
-      const wobble = 0.72 + rand() * 0.5;
-      return [
-        cx + Math.cos(a) * rx * wobble,
-        cy + Math.sin(a) * ry * wobble,
-      ] as const;
-    });
-    return {
-      d: closedSketchPath(points),
-      fill: rand() > 0.5 ? "#293027" : "#2b281f",
-      opacity: 0.26 + rand() * 0.2,
-    };
-  });
-
-  const water = Array.from({ length: 2 }, () => {
-    const fromLeft = rand() > 0.5;
-    const y = rand() * height;
-    const drift = 42 + rand() * 80;
-    const x0 = fromLeft ? -20 : width + 20;
-    const x1 = fromLeft ? width + 20 : -20;
-    return `M${x0.toFixed(1)},${y.toFixed(1)} C${(width * 0.3).toFixed(1)},${(y - drift).toFixed(1)} ${(width * 0.65).toFixed(1)},${(y + drift).toFixed(1)} ${x1.toFixed(1)},${(y + (rand() - 0.5) * 70).toFixed(1)} L${x1.toFixed(1)},${height + 20} L${x0.toFixed(1)},${height + 20} Z`;
-  });
-
-  const roads = Array.from({ length: 15 }, (_, i) => {
-    const horizontal = rand() > 0.45;
-    const major = i < 4;
-    const offset = horizontal ? rand() * height : rand() * width;
-    const bend = (rand() - 0.5) * 90;
-    const d = horizontal
-      ? `M-12,${offset.toFixed(1)} C${(width * 0.25).toFixed(1)},${(offset + bend).toFixed(1)} ${(width * 0.72).toFixed(1)},${(offset - bend * 0.7).toFixed(1)} ${width + 12},${(offset + (rand() - 0.5) * 40).toFixed(1)}`
-      : `M${offset.toFixed(1)},-12 C${(offset + bend).toFixed(1)},${(height * 0.25).toFixed(1)} ${(offset - bend * 0.7).toFixed(1)},${(height * 0.72).toFixed(1)} ${(offset + (rand() - 0.5) * 40).toFixed(1)},${height + 12}`;
-    return { d, major };
-  });
-
-  return { fields, roads, water, seed: (hashString(seedKey) % 997) + 1 };
-}
-
-function closedSketchPath(points: readonly (readonly [number, number])[]) {
-  return points
-    .map(([x, y], i) => `${i === 0 ? "M" : "L"}${x.toFixed(1)},${y.toFixed(1)}`)
-    .join(" ") + " Z";
-}
-
-function hashString(value: string) {
-  let hash = 2166136261;
-  for (let i = 0; i < value.length; i++) {
-    hash ^= value.charCodeAt(i);
-    hash = Math.imul(hash, 16777619);
+function tileZoomForBounds(
+  minLat: number,
+  maxLat: number,
+  minLon: number,
+  maxLon: number,
+  width: number,
+  height: number,
+  pad: number,
+) {
+  for (let z = 18; z >= 3; z--) {
+    const worldW = Math.max(lonToTileX(maxLon, z) - lonToTileX(minLon, z), 0.0001);
+    const worldH = Math.max(latToTileY(minLat, z) - latToTileY(maxLat, z), 0.0001);
+    if (worldW * 256 <= width - pad * 2 && worldH * 256 <= height - pad * 2) return z;
   }
-  return hash >>> 0;
+  return 3;
 }
 
-function seededRandom(seed: number) {
-  let state = seed || 1;
-  return () => {
-    state = Math.imul(state ^ (state >>> 15), 1 | state);
-    state ^= state + Math.imul(state ^ (state >>> 7), 61 | state);
-    return ((state ^ (state >>> 14)) >>> 0) / 4294967296;
-  };
+function mapTilesForBounds(
+  z: number,
+  minX: number,
+  maxX: number,
+  minY: number,
+  maxY: number,
+  offsetX: number,
+  offsetY: number,
+  scale: number,
+) {
+  const tileCount = 2 ** z;
+  const startX = Math.max(0, Math.floor(minX) - 1);
+  const endX = Math.min(tileCount - 1, Math.ceil(maxX) + 1);
+  const startY = Math.max(0, Math.floor(minY) - 1);
+  const endY = Math.min(tileCount - 1, Math.ceil(maxY) + 1);
+  const tiles: {
+    z: number;
+    x: number;
+    y: number;
+    screenX: number;
+    screenY: number;
+    size: number;
+  }[] = [];
+
+  for (let x = startX; x <= endX; x++) {
+    for (let y = startY; y <= endY; y++) {
+      tiles.push({
+        z,
+        x,
+        y,
+        screenX: offsetX + (x - minX) * scale,
+        screenY: offsetY + (y - minY) * scale,
+        size: scale,
+      });
+    }
+  }
+  return tiles;
+}
+
+function lonToTileX(lon: number, z: number) {
+  return ((lon + 180) / 360) * 2 ** z;
+}
+
+function latToTileY(lat: number, z: number) {
+  const clamped = Math.max(-85.05112878, Math.min(85.05112878, lat));
+  const rad = (clamped * Math.PI) / 180;
+  return (
+    (1 - Math.log(Math.tan(rad) + 1 / Math.cos(rad)) / Math.PI) /
+    2
+  ) * 2 ** z;
 }
