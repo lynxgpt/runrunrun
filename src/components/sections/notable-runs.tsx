@@ -37,6 +37,7 @@ const WEATHER_ICON: Record<WeatherCondition, React.ComponentType<{ className?: s
 const PAGE = 10;
 const INITIAL_PRELOAD = 20;
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const HALF_MARATHON_GPX_ID = "run-14165368226";
 
 export function NotableRuns() {
   const visibleTabs = TABS.filter((t) => (notableRuns[t.id] ?? []).length > 0);
@@ -223,12 +224,33 @@ function Panel({ rows, category }: PanelProps) {
               cell: (r: NotableRun) =>
                 category === "personal-bests" ? (r.displayRank ?? "") : `#${r.rank}`,
             },
-            { key: "date", header: "DATE", cell: (r: NotableRun) => r.date },
+            {
+              key: "date",
+              header: "DATE",
+              cell: (r: NotableRun) => {
+                const isHalfMarathon = category === "longest" && r.gpxId === HALF_MARATHON_GPX_ID;
+                return (
+                  <span className={cn(isHalfMarathon && "text-[#c9bd93]")}>
+                    {r.date}
+                    {isHalfMarathon ? (
+                      <span className="ml-2 text-[10px] tracking-wide text-[#d0c69d]">HM</span>
+                    ) : null}
+                  </span>
+                );
+              },
+            },
             {
               key: "distance",
               header: "DISTANCE",
               align: "right",
-              cell: (r: NotableRun) => formatKm(r.distanceKm, 2),
+              cell: (r: NotableRun) => {
+                const isHalfMarathon = category === "longest" && r.gpxId === HALF_MARATHON_GPX_ID;
+                return (
+                  <span className={cn(isHalfMarathon && "text-[#c9bd93]")}>
+                    {formatKm(r.distanceKm, 2)}
+                  </span>
+                );
+              },
             },
           ]}
         />
