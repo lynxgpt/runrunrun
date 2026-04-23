@@ -14,10 +14,10 @@ export function RadarChart({ data, labels, width = 300, height = 220, ticks }: R
   const max = Math.max(...data, ...(ticks ?? []), 1);
   const maxArc = TAU * 0.75;
   const startAngle = -Math.PI / 2;
-  const ringGap = 10;
-  const stroke = 8.5;
-  const innerRadius = 24;
-  const palette = ["#171a24", "#8b7b58", "#c9bd93", "#c9c1a4", "#b8b09b", "#9fb0b6", "#d0c69d"];
+  const ringGap = 11.5;
+  const stroke = 7.5;
+  const innerRadius = 22;
+  const palette = ["#8ca3ad", "#95a8ad", "#a1aca8", "#adb09f", "#bbb58f", "#c9bd93", "#d0c69d"];
 
   const rings = data.map((value, i) => ({
     value,
