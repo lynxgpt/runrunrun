@@ -62,7 +62,7 @@ export function GpxMap({
         {tiles.map((tile) => (
           <image
             key={`${tile.z}/${tile.x}/${tile.y}`}
-            href={`https://tile.openstreetmap.org/${tile.z}/${tile.x}/${tile.y}.png`}
+            href={`https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/${tile.z}/${tile.y}/${tile.x}`}
             x={tile.screenX}
             y={tile.screenY}
             width={tile.size}
@@ -114,7 +114,7 @@ export function GpxMap({
         fontSize={7}
         opacity="0.7"
       >
-        © OpenStreetMap contributors
+        Imagery © Esri
       </text>
     </svg>
   );
