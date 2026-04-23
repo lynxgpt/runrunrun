@@ -18,15 +18,19 @@ export function DistanceFlowChart({
   const innerW = width - padL - padR;
   const innerH = height - padT - padB;
   const xMax = Math.max(...data.map((d) => d.km), 10);
-  const yMax = Math.max(...data.map((d) => d.frequency), 1);
+  const shapedData = data.map((d) => ({
+    ...d,
+    displayFrequency: Math.sqrt(d.frequency),
+  }));
+  const yMax = Math.max(...shapedData.map((d) => d.displayFrequency), 1);
   const xTicks = niceDistanceTicks(xMax);
   const yTicks = [0.25, 0.5, 0.75, 1];
 
-  const points = data.map((d) => ({
+  const points = shapedData.map((d) => ({
     x: padL + (d.km / xMax) * innerW,
-    y: padT + innerH - (d.frequency / yMax) * innerH,
+    y: padT + innerH - (d.displayFrequency / yMax) * innerH,
     km: d.km,
-    frequency: d.frequency,
+    frequency: d.displayFrequency,
   }));
 
   const linePath = points
