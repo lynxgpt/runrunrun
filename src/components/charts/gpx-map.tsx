@@ -58,7 +58,7 @@ export function GpxMap({
       aria-label={`GPX trace for ${stats.name}`}
     >
       <rect width={width} height={height} fill="#0d0d0d" />
-      <g opacity="0.3" style={{ filter: "grayscale(1) contrast(1.15) brightness(0.72)" }}>
+      <g opacity="0.3" style={{ filter: "saturate(1.35) contrast(1.08) brightness(0.68)" }}>
         {tiles.map((tile) => (
           <image
             key={`${tile.z}/${tile.x}/${tile.y}`}
@@ -111,8 +111,8 @@ export function GpxMap({
         y={height - 5}
         textAnchor="end"
         className="fill-neutral-500 font-tamzen-sm"
-        fontSize={7}
-        opacity="0.7"
+        fontSize={5}
+        opacity="0.38"
       >
         Imagery © Esri
       </text>
