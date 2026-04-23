@@ -54,7 +54,7 @@ export function MonthlyDistanceChart({
         const y = padT + innerH - (tick / yMax) * innerH;
         return (
           <g key={tick}>
-            <line x1={padL} x2={padL + innerW} y1={y} y2={y} stroke="#242424" strokeWidth={0.65} />
+            <line x1={padL} x2={padL + innerW} y1={y} y2={y} stroke="var(--chart-grid-soft)" strokeWidth={0.65} />
             <text x={padL - 6} y={y + 3} textAnchor="end" className="fill-neutral-500 font-tamzen-sm" fontSize={9}>
               {tick}
             </text>

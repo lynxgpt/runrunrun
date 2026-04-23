@@ -68,7 +68,7 @@ export function DistanceFlowChart({
         </filter>
       </defs>
 
-      <rect x={padL} y={padT} width={innerW} height={innerH} fill="#050505" opacity="0.24" />
+      <rect x={padL} y={padT} width={innerW} height={innerH} fill="var(--chart-surface)" opacity="0.24" />
 
       {yTicks.map((tick) => {
         const y = padT + innerH - tick * innerH;
@@ -79,7 +79,7 @@ export function DistanceFlowChart({
             x2={padL + innerW}
             y1={y}
             y2={y}
-            stroke="#2b2b28"
+            stroke="var(--chart-grid)"
             strokeWidth="0.65"
             opacity="0.7"
           />
@@ -95,7 +95,7 @@ export function DistanceFlowChart({
               x2={x}
               y1={padT}
               y2={padT + innerH}
-              stroke="#252521"
+              stroke="var(--chart-grid-soft)"
               strokeWidth="0.55"
               opacity="0.7"
             />
@@ -148,7 +148,7 @@ export function DistanceFlowChart({
             y={peak.y - 3}
             width="6"
             height="6"
-            fill="#050505"
+            fill="var(--chart-surface)"
             stroke="#d0c69d"
             strokeWidth="1"
             transform={`rotate(45 ${peak.x.toFixed(1)} ${peak.y.toFixed(1)})`}

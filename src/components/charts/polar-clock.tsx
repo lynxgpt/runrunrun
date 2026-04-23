@@ -204,9 +204,9 @@ export function PolarClock({ data }: PolarClockProps) {
             </feMerge>
           </filter>
           <radialGradient id="polarClockCore" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#050505" />
-            <stop offset="58%" stopColor="#050505" />
-            <stop offset="100%" stopColor="#111" />
+            <stop offset="0%" stopColor="var(--chart-surface)" />
+            <stop offset="58%" stopColor="var(--chart-surface)" />
+            <stop offset="100%" stopColor="var(--chart-core-edge)" />
           </radialGradient>
         </defs>
 
@@ -219,7 +219,7 @@ export function PolarClock({ data }: PolarClockProps) {
             cy={cy}
             r={radius}
             fill="none"
-            stroke={index === 2 ? "#565656" : "#333"}
+            stroke={index === 2 ? "var(--chart-grid-strong)" : "var(--chart-grid)"}
             strokeWidth={index === 2 ? 1.3 : 0.95}
             opacity={index === 2 ? 0.86 : 0.7}
           />
@@ -231,7 +231,7 @@ export function PolarClock({ data }: PolarClockProps) {
             <line
               key={hour}
               {...line}
-              stroke={hour % 6 === 0 ? "#505050" : "#2e2e2e"}
+              stroke={hour % 6 === 0 ? "var(--chart-grid-strong)" : "var(--chart-grid)"}
               strokeWidth={hour % 6 === 0 ? 1.15 : 0.75}
               opacity={hour % 6 === 0 ? 0.78 : 0.54}
             />
@@ -242,7 +242,7 @@ export function PolarClock({ data }: PolarClockProps) {
           const y = cy - 57 - index * 15;
           return (
             <g key={pct}>
-              <rect x={cx - 18} y={y - 11} width="36" height="18" fill="#070707" opacity="0.82" />
+              <rect x={cx - 18} y={y - 11} width="36" height="18" fill="var(--chart-surface)" opacity="0.82" />
               <text
                 x={cx}
                 y={y + 2}
@@ -318,7 +318,7 @@ export function PolarClock({ data }: PolarClockProps) {
               <path
                 key={`core-${index}`}
                 d={segmentPath(cx, cy, inner, nextInner)}
-                fill="#fff"
+                fill="var(--chart-line)"
                 opacity={0.18 + point.strength * 0.55}
               >
                 {point.strength > 0.03 ? (
@@ -335,8 +335,8 @@ export function PolarClock({ data }: PolarClockProps) {
         </g>
 
         <circle cx={cx} cy={cy} r="45" fill="url(#polarClockCore)" />
-        <circle cx={cx} cy={cy} r="56" fill="none" stroke="#ededed" strokeWidth="1.2" opacity="0.72" />
-        <circle cx={cx} cy={cy} r="57.5" fill="none" stroke="#fff" strokeWidth="0.5" opacity="0.62" />
+        <circle cx={cx} cy={cy} r="56" fill="none" stroke="var(--chart-line)" strokeWidth="1.2" opacity="0.72" />
+        <circle cx={cx} cy={cy} r="57.5" fill="none" stroke="var(--chart-line)" strokeWidth="0.5" opacity="0.62" />
 
         {labels.map(({ h, label }) => {
           const pos = labelPosition(cx, cy, h, h % 6 === 0 ? 42 : 61);

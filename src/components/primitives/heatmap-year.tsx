@@ -18,11 +18,9 @@ function monthLabelsFrom(startIso: string): string[] {
 
 // Map km -> greyscale fill. Empty -> neutral-900.
 function cellFill(km: number, max: number) {
-  if (!km) return "#171717"; // neutral-900
+  if (!km) return "var(--heatmap-empty)";
   const t = Math.min(1, km / max);
-  // Range 28..94 (matches captured neutral-800..neutral-600 spread)
-  const v = Math.round(28 + t * 66);
-  return `rgb(${v},${v},${v})`;
+  return `color-mix(in srgb, var(--heatmap-cell-max) ${Math.round(t * 100)}%, var(--heatmap-cell-min))`;
 }
 
 export function HeatmapYear({ data }: { data: StreakYearHeatmap }) {

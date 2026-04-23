@@ -15,9 +15,7 @@ header:
 # Inline `backtick code` is rendered in a monospace style.
 # No bold, italic, or links — plain text + backtick only.
 foreword:
-  - "My running log "
-  - "To be hallucinated... "
-  - "Fulfilled by Claude "
+  - "This is my running log. Although at this moment I still haven't figured out the point of running, I have already gone quite far..."
 
 # ── FOOTER ────────────────────────────────────────────────────────────────────
 # Lines shown at the bottom of the page.

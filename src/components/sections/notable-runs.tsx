@@ -286,7 +286,7 @@ function MapPanel({ run }: { run: NotableRun }) {
           <GpxMap track={track} width={200} height={200} />
         ) : (
           <svg viewBox="0 0 200 200" className="absolute inset-0 h-full w-full">
-            <rect width="200" height="200" fill="#0d0d0d" />
+            <rect width="200" height="200" fill="var(--chart-surface-strong)" />
             <text
               x="100"
               y="100"

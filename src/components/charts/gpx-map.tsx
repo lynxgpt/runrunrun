@@ -15,7 +15,7 @@ export function GpxMap({
   width = 400,
   height = 400,
   strokeWidth = 1.8,
-  color = "#ededed",
+  color = "var(--chart-line)",
   showStartEnd = true,
 }: GpxMapProps) {
   const { points, stats } = track;
@@ -88,7 +88,7 @@ export function GpxMap({
           <rect x="0" y={height - fade} width={width} height={fade} fill={`url(#${bottomFadeId})`} />
         </mask>
       </defs>
-      <rect width={width} height={height} fill="#0d0d0d" />
+      <rect width={width} height={height} fill="var(--chart-surface-strong)" />
       <g
         opacity="0.3"
         mask={`url(#${maskId})`}
@@ -114,7 +114,7 @@ export function GpxMap({
             x2={width}
             y1={(height / 12) * i}
             y2={(height / 12) * i}
-            stroke="#151515"
+            stroke="var(--chart-grid-soft)"
             strokeWidth={0.5}
           />
           <line
@@ -122,7 +122,7 @@ export function GpxMap({
             x2={(width / 12) * i}
             y1={0}
             y2={height}
-            stroke="#151515"
+            stroke="var(--chart-grid-soft)"
             strokeWidth={0.5}
           />
         </g>
@@ -138,7 +138,7 @@ export function GpxMap({
       {showStartEnd ? (
         <>
           <circle cx={sx} cy={sy} r={3} fill={color} />
-          <circle cx={ex} cy={ey} r={3} fill="#0d0d0d" stroke={color} strokeWidth={1.2} />
+          <circle cx={ex} cy={ey} r={3} fill="var(--chart-surface-strong)" stroke={color} strokeWidth={1.2} />
         </>
       ) : null}
     </svg>

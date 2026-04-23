@@ -45,7 +45,7 @@ export function RadarChart({ data, labels, width = 300, height = 220, ticks }: R
         </filter>
       </defs>
 
-      <rect x={cx - 98} y={cy - 92} width="196" height="184" fill="#050505" opacity="0.24" />
+      <rect x={cx - 98} y={cy - 92} width="196" height="184" fill="var(--chart-surface)" opacity="0.24" />
 
       {rings.map((ring) => (
         <circle
@@ -54,7 +54,7 @@ export function RadarChart({ data, labels, width = 300, height = 220, ticks }: R
           cy={cy}
           r={ring.radius}
           fill="none"
-          stroke="#262622"
+          stroke="var(--chart-grid)"
           strokeWidth="0.65"
           opacity="0.55"
         />
@@ -82,7 +82,7 @@ export function RadarChart({ data, labels, width = 300, height = 220, ticks }: R
             cx={end.x}
             cy={end.y}
             r="2.3"
-            fill="#050505"
+            fill="var(--chart-surface)"
             stroke={ring.color}
             strokeWidth="0.9"
             opacity="0.9"
@@ -95,7 +95,7 @@ export function RadarChart({ data, labels, width = 300, height = 220, ticks }: R
         y1={cy - innerRadius - ringGap * 6 - 13}
         x2={cx}
         y2={cy + innerRadius + ringGap * 6 + 13}
-        stroke="#3a3a34"
+        stroke="var(--chart-grid)"
         strokeWidth="0.55"
         opacity="0.58"
         strokeDasharray="2 3"
