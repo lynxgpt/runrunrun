@@ -49,6 +49,10 @@ export function NotableRuns() {
   const filterKey =
     filter.kind === "none" ? "none" : `${filter.kind}:${filter.code}`;
 
+  useEffect(() => {
+    if (filter.kind === "day") setCategory("longest");
+  }, [filter.kind]);
+
   const onTabKey = (e: React.KeyboardEvent<HTMLButtonElement>, idx: number) => {
     if (e.key !== "ArrowRight" && e.key !== "ArrowLeft" && e.key !== "Home" && e.key !== "End") return;
     e.preventDefault();
@@ -168,6 +172,7 @@ function applyFilter(
     if (filter.kind === "state") return r.location.region === filter.code;
     if (filter.kind === "city") return r.location.city === filter.code;
     if (filter.kind === "month") return r.dateMonth === filter.code;
+    if (filter.kind === "day") return r.dateIso === filter.code;
     return true;
   });
   return matched.map((r, i) => ({ ...r, rank: i + 1 }));

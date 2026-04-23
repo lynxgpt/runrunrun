@@ -1,5 +1,8 @@
+"use client";
+
 import type { StreakYearHeatmap } from "@/types/activity";
 import { formatNumber } from "@/lib/format";
+import { toggleDay, useGeoFilter } from "@/lib/geo-filter";
 
 const DOW_LABELS = ["M", "T", "W", "T", "F", "S", "S"];
 const MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -23,6 +26,7 @@ function cellFill(km: number, max: number) {
 }
 
 export function HeatmapYear({ data }: { data: StreakYearHeatmap }) {
+  const filter = useGeoFilter();
   const cellSize = 13;
   const gap = 2;
   const labelW = 20;
@@ -42,6 +46,20 @@ export function HeatmapYear({ data }: { data: StreakYearHeatmap }) {
     const week = Math.floor((i + (7 - dow)) / 7) % weeks;
     return { ...c, dow, week };
   });
+
+  const jumpToNotableRuns = () => {
+    window.requestAnimationFrame(() => {
+      document.getElementById("notable-runs-heading")?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    });
+  };
+
+  const onPickDay = (date: string) => {
+    toggleDay(date, formatDayLabel(date));
+    jumpToNotableRuns();
+  };
 
   return (
     <div className="w-full overflow-x-auto">
@@ -68,18 +86,43 @@ export function HeatmapYear({ data }: { data: StreakYearHeatmap }) {
             {lb}
           </text>
         ))}
-        {cells.map((c, i) => (
-          <rect
-            key={i}
-            x={labelW + c.week * (cellSize + gap)}
-            y={c.dow * (cellSize + gap)}
-            width={cellSize}
-            height={cellSize}
-            fill={cellFill(c.km, max)}
-          >
-            <title>{`${c.date} — ${c.km.toFixed(2)} km`}</title>
-          </rect>
-        ))}
+        {cells.map((c, i) => {
+          const active = filter.kind === "day" && filter.code === c.date;
+          const clickable = c.km > 0;
+          return (
+            <g
+              key={i}
+              role={clickable ? "button" : undefined}
+              tabIndex={clickable ? 0 : undefined}
+              aria-label={clickable ? `Filter to ${formatDayLabel(c.date)}, ${c.km.toFixed(2)} kilometers` : undefined}
+              aria-pressed={clickable ? active : undefined}
+              className={clickable ? "cursor-pointer outline-none" : undefined}
+              onClick={clickable ? () => onPickDay(c.date) : undefined}
+              onKeyDown={
+                clickable
+                  ? (event) => {
+                      if (event.key === "Enter" || event.key === " ") {
+                        event.preventDefault();
+                        onPickDay(c.date);
+                      }
+                    }
+                  : undefined
+              }
+            >
+              <rect
+                x={labelW + c.week * (cellSize + gap)}
+                y={c.dow * (cellSize + gap)}
+                width={cellSize}
+                height={cellSize}
+                fill={cellFill(c.km, max)}
+                stroke={active ? "#d0c69d" : "transparent"}
+                strokeWidth={active ? 1.2 : 0}
+              >
+                <title>{`${c.date} — ${c.km.toFixed(2)} km`}</title>
+              </rect>
+            </g>
+          );
+        })}
         {monthLabelsFrom(data.cells[0]?.date ?? "2024-01-01").map((m, i) => {
           const x = labelW + (i * (weeks - 1) / 11) * (cellSize + gap) + cellSize;
           return (
@@ -97,4 +140,13 @@ export function HeatmapYear({ data }: { data: StreakYearHeatmap }) {
       </svg>
     </div>
   );
+}
+
+function formatDayLabel(date: string): string {
+  return new Date(date + "T00:00:00Z").toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    timeZone: "UTC",
+  });
 }
