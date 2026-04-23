@@ -45,7 +45,6 @@ export function GpxMap({
         return `${i === 0 ? "M" : "L"}${x.toFixed(1)},${y.toFixed(1)}`;
       })
       .join(" ") ?? "";
-  const routeSegments = repeatedRouteSegments(points.map((p) => project(p.lat, p.lon)));
 
   const [sx, sy] = project(points[0].lat, points[0].lon);
   const [ex, ey] = project(points[points.length - 1].lat, points[points.length - 1].lon);
@@ -130,24 +129,12 @@ export function GpxMap({
       ))}
       <path
         d={d}
-        stroke="#0d0d0d"
-        strokeWidth={strokeWidth + 1.8}
+        stroke={color}
+        strokeWidth={strokeWidth}
         fill="none"
         strokeLinecap="round"
         strokeLinejoin="round"
-        opacity="0.72"
       />
-      {routeSegments.map((segment, i) => (
-        <path
-          key={i}
-          d={`M${segment.x1.toFixed(1)},${segment.y1.toFixed(1)} L${segment.x2.toFixed(1)},${segment.y2.toFixed(1)}`}
-          stroke={repeatColor(segment.repeatCount, color)}
-          strokeWidth={strokeWidth + Math.min(segment.repeatCount - 1, 2) * 0.28}
-          fill="none"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      ))}
       {showStartEnd ? (
         <>
           <circle cx={sx} cy={sy} r={3} fill={color} />
@@ -160,42 +147,6 @@ export function GpxMap({
 
 function safeId(value: string) {
   return value.replace(/[^a-zA-Z0-9_-]/g, "-");
-}
-
-function repeatedRouteSegments(projectedPoints: readonly (readonly [number, number])[]) {
-  const segments = projectedPoints.slice(1).map(([x2, y2], index) => {
-    const [x1, y1] = projectedPoints[index];
-    return {
-      x1,
-      y1,
-      x2,
-      y2,
-      mx: (x1 + x2) / 2,
-      my: (y1 + y2) / 2,
-      angle: Math.atan2(y2 - y1, x2 - x1),
-    };
-  });
-
-  return segments.map((segment, index) => {
-    const nearby = segments.reduce((count, other, otherIndex) => {
-      if (Math.abs(otherIndex - index) <= 4) return count;
-      const distance = Math.hypot(segment.mx - other.mx, segment.my - other.my);
-      if (distance > 3.2) return count;
-      const angleDelta = Math.abs(Math.atan2(
-        Math.sin(segment.angle - other.angle),
-        Math.cos(segment.angle - other.angle),
-      ));
-      const aligned = Math.min(angleDelta, Math.PI - angleDelta) < 0.75;
-      return aligned ? count + 1 : count;
-    }, 0);
-    return { ...segment, repeatCount: Math.min(3, nearby + 1) };
-  });
-}
-
-function repeatColor(repeatCount: number, baseColor: string) {
-  if (repeatCount >= 3) return "#d0c69d";
-  if (repeatCount === 2) return "#c2bfae";
-  return baseColor;
 }
 
 function tileZoomForBounds(
