@@ -862,10 +862,12 @@ function buildRunDistanceFlow(distances: number[]) {
       const z = (km - distance) / bandwidth;
       return sum + Math.exp(-0.5 * z * z);
     }, 0);
+    const headEnd = 5;
+    const headTaper = km >= headEnd ? 1 : Math.pow(Math.max(0, km / headEnd), 3.2);
     const tailStart = xMax * 0.78;
     const tailT = Math.max(0, Math.min(1, (km - tailStart) / (xMax - tailStart || 1)));
     const tailTaper = km <= tailStart ? 1 : 1 - Math.pow(tailT, 1.45) * 0.92;
-    const frequency = density * Math.max(0.08, tailTaper);
+    const frequency = density * headTaper * Math.max(0.08, tailTaper);
     return { km, frequency: +frequency.toFixed(3) };
   });
 }
