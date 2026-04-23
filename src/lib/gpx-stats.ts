@@ -847,6 +847,25 @@ function monthKey(d: Date): string {
   return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, "0")}`;
 }
 
+function buildRunDistanceFlow(distances: number[]) {
+  const usable = distances.filter((km) => Number.isFinite(km) && km > 0);
+  if (!usable.length) return [];
+
+  const maxDistance = Math.max(...usable);
+  const xMax = Math.max(10, Math.ceil(maxDistance / 5) * 5);
+  const step = 0.5;
+  const bandwidth = Math.max(1.15, xMax / 34);
+
+  return Array.from({ length: Math.floor(xMax / step) + 1 }, (_, i) => {
+    const km = +(i * step).toFixed(1);
+    const frequency = usable.reduce((sum, distance) => {
+      const z = (km - distance) / bandwidth;
+      return sum + Math.exp(-0.5 * z * z);
+    }, 0);
+    return { km, frequency: +frequency.toFixed(3) };
+  });
+}
+
 function monthLabel(d: Date): string {
   const month = d.toLocaleDateString("en-US", { month: "short", timeZone: "UTC" });
   return d.getUTCMonth() === 0 ? `${month} ${String(d.getUTCFullYear()).slice(2)}` : month;
@@ -910,6 +929,8 @@ export const runDistances: HistogramBucket[] = DIST_BUCKETS.map((b) => ({
   label: b.label,
   count: tracks.filter((t) => t.stats.distanceKm >= b.min && t.stats.distanceKm < b.max).length,
 }));
+
+export const runDistanceFlow = buildRunDistanceFlow(tracks.map((t) => t.stats.distanceKm));
 
 export const treadmillVsOutdoor = { treadmill: 0, outdoor: tracks.length };
 

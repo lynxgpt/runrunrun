@@ -104,6 +104,11 @@ export interface HistogramBucket {
   count: number;
 }
 
+export interface DistanceFrequencyPoint {
+  km: number;
+  frequency: number;
+}
+
 export interface GeoRow {
   name: string;
   code?: string;

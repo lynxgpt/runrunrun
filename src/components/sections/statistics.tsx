@@ -1,5 +1,5 @@
 import { ChartCard } from "@/components/primitives/chart-card";
-import { BarChart } from "@/components/charts/bar-chart";
+import { DistanceFlowChart } from "@/components/charts/distance-flow-chart";
 import { MonthlyDistanceChart } from "@/components/charts/monthly-distance-chart";
 import { PolarClock } from "@/components/charts/polar-clock";
 import { RadarChart } from "@/components/charts/radar-chart";
@@ -11,7 +11,7 @@ import {
   heartRateZones,
   monthlyMileage,
   paceDistribution,
-  runDistances,
+  runDistanceFlow,
   workoutByTime,
 } from "@/lib/mock-data";
 
@@ -39,14 +39,7 @@ export function Statistics() {
         </ChartCard>
 
         <ChartCard title="RUN DISTANCES" fixedChartHeight className="h-full">
-          {/* No hardcoded yTicks — auto-normalises to the largest bucket */}
-          <BarChart
-            data={runDistances.map((b, i) => ({
-              label: b.label,
-              value: b.count,
-              opacity: 0.8 + (i / Math.max(runDistances.length - 1, 1)) * 0.2,
-            }))}
-          />
+          <DistanceFlowChart data={runDistanceFlow} />
         </ChartCard>
       </div>
 

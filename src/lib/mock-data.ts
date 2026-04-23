@@ -10,6 +10,7 @@ export {
   workoutByTime,
   avgByWeekday,
   runDistances,
+  runDistanceFlow,
   treadmillVsOutdoor,
   paceDistribution,
   filteredPaceDistribution,
