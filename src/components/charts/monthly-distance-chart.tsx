@@ -92,12 +92,8 @@ export function MonthlyDistanceChart({
               height={innerH}
               fill="transparent"
             />
-            <rect
-              x={x}
-              y={y}
-              width={barW}
-              height={h}
-              rx={1.5}
+            <polygon
+              points={`${x.toFixed(2)},${(padT + innerH).toFixed(2)} ${(x + barW).toFixed(2)},${(padT + innerH).toFixed(2)} ${(x + barW).toFixed(2)},${y.toFixed(2)}`}
               fill={`url(#${monthGradientId(month.month)})`}
               fillOpacity={active ? 1 : 0.86}
               stroke={active ? "#d6d6d6" : "transparent"}
@@ -105,7 +101,7 @@ export function MonthlyDistanceChart({
             />
             {month.marker ? (
               <MilestoneStar
-                cx={x + barW / 2}
+                cx={x + barW}
                 cy={Math.max(11, y - 8)}
                 kind={month.marker}
               />
