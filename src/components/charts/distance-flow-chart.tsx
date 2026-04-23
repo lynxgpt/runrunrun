@@ -20,7 +20,7 @@ export function DistanceFlowChart({
   const xMax = Math.max(...data.map((d) => d.km), 10);
   const shapedData = data.map((d) => ({
     ...d,
-    displayFrequency: Math.sqrt(d.frequency),
+    displayFrequency: Math.pow(d.frequency, 0.72),
   }));
   const yMax = Math.max(...shapedData.map((d) => d.displayFrequency), 1);
   const xTicks = niceDistanceTicks(xMax);
