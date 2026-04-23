@@ -68788,5 +68788,238 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running"
     }
+  },
+  "evening-run-18219590640": {
+    "id": "evening-run-18219590640",
+    "name": "Evening Run",
+    "stats": {
+      "name": "Evening Run",
+      "distanceKm": 5.205,
+      "movingSec": 1880,
+      "elapsedSec": 2099,
+      "paceSecPerKm": 361,
+      "elevationM": 39,
+      "avgHr": 133,
+      "startTime": "2026-04-22T23:53:20.000Z",
+      "endTime": "2026-04-23T00:28:19.000Z",
+      "startLat": 40.747337,
+      "startLon": -73.957074,
+      "meanLat": 40.745664,
+      "meanLon": -73.958726,
+      "bbox": {
+        "minLat": 40.744777,
+        "maxLat": 40.748872,
+        "minLon": -73.959675,
+        "maxLon": -73.956626
+      },
+      "paceSamples": [
+        243.41314449284985,
+        351.1875645121356,
+        352.55943624161273,
+        335.66966100966613,
+        334.88667052838696,
+        362.73425512219933,
+        365.98143296124357,
+        351.1534750118286,
+        341.00856422933435,
+        357.8335751054353,
+        328.8432419226193,
+        361.71238506612184,
+        374.1813378375985,
+        327.6590856119409,
+        378.1073930029132,
+        375.3208742414025,
+        355.00641049045066,
+        389.8997314944297,
+        388.5109098984334,
+        394.46133683432777,
+        338.1966208499747,
+        394.32632206351553,
+        395.9008394875069,
+        401.6675080830997,
+        382.44654032179824,
+        399.2135147352076,
+        380.99701728415647,
+        386.9809203824295,
+        383.46220880677646,
+        381.3824117076955,
+        390.1558805155725
+      ],
+      "paceSampleDetails": [
+        {
+          "paceSecPerKm": 243.41314449284985,
+          "lowSpeedSec": 8,
+          "skippedBeforeSec": 1
+        },
+        {
+          "paceSecPerKm": 351.1875645121356,
+          "lowSpeedSec": 0,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 352.55943624161273,
+          "lowSpeedSec": 0,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 335.66966100966613,
+          "lowSpeedSec": 0,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 334.88667052838696,
+          "lowSpeedSec": 1,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 362.73425512219933,
+          "lowSpeedSec": 2,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 365.98143296124357,
+          "lowSpeedSec": 2,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 351.1534750118286,
+          "lowSpeedSec": 0,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 341.00856422933435,
+          "lowSpeedSec": 0,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 357.8335751054353,
+          "lowSpeedSec": 1,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 328.8432419226193,
+          "lowSpeedSec": 2,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 361.71238506612184,
+          "lowSpeedSec": 1,
+          "skippedBeforeSec": 102
+        },
+        {
+          "paceSecPerKm": 374.1813378375985,
+          "lowSpeedSec": 2,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 327.6590856119409,
+          "lowSpeedSec": 2,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 378.1073930029132,
+          "lowSpeedSec": 2,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 375.3208742414025,
+          "lowSpeedSec": 2,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 355.00641049045066,
+          "lowSpeedSec": 1,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 389.8997314944297,
+          "lowSpeedSec": 4,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 388.5109098984334,
+          "lowSpeedSec": 3,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 394.46133683432777,
+          "lowSpeedSec": 5,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 338.1966208499747,
+          "lowSpeedSec": 2,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 394.32632206351553,
+          "lowSpeedSec": 0,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 395.9008394875069,
+          "lowSpeedSec": 2,
+          "skippedBeforeSec": 116
+        },
+        {
+          "paceSecPerKm": 401.6675080830997,
+          "lowSpeedSec": 3,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 382.44654032179824,
+          "lowSpeedSec": 2,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 399.2135147352076,
+          "lowSpeedSec": 3,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 380.99701728415647,
+          "lowSpeedSec": 1,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 386.9809203824295,
+          "lowSpeedSec": 1,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 383.46220880677646,
+          "lowSpeedSec": 0,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 381.3824117076955,
+          "lowSpeedSec": 0,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 390.1558805155725,
+          "lowSpeedSec": 0,
+          "skippedBeforeSec": 0
+        }
+      ],
+      "hrZoneSec": [
+        1402,
+        478,
+        0,
+        0
+      ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 332.9925564930745,
+        "1K": 343.5242648122539,
+        "5K": 408.6821124012501
+      },
+      "pbQuality": {
+        "repeatedShare": 0,
+        "movingShare": 0.8956646021915198,
+        "maxSegmentKph": 20.7,
+        "hasTeleportGap": false
+      },
+      "activityType": "running"
+    }
   }
 };
