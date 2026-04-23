@@ -686,6 +686,7 @@ function diffYMD(start: Date, end: Date): { years: number; months: number; days:
 
 const first = tracks[0] ? dateOf(tracks[0]) : new Date();
 const last = tracks[tracks.length - 1] ? dateOf(tracks[tracks.length - 1]) : new Date();
+const today = new Date();
 const uniqueDates = new Set(tracks.map((t) => isoDate(dateOf(t))));
 
 const totalKm = tracks.reduce((s, t) => s + t.stats.distanceKm, 0);
@@ -699,7 +700,7 @@ export const streakStats: StreakStats = {
   totalKm: Math.round(totalKm),
   totalHours: Math.round(totalMovingSec / 3600),
   totalElevationM,
-  ...diffYMD(first, last),
+  ...diffYMD(first, today),
 };
 
 // ---------------------------------------------------------------------------
