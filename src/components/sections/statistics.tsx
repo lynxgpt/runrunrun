@@ -1,18 +1,19 @@
 import { ChartCard } from "@/components/primitives/chart-card";
-import { BarChart } from "@/components/charts/bar-chart";
+import { DistanceFlowChart } from "@/components/charts/distance-flow-chart";
+import { MonthlyDistanceChart } from "@/components/charts/monthly-distance-chart";
 import { PolarClock } from "@/components/charts/polar-clock";
 import { RadarChart } from "@/components/charts/radar-chart";
-import { DensityChart } from "@/components/charts/density-chart";
 import { HorizontalBars } from "@/components/charts/horizontal-bars";
+import { PaceDistributionToggle } from "@/components/sections/pace-distribution-toggle";
 import {
-  annualMileage,
   avgByWeekday,
+  filteredPaceDistribution,
   heartRateZones,
+  monthlyMileage,
   paceDistribution,
-  runDistances,
+  runDistanceFlow,
   workoutByTime,
 } from "@/lib/mock-data";
-import { formatPace } from "@/lib/format";
 
 export function Statistics() {
   return (
@@ -21,48 +22,37 @@ export function Statistics() {
         STATISTICS
       </h2>
 
-      <div className="grid gap-12 md:grid-cols-2 xl:grid-cols-4 mb-16">
-        <ChartCard title="ANNUAL DISTANCE">
-          <BarChart
-            data={annualMileage.map((a) => ({ label: String(a.year), value: a.km }))}
-            xAxisLabel="year"
-            yAxisLabel="km"
-          />
+      <div className="grid items-stretch gap-12 md:grid-cols-2 xl:grid-cols-4 mb-16">
+        <ChartCard title="MONTHLY DISTANCE" caption="it's too cold then it's too hot" showCaption fixedChartHeight className="h-full">
+          <MonthlyDistanceChart data={monthlyMileage} />
         </ChartCard>
 
-        <ChartCard title="WORKOUT ACTIVITY BY TIME">
+        <ChartCard title="WHAT TIME" caption="get up at 7 to run?" showCaption fixedChartHeight className="h-full">
           <PolarClock data={workoutByTime} />
         </ChartCard>
 
-        <ChartCard title="AVERAGE DAILY DISTANCE BY DAY">
+        <ChartCard title="DAILY DISTANCE" fixedChartHeight className="h-full">
           <RadarChart
             data={avgByWeekday}
             labels={["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]}
           />
         </ChartCard>
 
-        <ChartCard title="RUN DISTANCES">
-          {/* No hardcoded yTicks — auto-normalises to the largest bucket */}
-          <BarChart
-            data={runDistances.map((b) => ({ label: b.label, value: b.count }))}
-          />
+        <ChartCard title="RUN DISTANCES" fixedChartHeight className="h-full">
+          <DistanceFlowChart data={runDistanceFlow} />
         </ChartCard>
       </div>
 
       <div className="grid gap-12 md:grid-cols-2 xl:grid-cols-2 mb-16">
         <ChartCard title="PACE DISTRIBUTION">
-          <DensityChart
-            bins={paceDistribution.bins}
-            axisLabels={paceDistribution.axisLabels}
-            meanBin={paceDistribution.meanBin ?? undefined}
-            medianBin={paceDistribution.medianBin ?? undefined}
-            meanLabel={`mean: ${formatPace(paceDistribution.meanSec)}`}
-            medianLabel={`median: ${formatPace(paceDistribution.medianSec)}`}
+          <PaceDistributionToggle
+            original={paceDistribution}
+            filtered={filteredPaceDistribution}
           />
         </ChartCard>
 
         <ChartCard title="HEART RATE ZONES">
-          <HorizontalBars data={heartRateZones.map((z) => ({ label: z.label, sub: z.bpm, value: z.count }))} />
+          <HorizontalBars data={heartRateZones.map((z) => ({ label: z.label, sub: z.bpm, value: z.pct ?? 0 }))} unit="%" />
         </ChartCard>
 
         {/* EQUIPMENT: hidden — no shoe data in GPX files. */}

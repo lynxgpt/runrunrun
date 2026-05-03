@@ -9,30 +9,32 @@ interface GpxMapProps {
   showStartEnd?: boolean;
 }
 
-// Simple equirectangular projection — fine for the ~10-mile extents of a run.
-// Scales to fit the viewBox while preserving aspect ratio (keeps the trace
-// geographically correct, so Brooklyn doesn't look stretched).
+// Web Mercator projection so the GPX trace aligns with real map tiles.
 export function GpxMap({
   track,
   width = 400,
   height = 400,
   strokeWidth = 1.8,
-  color = "#ededed",
+  color = "var(--chart-line)",
   showStartEnd = true,
 }: GpxMapProps) {
   const { points, stats } = track;
   const { minLat, maxLat, minLon, maxLon } = stats.bbox;
-  const latMid = (minLat + maxLat) / 2;
-  const latRange = maxLat - minLat;
-  const lonRange = (maxLon - minLon) * Math.cos((latMid * Math.PI) / 180);
   const pad = 12;
-  const scale = Math.min((width - pad * 2) / lonRange, (height - pad * 2) / latRange);
-  const offsetX = (width - lonRange * scale) / 2;
-  const offsetY = (height - latRange * scale) / 2;
+  const zoom = tileZoomForBounds(minLat, maxLat, minLon, maxLon, width, height, pad);
+  const minX = lonToTileX(minLon, zoom);
+  const maxX = lonToTileX(maxLon, zoom);
+  const minY = latToTileY(maxLat, zoom);
+  const maxY = latToTileY(minLat, zoom);
+  const worldW = Math.max(maxX - minX, 0.0001);
+  const worldH = Math.max(maxY - minY, 0.0001);
+  const scale = Math.min((width - pad * 2) / worldW, (height - pad * 2) / worldH);
+  const offsetX = (width - worldW * scale) / 2;
+  const offsetY = (height - worldH * scale) / 2;
 
   const project = (lat: number, lon: number) => {
-    const x = offsetX + (lon - minLon) * Math.cos((latMid * Math.PI) / 180) * scale;
-    const y = offsetY + (maxLat - lat) * scale; // invert Y
+    const x = offsetX + (lonToTileX(lon, zoom) - minX) * scale;
+    const y = offsetY + (latToTileY(lat, zoom) - minY) * scale;
     return [x, y] as const;
   };
 
@@ -46,6 +48,13 @@ export function GpxMap({
 
   const [sx, sy] = project(points[0].lat, points[0].lon);
   const [ex, ey] = project(points[points.length - 1].lat, points[points.length - 1].lon);
+  const tiles = mapTilesForBounds(zoom, minX, maxX, minY, maxY, offsetX, offsetY, scale);
+  const maskId = `mapFade-${safeId(track.id)}`;
+  const leftFadeId = `${maskId}-left`;
+  const rightFadeId = `${maskId}-right`;
+  const topFadeId = `${maskId}-top`;
+  const bottomFadeId = `${maskId}-bottom`;
+  const fade = Math.min(width, height) * 0.05;
 
   return (
     <svg
@@ -54,7 +63,49 @@ export function GpxMap({
       role="img"
       aria-label={`GPX trace for ${stats.name}`}
     >
-      <rect width={width} height={height} fill="#0d0d0d" />
+      <defs>
+        <linearGradient id={leftFadeId} x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="black" />
+          <stop offset="100%" stopColor="white" />
+        </linearGradient>
+        <linearGradient id={rightFadeId} x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="white" />
+          <stop offset="100%" stopColor="black" />
+        </linearGradient>
+        <linearGradient id={topFadeId} x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="black" />
+          <stop offset="100%" stopColor="white" />
+        </linearGradient>
+        <linearGradient id={bottomFadeId} x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="white" />
+          <stop offset="100%" stopColor="black" />
+        </linearGradient>
+        <mask id={maskId}>
+          <rect width={width} height={height} fill="white" />
+          <rect x="0" y="0" width={fade} height={height} fill={`url(#${leftFadeId})`} />
+          <rect x={width - fade} y="0" width={fade} height={height} fill={`url(#${rightFadeId})`} />
+          <rect x="0" y="0" width={width} height={fade} fill={`url(#${topFadeId})`} />
+          <rect x="0" y={height - fade} width={width} height={fade} fill={`url(#${bottomFadeId})`} />
+        </mask>
+      </defs>
+      <rect width={width} height={height} fill="var(--chart-surface-strong)" />
+      <g
+        opacity="0.3"
+        mask={`url(#${maskId})`}
+        style={{ filter: "saturate(1.35) contrast(1.08) brightness(0.68)" }}
+      >
+        {tiles.map((tile) => (
+          <image
+            key={`${tile.z}/${tile.x}/${tile.y}`}
+            href={`https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/${tile.z}/${tile.y}/${tile.x}`}
+            x={tile.screenX}
+            y={tile.screenY}
+            width={tile.size}
+            height={tile.size}
+            preserveAspectRatio="none"
+          />
+        ))}
+      </g>
       {/* subtle grid */}
       {Array.from({ length: 12 }).map((_, i) => (
         <g key={i}>
@@ -63,7 +114,7 @@ export function GpxMap({
             x2={width}
             y1={(height / 12) * i}
             y2={(height / 12) * i}
-            stroke="#151515"
+            stroke="var(--chart-grid-soft)"
             strokeWidth={0.5}
           />
           <line
@@ -71,7 +122,7 @@ export function GpxMap({
             x2={(width / 12) * i}
             y1={0}
             y2={height}
-            stroke="#151515"
+            stroke="var(--chart-grid-soft)"
             strokeWidth={0.5}
           />
         </g>
@@ -87,9 +138,82 @@ export function GpxMap({
       {showStartEnd ? (
         <>
           <circle cx={sx} cy={sy} r={3} fill={color} />
-          <circle cx={ex} cy={ey} r={3} fill="#0d0d0d" stroke={color} strokeWidth={1.2} />
+          <circle cx={ex} cy={ey} r={3} fill="var(--chart-surface-strong)" stroke={color} strokeWidth={1.2} />
         </>
       ) : null}
     </svg>
   );
+}
+
+function safeId(value: string) {
+  return value.replace(/[^a-zA-Z0-9_-]/g, "-");
+}
+
+function tileZoomForBounds(
+  minLat: number,
+  maxLat: number,
+  minLon: number,
+  maxLon: number,
+  width: number,
+  height: number,
+  pad: number,
+) {
+  for (let z = 18; z >= 3; z--) {
+    const worldW = Math.max(lonToTileX(maxLon, z) - lonToTileX(minLon, z), 0.0001);
+    const worldH = Math.max(latToTileY(minLat, z) - latToTileY(maxLat, z), 0.0001);
+    if (worldW * 256 <= width - pad * 2 && worldH * 256 <= height - pad * 2) return z;
+  }
+  return 3;
+}
+
+function mapTilesForBounds(
+  z: number,
+  minX: number,
+  maxX: number,
+  minY: number,
+  maxY: number,
+  offsetX: number,
+  offsetY: number,
+  scale: number,
+) {
+  const tileCount = 2 ** z;
+  const startX = Math.max(0, Math.floor(minX) - 1);
+  const endX = Math.min(tileCount - 1, Math.ceil(maxX) + 1);
+  const startY = Math.max(0, Math.floor(minY) - 1);
+  const endY = Math.min(tileCount - 1, Math.ceil(maxY) + 1);
+  const tiles: {
+    z: number;
+    x: number;
+    y: number;
+    screenX: number;
+    screenY: number;
+    size: number;
+  }[] = [];
+
+  for (let x = startX; x <= endX; x++) {
+    for (let y = startY; y <= endY; y++) {
+      tiles.push({
+        z,
+        x,
+        y,
+        screenX: offsetX + (x - minX) * scale,
+        screenY: offsetY + (y - minY) * scale,
+        size: scale,
+      });
+    }
+  }
+  return tiles;
+}
+
+function lonToTileX(lon: number, z: number) {
+  return ((lon + 180) / 360) * 2 ** z;
+}
+
+function latToTileY(lat: number, z: number) {
+  const clamped = Math.max(-85.05112878, Math.min(85.05112878, lat));
+  const rad = (clamped * Math.PI) / 180;
+  return (
+    (1 - Math.log(Math.tan(rad) + 1 / Math.cos(rad)) / Math.PI) /
+    2
+  ) * 2 ** z;
 }

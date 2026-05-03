@@ -38,11 +38,11 @@ export function DensityChart({
 
   return (
     <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-auto">
-      <path d={area} fill="#1a1a1a" />
-      <path d={line} stroke="#ededed" strokeWidth={1} fill="none" />
+      <path d={area} fill="var(--chart-area)" />
+      <path d={line} stroke="var(--chart-line)" strokeWidth={1} fill="none" />
       {typeof meanBin === "number" ? (
         <g>
-          <line x1={padL + meanBin * step} x2={padL + meanBin * step} y1={padT} y2={padT + innerH} stroke="#ededed" strokeDasharray="3 3" strokeWidth={0.8} />
+          <line x1={padL + meanBin * step} x2={padL + meanBin * step} y1={padT} y2={padT + innerH} stroke="var(--chart-line)" strokeDasharray="3 3" strokeWidth={0.8} />
           {meanLabel ? (
             <text x={padL + meanBin * step + 4} y={padT + 10} className="fill-neutral-300 font-tamzen-sm" fontSize={9}>{meanLabel}</text>
           ) : null}

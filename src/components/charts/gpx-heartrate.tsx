@@ -38,7 +38,7 @@ export function GpxHeartRate({ track, width = 360, height = 80, showXAxis = true
       className="w-full h-full"
       preserveAspectRatio="none"
     >
-      <path d={area} fill="#1a1a1a" />
+      <path d={area} fill="var(--chart-area)" />
       <path d={line} stroke="#f87171" strokeWidth={1} fill="none" />
       {/* max HR label */}
       <text

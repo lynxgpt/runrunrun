@@ -69,7 +69,7 @@ export function GpxPace({ track, width = 360, height = 80, showXAxis = false }: 
       className="w-full h-full"
       preserveAspectRatio="none"
     >
-      <path d={area} fill="#1a1a1a" />
+      <path d={area} fill="var(--chart-area)" />
       <path d={line} stroke="#7dd3fc" strokeWidth={1} fill="none" />
       {/* fastest pace label (top of chart) */}
       <text x={2} y={toY(minP) - 3} className="fill-neutral-500 font-tamzen-sm" fontSize={8}>

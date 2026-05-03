@@ -156,18 +156,18 @@ export function minutePacesFromTrackPoints(
 export function buildPaceDistributionFromSamples(
   samplesSecPerKm: number[],
 ): PaceDistributionResult {
+  const valid = samplesSecPerKm.filter(
+    (s) => s >= PACE_MIN_SEC && s <= PACE_MAX_SEC,
+  );
   const bins = new Array<number>(PACE_BIN_COUNT).fill(0);
-  for (const sample of samplesSecPerKm) {
+  for (const sample of valid) {
     bins[paceBinIndexFor(sample)] += 1;
   }
 
-  const meanSec = samplesSecPerKm.length
-    ? Math.round(
-        samplesSecPerKm.reduce((sum, sample) => sum + sample, 0) /
-          samplesSecPerKm.length,
-      )
+  const meanSec = valid.length
+    ? Math.round(valid.reduce((sum, sample) => sum + sample, 0) / valid.length)
     : 0;
-  const medianSec = percentileMedian(samplesSecPerKm);
+  const medianSec = percentileMedian(valid);
 
   return {
     meanSec,

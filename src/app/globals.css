@@ -14,6 +14,18 @@ html[data-theme="dark"] {
   color-scheme: dark;
   --bg: #0a0a0a;
   --fg: #ededed;
+  --chart-surface: #050505;
+  --chart-surface-strong: #0d0d0d;
+  --chart-area: #1a1a1a;
+  --chart-grid: #2b2b28;
+  --chart-grid-soft: #252521;
+  --chart-grid-strong: #565656;
+  --chart-line: #ededed;
+  --chart-line-inverse: #050505;
+  --chart-core-edge: #111111;
+  --heatmap-empty: #171717;
+  --heatmap-cell-min: #1c1c1c;
+  --heatmap-cell-max: #5e5e5e;
 }
 
 /* Light palette — low-saturation grey. Mix is ~0.7 white / 0.3 black for the
@@ -38,6 +50,18 @@ html[data-theme="light"] {
   --color-neutral-800: #a8a8a8;
   --color-neutral-900: #b3b3b3;
   --color-neutral-950: #bdbdbd;
+  --chart-surface: #c4c4c4;
+  --chart-surface-strong: #bdbdbd;
+  --chart-area: #9d9d9d;
+  --chart-grid: #85857f;
+  --chart-grid-soft: #94948d;
+  --chart-grid-strong: #555555;
+  --chart-line: #202020;
+  --chart-line-inverse: #c4c4c4;
+  --chart-core-edge: #a8a8a8;
+  --heatmap-empty: #a4a4a4;
+  --heatmap-cell-min: #929292;
+  --heatmap-cell-max: #2f2f2f;
 }
 
 /* Tamzen bitmap monospace — self-hosted TTFs from sunaku/tamzen-font */

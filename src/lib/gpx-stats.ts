@@ -7,13 +7,10 @@ import { gpxSummaries, type GpxSummary } from "./gpx-processed";
 import rawMeta from "../../public/strava-meta.json";
 import {
   buildPaceDistributionFromSamples,
-  minutePacesFromTrackPoints,
-  type GpxTrackPointInput,
 } from "./pace-distribution";
-const fs = require("node:fs");
-const path = require("node:path");
 const worldAtlas = require("world-atlas/countries-10m.json");
 const usAtlas = require("us-atlas/states-10m.json");
+const usCountiesAtlas = require("us-atlas/counties-10m.json");
 const { feature } = require("topojson-client");
 const isoCountries = require("i18n-iso-countries");
 
@@ -27,6 +24,7 @@ import type {
   GeoRow,
   HeatmapCell,
   HistogramBucket,
+  MonthlyMileage,
   NotableRun,
   NotableRunCategory,
   StreakStats,
@@ -43,6 +41,7 @@ const TRACK_CUTOFF = new Date("2025-01-01T00:00:00.000Z");
 export const tracks: GpxSummary[] = Object.values(gpxSummaries)
   .filter((t) => t.stats.startTime)
   .filter((t) => new Date(t.stats.startTime!).getTime() >= TRACK_CUTOFF.getTime())
+  .filter((t) => !t.stats.activityType || t.stats.activityType === "running" || t.stats.activityType === "trailrun")
   .sort(
     (a, b) =>
       new Date(a.stats.startTime!).getTime() - new Date(b.stats.startTime!).getTime(),
@@ -50,6 +49,16 @@ export const tracks: GpxSummary[] = Object.values(gpxSummaries)
 
 function dateOf(t: GpxSummary): Date {
   return new Date(t.stats.startTime!);
+}
+
+function hourInNewYork(t: GpxSummary): number {
+  return Number(
+    new Intl.DateTimeFormat("en-US", {
+      timeZone: "America/New_York",
+      hour: "numeric",
+      hour12: false,
+    }).format(dateOf(t)),
+  );
 }
 
 function isoDate(d: Date): string {
@@ -191,6 +200,47 @@ const US_STATE_FEATURES = feature(
   };
 }>;
 
+const US_COUNTY_FEATURES = feature(
+  usCountiesAtlas,
+  usCountiesAtlas.objects.counties,
+).features as Array<{
+  id: string | number;
+  properties: { name: string };
+  geometry: {
+    type: "Polygon" | "MultiPolygon";
+    coordinates: number[][][] | number[][][][];
+  };
+}>;
+
+const US_COUNTIES = US_COUNTY_FEATURES.map((county) => {
+  const id = String(county.id).padStart(5, "0");
+  const stateFips = id.slice(0, 2);
+  let minLat = Infinity;
+  let maxLat = -Infinity;
+  let minLon = Infinity;
+  let maxLon = -Infinity;
+  const polygons =
+    county.geometry.type === "Polygon"
+      ? [county.geometry.coordinates as number[][][]]
+      : (county.geometry.coordinates as number[][][][]);
+  for (const polygon of polygons) {
+    for (const ring of polygon) {
+      for (const [lon, lat] of ring) {
+        if (lat < minLat) minLat = lat;
+        if (lat > maxLat) maxLat = lat;
+        if (lon < minLon) minLon = lon;
+        if (lon > maxLon) maxLon = lon;
+      }
+    }
+  }
+  return {
+    ...county,
+    stateFips,
+    centerLat: (minLat + maxLat) / 2,
+    centerLon: (minLon + maxLon) / 2,
+  };
+});
+
 function pointInRing(ring: number[][], point: [number, number]): boolean {
   let inside = false;
   for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
@@ -254,6 +304,204 @@ function lookupUsState(lat: number, lon: number): { region: string } | null {
   return null;
 }
 
+function lookupUsCounty(lat: number, lon: number): { county: string } | null {
+  const point: [number, number] = [lon, lat];
+  for (const county of US_COUNTIES) {
+    const contains =
+      county.geometry.type === "Polygon"
+        ? polygonContainsPoint(county.geometry.coordinates as number[][][], point)
+        : (county.geometry.coordinates as number[][][][]).some((polygon) =>
+            polygonContainsPoint(polygon, point),
+          );
+    if (contains) return { county: county.properties.name };
+  }
+  return null;
+}
+
+function lookupNearestUsCounty(
+  lat: number,
+  lon: number,
+  region?: string,
+): { county: string; region?: string } | null {
+  const stateFips = region
+    ? Object.entries(US_STATE_BY_FIPS).find(([, code]) => code === region)?.[0]
+    : null;
+  let best: { county: string; d2: number; stateFips: string } | null = null;
+  for (const county of US_COUNTIES) {
+    if (stateFips && county.stateFips !== stateFips) continue;
+    const dLat = county.centerLat - lat;
+    const dLon = county.centerLon - lon;
+    const d2 = dLat * dLat + dLon * dLon;
+    if (!best || d2 < best.d2) {
+      best = { county: county.properties.name, d2, stateFips: county.stateFips };
+    }
+  }
+  // About ~55km squared-ish upper bound; enough to catch shore/water means
+  // without inventing counties across a whole state.
+  if (!best || best.d2 >= 0.25) return null;
+  return {
+    county: best.county,
+    region: region ?? US_STATE_BY_FIPS[best.stateFips],
+  };
+}
+
+function withUsCountyFallback(
+  loc: ActivityLocation,
+  lat: number,
+  lon: number,
+): ActivityLocation {
+  // Keep NYC on its dedicated borough path; generic county fallback should
+  // only fill in otherwise-unspecified U.S. locations.
+  if (loc.countryCode !== "US" || loc.city) return loc;
+  const county = lookupUsCounty(lat, lon) ?? lookupNearestUsCounty(lat, lon, loc.region);
+  return county ? { ...loc, county: county.county } : loc;
+}
+
+function formatCountyLabel(county: string): string {
+  return /\bCounty$/i.test(county) ? county : `${county} County`;
+}
+
+const DISPLAY_CITY_HINTS: Array<{
+  countryCode: string;
+  region?: string;
+  city: string;
+  lat: number;
+  lon: number;
+  radiusKm: number;
+}> = [
+  { countryCode: "US", region: "NJ", city: "Jersey City", lat: 40.7178, lon: -74.0431, radiusKm: 6.5 },
+  { countryCode: "US", region: "NJ", city: "Hoboken", lat: 40.7440, lon: -74.0324, radiusKm: 4.5 },
+  { countryCode: "US", region: "NJ", city: "Weehawken", lat: 40.7695, lon: -74.0204, radiusKm: 4.5 },
+  { countryCode: "US", region: "NJ", city: "West New York", lat: 40.7879, lon: -74.0143, radiusKm: 3.5 },
+  { countryCode: "US", region: "NJ", city: "West Orange", lat: 40.7987, lon: -74.2390, radiusKm: 7 },
+  { countryCode: "US", region: "NJ", city: "Englewood Cliffs", lat: 40.8859, lon: -73.9521, radiusKm: 5 },
+  { countryCode: "US", region: "NJ", city: "Alpine", lat: 40.9559, lon: -73.9313, radiusKm: 5 },
+  { countryCode: "US", region: "LA", city: "New Orleans", lat: 29.9511, lon: -90.0715, radiusKm: 14 },
+  { countryCode: "US", region: "PA", city: "Philadelphia", lat: 39.9526, lon: -75.1652, radiusKm: 14 },
+  { countryCode: "US", region: "PA", city: "Lebanon", lat: 40.3409, lon: -76.4113, radiusKm: 24 },
+  { countryCode: "US", region: "FL", city: "Miami Beach", lat: 25.7907, lon: -80.1300, radiusKm: 10 },
+  { countryCode: "US", region: "VA", city: "Richmond", lat: 37.5407, lon: -77.4360, radiusKm: 12 },
+  { countryCode: "US", region: "GA", city: "Savannah", lat: 32.0809, lon: -81.0912, radiusKm: 12 },
+  { countryCode: "US", region: "WY", city: "Jackson", lat: 43.4799, lon: -110.7624, radiusKm: 40 },
+  { countryCode: "US", region: "WY", city: "Pinedale", lat: 42.8666, lon: -109.8630, radiusKm: 12 },
+  { countryCode: "US", region: "CA", city: "Palm Springs", lat: 33.8303, lon: -116.5453, radiusKm: 14 },
+  { countryCode: "US", region: "CA", city: "Coronado", lat: 32.6859, lon: -117.1831, radiusKm: 7 },
+  { countryCode: "US", region: "CA", city: "Chula Vista", lat: 32.6401, lon: -117.0842, radiusKm: 14 },
+  { countryCode: "US", region: "CA", city: "Encinitas", lat: 33.0369, lon: -117.2919, radiusKm: 10 },
+  { countryCode: "US", region: "CA", city: "Carlsbad", lat: 33.1581, lon: -117.3506, radiusKm: 12 },
+  { countryCode: "US", region: "NY", city: "Beacon", lat: 41.5048, lon: -73.9696, radiusKm: 10 },
+  { countryCode: "US", region: "NY", city: "Cold Spring", lat: 41.4201, lon: -73.9546, radiusKm: 8 },
+  { countryCode: "US", region: "NY", city: "Lake Placid", lat: 44.2795, lon: -73.9799, radiusKm: 12 },
+  { countryCode: "US", region: "SC", city: "Charleston", lat: 32.7765, lon: -79.9311, radiusKm: 12 },
+  { countryCode: "US", region: "UT", city: "Salt Lake City", lat: 40.7608, lon: -111.8910, radiusKm: 14 },
+  { countryCode: "GB", city: "London", lat: 51.5074, lon: -0.1278, radiusKm: 18 },
+  { countryCode: "FR", city: "Paris", lat: 48.8566, lon: 2.3522, radiusKm: 14 },
+];
+
+function distanceKm(lat0: number, lon0: number, lat1: number, lon1: number): number {
+  const kmPerLat = 111.32;
+  const kmPerLon = 111.32 * Math.cos(((lat0 + lat1) / 2) * (Math.PI / 180));
+  const dLat = (lat1 - lat0) * kmPerLat;
+  const dLon = (lon1 - lon0) * kmPerLon;
+  return Math.sqrt(dLat * dLat + dLon * dLon);
+}
+
+function lookupDisplayCityHint(loc: ActivityLocation): { city: string; region?: string } | null {
+  if (loc.lat == null || loc.lon == null) {
+    return loc.city ? { city: loc.city, region: loc.region } : null;
+  }
+  const lon = loc.lon;
+  const hints = DISPLAY_CITY_HINTS.filter((hint) => {
+    if (hint.countryCode !== loc.countryCode) return false;
+    if (loc.region === "NJ") return hint.region === "NJ";
+    if (hint.region && loc.region && hint.region !== loc.region) {
+      // Allow explicit overrides when the stored region is obviously wrong
+      // but only for far-away outliers like travel runs.
+      const farFromStoredRegion = loc.region === "NJ" && Math.abs(lon) > 100;
+      return farFromStoredRegion;
+    }
+    return true;
+  });
+  let best: { city: string; region?: string; distance: number } | null = null;
+  for (const hint of hints) {
+    const d = distanceKm(loc.lat, loc.lon, hint.lat, hint.lon);
+    if (d > hint.radiusKm) continue;
+    if (!best || d < best.distance) {
+      best = { city: hint.city, region: hint.region, distance: d };
+    }
+  }
+  if (best) return { city: best.city, region: best.region };
+  return loc.city ? { city: loc.city, region: loc.region } : null;
+}
+
+function displayLocationForNotable(loc: ActivityLocation): {
+  primary: string;
+  secondary: string;
+} {
+  let displayRegion = loc.region;
+  const hinted = lookupDisplayCityHint(loc);
+  let city = hinted?.city ?? null;
+  if (hinted?.region) displayRegion = hinted.region;
+
+  if (
+    !city &&
+    loc.countryCode === "US" &&
+    loc.region !== "NJ" &&
+    loc.lat != null &&
+    loc.lon != null
+  ) {
+    const lat = loc.lat;
+    const lon = loc.lon;
+    const MAN_LAT_MIN = 40.700;
+    const MAN_LAT_MAX = 40.880;
+    if (
+      (loc.region === "NY" || !loc.region) &&
+      lat >= MAN_LAT_MIN &&
+      lat <= MAN_LAT_MAX &&
+      lon >= hudsonCenterlineWestOf(lat)
+    ) {
+      city = lon <= manhattanEastLon(lat) ? "Manhattan" : lat > 40.726 ? "Queens" : "Brooklyn";
+      displayRegion = "NY";
+    } else if (loc.region === "NY" || !loc.region) {
+      const borough = REGIONS.find((r) =>
+        r.countryCode === "US" &&
+        r.region === "NY" &&
+        r.city &&
+        NYC_BOROUGHS.has(r.city) &&
+        lat >= r.bbox.minLat &&
+        lat <= r.bbox.maxLat &&
+        lon >= r.bbox.minLon &&
+        lon <= r.bbox.maxLon,
+      );
+      if (borough?.city) {
+        city = borough.city;
+        displayRegion = "NY";
+      }
+    }
+  }
+
+  let countyLabel: string | null = null;
+  if (!city && loc.countryCode === "US" && loc.lat != null && loc.lon != null) {
+    const exactCounty = lookupUsCounty(loc.lat, loc.lon);
+    const nearestCounty =
+      (loc.region !== "NJ" && loc.county ? { county: loc.county, region: displayRegion } : null) ??
+      (exactCounty ? { county: exactCounty.county, region: displayRegion } : null) ??
+      (loc.region !== "NJ" ? lookupNearestUsCounty(loc.lat, loc.lon, displayRegion) : null);
+    if (nearestCounty) {
+      countyLabel = formatCountyLabel(nearestCounty.county);
+      displayRegion = displayRegion ?? nearestCounty.region;
+    }
+  }
+
+  const primary =
+    city ??
+    countyLabel ??
+    loc.country;
+  const secondary =
+    displayRegion ? `${displayRegion} · ${loc.country.toUpperCase()}` : loc.country.toUpperCase();
+  return { primary, secondary };
+}
+
 // Piecewise approximation of Manhattan's EAST shoreline (East River edge).
 // Each entry is [latitude, easternmost_land_longitude] going south→north.
 // A centroid west of this line is on Manhattan land; east of it is in the
@@ -281,6 +529,43 @@ const MANHATTAN_EAST_SHORE: [number, number][] = [
   [40.869, -73.916], // 175th St
   [40.878, -73.910], // Inwood / north tip
 ];
+
+// Western boundary for Manhattan classification — approximately the eastern
+// edge of the NJ waterfront (Hoboken / Weehawken / Fort Lee). Points whose
+// mean longitude is west of this line started from NJ and should not be
+// attributed to Manhattan, even though GPS multipath can push Manhattan
+// tracks ~10–15 m westward into the Hudson. The center-channel would be
+// too aggressive; the NJ waterfront edge is the right cut.
+// Each entry: [latitude, minimum_longitude_to_be_Manhattan].
+// More positive (less negative) = tighter boundary.
+// This sits between the NJ waterfront (~-74.024 to -74.030) and the
+// GPS-offset Manhattan runs (~-74.018), excluding the NJ side.
+const MANHATTAN_WEST_BOUNDARY: [number, number][] = [
+  [40.700, -74.021], // south of Battery Park / Liberty State Park
+  [40.727, -74.022], // Hoboken south level
+  [40.750, -74.022], // Hoboken north / central level
+  [40.765, -74.021], // Weehawken / Port Imperial
+  [40.780, -74.017], // Weehawken Heights / Palisades
+  [40.800, -73.997], // Fort Lee / Palisades cliffs
+  [40.830, -73.965], // Fort Lee north
+  [40.860, -73.942], // Alpine NJ
+  [40.878, -73.929], // Alpine / state line
+];
+
+function hudsonCenterlineWestOf(lat: number): number {
+  const s = MANHATTAN_WEST_BOUNDARY;
+  if (lat <= s[0][0]) return s[0][1];
+  if (lat >= s[s.length - 1][0]) return s[s.length - 1][1];
+  for (let i = 0; i < s.length - 1; i++) {
+    const [lat0, lon0] = s[i];
+    const [lat1, lon1] = s[i + 1];
+    if (lat >= lat0 && lat <= lat1) {
+      const t = (lat - lat0) / (lat1 - lat0);
+      return lon0 + t * (lon1 - lon0);
+    }
+  }
+  return s[0][1];
+}
 
 // Returns the easternmost longitude that is still Manhattan land at a given
 // latitude. Points east of this value are in the East River.
@@ -311,8 +596,18 @@ function locationFor(t: GpxSummary): ActivityLocation {
   // River and misclassify LIC / Greenpoint / DUMBO runs. Instead we check the
   // actual land boundary with a piecewise shoreline polyline.
   const MAN_LAT_MIN = 40.700, MAN_LAT_MAX = 40.880;
-  const MAN_LON_MIN = -74.025; // Hudson River / NJ boundary (generous)
-  if (lat >= MAN_LAT_MIN && lat <= MAN_LAT_MAX && lon >= MAN_LON_MIN) {
+
+  // NJ waterfront early exit: if the run STARTED west of the NJ east shore
+  // (-74.018), it originated in NJ regardless of where the mean falls.
+  // GPS multipath never pushes a Manhattan-start this far west (~500m margin).
+  if (
+    lat >= MAN_LAT_MIN && lat <= MAN_LAT_MAX &&
+    t.stats.startLon != null && t.stats.startLon < -74.018
+  ) {
+    return { country: "United States", countryCode: "US", region: "NJ", lat, lon };
+  }
+
+  if (lat >= MAN_LAT_MIN && lat <= MAN_LAT_MAX && lon >= hudsonCenterlineWestOf(lat)) {
     const eastEdge = manhattanEastLon(lat);
     if (lon <= eastEdge) {
       // On Manhattan island land
@@ -342,29 +637,29 @@ function locationFor(t: GpxSummary): ActivityLocation {
       if (r.countryCode === "US" && !r.region) {
         const state = lookupUsState(lat, lon);
         if (state) {
-          return {
+          return withUsCountyFallback({
             country: r.country,
             countryCode: r.countryCode,
             region: state.region,
             lat,
             lon,
-          };
+          }, lat, lon);
         }
       }
-      return {
+      return withUsCountyFallback({
         country: r.country,
         countryCode: r.countryCode,
         region: r.region,
         city: r.city,
         lat,
         lon,
-      };
+      }, lat, lon);
     }
   }
   const country = lookupCountry(lat, lon);
   if (country?.countryCode === "US") {
     const state = lookupUsState(lat, lon);
-    if (state) return { ...country, ...state, lat, lon };
+    if (state) return withUsCountyFallback({ ...country, ...state, lat, lon }, lat, lon);
   }
   if (country) return { ...country, lat, lon };
   return { country: "Unknown", countryCode: "??", lat, lon };
@@ -391,6 +686,7 @@ function diffYMD(start: Date, end: Date): { years: number; months: number; days:
 
 const first = tracks[0] ? dateOf(tracks[0]) : new Date();
 const last = tracks[tracks.length - 1] ? dateOf(tracks[tracks.length - 1]) : new Date();
+const today = new Date();
 const uniqueDates = new Set(tracks.map((t) => isoDate(dateOf(t))));
 
 const totalKm = tracks.reduce((s, t) => s + t.stats.distanceKm, 0);
@@ -404,7 +700,7 @@ export const streakStats: StreakStats = {
   totalKm: Math.round(totalKm),
   totalHours: Math.round(totalMovingSec / 3600),
   totalElevationM,
-  ...diffYMD(first, last),
+  ...diffYMD(first, today),
 };
 
 // ---------------------------------------------------------------------------
@@ -413,9 +709,13 @@ export const streakStats: StreakStats = {
 function toNotableRun(t: GpxSummary, rank: number, weather: WeatherCondition): NotableRun {
   const d = dateOf(t);
   const meta = stravaMeta[t.id] ?? {};
+  const location = locationFor(t);
+  const displayLocation = displayLocationForNotable(location);
   return {
     rank,
     date: niceDate(d),
+    dateIso: isoDate(d),
+    dateMonth: monthKey(d),
     distanceKm: +t.stats.distanceKm.toFixed(2),
     movingSec: t.stats.movingSec,
     paceSecPerKm: t.stats.paceSecPerKm ?? 0,
@@ -423,7 +723,9 @@ function toNotableRun(t: GpxSummary, rank: number, weather: WeatherCondition): N
     ...(meta.tempC != null ? { tempC: meta.tempC } : {}),
     weather,
     title: t.name,
-    location: locationFor(t),
+    location,
+    displayLocationPrimary: displayLocation.primary,
+    displayLocationSecondary: displayLocation.secondary,
     gpxId: t.id,
     gpxPath: `/gpx/${t.id}.gpx`,
     ...(meta.photoPath != null ? { photoPath: meta.photoPath } : {}),
@@ -447,118 +749,19 @@ const byElevation = rankBy(tracks, (t) => t.stats.elevationM).map((t, i) =>
 // Personal bests: for each distance bucket, pick the fastest run that
 // reached at least that distance.
 const PB_BUCKETS: { label: string; minKm: number; tag: string }[] = [
+  { label: "400m",        minKm: 0.4,  tag: "400m PB" },
+  { label: "1K",          minKm: 1.0,  tag: "1K PB" },
   { label: "5K",          minKm: 5,    tag: "5K PB" },
   { label: "10K",         minKm: 10,   tag: "10K PB" },
-  { label: "Half Marathon", minKm: 21.0975, tag: "Half PB" },
-  { label: "Marathon",    minKm: 42.195, tag: "Marathon PB" },
+  { label: "Half Marathon", minKm: 21.0975, tag: "HM PB" },
+  { label: "Marathon",    minKm: 42.195, tag: "FM PB" },
 ];
-
-interface RawTrackPoint {
-  lat: number;
-  lon: number;
-  km: number;
-  t: number;
-}
-
-interface RawTrackFile {
-  points?: RawTrackPoint[];
-}
-
-interface PbTrackQuality {
-  repeatedShare: number;
-  movingShare: number;
-  maxSegmentKph: number;
-  hasTeleportGap: boolean;
-}
-
-const pbTrackQualityCache = new Map<string, PbTrackQuality>();
-const paceMinuteCache = new Map<string, number[]>();
-
-function pbTrackQualityFor(t: GpxSummary): PbTrackQuality {
-  const cached = pbTrackQualityCache.get(t.id);
-  if (cached) return cached;
-
-  const fallback: PbTrackQuality = {
-    repeatedShare: 0,
-    movingShare: t.stats.elapsedSec ? t.stats.movingSec / t.stats.elapsedSec : 0,
-    maxSegmentKph: 0,
-    hasTeleportGap: false,
-  };
-
-  const trackPath = path.join(process.cwd(), "public", "tracks", `${t.id}.json`);
-  if (!fs.existsSync(trackPath)) {
-    pbTrackQualityCache.set(t.id, fallback);
-    return fallback;
-  }
-
-  const raw = JSON.parse(fs.readFileSync(trackPath, "utf8")) as RawTrackFile;
-  const points = raw.points ?? [];
-  if (points.length < 2) {
-    pbTrackQualityCache.set(t.id, fallback);
-    return fallback;
-  }
-
-  let repeatedSteps = 0;
-  let maxSegmentKph = 0;
-  let hasTeleportGap = false;
-
-  for (let i = 1; i < points.length; i += 1) {
-    const prev = points[i - 1];
-    const curr = points[i];
-    const dt = curr.t - prev.t;
-    const dk = curr.km - prev.km;
-    if (curr.lat === prev.lat && curr.lon === prev.lon) repeatedSteps += 1;
-    const kph = dt > 0 ? (dk / dt) * 3600 : Infinity;
-    if (kph > maxSegmentKph) maxSegmentKph = kph;
-    if (dt >= 600 && dk >= 1) hasTeleportGap = true;
-  }
-
-  const quality: PbTrackQuality = {
-    repeatedShare: repeatedSteps / Math.max(points.length - 1, 1),
-    movingShare: fallback.movingShare,
-    maxSegmentKph,
-    hasTeleportGap,
-  };
-  pbTrackQualityCache.set(t.id, quality);
-  return quality;
-}
-
-function paceMinuteSamplesFor(t: GpxSummary): number[] {
-  const cached = paceMinuteCache.get(t.id);
-  if (cached) return cached;
-
-  const gpxPath = path.join(process.cwd(), "public", "gpx", `${t.id}.gpx`);
-  if (!fs.existsSync(gpxPath)) {
-    paceMinuteCache.set(t.id, []);
-    return [];
-  }
-
-  const xml = fs.readFileSync(gpxPath, "utf8") as string;
-  const points: GpxTrackPointInput[] = [];
-  const re = /<trkpt\s+lat="([^"]+)"\s+lon="([^"]+)">([\s\S]*?)<\/trkpt>/g;
-  let match: RegExpExecArray | null;
-  while ((match = re.exec(xml)) !== null) {
-    const lat = Number.parseFloat(match[1]);
-    const lon = Number.parseFloat(match[2]);
-    const body = match[3];
-    const timeMatch = body.match(/<time>([^<]+)<\/time>/);
-    points.push({
-      lat,
-      lon,
-      time: timeMatch ? timeMatch[1] : null,
-    });
-  }
-
-  const samples = minutePacesFromTrackPoints(points);
-  paceMinuteCache.set(t.id, samples);
-  return samples;
-}
 
 // PB-only drift detection: we keep the rest of the site unchanged, but
 // exclude runs whose raw traces show either stop-heavy corrupted motion or
 // a giant mid-run teleport after the watch stopped recording for a while.
 function hasBadPbTrace(t: GpxSummary): boolean {
-  const { bbox, distanceKm, paceSecPerKm } = t.stats;
+  const { bbox, distanceKm, paceSecPerKm, pbQuality } = t.stats;
   if (!distanceKm) return true;
   // Diagonal of the bbox in degrees × 111 km/deg ≈ km (rough, equirectangular)
   const dLat = bbox.maxLat - bbox.minLat;
@@ -567,15 +770,24 @@ function hasBadPbTrace(t: GpxSummary): boolean {
   if (bboxDiagKm > distanceKm * 3) return true;
   // Impossibly fast pace (< 2 min/km = 120 sec/km) → likely GPS jump
   if (paceSecPerKm != null && paceSecPerKm < 120) return true;
-  const quality = pbTrackQualityFor(t);
-  if (
-    quality.movingShare < 0.55 &&
-    quality.repeatedShare > 0.15 &&
-    quality.maxSegmentKph > 25
-  ) {
-    return true;
+  if (pbQuality) {
+    const avgKph = paceSecPerKm ? 3600 / paceSecPerKm : null;
+    const stopHeavyDrift =
+      pbQuality.movingShare < 0.55 &&
+      pbQuality.repeatedShare > 0.15 &&
+      pbQuality.maxSegmentKph > 25;
+    const shortRunCorruption =
+      pbQuality.movingShare < 0.4 &&
+      pbQuality.repeatedShare > 0.1 &&
+      pbQuality.maxSegmentKph > 24;
+    const severeSpeedSpike =
+      avgKph != null &&
+      pbQuality.maxSegmentKph > Math.max(40, avgKph * 4);
+    if (stopHeavyDrift || shortRunCorruption || severeSpeedSpike) {
+      return true;
+    }
+    if (pbQuality.hasTeleportGap) return true;
   }
-  if (quality.hasTeleportGap) return true;
   return false;
 }
 
@@ -583,14 +795,23 @@ const personalBests: NotableRun[] = PB_BUCKETS.flatMap((b, i) => {
   const eligible = tracks.filter(
     (t) =>
       t.stats.distanceKm >= b.minKm &&
-      t.stats.paceSecPerKm != null &&
-      !hasBadPbTrace(t),
+      t.stats.pbElapsedPaceSecPerKm?.[b.label] != null,
   );
   if (!eligible.length) return [];
   const fastest = eligible.reduce((a, c) =>
-    (c.stats.paceSecPerKm ?? Infinity) < (a.stats.paceSecPerKm ?? Infinity) ? c : a,
+    (c.stats.pbElapsedPaceSecPerKm?.[b.label] ?? Infinity) <
+    (a.stats.pbElapsedPaceSecPerKm?.[b.label] ?? Infinity)
+      ? c
+      : a,
   );
-  return [{ ...toNotableRun(fastest, i + 1, "clear"), title: `${b.tag} · ${fastest.name}` }];
+  return [
+    {
+      ...toNotableRun(fastest, i + 1, "clear"),
+      displayRank: b.label,
+      title: `${b.tag} · ${fastest.name}`,
+      paceSecPerKm: Math.round(fastest.stats.pbElapsedPaceSecPerKm?.[b.label] ?? 0),
+    },
+  ];
 });
 
 export const notableRuns: Record<NotableRunCategory, NotableRun[]> = {
@@ -624,10 +845,68 @@ export const annualMileage: AnnualMileage[] = annualYearNumbers.length
   ? annualYearNumbers.map((y) => ({ year: y, km: Math.round(annualMap.get(y) ?? 0) }))
   : [{ year: 1, km: 0 }];
 
-// Hour-of-day percentages (24 bins). Use LOCAL time so the distribution
-// reflects when the user actually runs ("morning", "evening"), not UTC.
+function monthKey(d: Date): string {
+  return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, "0")}`;
+}
+
+function buildRunDistanceFlow(distances: number[]) {
+  const usable = distances.filter((km) => Number.isFinite(km) && km > 0);
+  if (!usable.length) return [];
+
+  const maxDistance = Math.max(...usable);
+  const xMax = Math.max(10, Math.ceil(maxDistance / 5) * 5);
+  const step = 0.5;
+  const bandwidth = Math.max(1.15, xMax / 34);
+
+  return Array.from({ length: Math.floor(xMax / step) + 1 }, (_, i) => {
+    const km = +(i * step).toFixed(1);
+    const density = usable.reduce((sum, distance) => {
+      const z = (km - distance) / bandwidth;
+      return sum + Math.exp(-0.5 * z * z);
+    }, 0);
+    const headEnd = 5;
+    const headTaper = km >= headEnd ? 1 : Math.pow(Math.max(0, km / headEnd), 3.2);
+    const tailStart = xMax * 0.78;
+    const tailT = Math.max(0, Math.min(1, (km - tailStart) / (xMax - tailStart || 1)));
+    const tailTaper = km <= tailStart ? 1 : 1 - Math.pow(tailT, 1.45) * 0.92;
+    const frequency = density * headTaper * Math.max(0.08, tailTaper);
+    return { km, frequency: +frequency.toFixed(3) };
+  });
+}
+
+function monthLabel(d: Date): string {
+  const month = d.toLocaleDateString("en-US", { month: "short", timeZone: "UTC" });
+  return d.getUTCMonth() === 0 ? `${month} ${String(d.getUTCFullYear()).slice(2)}` : month;
+}
+
+const monthlyMap = new Map<string, number>();
+for (const t of tracks) {
+  const d = dateOf(t);
+  monthlyMap.set(monthKey(d), (monthlyMap.get(monthKey(d)) ?? 0) + t.stats.distanceKm);
+}
+
+const monthlyStart = new Date(Date.UTC(2025, 0, 1));
+const monthlyEnd = tracks.length
+  ? new Date(Date.UTC(dateOf(tracks[tracks.length - 1]).getUTCFullYear(), dateOf(tracks[tracks.length - 1]).getUTCMonth(), 1))
+  : monthlyStart;
+
+export const monthlyMileage: MonthlyMileage[] = [];
+for (const d = new Date(monthlyStart); d <= monthlyEnd; d.setUTCMonth(d.getUTCMonth() + 1)) {
+  const key = monthKey(d);
+  monthlyMileage.push({
+    month: key,
+    label: monthLabel(d),
+    km: Math.round(monthlyMap.get(key) ?? 0),
+    monthIndex: d.getUTCMonth(),
+    ...(key === "2025-04" ? { marker: "half-star" as const } : {}),
+    ...(key === "2026-05" ? { marker: "star" as const } : {}),
+  });
+}
+
+// Hour-of-day percentages (24 bins). Pin to New York time so localhost and
+// GitHub Pages produce the same "when I run" shape regardless of build host.
 const hourCounts = new Array<number>(24).fill(0);
-for (const t of tracks) hourCounts[dateOf(t).getHours()] += 1;
+for (const t of tracks) hourCounts[hourInNewYork(t)] += 1;
 const hourTotal = hourCounts.reduce((a, b) => a + b, 0) || 1;
 export const workoutByTime: number[] = hourCounts.map((c) => +((c / hourTotal) * 100).toFixed(1));
 
@@ -645,41 +924,59 @@ export const avgByWeekday: number[] = weekdaySum.map((s, i) =>
 
 // Distance histogram, metric buckets
 const DIST_BUCKETS: { label: string; min: number; max: number }[] = [
-  { label: "1km",     min: 0,   max: 2 },
-  { label: "2-3km",   min: 2,   max: 4 },
-  { label: "4-5km",   min: 4,   max: 6 },
-  { label: "6-8km",   min: 6,   max: 9 },
-  { label: "9-11km",  min: 9,   max: 12 },
-  { label: "12-15km", min: 12,  max: 16 },
-  { label: "16-20km", min: 16,  max: 21 },
-  { label: "HM",      min: 21,  max: 30 },
-  { label: "30-42km", min: 30,  max: 42.2 },
-  { label: "M+",      min: 42.2, max: Infinity },
+  { label: "<5",    min: 0,  max: 5 },
+  { label: "5-7",   min: 5,  max: 7 },
+  { label: "7-10",  min: 7,  max: 10 },
+  { label: "10-13", min: 10, max: 13 },
+  { label: "13-16", min: 13, max: 16 },
+  { label: "16-22", min: 16, max: 22 },
+  { label: "22-32", min: 22, max: 32 },
+  { label: "32+",   min: 32, max: Infinity },
 ];
 export const runDistances: HistogramBucket[] = DIST_BUCKETS.map((b) => ({
   label: b.label,
   count: tracks.filter((t) => t.stats.distanceKm >= b.min && t.stats.distanceKm < b.max).length,
 }));
 
+export const runDistanceFlow = buildRunDistanceFlow(tracks.map((t) => t.stats.distanceKm));
+
 export const treadmillVsOutdoor = { treadmill: 0, outdoor: tracks.length };
 
-const minutePaceSamples = tracks.flatMap((t) => paceMinuteSamplesFor(t));
-export const paceDistribution = buildPaceDistributionFromSamples(minutePaceSamples);
+const PACE_FILTER_LOW_SPEED_SEC = 15;
+const PACE_FILTER_SKIPPED_BEFORE_SEC = 30;
 
-const HR_ZONES: { label: string; bpm: string; max: number }[] = [
-  { label: "Easy",      bpm: "<139bpm",    max: 139 },
-  { label: "Tempo",     bpm: "140-159bpm", max: 159 },
-  { label: "Threshold", bpm: "160-166bpm", max: 166 },
-  { label: "VO2 Max",   bpm: ">167bpm",    max: 999 },
+const minutePaceSamples = tracks.flatMap((t) => t.stats.paceSamples ?? []);
+export const paceDistribution = buildPaceDistributionFromSamples(minutePaceSamples);
+const filteredMinutePaceSamples = tracks.flatMap((t) =>
+  (t.stats.paceSampleDetails ?? [])
+    .filter(
+      (sample) =>
+        sample.lowSpeedSec < PACE_FILTER_LOW_SPEED_SEC &&
+        sample.skippedBeforeSec < PACE_FILTER_SKIPPED_BEFORE_SEC,
+    )
+    .map((sample) => sample.paceSecPerKm),
+);
+export const filteredPaceDistribution =
+  buildPaceDistributionFromSamples(filteredMinutePaceSamples);
+
+const HR_ZONE_META = [
+  { label: "Easy",      bpm: "<139bpm"    },
+  { label: "Tempo",     bpm: "140-159bpm" },
+  { label: "Threshold", bpm: "160-166bpm" },
+  { label: "VO2 Max",   bpm: ">167bpm"   },
 ];
-export const heartRateZones = HR_ZONES.map((z, i) => {
-  const prevMax = i === 0 ? 0 : HR_ZONES[i - 1].max;
-  const count = tracks.filter((t) => {
-    const hr = t.stats.avgHr ?? 0;
-    return hr > prevMax && hr <= z.max;
-  }).length;
-  return { label: z.label, bpm: z.bpm, count };
-});
+const hrZoneTotals = [0, 0, 0, 0];
+for (const t of tracks) {
+  const z = t.stats.hrZoneSec;
+  if (!z) continue;
+  for (let i = 0; i < 4; i++) hrZoneTotals[i] += z[i] ?? 0;
+}
+const hrZoneTotal = hrZoneTotals.reduce((a, b) => a + b, 0);
+export const heartRateZones = HR_ZONE_META.map((z, i) => ({
+  label: z.label,
+  bpm: z.bpm,
+  pct: hrZoneTotal > 0 ? +((hrZoneTotals[i] / hrZoneTotal) * 100).toFixed(1) : 0,
+}));
 
 // Temperature/weather placeholders. Real values need an external API.
 export const temperatureBuckets: HistogramBucket[] = [
