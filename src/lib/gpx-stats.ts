@@ -102,80 +102,32 @@ const US_STATE_BY_FIPS: Record<string, string> = {
   "55": "WI", "56": "WY",
 };
 
-interface Region {
-  countryCode: string;
-  country: string;
-  region?: string;
-  city?: string;
+// City-level fast-path bboxes. Country and state are always derived via
+// lookupCountry / lookupUsState — never hardcoded here.
+interface CityRegion {
+  city: string;
   bbox: { minLat: number; maxLat: number; minLon: number; maxLon: number };
 }
 
-const REGIONS: Region[] = [
-  // NYC outer boroughs — listed before the Manhattan special-case logic
-  // (handled in locationFor via polyline, not a bbox) so that runs with
-  // centroids deep inside an outer borough are caught here first.
-  // Manhattan is intentionally absent; see manhattanEastLon() below.
-  { countryCode: "US", country: "United States", region: "NY", city: "Brooklyn",      bbox: { minLat: 40.55, maxLat: 40.74, minLon: -74.05, maxLon: -73.83 } },
-  { countryCode: "US", country: "United States", region: "NY", city: "Queens",        bbox: { minLat: 40.54, maxLat: 40.80, minLon: -73.96, maxLon: -73.70 } },
-  { countryCode: "US", country: "United States", region: "NY", city: "Bronx",         bbox: { minLat: 40.80, maxLat: 40.92, minLon: -73.93, maxLon: -73.76 } },
-  { countryCode: "US", country: "United States", region: "NY", city: "Staten Island", bbox: { minLat: 40.48, maxLat: 40.65, minLon: -74.27, maxLon: -74.05 } },
-  // NY-state fallback for upstate / Long Island runs outside the five boroughs.
-  // US city-level (more-specific → less-specific within each state)
-  { countryCode: "US", country: "United States", region: "CA", city: "San Diego",     bbox: { minLat: 32.60, maxLat: 33.15, minLon: -117.40, maxLon: -116.85 } },
-  { countryCode: "US", country: "United States", region: "CA", city: "San Francisco", bbox: { minLat: 37.65, maxLat: 37.85, minLon: -122.55, maxLon: -122.35 } },
-  { countryCode: "US", country: "United States", region: "CA", city: "Los Angeles",   bbox: { minLat: 33.70, maxLat: 34.35, minLon: -118.70, maxLon: -118.15 } },
-  { countryCode: "US", country: "United States", region: "CO", city: "Denver",        bbox: { minLat: 39.60, maxLat: 39.90, minLon: -105.15, maxLon: -104.80 } },
-  { countryCode: "US", country: "United States", region: "WA", city: "Seattle",       bbox: { minLat: 47.40, maxLat: 47.80, minLon: -122.50, maxLon: -122.20 } },
-  { countryCode: "US", country: "United States", region: "MA", city: "Boston",        bbox: { minLat: 42.20, maxLat: 42.45, minLon: -71.20, maxLon: -70.95 } },
-  // Fallback country boxes
-  // Mexico city-level (ordered more-specific → less-specific)
-  { countryCode: "MX", country: "Mexico", region: "CDMX",     city: "Mexico City",  bbox: { minLat: 19.18, maxLat: 19.60, minLon: -99.35, maxLon: -98.95 } },
-  { countryCode: "MX", country: "Mexico", region: "JAL",      city: "Guadalajara",  bbox: { minLat: 20.55, maxLat: 20.80, minLon: -103.55, maxLon: -103.20 } },
-  { countryCode: "MX", country: "Mexico", region: "Q.R.",     city: "Cancún",       bbox: { minLat: 20.90, maxLat: 21.30, minLon: -87.15, maxLon: -86.70 } },
-  { countryCode: "MX", country: "Mexico", region: "B.C.S.",   city: "Los Cabos",    bbox: { minLat: 22.80, maxLat: 23.20, minLon: -110.00, maxLon: -109.60 } },
-  { countryCode: "MX", country: "Mexico", region: "OAX",      city: "Oaxaca",       bbox: { minLat: 17.00, maxLat: 17.20, minLon: -96.80, maxLon: -96.60 } },
-  // Fallback country boxes
-  { countryCode: "US", country: "United States", bbox: { minLat: 24.5, maxLat: 49.5, minLon: -125, maxLon: -66.5 } },
-  { countryCode: "MX", country: "Mexico",        bbox: { minLat: 14.5, maxLat: 32.7, minLon: -118.5, maxLon: -86.7 } },
-  { countryCode: "FR", country: "France",        bbox: { minLat: 42.3, maxLat: 51.1, minLon: -5.2, maxLon: 9.6 } },
-  { countryCode: "GB", country: "United Kingdom", bbox: { minLat: 49.8, maxLat: 58.7, minLon: -8.2, maxLon: 1.8 } },
-  { countryCode: "DE", country: "Germany",       bbox: { minLat: 47.2, maxLat: 55.1, minLon: 5.8, maxLon: 15.1 } },
-  { countryCode: "ES", country: "Spain",         bbox: { minLat: 35.9, maxLat: 43.8, minLon: -9.4, maxLon: 4.4 } },
-  { countryCode: "IT", country: "Italy",         bbox: { minLat: 35.3, maxLat: 47.1, minLon: 6.6, maxLon: 18.6 } },
-  { countryCode: "PT", country: "Portugal",      bbox: { minLat: 36.8, maxLat: 42.2, minLon: -9.6, maxLon: -6.1 } },
-  { countryCode: "NL", country: "Netherlands",   bbox: { minLat: 50.7, maxLat: 53.7, minLon: 3.3, maxLon: 7.3 } },
-  { countryCode: "CH", country: "Switzerland",   bbox: { minLat: 45.8, maxLat: 47.9, minLon: 5.9, maxLon: 10.6 } },
-  { countryCode: "AT", country: "Austria",       bbox: { minLat: 46.3, maxLat: 49.1, minLon: 9.5, maxLon: 17.2 } },
-  { countryCode: "IE", country: "Ireland",       bbox: { minLat: 51.3, maxLat: 55.5, minLon: -10.7, maxLon: -5.4 } },
-  { countryCode: "NO", country: "Norway",        bbox: { minLat: 57.9, maxLat: 71.3, minLon: 4.4, maxLon: 31.1 } },
-  { countryCode: "SE", country: "Sweden",        bbox: { minLat: 55.1, maxLat: 69.1, minLon: 10.9, maxLon: 24.2 } },
-  { countryCode: "JP", country: "Japan",         bbox: { minLat: 24, maxLat: 46, minLon: 122, maxLon: 146 } },
-  { countryCode: "KR", country: "South Korea",   bbox: { minLat: 33, maxLat: 38.7, minLon: 124.5, maxLon: 131.9 } },
-  { countryCode: "TW", country: "Taiwan",        bbox: { minLat: 21.8, maxLat: 25.4, minLon: 120, maxLon: 122.1 } },
-  { countryCode: "HK", country: "Hong Kong",     bbox: { minLat: 22.15, maxLat: 22.58, minLon: 113.83, maxLon: 114.42 } },
-  { countryCode: "SG", country: "Singapore",     bbox: { minLat: 1.13, maxLat: 1.48, minLon: 103.6, maxLon: 104.1 } },
-  { countryCode: "TH", country: "Thailand",      bbox: { minLat: 5.6, maxLat: 20.5, minLon: 97.3, maxLon: 105.7 } },
-  { countryCode: "VN", country: "Vietnam",       bbox: { minLat: 8.4, maxLat: 23.4, minLon: 102.1, maxLon: 109.5 } },
-  { countryCode: "ID", country: "Indonesia",     bbox: { minLat: -11, maxLat: 6, minLon: 95, maxLon: 141 } },
-  { countryCode: "PH", country: "Philippines",   bbox: { minLat: 4.6, maxLat: 21.1, minLon: 116.9, maxLon: 126.6 } },
-  { countryCode: "CN", country: "China",         bbox: { minLat: 18, maxLat: 53.6, minLon: 73.5, maxLon: 135.1 } },
-  { countryCode: "IN", country: "India",         bbox: { minLat: 6.7, maxLat: 35.5, minLon: 68.1, maxLon: 97.4 } },
-  { countryCode: "CA", country: "Canada",        bbox: { minLat: 41.5, maxLat: 84, minLon: -141, maxLon: -52 } },
-  { countryCode: "AU", country: "Australia",     bbox: { minLat: -44, maxLat: -10, minLon: 113, maxLon: 154 } },
-  { countryCode: "NZ", country: "New Zealand",   bbox: { minLat: -47.3, maxLat: -34.4, minLon: 166.4, maxLon: 178.6 } },
-  { countryCode: "BR", country: "Brazil",        bbox: { minLat: -33.8, maxLat: 5.3, minLon: -73.9, maxLon: -34.7 } },
-  { countryCode: "AR", country: "Argentina",     bbox: { minLat: -55, maxLat: -21.8, minLon: -73.5, maxLon: -53.6 } },
-  { countryCode: "CL", country: "Chile",         bbox: { minLat: -55.9, maxLat: -17.5, minLon: -75.7, maxLon: -66.4 } },
-  { countryCode: "PE", country: "Peru",          bbox: { minLat: -18.4, maxLat: -0.04, minLon: -81.3, maxLon: -68.7 } },
-  { countryCode: "ZA", country: "South Africa",  bbox: { minLat: -35, maxLat: -22.1, minLon: 16.5, maxLon: 32.9 } },
+const CITY_REGIONS: CityRegion[] = [
+  { city: "Brooklyn",      bbox: { minLat: 40.55, maxLat: 40.74, minLon: -74.05, maxLon: -73.83 } },
+  { city: "Queens",        bbox: { minLat: 40.54, maxLat: 40.80, minLon: -73.96, maxLon: -73.70 } },
+  { city: "Bronx",         bbox: { minLat: 40.80, maxLat: 40.92, minLon: -73.93, maxLon: -73.76 } },
+  { city: "Staten Island", bbox: { minLat: 40.48, maxLat: 40.65, minLon: -74.27, maxLon: -74.05 } },
+  { city: "San Diego",     bbox: { minLat: 32.60, maxLat: 33.15, minLon: -117.40, maxLon: -116.85 } },
+  { city: "San Francisco", bbox: { minLat: 37.65, maxLat: 37.85, minLon: -122.55, maxLon: -122.35 } },
+  { city: "Los Angeles",   bbox: { minLat: 33.70, maxLat: 34.35, minLon: -118.70, maxLon: -118.15 } },
+  { city: "Denver",        bbox: { minLat: 39.60, maxLat: 39.90, minLon: -105.15, maxLon: -104.80 } },
+  { city: "Seattle",       bbox: { minLat: 47.40, maxLat: 47.80, minLon: -122.50, maxLon: -122.20 } },
+  { city: "Boston",        bbox: { minLat: 42.20, maxLat: 42.45, minLon: -71.20, maxLon: -70.95 } },
+  { city: "Mexico City",   bbox: { minLat: 19.18, maxLat: 19.60, minLon: -99.35, maxLon: -98.95 } },
+  { city: "Guadalajara",   bbox: { minLat: 20.55, maxLat: 20.80, minLon: -103.55, maxLon: -103.20 } },
+  { city: "Cancún",        bbox: { minLat: 20.90, maxLat: 21.30, minLon: -87.15, maxLon: -86.70 } },
+  { city: "Los Cabos",     bbox: { minLat: 22.80, maxLat: 23.20, minLon: -110.00, maxLon: -109.60 } },
+  { city: "Oaxaca",        bbox: { minLat: 17.00, maxLat: 17.20, minLon: -96.80, maxLon: -96.60 } },
 ];
 
-const NYC_BOROUGHS = new Set([
-  "Brooklyn",
-  "Queens",
-  "Bronx",
-  "Staten Island",
-]);
+const NYC_BOROUGHS = new Set(["Brooklyn", "Queens", "Bronx", "Staten Island"]);
 
 const COUNTRY_FEATURES = feature(
   worldAtlas,
@@ -277,12 +229,7 @@ function lookupCountry(lat: number, lon: number): { country: string; countryCode
     const numeric = country.id.padStart(3, "0");
     const alpha2 = isoCountries.numericToAlpha2(numeric);
     if (!alpha2) return null;
-    return {
-      country: country.properties.name === "United States of America"
-        ? "United States"
-        : country.properties.name,
-      countryCode: alpha2,
-    };
+    return { country: country.properties.name, countryCode: alpha2 };
   }
   return null;
 }
@@ -463,10 +410,7 @@ function displayLocationForNotable(loc: ActivityLocation): {
       city = lon <= manhattanEastLon(lat) ? "Manhattan" : lat > 40.726 ? "Queens" : "Brooklyn";
       displayRegion = "NY";
     } else if (loc.region === "NY" || !loc.region) {
-      const borough = REGIONS.find((r) =>
-        r.countryCode === "US" &&
-        r.region === "NY" &&
-        r.city &&
+      const borough = CITY_REGIONS.find((r) =>
         NYC_BOROUGHS.has(r.city) &&
         lat >= r.bbox.minLat &&
         lat <= r.bbox.maxLat &&
@@ -475,7 +419,6 @@ function displayLocationForNotable(loc: ActivityLocation): {
       );
       if (borough?.city) {
         city = borough.city;
-        displayRegion = "NY";
       }
     }
   }
@@ -585,77 +528,55 @@ function manhattanEastLon(lat: number): number {
 }
 
 function locationFor(t: GpxSummary): ActivityLocation {
-  // Use the mean of all track points when available. This is a better signal
-  // than the bbox midpoint for coastal and oddly-shaped routes.
   const { minLat, maxLat, minLon, maxLon } = t.stats.bbox;
   const lat = t.stats.meanLat ?? (minLat + maxLat) / 2;
   const lon = t.stats.meanLon ?? (minLon + maxLon) / 2;
 
   // --- Manhattan / East River special case ---
-  // Manhattan is not in REGIONS because a simple bbox would swallow the East
-  // River and misclassify LIC / Greenpoint / DUMBO runs. Instead we check the
-  // actual land boundary with a piecewise shoreline polyline.
   const MAN_LAT_MIN = 40.700, MAN_LAT_MAX = 40.880;
 
-  // NJ waterfront early exit: if the run STARTED west of the NJ east shore
-  // (-74.018), it originated in NJ regardless of where the mean falls.
-  // GPS multipath never pushes a Manhattan-start this far west (~500m margin).
+  // NJ waterfront early exit: classify by start point when the run clearly
+  // originated on the NJ side (-74.018 lon threshold), because GPS multipath
+  // can drift the mean coordinate eastward into Manhattan territory.
   if (
     lat >= MAN_LAT_MIN && lat <= MAN_LAT_MAX &&
     t.stats.startLon != null && t.stats.startLon < -74.018
   ) {
-    return { country: "United States", countryCode: "US", region: "NJ", lat, lon };
+    const startLat = t.stats.startLat ?? lat;
+    const c = lookupCountry(startLat, t.stats.startLon);
+    if (c) {
+      const s = c.countryCode === "US" ? lookupUsState(startLat, t.stats.startLon) : null;
+      return { ...c, region: s?.region, lat, lon };
+    }
   }
 
   if (lat >= MAN_LAT_MIN && lat <= MAN_LAT_MAX && lon >= hudsonCenterlineWestOf(lat)) {
-    const eastEdge = manhattanEastLon(lat);
-    if (lon <= eastEdge) {
-      // On Manhattan island land
-      return { country: "United States", countryCode: "US", region: "NY", city: "Manhattan", lat, lon };
+    const c = lookupCountry(lat, lon);
+    if (c) {
+      const s = c.countryCode === "US" ? lookupUsState(lat, lon) : null;
+      if (lon <= manhattanEastLon(lat)) {
+        return { ...c, region: s?.region, city: "Manhattan", lat, lon };
+      }
+      const city = lat > 40.726 ? "Queens" : "Brooklyn";
+      return { ...c, region: s?.region, city, lat, lon };
     }
-    // East of the shore → East River water. Assign to the borough whose
-    // waterfront faces this point. The Queens/Brooklyn border meets the East
-    // River at Newtown Creek (~40.726 N). North = Queens, south = Brooklyn.
-    const city = lat > 40.726 ? "Queens" : "Brooklyn";
-    return { country: "United States", countryCode: "US", region: "NY", city, lat, lon };
   }
 
-  for (const r of REGIONS) {
+  // City bbox fast-path — country and state derived from polygon lookups,
+  // never assumed from the bbox entry itself.
+  for (const r of CITY_REGIONS) {
     if (
       lat >= r.bbox.minLat && lat <= r.bbox.maxLat &&
       lon >= r.bbox.minLon && lon <= r.bbox.maxLon
     ) {
-      if (
-        r.countryCode === "US" &&
-        r.region === "NY" &&
-        r.city &&
-        NYC_BOROUGHS.has(r.city)
-      ) {
-        const state = lookupUsState(lat, lon);
-        if (state?.region !== "NY") continue;
-      }
-      if (r.countryCode === "US" && !r.region) {
-        const state = lookupUsState(lat, lon);
-        if (state) {
-          return withUsCountyFallback({
-            country: r.country,
-            countryCode: r.countryCode,
-            region: state.region,
-            lat,
-            lon,
-          }, lat, lon);
-        }
-      }
-      return withUsCountyFallback({
-        country: r.country,
-        countryCode: r.countryCode,
-        region: r.region,
-        city: r.city,
-        lat,
-        lon,
-      }, lat, lon);
+      const c = lookupCountry(lat, lon);
+      if (!c) continue;
+      const s = c.countryCode === "US" ? lookupUsState(lat, lon) : null;
+      const loc = { ...c, region: s?.region, city: r.city, lat, lon };
+      return c.countryCode === "US" ? withUsCountyFallback(loc, lat, lon) : loc;
     }
   }
+
   const country = lookupCountry(lat, lon);
   if (country?.countryCode === "US") {
     const state = lookupUsState(lat, lon);
