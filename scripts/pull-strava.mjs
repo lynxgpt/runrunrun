@@ -337,6 +337,17 @@ function saveMeta(meta) {
       changed = true;
     }
 
+    // City from Strava's own geocoding (no extra API call needed)
+    if (record.city == null) {
+      const raw = a.location_city ?? null;
+      // Normalize "The Bronx" → "Bronx" to match NYC_BOROUGHS labeling
+      const city = raw === "The Bronx" ? "Bronx" : raw;
+      if (city != null) {
+        record.city = city;
+        changed = true;
+      }
+    }
+
     // Photo
     if (a.total_photo_count > 0 && record.photoPath == null) {
       const photoDest = join(PHOTOS_DIR, `${stem}.jpg`);

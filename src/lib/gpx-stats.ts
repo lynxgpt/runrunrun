@@ -17,6 +17,7 @@ const isoCountries = require("i18n-iso-countries");
 interface StravaMeta {
   tempC?: number;
   photoPath?: string;
+  city?: string;
 }
 const stravaMeta = rawMeta as Record<string, StravaMeta>;
 import type {
@@ -102,34 +103,6 @@ const US_STATE_BY_FIPS: Record<string, string> = {
   "55": "WI", "56": "WY",
 };
 
-// City-level fast-path bboxes. Country and state are always derived via
-// lookupCountry / lookupUsState — never hardcoded here.
-interface CityRegion {
-  city: string;
-  bbox: { minLat: number; maxLat: number; minLon: number; maxLon: number };
-}
-
-const CITY_REGIONS: CityRegion[] = [
-  { city: "Brooklyn",      bbox: { minLat: 40.55, maxLat: 40.74, minLon: -74.05, maxLon: -73.83 } },
-  { city: "Queens",        bbox: { minLat: 40.54, maxLat: 40.80, minLon: -73.96, maxLon: -73.70 } },
-  { city: "Bronx",         bbox: { minLat: 40.80, maxLat: 40.92, minLon: -73.93, maxLon: -73.76 } },
-  { city: "Staten Island", bbox: { minLat: 40.48, maxLat: 40.65, minLon: -74.27, maxLon: -74.05 } },
-  { city: "San Diego",     bbox: { minLat: 32.60, maxLat: 33.15, minLon: -117.40, maxLon: -116.85 } },
-  { city: "San Francisco", bbox: { minLat: 37.65, maxLat: 37.85, minLon: -122.55, maxLon: -122.35 } },
-  { city: "Los Angeles",   bbox: { minLat: 33.70, maxLat: 34.35, minLon: -118.70, maxLon: -118.15 } },
-  { city: "Denver",        bbox: { minLat: 39.60, maxLat: 39.90, minLon: -105.15, maxLon: -104.80 } },
-  { city: "Seattle",       bbox: { minLat: 47.40, maxLat: 47.80, minLon: -122.50, maxLon: -122.20 } },
-  { city: "Boston",        bbox: { minLat: 42.20, maxLat: 42.45, minLon: -71.20, maxLon: -70.95 } },
-  { city: "Mexico City",   bbox: { minLat: 19.18, maxLat: 19.60, minLon: -99.35, maxLon: -98.95 } },
-  { city: "Guadalajara",   bbox: { minLat: 20.55, maxLat: 20.80, minLon: -103.55, maxLon: -103.20 } },
-  { city: "Cancún",        bbox: { minLat: 20.90, maxLat: 21.30, minLon: -87.15, maxLon: -86.70 } },
-  { city: "Los Cabos",     bbox: { minLat: 22.80, maxLat: 23.20, minLon: -110.00, maxLon: -109.60 } },
-  { city: "Oaxaca",        bbox: { minLat: 17.00, maxLat: 17.20, minLon: -96.80, maxLon: -96.60 } },
-  // Canada
-  { city: "Vancouver",     bbox: { minLat: 49.00, maxLat: 49.40, minLon: -123.30, maxLon: -122.60 } },
-  { city: "Toronto",       bbox: { minLat: 43.55, maxLat: 43.90, minLon: -79.65, maxLon: -79.10 } },
-  { city: "Montreal",      bbox: { minLat: 45.40, maxLat: 45.70, minLon: -73.95, maxLon: -73.45 } },
-];
 
 const NYC_BOROUGHS = new Set(["Brooklyn", "Queens", "Bronx", "Staten Island"]);
 
@@ -413,17 +386,8 @@ function displayLocationForNotable(loc: ActivityLocation): {
     ) {
       city = lon <= manhattanEastLon(lat) ? "Manhattan" : lat > 40.726 ? "Queens" : "Brooklyn";
       displayRegion = "NY";
-    } else if (loc.region === "NY" || !loc.region) {
-      const borough = CITY_REGIONS.find((r) =>
-        NYC_BOROUGHS.has(r.city) &&
-        lat >= r.bbox.minLat &&
-        lat <= r.bbox.maxLat &&
-        lon >= r.bbox.minLon &&
-        lon <= r.bbox.maxLon,
-      );
-      if (borough?.city) {
-        city = borough.city;
-      }
+    } else if ((loc.region === "NY" || !loc.region) && loc.city && NYC_BOROUGHS.has(loc.city)) {
+      city = loc.city;
     }
   }
 
@@ -574,16 +538,12 @@ function locationFor(t: GpxSummary): ActivityLocation {
     }
   }
 
-  // City bbox fast-path — country and state derived from polygon lookups,
-  // never assumed from the bbox entry itself.
-  for (const r of CITY_REGIONS) {
-    if (
-      lat >= r.bbox.minLat && lat <= r.bbox.maxLat &&
-      lon >= r.bbox.minLon && lon <= r.bbox.maxLon
-    ) {
-      const { c, s } = classify(lat, lon);
-      if (!c) continue;
-      const loc = { ...c, region: s?.region, city: r.city, lat, lon };
+  // City from Strava's own geocoding — stored in stats.city by pull-strava.mjs
+  // at fetch time. Works for any city worldwide without hardcoded bboxes.
+  if (t.stats.city) {
+    const { c, s } = classify(lat, lon);
+    if (c) {
+      const loc = { ...c, region: s?.region, city: t.stats.city, lat, lon };
       return c.countryCode === "US" ? withUsCountyFallback(loc, lat, lon) : loc;
     }
   }

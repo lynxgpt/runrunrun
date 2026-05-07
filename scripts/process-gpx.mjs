@@ -381,6 +381,12 @@ function main() {
     process.exit(1);
   }
 
+  // Load Strava metadata (city names, temps, photos) indexed by track stem.
+  const META_PATH = join(ROOT, "public", "strava-meta.json");
+  const stravaMeta = existsSync(META_PATH)
+    ? JSON.parse(readFileSync(META_PATH, "utf8"))
+    : {};
+
   // Rebuild tracks dir from scratch so stale entries don't linger.
   if (existsSync(TRACKS_DIR)) rmSync(TRACKS_DIR, { recursive: true, force: true });
   mkdirSync(TRACKS_DIR, { recursive: true });
@@ -388,7 +394,11 @@ function main() {
   const allTracks = files.map((f) => {
     const id = f.replace(/\.gpx$/i, "");
     console.log(`Processing ${f}...`);
-    return processFile(join(GPX_DIR, f), id);
+    const result = processFile(join(GPX_DIR, f), id);
+    // Enrich with city from Strava (populated by pull-strava.mjs at fetch time).
+    const city = stravaMeta[id]?.city ?? null;
+    if (city != null) result.stats.city = city;
+    return result;
   });
   const { kept: tracks, dropped } = dedupe(allTracks);
   if (dropped.length) {
@@ -458,6 +468,7 @@ export interface GpxStats {
     maxSegmentKph: number;
     hasTeleportGap: boolean;
   };
+  city?: string;
 }
 
 export interface GpxSummary {

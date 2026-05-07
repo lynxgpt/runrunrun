@@ -44,6 +44,7 @@ export interface GpxStats {
     maxSegmentKph: number;
     hasTeleportGap: boolean;
   };
+  city?: string;
 }
 
 export interface GpxSummary {
