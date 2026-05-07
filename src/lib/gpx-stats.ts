@@ -125,6 +125,10 @@ const CITY_REGIONS: CityRegion[] = [
   { city: "Cancún",        bbox: { minLat: 20.90, maxLat: 21.30, minLon: -87.15, maxLon: -86.70 } },
   { city: "Los Cabos",     bbox: { minLat: 22.80, maxLat: 23.20, minLon: -110.00, maxLon: -109.60 } },
   { city: "Oaxaca",        bbox: { minLat: 17.00, maxLat: 17.20, minLon: -96.80, maxLon: -96.60 } },
+  // Canada
+  { city: "Vancouver",     bbox: { minLat: 49.00, maxLat: 49.40, minLon: -123.30, maxLon: -122.60 } },
+  { city: "Toronto",       bbox: { minLat: 43.55, maxLat: 43.90, minLon: -79.65, maxLon: -79.10 } },
+  { city: "Montreal",      bbox: { minLat: 45.40, maxLat: 45.70, minLon: -73.95, maxLon: -73.45 } },
 ];
 
 const NYC_BOROUGHS = new Set(["Brooklyn", "Queens", "Bronx", "Staten Island"]);
@@ -531,6 +535,19 @@ function locationFor(t: GpxSummary): ActivityLocation {
   const { minLat, maxLat, minLon, maxLon } = t.stats.bbox;
   const lat = t.stats.meanLat ?? (minLat + maxLat) / 2;
   const lon = t.stats.meanLon ?? (minLon + maxLon) / 2;
+  // Start point is always on land; use as fallback when mean falls in water.
+  const fbLat = t.stats.startLat ?? lat;
+  const fbLon = t.stats.startLon ?? lon;
+
+  // Classify a coordinate, falling back to the start point if the mean lands
+  // in a water body (rivers, bays) where world-atlas has no polygon.
+  function classify(lt: number, lo: number) {
+    const direct = lookupCountry(lt, lo);
+    const [cLat, cLon] = direct ? [lt, lo] : [fbLat, fbLon];
+    const c = direct ?? lookupCountry(fbLat, fbLon);
+    const s = c?.countryCode === "US" ? lookupUsState(cLat, cLon) : null;
+    return { c, s };
+  }
 
   // --- Manhattan / East River special case ---
   const MAN_LAT_MIN = 40.700, MAN_LAT_MAX = 40.880;
@@ -542,18 +559,13 @@ function locationFor(t: GpxSummary): ActivityLocation {
     lat >= MAN_LAT_MIN && lat <= MAN_LAT_MAX &&
     t.stats.startLon != null && t.stats.startLon < -74.018
   ) {
-    const startLat = t.stats.startLat ?? lat;
-    const c = lookupCountry(startLat, t.stats.startLon);
-    if (c) {
-      const s = c.countryCode === "US" ? lookupUsState(startLat, t.stats.startLon) : null;
-      return { ...c, region: s?.region, lat, lon };
-    }
+    const { c, s } = classify(fbLat, t.stats.startLon);
+    if (c) return { ...c, region: s?.region, lat, lon };
   }
 
   if (lat >= MAN_LAT_MIN && lat <= MAN_LAT_MAX && lon >= hudsonCenterlineWestOf(lat)) {
-    const c = lookupCountry(lat, lon);
+    const { c, s } = classify(lat, lon);
     if (c) {
-      const s = c.countryCode === "US" ? lookupUsState(lat, lon) : null;
       if (lon <= manhattanEastLon(lat)) {
         return { ...c, region: s?.region, city: "Manhattan", lat, lon };
       }
@@ -569,18 +581,17 @@ function locationFor(t: GpxSummary): ActivityLocation {
       lat >= r.bbox.minLat && lat <= r.bbox.maxLat &&
       lon >= r.bbox.minLon && lon <= r.bbox.maxLon
     ) {
-      const c = lookupCountry(lat, lon);
+      const { c, s } = classify(lat, lon);
       if (!c) continue;
-      const s = c.countryCode === "US" ? lookupUsState(lat, lon) : null;
       const loc = { ...c, region: s?.region, city: r.city, lat, lon };
       return c.countryCode === "US" ? withUsCountyFallback(loc, lat, lon) : loc;
     }
   }
 
-  const country = lookupCountry(lat, lon);
+  const { c: country, s: state } = classify(lat, lon);
   if (country?.countryCode === "US") {
-    const state = lookupUsState(lat, lon);
     if (state) return withUsCountyFallback({ ...country, ...state, lat, lon }, lat, lon);
+    return withUsCountyFallback({ ...country, lat, lon }, lat, lon);
   }
   if (country) return { ...country, lat, lon };
   return { country: "Unknown", countryCode: "??", lat, lon };
