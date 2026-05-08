@@ -191,7 +191,7 @@ function polygonContainsPoint(polygon: number[][][], point: [number, number]): b
   return true;
 }
 
-function lookupCountry(lat: number, lon: number): { country: string; countryCode: string } | null {
+function lookupCountryAt(lat: number, lon: number): { country: string; countryCode: string } | null {
   const point: [number, number] = [lon, lat];
   for (const country of COUNTRY_FEATURES) {
     const { geometry } = country;
@@ -207,6 +207,22 @@ function lookupCountry(lat: number, lon: number): { country: string; countryCode
     const alpha2 = isoCountries.numericToAlpha2(numeric);
     if (!alpha2) return null;
     return { country: country.properties.name, countryCode: alpha2 };
+  }
+  return null;
+}
+
+// Wraps lookupCountryAt with a small offset retry so that GPS coordinates
+// that land just outside a polygon due to coastline precision gaps (common
+// on urban waterfront parks like Long Island City / Gantry Plaza) still
+// resolve to the correct country.
+function lookupCountry(lat: number, lon: number): { country: string; countryCode: string } | null {
+  const direct = lookupCountryAt(lat, lon);
+  if (direct) return direct;
+  // ~1.5 km offsets — enough to clear coastline rounding, too small to cross borders
+  const D = 0.015;
+  for (const [dLat, dLon] of [[D,0],[-D,0],[0,D],[0,-D]] as [number,number][]) {
+    const r = lookupCountryAt(lat + dLat, lon + dLon);
+    if (r) return r;
   }
   return null;
 }
