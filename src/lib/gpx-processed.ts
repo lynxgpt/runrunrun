@@ -179,7 +179,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 17.99999999999999,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "first-run-after-holiday-trip-aborted-due-14737174154": {
@@ -321,7 +322,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 21.60000000000082,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "lunch-run-14737201661": {
@@ -565,7 +567,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 16.80000000000028,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "afternoon-run-14737228449": {
@@ -864,7 +867,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 22.31999999999978,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Queens"
     }
   },
   "afternoon-run-14737183589": {
@@ -1078,7 +1082,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 18.000000000000416,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "run-13433736397": {
@@ -1316,7 +1321,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 21.599999999999994,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "run-13441737874": {
@@ -1585,7 +1591,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 15.120000000000573,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "run-13451942159": {
@@ -2221,7 +2228,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 24.59999999999969,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "sprint-try-13463080850": {
@@ -2399,7 +2407,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 107.28000000000002,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "run-13484062189": {
@@ -2619,7 +2628,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 19.800000000000217,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "run-13497348820": {
@@ -2888,7 +2898,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 18.000000000000682,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "run-13513779925": {
@@ -3740,7 +3751,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 13.499999999999712,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Brooklyn"
     }
   },
   "run-13543430964": {
@@ -3942,7 +3954,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 19.80000000000002,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "run-13551717252": {
@@ -4138,7 +4151,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 19.800000000000217,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "run-13566129284": {
@@ -4364,7 +4378,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 37.80000000000064,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "3-13576826295": {
@@ -5492,7 +5507,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 23.321739130434924,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "run-13620417805": {
@@ -5707,7 +5723,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 24.000000000000004,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "run-13636364719": {
@@ -5891,7 +5908,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 28.800000000000026,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "run-13654045258": {
@@ -6105,7 +6123,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 19.800000000000217,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "run-13669566048": {
@@ -7171,7 +7190,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 17.280000000000655,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "run-13744928359": {
@@ -7362,7 +7382,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 25.199999999999623,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "run-13762788859": {
@@ -7841,7 +7862,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 18.44999999999977,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Brooklyn"
     }
   },
   "run-13791246934": {
@@ -8019,7 +8041,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 23.40000000000002,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "run-13808084646": {
@@ -8276,7 +8299,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 30.960000000000008,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "run-13837633853": {
@@ -9061,7 +9085,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 29.700000000000003,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "run-13876254946": {
@@ -9257,7 +9282,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 23.40000000000062,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "run-13892658656": {
@@ -10100,7 +10126,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 22.800000000000153,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "run-13931651950": {
@@ -10429,7 +10456,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 31.50000000000003,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "run-13966290727": {
@@ -11451,7 +11479,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 28.800000000000026,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "run-14034777630": {
@@ -11635,7 +11664,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 55.19999999999925,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "run-14072909359": {
@@ -11849,7 +11879,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 40.499999999999936,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "run-14081674353": {
@@ -12076,7 +12107,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 18.000000000000014,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "run-14100496597": {
@@ -12248,7 +12280,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 62.99999999999996,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "run-14121831047": {
@@ -12529,7 +12562,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 40.320000000000036,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "run-14139516325": {
@@ -12882,7 +12916,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 16.200000000000614,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "run-14165368226": {
@@ -13525,7 +13560,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 19.80000000000075,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Brooklyn"
     }
   },
   "run-14193815591": {
@@ -14985,7 +15021,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 514.0800000000004,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "run-14277977480": {
@@ -15151,7 +15188,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 80.99999999999987,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "run-14296101190": {
@@ -15811,7 +15849,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 12.30000000000011,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Brooklyn"
     }
   },
   "run-14327874351": {
@@ -16104,7 +16143,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 16.199999999999815,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "2-15324609383": {
@@ -16349,7 +16389,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 20.700000000000117,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Brooklyn"
     }
   },
   "run-14338879259": {
@@ -16546,7 +16587,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 18.000000000000014,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "run-14379562863": {
@@ -17368,7 +17410,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 58.909090909090814,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "run-14400654643": {
@@ -17541,7 +17584,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 18.000000000002814,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "run-14473159151": {
@@ -17786,7 +17830,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 18.000000000001215,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "run-14493850213": {
@@ -18007,7 +18052,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 23.40000000000002,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "run-14513588170": {
@@ -20300,7 +20346,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 18.899999999999917,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "run-14645450289": {
@@ -20575,7 +20622,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 17.280000000000015,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Brooklyn"
     }
   },
   "evening-run-14667737027": {
@@ -20952,7 +21000,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 19.200000000000017,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "interval-tuesday-14689420086": {
@@ -21179,7 +21228,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 24.30000000000012,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "fart-lek-14725832895": {
@@ -21394,7 +21444,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 18.00000000000015,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "weekly-long-14739061268": {
@@ -22191,7 +22242,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 17.099999999999916,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "run-14781113994": {
@@ -22393,7 +22445,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 19.80000000000002,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "evening-run-14790828732": {
@@ -22571,7 +22624,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 16.199999999999815,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Brooklyn"
     }
   },
   "weekly-long-14811110138": {
@@ -23625,7 +23679,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 28.19999999999982,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "morning-run-14860117292": {
@@ -23822,7 +23877,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 32.4,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "roasted-14876024487": {
@@ -24024,7 +24080,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 49.20000000000044,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "compare-14882498874": {
@@ -24214,7 +24271,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 21.60000000000002,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "taco-tuesday-14906534107": {
@@ -24417,7 +24475,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 17.999999999999982,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "weekly-long-14958779542": {
@@ -25258,7 +25317,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 16.559999999999775,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Seattle"
     }
   },
   "zone-2-14974128587": {
@@ -25641,7 +25701,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 18.00000000000007,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Seattle"
     }
   },
   "lunch-run-14987429942": {
@@ -26055,7 +26116,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 16.45714285714276,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Seattle"
     }
   },
   "recovery-15041689539": {
@@ -26408,7 +26470,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 11.400000000000077,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Seattle"
     }
   },
   "weekly-long-15064184428": {
@@ -27182,7 +27245,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 613.8782608695653,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Seattle"
     }
   },
   "interval-tuesday-15128405471": {
@@ -27397,7 +27461,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 20.40000000000015,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "interval-crisp-tuesday-15197996896": {
@@ -27600,7 +27665,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 26.400000000000023,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "weekly-kind-of-long-15215679112": {
@@ -27911,7 +27977,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 18.720000000000496,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "weekly-kind-of-long-15619323922": {
@@ -28298,7 +28365,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 16.80000000000028,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Brooklyn"
     }
   },
   "interval-15304042318": {
@@ -28531,7 +28599,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 20.700000000000117,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "easy-15313533827": {
@@ -28836,7 +28905,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 21.60000000000018,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "weekly-looong-15320040579": {
@@ -29790,7 +29860,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 16.000000000000014,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "interval-tuesday-15359534059": {
@@ -30023,7 +30094,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 26.099999999999923,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "afternoon-run-15370050312": {
@@ -30153,7 +30225,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 14.400000000000013,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "evening-run-15371476873": {
@@ -30512,7 +30585,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 13.200000000000012,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "run-15383211944": {
@@ -30702,7 +30776,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 80.99999999999987,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "weekly-long-15401664360": {
@@ -31362,7 +31437,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 17.699999999999914,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "afternoon-run-15438693660": {
@@ -31788,7 +31864,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 28.8,
         "hasTeleportGap": true
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "run-15472644965": {
@@ -32352,7 +32429,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 17.345454545454597,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Queens"
     }
   },
   "interval-tuesday-15518961033": {
@@ -32621,7 +32699,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 22.50000000000032,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "evening-run-15552270046": {
@@ -32920,7 +32999,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 17.280000000000015,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "weekly-not-very-long-15561794874": {
@@ -33723,7 +33803,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 18.00000000000015,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "afternoon-run-15610329019": {
@@ -34088,7 +34169,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 13.371428571428584,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Queens"
     }
   },
   "weekly-long-15644788734": {
@@ -35994,7 +36076,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 21.60000000000002,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "evening-run-15769631391": {
@@ -36365,7 +36448,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 16.971428571428532,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "tempo-15791132536": {
@@ -36586,7 +36670,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 20.399999999999885,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "night-run-15838162676": {
@@ -36813,7 +36898,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 172.79999999999998,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "evening-run-15848000761": {
@@ -37040,7 +37126,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 16.8,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "interval-thuesday-15860730482": {
@@ -37303,7 +37390,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 19.440000000000015,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "weekly-long-15891685507": {
@@ -38238,7 +38326,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 21.60000000000018,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "night-run-15938260568": {
@@ -38477,7 +38566,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 14.400000000000013,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "shake-out-16033671436": {
@@ -38625,7 +38715,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 21.60000000000002,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "jc-5k-16041791208": {
@@ -38798,7 +38889,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 25.199999999998823,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Brooklyn"
     }
   },
   "afternoon-run-16079179784": {
@@ -38910,7 +39002,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 93.60000000000008,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "mp-16143290429": {
@@ -39270,7 +39363,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 16.799999999999216,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "interval-16164831451": {
@@ -39581,7 +39675,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 19.800000000000217,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "afternoon-run-16174015038": {
@@ -41382,7 +41477,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 16.400000000000148,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "evening-run-16237295864": {
@@ -41578,7 +41674,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 14.400000000000013,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "weekly-long-16266092522": {
@@ -42250,7 +42347,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 16.338461538461523,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Brooklyn"
     }
   },
   "evening-run-16286885478": {
@@ -42470,7 +42568,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 27.600000000000023,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "evening-run-16298007160": {
@@ -42721,7 +42820,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 17.999999999999616,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "afternoon-run-16315503706": {
@@ -42960,7 +43060,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 52.8,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "afternoon-run-16378056716": {
@@ -43169,7 +43270,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 20.400000000000418,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "afternoon-run-16398147079": {
@@ -43649,7 +43751,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 19.600000000000506,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "afternoon-run-16438391743": {
@@ -45771,7 +45874,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 12.857142857142858,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "afternoon-run-16555482750": {
@@ -45998,7 +46102,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 19.200000000000017,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Queens"
     }
   },
   "afternoon-run-16575046256": {
@@ -46291,7 +46396,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 38.699999999999996,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Queens"
     }
   },
   "night-run-16615515418": {
@@ -46463,7 +46569,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 26.399999999999224,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Queens"
     }
   },
   "night-run-16634907980": {
@@ -46672,7 +46779,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 20.400000000000002,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Queens"
     }
   },
   "i-16651061254": {
@@ -46910,7 +47018,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 22.499999999999996,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Queens"
     }
   },
   "afternoon-run-16669151216": {
@@ -47330,7 +47439,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 19.800000000000217,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Brooklyn"
     }
   },
   "afternoon-run-16708000039": {
@@ -47593,7 +47703,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 25.199999999999623,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Queens"
     }
   },
   "afternoon-run-16715634618": {
@@ -47778,7 +47889,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 40.8,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Queens"
     }
   },
   "evening-run-16726039930": {
@@ -47993,7 +48105,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 27.900000000000023,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Queens"
     }
   },
   "afternoon-run-16762158023": {
@@ -48214,7 +48327,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 19.200000000000017,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Queens"
     }
   },
   "i-16779219917": {
@@ -48610,7 +48724,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 20.571428571428363,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Brooklyn"
     }
   },
   "afternoon-run-16788355061": {
@@ -48921,7 +49036,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 16.560000000000414,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Queens"
     }
   },
   "long-16805717036": {
@@ -49611,7 +49727,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 16.615384615384755,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Brooklyn"
     }
   },
   "night-run-16825538567": {
@@ -49717,7 +49834,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 90,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Queens"
     }
   },
   "morning-run-16837439050": {
@@ -50107,7 +50225,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 16.971428571429215,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "morning-run-16845468105": {
@@ -50340,7 +50459,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 15.59999999999988,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Mexico City"
     }
   },
   "morning-run-16885443622": {
@@ -50530,7 +50650,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 13.199999999999878,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Mexico City"
     }
   },
   "afternoon-run-16962283458": {
@@ -50781,7 +50902,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 24.300000000000022,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Queens"
     }
   },
   "afternoon-run-16983523095": {
@@ -50966,7 +51088,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 21.60000000000082,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Queens"
     }
   },
   "afternoon-run-16994341185": {
@@ -51386,7 +51509,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 18.00000000000007,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Queens"
     }
   },
   "afternoon-run-17038531172": {
@@ -51625,7 +51749,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 21.599999999999994,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Queens"
     }
   },
   "afternoon-run-17053170884": {
@@ -52135,7 +52260,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 17.99999999999997,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "afternoon-run-17084758502": {
@@ -52350,7 +52476,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 16.799999999999997,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Queens"
     }
   },
   "afternoon-run-17143602718": {
@@ -52740,7 +52867,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 22.114285714285337,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Queens"
     }
   },
   "afternoon-run-17197139902": {
@@ -52967,7 +53095,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 18.000000000000014,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Queens"
     }
   },
   "afternoon-run-17220802254": {
@@ -53158,7 +53287,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 18.00000000000015,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Queens"
     }
   },
   "afternoon-run-17242836090": {
@@ -53746,7 +53876,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 16.03636363636405,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "afternoon-run-17275266944": {
@@ -53949,7 +54080,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 16.79999999999975,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Queens"
     }
   },
   "afternoon-run-17299652019": {
@@ -54206,7 +54338,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 15.119999999999933,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Queens"
     }
   },
   "afternoon-run-17322270905": {
@@ -54403,7 +54536,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 18.000000000000682,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Queens"
     }
   },
   "afternoon-run-17344738804": {
@@ -54672,7 +54806,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 12.600000000000211,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Queens"
     }
   },
   "afternoon-run-17356679662": {
@@ -54881,7 +55016,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 15.600000000000016,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Queens"
     }
   },
   "morning-run-17373716844": {
@@ -55053,7 +55189,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 16.200000000000014,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Queens"
     }
   },
   "afternoon-run-17389092903": {
@@ -55653,7 +55790,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 15.05454545454525,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Brooklyn"
     }
   },
   "afternoon-run-17420273770": {
@@ -56173,7 +56311,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 17.100000000000115,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Queens"
     }
   },
   "long-1-17477316478": {
@@ -57002,7 +57141,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 15.750000000000064,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Brooklyn"
     }
   },
   "evening-run-17534733796": {
@@ -57168,7 +57308,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 21.60000000000002,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Queens"
     }
   },
   "t-17534211801": {
@@ -57383,7 +57524,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 25.200000000000422,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Queens"
     }
   },
   "long-17559478474": {
@@ -58157,7 +58299,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 12.342857142857152,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "San Diego"
     }
   },
   "afternoon-run-17571802701": {
@@ -58571,7 +58714,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 16.649999999999963,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "San Diego"
     }
   },
   "evening-run-17583633562": {
@@ -58912,7 +59056,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 13.200000000000145,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "San Diego"
     }
   },
   "afternoon-run-17595716432": {
@@ -59302,7 +59447,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 18.5142857142855,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "San Diego"
     }
   },
   "afternoon-run-17608442477": {
@@ -59637,7 +59783,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 12.600000000000477,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "San Diego"
     }
   },
   "morning-run-17627720292": {
@@ -60211,7 +60358,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 16.560000000000414,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "San Diego"
     }
   },
   "long-17679611720": {
@@ -60980,7 +61128,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 15.840000000000172,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "i-17713548999": {
@@ -61279,7 +61428,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 19.440000000000097,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Queens"
     }
   },
   "long-17735532162": {
@@ -62234,7 +62384,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 14.599999999999989,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "afternoon-run-17760572734": {
@@ -62587,7 +62738,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 18.00000000000015,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Queens"
     }
   },
   "evening-run-17797236470": {
@@ -62970,7 +63122,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 14.40000000000024,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Queens"
     }
   },
   "long-17822488749": {
@@ -64207,7 +64360,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 13.773913043478412,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Brooklyn"
     }
   },
   "night-run-17872646670": {
@@ -64361,7 +64515,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 19.80000000000002,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Queens"
     }
   },
   "long-17894509408": {
@@ -65129,7 +65284,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 14.657142857142498,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Queens"
     }
   },
   "night-run-17933034234": {
@@ -65585,7 +65741,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 24.750000000000004,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Queens"
     }
   },
   "afternoon-run-17966408470": {
@@ -65824,7 +65981,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 14.400000000000013,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Queens"
     }
   },
   "long-7-17980924738": {
@@ -66953,7 +67111,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 15.218181818181815,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "long-8-18072448520": {
@@ -67643,7 +67802,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 218.57142857142858,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Manhattan"
     }
   },
   "afternoon-run-18111656948": {
@@ -67906,7 +68066,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 25.200000000000024,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Queens"
     }
   },
   "long-9-18164090984": {
@@ -68536,7 +68697,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 13.499999999999979,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Brooklyn"
     }
   },
   "afternoon-run-18204634143": {
@@ -68787,7 +68949,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 15.839999999999854,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Queens"
     }
   },
   "evening-run-18219590640": {
@@ -69020,7 +69183,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 20.7,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Queens"
     }
   },
   "afternoon-run-18270486740": {
@@ -69198,7 +69362,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 25.199999999999996,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Queens"
     }
   },
   "morning-run-18336532280": {
@@ -69370,7 +69535,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 17.999999999999915,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Vancouver"
     }
   },
   "morning-run-18364602479": {
@@ -70818,7 +70984,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 14.657142857142956,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Vancouver"
     }
   },
   "afternoon-run-18391236895": {
@@ -70990,7 +71157,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 12.600000000000012,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "city": "Vancouver"
     }
   }
 };

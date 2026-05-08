@@ -1,52 +1,66 @@
 {
   "long-9-18164090984": {
-    "photoPath": "/photos/long-9-18164090984.jpg"
+    "photoPath": "/photos/long-9-18164090984.jpg",
+    "city": "Brooklyn"
   },
   "long-8-18072448520": {
     "tempC": 21,
-    "photoPath": "/photos/long-8-18072448520.jpg"
+    "photoPath": "/photos/long-8-18072448520.jpg",
+    "city": "Manhattan"
   },
   "long-7-17980924738": {
     "tempC": 17,
-    "photoPath": "/photos/long-7-17980924738.jpg"
+    "photoPath": "/photos/long-7-17980924738.jpg",
+    "city": "Manhattan"
   },
   "afternoon-run-17966408470": {
-    "photoPath": "/photos/afternoon-run-17966408470.jpg"
+    "photoPath": "/photos/afternoon-run-17966408470.jpg",
+    "city": "Queens"
   },
   "night-run-17933034234": {
     "tempC": 26,
-    "photoPath": "/photos/night-run-17933034234.jpg"
+    "photoPath": "/photos/night-run-17933034234.jpg",
+    "city": "Queens"
   },
   "long-17894509408": {
     "tempC": 17,
-    "photoPath": "/photos/long-17894509408.jpg"
+    "photoPath": "/photos/long-17894509408.jpg",
+    "city": "Queens"
   },
   "night-run-17872646670": {
-    "tempC": 22
+    "tempC": 22,
+    "city": "Queens"
   },
   "long-17822488749": {
     "tempC": 18,
-    "photoPath": "/photos/long-17822488749.jpg"
+    "photoPath": "/photos/long-17822488749.jpg",
+    "city": "Brooklyn"
   },
   "evening-run-17797236470": {
-    "tempC": 16
+    "tempC": 16,
+    "city": "Queens"
   },
   "afternoon-run-17760572734": {
-    "tempC": 19
+    "tempC": 19,
+    "city": "Queens"
   },
   "long-17735532162": {
-    "tempC": 12
+    "tempC": 12,
+    "city": "Manhattan"
   },
   "i-17713548999": {
-    "tempC": 13
+    "tempC": 13,
+    "city": "Queens"
   },
   "long-17679611720": {
     "tempC": 24,
-    "photoPath": "/photos/long-17679611720.jpg"
+    "photoPath": "/photos/long-17679611720.jpg",
+    "city": "Manhattan"
   },
   "evening-run-17655624188": {
     "tempC": 22,
-    "photoPath": "/photos/evening-run-17655624188.jpg"
+    "photoPath": "/photos/evening-run-17655624188.jpg",
+    "city": "San Diego"
   },
   "morning-run-17627720292": {
     "tempC": 24,
@@ -54,29 +68,36 @@
   },
   "afternoon-run-17608442477": {
     "tempC": 23,
-    "photoPath": "/photos/afternoon-run-17608442477.jpg"
+    "photoPath": "/photos/afternoon-run-17608442477.jpg",
+    "city": "San Diego"
   },
   "afternoon-run-17595716432": {
     "tempC": 24,
-    "photoPath": "/photos/afternoon-run-17595716432.jpg"
+    "photoPath": "/photos/afternoon-run-17595716432.jpg",
+    "city": "San Diego"
   },
   "evening-run-17583633562": {
     "tempC": 20,
-    "photoPath": "/photos/evening-run-17583633562.jpg"
+    "photoPath": "/photos/evening-run-17583633562.jpg",
+    "city": "San Diego"
   },
   "long-17559478474": {
     "tempC": 26,
-    "photoPath": "/photos/long-17559478474.jpg"
+    "photoPath": "/photos/long-17559478474.jpg",
+    "city": "San Diego"
   },
   "t-17534211801": {
-    "tempC": 15
+    "tempC": 15,
+    "city": "Queens"
   },
   "long-1-17477316478": {
     "tempC": 16,
-    "photoPath": "/photos/long-1-17477316478.jpg"
+    "photoPath": "/photos/long-1-17477316478.jpg",
+    "city": "Brooklyn"
   },
   "t-17453848055": {
-    "tempC": 14
+    "tempC": 14,
+    "city": "Queens"
   },
   "afternoon-run-17420273770": {
     "tempC": 18,
@@ -84,121 +105,156 @@
   },
   "afternoon-run-17389092903": {
     "tempC": 12,
-    "photoPath": "/photos/afternoon-run-17389092903.jpg"
+    "photoPath": "/photos/afternoon-run-17389092903.jpg",
+    "city": "Brooklyn"
   },
   "morning-run-17373716844": {
-    "tempC": 12
+    "tempC": 12,
+    "city": "Queens"
   },
   "afternoon-run-17356679662": {
-    "tempC": 13
+    "tempC": 13,
+    "city": "Queens"
   },
   "afternoon-run-17344738804": {
-    "tempC": 14
+    "tempC": 14,
+    "city": "Queens"
   },
   "afternoon-run-17322270905": {
-    "tempC": 3
+    "tempC": 3,
+    "city": "Queens"
   },
   "afternoon-run-17299652019": {
-    "tempC": 12
+    "tempC": 12,
+    "city": "Queens"
   },
   "afternoon-run-17275266944": {
-    "tempC": 13
+    "tempC": 13,
+    "city": "Queens"
   },
   "afternoon-run-17242836090": {
     "tempC": 8,
-    "photoPath": "/photos/afternoon-run-17242836090.jpg"
+    "photoPath": "/photos/afternoon-run-17242836090.jpg",
+    "city": "Manhattan"
   },
   "afternoon-run-17220802254": {
-    "tempC": 9
+    "tempC": 9,
+    "city": "Queens"
   },
   "afternoon-run-17197139902": {
     "tempC": 10,
-    "photoPath": "/photos/afternoon-run-17197139902.jpg"
+    "photoPath": "/photos/afternoon-run-17197139902.jpg",
+    "city": "Queens"
   },
   "afternoon-run-17143602718": {
     "tempC": 14,
-    "photoPath": "/photos/afternoon-run-17143602718.jpg"
+    "photoPath": "/photos/afternoon-run-17143602718.jpg",
+    "city": "Queens"
   },
   "afternoon-run-17084758502": {
     "tempC": 18,
-    "photoPath": "/photos/afternoon-run-17084758502.jpg"
+    "photoPath": "/photos/afternoon-run-17084758502.jpg",
+    "city": "Queens"
   },
   "afternoon-run-17053170884": {
-    "tempC": 14
+    "tempC": 14,
+    "city": "Manhattan"
   },
   "afternoon-run-17038531172": {
-    "tempC": 17
+    "tempC": 17,
+    "city": "Queens"
   },
   "afternoon-run-16994341185": {
-    "tempC": 14
+    "tempC": 14,
+    "city": "Queens"
   },
   "afternoon-run-16983523095": {
     "tempC": 16,
-    "photoPath": "/photos/afternoon-run-16983523095.jpg"
+    "photoPath": "/photos/afternoon-run-16983523095.jpg",
+    "city": "Queens"
   },
   "afternoon-run-16962283458": {
-    "tempC": 11
+    "tempC": 11,
+    "city": "Queens"
   },
   "morning-run-16885443622": {
-    "tempC": 20
+    "tempC": 20,
+    "city": "Mexico City"
   },
   "morning-run-16845468105": {
     "tempC": 19,
-    "photoPath": "/photos/morning-run-16845468105.jpg"
+    "photoPath": "/photos/morning-run-16845468105.jpg",
+    "city": "Mexico City"
   },
   "morning-run-16837439050": {
     "tempC": 12,
-    "photoPath": "/photos/morning-run-16837439050.jpg"
+    "photoPath": "/photos/morning-run-16837439050.jpg",
+    "city": "Manhattan"
   },
   "night-run-16825538567": {
     "tempC": 23,
-    "photoPath": "/photos/night-run-16825538567.jpg"
+    "photoPath": "/photos/night-run-16825538567.jpg",
+    "city": "Queens"
   },
   "long-16805717036": {
-    "photoPath": "/photos/long-16805717036.jpg"
+    "photoPath": "/photos/long-16805717036.jpg",
+    "city": "Brooklyn"
   },
   "afternoon-run-16788355061": {
-    "tempC": 18
+    "tempC": 18,
+    "city": "Queens"
   },
   "i-16779219917": {
     "tempC": 17,
-    "photoPath": "/photos/i-16779219917.jpg"
+    "photoPath": "/photos/i-16779219917.jpg",
+    "city": "Brooklyn"
   },
   "afternoon-run-16762158023": {
     "tempC": 17,
-    "photoPath": "/photos/afternoon-run-16762158023.jpg"
+    "photoPath": "/photos/afternoon-run-16762158023.jpg",
+    "city": "Queens"
   },
   "evening-run-16726039930": {
-    "tempC": 17
+    "tempC": 17,
+    "city": "Queens"
   },
   "afternoon-run-16715634618": {
-    "tempC": 17
+    "tempC": 17,
+    "city": "Queens"
   },
   "afternoon-run-16708000039": {
-    "tempC": 15
+    "tempC": 15,
+    "city": "Queens"
   },
   "afternoon-run-16669151216": {
     "tempC": 15,
-    "photoPath": "/photos/afternoon-run-16669151216.jpg"
+    "photoPath": "/photos/afternoon-run-16669151216.jpg",
+    "city": "Brooklyn"
   },
   "i-16651061254": {
-    "tempC": 18
+    "tempC": 18,
+    "city": "Queens"
   },
   "night-run-16634907980": {
     "tempC": 17,
-    "photoPath": "/photos/night-run-16634907980.jpg"
+    "photoPath": "/photos/night-run-16634907980.jpg",
+    "city": "Queens"
   },
   "night-run-16615515418": {
-    "tempC": 14
+    "tempC": 14,
+    "city": "Queens"
   },
   "afternoon-run-16575046256": {
-    "tempC": 21
+    "tempC": 21,
+    "city": "Queens"
   },
   "afternoon-run-16555482750": {
-    "tempC": 18
+    "tempC": 18,
+    "city": "Queens"
   },
   "afternoon-run-16537169088": {
-    "tempC": 16
+    "tempC": 16,
+    "city": "Manhattan"
   },
   "afternoon-run-16518333870": {
     "tempC": 17,
@@ -215,76 +271,95 @@
     "photoPath": "/photos/afternoon-run-16438391743.jpg"
   },
   "afternoon-run-16398147079": {
-    "tempC": 24
+    "tempC": 24,
+    "city": "Manhattan"
   },
   "afternoon-run-16378056716": {
     "tempC": 18,
-    "photoPath": "/photos/afternoon-run-16378056716.jpg"
+    "photoPath": "/photos/afternoon-run-16378056716.jpg",
+    "city": "Manhattan"
   },
   "afternoon-run-16315503706": {
-    "tempC": 19
+    "tempC": 19,
+    "city": "Manhattan"
   },
   "evening-run-16298007160": {
-    "tempC": 19
+    "tempC": 19,
+    "city": "Manhattan"
   },
   "weekly-long-16266092522": {
     "tempC": 20,
-    "photoPath": "/photos/weekly-long-16266092522.jpg"
+    "photoPath": "/photos/weekly-long-16266092522.jpg",
+    "city": "Brooklyn"
   },
   "evening-run-16237295864": {
-    "tempC": 21
+    "tempC": 21,
+    "city": "Manhattan"
   },
   "long-interval-16227784214": {
     "tempC": 19,
-    "photoPath": "/photos/long-interval-16227784214.jpg"
+    "photoPath": "/photos/long-interval-16227784214.jpg",
+    "city": "Manhattan"
   },
   "afternoon-run-16174015038": {
     "tempC": 24
   },
   "interval-16164831451": {
-    "tempC": 19
+    "tempC": 19,
+    "city": "Manhattan"
   },
   "mp-16143290429": {
-    "tempC": 21
+    "tempC": 21,
+    "city": "Manhattan"
   },
   "afternoon-run-16079179784": {
-    "tempC": 26
+    "tempC": 26,
+    "city": "Manhattan"
   },
   "jc-5k-16041791208": {
     "tempC": 24,
-    "photoPath": "/photos/jc-5k-16041791208.jpg"
+    "photoPath": "/photos/jc-5k-16041791208.jpg",
+    "city": "Brooklyn"
   },
   "shake-out-16033671436": {
     "tempC": 29,
-    "photoPath": "/photos/shake-out-16033671436.jpg"
+    "photoPath": "/photos/shake-out-16033671436.jpg",
+    "city": "Manhattan"
   },
   "evening-run-15916589349": {
-    "tempC": 27
+    "tempC": 27,
+    "city": "Manhattan"
   },
   "weekly-long-15891685507": {
     "tempC": 24,
     "photoPath": "/photos/weekly-long-15891685507.jpg"
   },
   "interval-thuesday-15860730482": {
-    "tempC": 24
+    "tempC": 24,
+    "city": "Manhattan"
   },
   "evening-run-15848000761": {
     "tempC": 24,
-    "photoPath": "/photos/evening-run-15848000761.jpg"
+    "photoPath": "/photos/evening-run-15848000761.jpg",
+    "city": "Manhattan"
   },
   "night-run-15838162676": {
     "tempC": 24,
-    "photoPath": "/photos/night-run-15838162676.jpg"
+    "photoPath": "/photos/night-run-15838162676.jpg",
+    "city": "Manhattan"
   },
   "tempo-15791132536": {
-    "tempC": 24
+    "tempC": 24,
+    "city": "Manhattan"
   },
   "evening-run-15769631391": {
     "tempC": 25,
-    "photoPath": "/photos/evening-run-15769631391.jpg"
+    "photoPath": "/photos/evening-run-15769631391.jpg",
+    "city": "Manhattan"
   },
   "interval-tuesday-15751879664": {
-    "tempC": 25
+    "tempC": 25,
+    "city": "Manhattan"
   },
   "morning-run-15691069335": {
     "tempC": 22,
@@ -296,11 +371,13 @@
   },
   "afternoon-run-15610329019": {
     "tempC": 26,
-    "photoPath": "/photos/afternoon-run-15610329019.jpg"
+    "photoPath": "/photos/afternoon-run-15610329019.jpg",
+    "city": "Queens"
   },
   "interval-tuesday-15599761130": {
     "tempC": 25,
-    "photoPath": "/photos/interval-tuesday-15599761130.jpg"
+    "photoPath": "/photos/interval-tuesday-15599761130.jpg",
+    "city": "Manhattan"
   },
   "weekly-not-very-long-15561794874": {
     "tempC": 29,
@@ -308,126 +385,157 @@
   },
   "evening-run-15552270046": {
     "tempC": 25,
-    "photoPath": "/photos/evening-run-15552270046.jpg"
+    "photoPath": "/photos/evening-run-15552270046.jpg",
+    "city": "Manhattan"
   },
   "interval-tuesday-15518961033": {
     "tempC": 24,
-    "photoPath": "/photos/interval-tuesday-15518961033.jpg"
+    "photoPath": "/photos/interval-tuesday-15518961033.jpg",
+    "city": "Manhattan"
   },
   "run-15472644965": {
     "tempC": 28,
-    "photoPath": "/photos/run-15472644965.jpg"
+    "photoPath": "/photos/run-15472644965.jpg",
+    "city": "Queens"
   },
   "afternoon-run-15438693660": {
     "tempC": 30,
-    "photoPath": "/photos/afternoon-run-15438693660.jpg"
+    "photoPath": "/photos/afternoon-run-15438693660.jpg",
+    "city": "Manhattan"
   },
   "weekly-long-15401664360": {
     "tempC": 29,
-    "photoPath": "/photos/weekly-long-15401664360.jpg"
+    "photoPath": "/photos/weekly-long-15401664360.jpg",
+    "city": "Manhattan"
   },
   "run-15383211944": {
     "tempC": 26,
-    "photoPath": "/photos/run-15383211944.jpg"
+    "photoPath": "/photos/run-15383211944.jpg",
+    "city": "Manhattan"
   },
   "evening-run-15371476873": {
     "tempC": 27,
-    "photoPath": "/photos/evening-run-15371476873.jpg"
+    "photoPath": "/photos/evening-run-15371476873.jpg",
+    "city": "Manhattan"
   },
   "afternoon-run-15370050312": {
-    "tempC": 27
+    "tempC": 27,
+    "city": "Manhattan"
   },
   "interval-tuesday-15359534059": {
-    "tempC": 28
+    "tempC": 28,
+    "city": "Manhattan"
   },
   "weekly-looong-15320040579": {
     "tempC": 26,
-    "photoPath": "/photos/weekly-looong-15320040579.jpg"
+    "photoPath": "/photos/weekly-looong-15320040579.jpg",
+    "city": "Manhattan"
   },
   "easy-15313533827": {
     "tempC": 25,
-    "photoPath": "/photos/easy-15313533827.jpg"
+    "photoPath": "/photos/easy-15313533827.jpg",
+    "city": "Manhattan"
   },
   "interval-15304042318": {
-    "tempC": 25
+    "tempC": 25,
+    "city": "Manhattan"
   },
   "tempo-15246529531": {
     "tempC": 27,
-    "photoPath": "/photos/tempo-15246529531.jpg"
+    "photoPath": "/photos/tempo-15246529531.jpg",
+    "city": "Brooklyn"
   },
   "weekly-kind-of-long-15619323922": {
     "tempC": 27
   },
   "weekly-kind-of-long-15215679112": {
     "tempC": 29,
-    "photoPath": "/photos/weekly-kind-of-long-15215679112.jpg"
+    "photoPath": "/photos/weekly-kind-of-long-15215679112.jpg",
+    "city": "Manhattan"
   },
   "interval-crisp-tuesday-15197996896": {
-    "tempC": 27
+    "tempC": 27,
+    "city": "Manhattan"
   },
   "interval-tuesday-15128405471": {
-    "tempC": 29
+    "tempC": 29,
+    "city": "Manhattan"
   },
   "weekly-long-15064184428": {
     "tempC": 25,
-    "photoPath": "/photos/weekly-long-15064184428.jpg"
+    "photoPath": "/photos/weekly-long-15064184428.jpg",
+    "city": "Seattle"
   },
   "recovery-15041689539": {
     "tempC": 27,
-    "photoPath": "/photos/recovery-15041689539.jpg"
+    "photoPath": "/photos/recovery-15041689539.jpg",
+    "city": "Seattle"
   },
   "lunch-run-14987429942": {
     "tempC": 27,
-    "photoPath": "/photos/lunch-run-14987429942.jpg"
+    "photoPath": "/photos/lunch-run-14987429942.jpg",
+    "city": "Seattle"
   },
   "zone-2-14974128587": {
     "tempC": 26,
-    "photoPath": "/photos/zone-2-14974128587.jpg"
+    "photoPath": "/photos/zone-2-14974128587.jpg",
+    "city": "Seattle"
   },
   "weekly-long-14958779542": {
     "tempC": 26,
-    "photoPath": "/photos/weekly-long-14958779542.jpg"
+    "photoPath": "/photos/weekly-long-14958779542.jpg",
+    "city": "Seattle"
   },
   "taco-tuesday-14906534107": {
     "tempC": 33,
-    "photoPath": "/photos/taco-tuesday-14906534107.jpg"
+    "photoPath": "/photos/taco-tuesday-14906534107.jpg",
+    "city": "Manhattan"
   },
   "roasted-14876024487": {
-    "photoPath": "/photos/roasted-14876024487.jpg"
+    "photoPath": "/photos/roasted-14876024487.jpg",
+    "city": "Manhattan"
   },
   "morning-run-14860117292": {
-    "tempC": 28
+    "tempC": 28,
+    "city": "Manhattan"
   },
   "weekly-long-14811110138": {
     "tempC": 20,
     "photoPath": "/photos/weekly-long-14811110138.jpg"
   },
   "evening-run-14790828732": {
-    "tempC": 23
+    "tempC": 23,
+    "city": "Brooklyn"
   },
   "run-14781113994": {
     "tempC": 31,
-    "photoPath": "/photos/run-14781113994.jpg"
+    "photoPath": "/photos/run-14781113994.jpg",
+    "city": "Manhattan"
   },
   "run-14760707327": {
-    "tempC": 26
+    "tempC": 26,
+    "city": "Manhattan"
   },
   "weekly-long-14739061268": {
     "tempC": 24,
     "photoPath": "/photos/weekly-long-14739061268.jpg"
   },
   "fart-lek-14725832895": {
-    "tempC": 28
+    "tempC": 28,
+    "city": "Manhattan"
   },
   "interval-tuesday-14689420086": {
     "tempC": 24,
-    "photoPath": "/photos/interval-tuesday-14689420086.jpg"
+    "photoPath": "/photos/interval-tuesday-14689420086.jpg",
+    "city": "Manhattan"
   },
   "evening-run-14667737027": {
-    "tempC": 24
+    "tempC": 24,
+    "city": "Manhattan"
   },
   "run-14645450289": {
-    "tempC": 24
+    "tempC": 24,
+    "city": "Brooklyn"
   },
   "run-14556501645": {
     "tempC": 15,
@@ -447,28 +555,36 @@
     "photoPath": "/photos/run-14513588170.jpg"
   },
   "run-14493850213": {
-    "photoPath": "/photos/run-14493850213.jpg"
+    "photoPath": "/photos/run-14493850213.jpg",
+    "city": "Manhattan"
   },
   "run-14400654643": {
-    "photoPath": "/photos/run-14400654643.jpg"
+    "photoPath": "/photos/run-14400654643.jpg",
+    "city": "Manhattan"
   },
   "run-14379562863": {
-    "photoPath": "/photos/run-14379562863.jpg"
+    "photoPath": "/photos/run-14379562863.jpg",
+    "city": "Manhattan"
   },
   "run-14338879259": {
-    "photoPath": "/photos/run-14338879259.jpg"
+    "photoPath": "/photos/run-14338879259.jpg",
+    "city": "Manhattan"
   },
   "run-14327874351": {
-    "photoPath": "/photos/run-14327874351.jpg"
+    "photoPath": "/photos/run-14327874351.jpg",
+    "city": "Manhattan"
   },
   "run-14296101190": {
-    "photoPath": "/photos/run-14296101190.jpg"
+    "photoPath": "/photos/run-14296101190.jpg",
+    "city": "Brooklyn"
   },
   "run-14277977480": {
-    "photoPath": "/photos/run-14277977480.jpg"
+    "photoPath": "/photos/run-14277977480.jpg",
+    "city": "Manhattan"
   },
   "run-14257505627": {
-    "photoPath": "/photos/run-14257505627.jpg"
+    "photoPath": "/photos/run-14257505627.jpg",
+    "city": "Manhattan"
   },
   "run-14222840776": {
     "photoPath": "/photos/run-14222840776.jpg"
@@ -480,28 +596,36 @@
     "photoPath": "/photos/run-14193815591.jpg"
   },
   "run-14165368226": {
-    "photoPath": "/photos/run-14165368226.jpg"
+    "photoPath": "/photos/run-14165368226.jpg",
+    "city": "Brooklyn"
   },
   "run-14139516325": {
-    "photoPath": "/photos/run-14139516325.jpg"
+    "photoPath": "/photos/run-14139516325.jpg",
+    "city": "Manhattan"
   },
   "run-14121831047": {
-    "photoPath": "/photos/run-14121831047.jpg"
+    "photoPath": "/photos/run-14121831047.jpg",
+    "city": "Manhattan"
   },
   "run-14100496597": {
-    "photoPath": "/photos/run-14100496597.jpg"
+    "photoPath": "/photos/run-14100496597.jpg",
+    "city": "Manhattan"
   },
   "run-14081674353": {
-    "photoPath": "/photos/run-14081674353.jpg"
+    "photoPath": "/photos/run-14081674353.jpg",
+    "city": "Manhattan"
   },
   "run-14072909359": {
-    "photoPath": "/photos/run-14072909359.jpg"
+    "photoPath": "/photos/run-14072909359.jpg",
+    "city": "Manhattan"
   },
   "run-14034777630": {
-    "photoPath": "/photos/run-14034777630.jpg"
+    "photoPath": "/photos/run-14034777630.jpg",
+    "city": "Manhattan"
   },
   "run-14016204988": {
-    "photoPath": "/photos/run-14016204988.jpg"
+    "photoPath": "/photos/run-14016204988.jpg",
+    "city": "Manhattan"
   },
   "run-13982671579": {
     "photoPath": "/photos/run-13982671579.jpg"
@@ -510,31 +634,38 @@
     "photoPath": "/photos/run-13966290727.jpg"
   },
   "run-13931651950": {
-    "photoPath": "/photos/run-13931651950.jpg"
+    "photoPath": "/photos/run-13931651950.jpg",
+    "city": "Manhattan"
   },
   "run-13892658656": {
     "photoPath": "/photos/run-13892658656.jpg"
   },
   "run-13876254946": {
-    "photoPath": "/photos/run-13876254946.jpg"
+    "photoPath": "/photos/run-13876254946.jpg",
+    "city": "Manhattan"
   },
   "2-13857266913": {
-    "photoPath": "/photos/2-13857266913.jpg"
+    "photoPath": "/photos/2-13857266913.jpg",
+    "city": "Manhattan"
   },
   "run-13837633853": {
     "photoPath": "/photos/run-13837633853.jpg"
   },
   "run-13808084646": {
-    "photoPath": "/photos/run-13808084646.jpg"
+    "photoPath": "/photos/run-13808084646.jpg",
+    "city": "Manhattan"
   },
   "run-13762788859": {
-    "photoPath": "/photos/run-13762788859.jpg"
+    "photoPath": "/photos/run-13762788859.jpg",
+    "city": "Brooklyn"
   },
   "run-13744928359": {
-    "photoPath": "/photos/run-13744928359.jpg"
+    "photoPath": "/photos/run-13744928359.jpg",
+    "city": "Manhattan"
   },
   "run-13728418649": {
-    "photoPath": "/photos/run-13728418649.jpg"
+    "photoPath": "/photos/run-13728418649.jpg",
+    "city": "Manhattan"
   },
   "run-13682569537": {
     "photoPath": "/photos/run-13682569537.jpg"
@@ -543,48 +674,131 @@
     "photoPath": "/photos/run-13669566048.jpg"
   },
   "run-13654045258": {
-    "photoPath": "/photos/run-13654045258.jpg"
+    "photoPath": "/photos/run-13654045258.jpg",
+    "city": "Manhattan"
   },
   "run-13636364719": {
-    "photoPath": "/photos/run-13636364719.jpg"
+    "photoPath": "/photos/run-13636364719.jpg",
+    "city": "Manhattan"
   },
   "run-13620417805": {
-    "photoPath": "/photos/run-13620417805.jpg"
+    "photoPath": "/photos/run-13620417805.jpg",
+    "city": "Manhattan"
   },
   "3-13576826295": {
-    "photoPath": "/photos/3-13576826295.jpg"
+    "photoPath": "/photos/3-13576826295.jpg",
+    "city": "Manhattan"
   },
   "run-13566129284": {
-    "photoPath": "/photos/run-13566129284.jpg"
+    "photoPath": "/photos/run-13566129284.jpg",
+    "city": "Manhattan"
   },
   "run-13543430964": {
-    "photoPath": "/photos/run-13543430964.jpg"
+    "photoPath": "/photos/run-13543430964.jpg",
+    "city": "Manhattan"
   },
   "run-13513779925": {
-    "photoPath": "/photos/run-13513779925.jpg"
+    "photoPath": "/photos/run-13513779925.jpg",
+    "city": "Brooklyn"
   },
   "run-13497348820": {
-    "photoPath": "/photos/run-13497348820.jpg"
+    "photoPath": "/photos/run-13497348820.jpg",
+    "city": "Manhattan"
   },
   "run-13451942159": {
-    "photoPath": "/photos/run-13451942159.jpg"
+    "photoPath": "/photos/run-13451942159.jpg",
+    "city": "Manhattan"
   },
   "run-13441737874": {
-    "photoPath": "/photos/run-13441737874.jpg"
+    "photoPath": "/photos/run-13441737874.jpg",
+    "city": "Manhattan"
   },
   "run-13433736397": {
-    "photoPath": "/photos/run-13433736397.jpg"
+    "photoPath": "/photos/run-13433736397.jpg",
+    "city": "Manhattan"
   },
   "morning-run-18336532280": {
-    "photoPath": "/photos/morning-run-18336532280.jpg"
+    "photoPath": "/photos/morning-run-18336532280.jpg",
+    "city": "Vancouver"
   },
   "morning-run-18364602479": {
-    "photoPath": "/photos/morning-run-18364602479.jpg"
+    "photoPath": "/photos/morning-run-18364602479.jpg",
+    "city": "Vancouver"
   },
   "vancouver-marathon-18364602479": {
     "photoPath": "/photos/vancouver-marathon-18364602479.jpg"
   },
   "afternoon-run-18391236895": {
-    "photoPath": "/photos/afternoon-run-18391236895.jpg"
+    "photoPath": "/photos/afternoon-run-18391236895.jpg",
+    "city": "Vancouver"
+  },
+  "my-first-run-14737230769": {
+    "city": "Manhattan"
+  },
+  "first-run-after-holiday-trip-aborted-due-14737174154": {
+    "city": "Manhattan"
+  },
+  "lunch-run-14737201661": {
+    "city": "Manhattan"
+  },
+  "afternoon-run-14737228449": {
+    "city": "Queens"
+  },
+  "afternoon-run-14737183589": {
+    "city": "Manhattan"
+  },
+  "run-13475249312": {
+    "city": "Manhattan"
+  },
+  "run-13484062189": {
+    "city": "Manhattan"
+  },
+  "run-13551717252": {
+    "city": "Manhattan"
+  },
+  "run-13791246934": {
+    "city": "Manhattan"
+  },
+  "run-13922094049": {
+    "city": "Manhattan"
+  },
+  "2-15324609383": {
+    "city": "Brooklyn"
+  },
+  "run-14473159151": {
+    "city": "Manhattan"
+  },
+  "run-14634172928": {
+    "city": "Manhattan"
+  },
+  "interval-tuesday-14833764524": {
+    "city": "Manhattan"
+  },
+  "compare-14882498874": {
+    "city": "Manhattan"
+  },
+  "night-run-15938260568": {
+    "city": "Manhattan"
+  },
+  "evening-run-16286885478": {
+    "city": "Manhattan"
+  },
+  "evening-run-17534733796": {
+    "city": "Queens"
+  },
+  "afternoon-run-17571802701": {
+    "city": "San Diego"
+  },
+  "afternoon-run-18111656948": {
+    "city": "Queens"
+  },
+  "afternoon-run-18204634143": {
+    "city": "Queens"
+  },
+  "evening-run-18219590640": {
+    "city": "Queens"
+  },
+  "afternoon-run-18270486740": {
+    "city": "Queens"
   }
 }
