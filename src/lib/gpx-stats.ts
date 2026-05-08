@@ -1004,11 +1004,21 @@ export const streakYears: StreakYearHeatmap[] = (() => {
     kmByDate.set(iso, (kmByDate.get(iso) ?? 0) + t.stats.distanceKm);
   }
 
+  // Build-time "today" — cells for in-progress years are capped here so
+  // the heatmap doesn't show a sea of empty future squares.
+  const todayUtc = new Date(Math.floor(Date.now() / 86_400_000) * 86_400_000);
+
   for (let y = 1; y <= maxYear; y++) {
     const ystart = new Date(Date.UTC(startY + y - 1, startM, startD));
+    const yend = new Date(ystart);
+    yend.setUTCFullYear(yend.getUTCFullYear() + 1);
+    const inProgress = last < yend;
+    const cellCount = inProgress
+      ? Math.min(365, Math.max(1, Math.round((todayUtc.getTime() - ystart.getTime()) / 86_400_000) + 1))
+      : 365;
     const cells: HeatmapCell[] = [];
     let total = 0;
-    for (let i = 0; i < 365; i++) {
+    for (let i = 0; i < cellCount; i++) {
       const d = new Date(ystart);
       d.setUTCDate(d.getUTCDate() + i);
       const iso = isoDate(d);
@@ -1016,9 +1026,6 @@ export const streakYears: StreakYearHeatmap[] = (() => {
       total += km;
       cells.push({ date: iso, km: +km.toFixed(2) });
     }
-    const yend = new Date(ystart);
-    yend.setUTCFullYear(yend.getUTCFullYear() + 1);
-    const inProgress = last < yend;
     const elapsed = inProgress
       ? Math.max(1, Math.round((last.getTime() - ystart.getTime()) / 86_400_000))
       : 365;

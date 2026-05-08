@@ -7,13 +7,28 @@ import { toggleDay, useGeoFilter } from "@/lib/geo-filter";
 const DOW_LABELS = ["M", "T", "W", "T", "F", "S", "S"];
 const MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-// Streak years don't align with calendar years — generate the 12-month
-// label row dynamically from the year's start date so the axis matches
-// whatever month the streak began.
-function monthLabelsFrom(startIso: string): string[] {
-  const start = new Date(startIso + "T00:00:00Z");
-  const base = start.getUTCMonth();
-  return Array.from({ length: 12 }, (_, i) => MONTH_NAMES[(base + i) % 12]);
+// Build month-label positions from the actual cells so labels land at the
+// week column where each new month starts. Works for both full (365-cell)
+// and truncated in-progress years.
+function monthPositions(
+  cells: { date: string }[],
+  cellSize: number,
+  gap: number,
+  labelW: number,
+): { label: string; x: number }[] {
+  const out: { label: string; x: number }[] = [];
+  let curMonth = -1;
+  for (let i = 0; i < cells.length; i++) {
+    const d = new Date(cells[i].date + "T00:00:00Z");
+    const m = d.getUTCMonth();
+    if (m !== curMonth) {
+      curMonth = m;
+      const dow = (d.getUTCDay() + 6) % 7;
+      const week = Math.floor((i + (7 - dow)) / 7);
+      out.push({ label: MONTH_NAMES[m], x: labelW + week * (cellSize + gap) });
+    }
+  }
+  return out;
 }
 
 // Map km -> greyscale fill. Empty -> neutral-900.
@@ -28,8 +43,16 @@ export function HeatmapYear({ data }: { data: StreakYearHeatmap }) {
   const cellSize = 13;
   const gap = 2;
   const labelW = 20;
-  const weeks = 53;
   const rows = 7;
+  // For in-progress years, size the grid to the last actual week so we
+  // don't render a wall of empty future squares.
+  const weeks = (() => {
+    if (!data.inProgress || !data.cells.length) return 53;
+    const lastI = data.cells.length - 1;
+    const lastD = new Date(data.cells[lastI].date + "T00:00:00Z");
+    const lastDow = (lastD.getUTCDay() + 6) % 7;
+    return Math.floor((lastI + (7 - lastDow)) / 7) + 1;
+  })();
   const width = labelW + weeks * (cellSize + gap);
   const height = rows * (cellSize + gap) + 20;
 
@@ -121,20 +144,17 @@ export function HeatmapYear({ data }: { data: StreakYearHeatmap }) {
             </g>
           );
         })}
-        {monthLabelsFrom(data.cells[0]?.date ?? "2024-01-01").map((m, i) => {
-          const x = labelW + (i * (weeks - 1) / 11) * (cellSize + gap) + cellSize;
-          return (
-            <text
-              key={m + i}
-              x={x}
-              y={rows * (cellSize + gap) + 12}
-              className="fill-neutral-500 font-tamzen-sm"
-              fontSize={9}
-            >
-              {m}
-            </text>
-          );
-        })}
+        {monthPositions(data.cells, cellSize, gap, labelW).map(({ label, x }, i) => (
+          <text
+            key={label + i}
+            x={x}
+            y={rows * (cellSize + gap) + 12}
+            className="fill-neutral-500 font-tamzen-sm"
+            fontSize={9}
+          >
+            {label}
+          </text>
+        ))}
       </svg>
     </div>
   );
