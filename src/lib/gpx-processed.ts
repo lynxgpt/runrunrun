@@ -72080,5 +72080,54 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running"
     }
+  },
+  "morning-run-18615816075": {
+    "id": "morning-run-18615816075",
+    "name": "Morning Run",
+    "stats": {
+      "name": "Morning Run",
+      "distanceKm": 0.285,
+      "movingSec": 105,
+      "elapsedSec": 107,
+      "paceSecPerKm": 368,
+      "elevationM": 3,
+      "avgHr": null,
+      "startTime": "2026-05-22T23:23:45.000Z",
+      "endTime": "2026-05-22T23:25:32.000Z",
+      "startLat": 35.687312,
+      "startLon": 139.761397,
+      "meanLat": 35.688628,
+      "meanLon": 139.760815,
+      "bbox": {
+        "minLat": 35.687312,
+        "maxLat": 35.689421,
+        "minLon": 139.760087,
+        "maxLon": 139.761397
+      },
+      "paceSamples": [
+        328.47717610036136
+      ],
+      "paceSampleDetails": [
+        {
+          "paceSecPerKm": 328.47717610036136,
+          "lowSpeedSec": 2,
+          "skippedBeforeSec": 0
+        }
+      ],
+      "hrZoneSec": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pbElapsedPaceSecPerKm": {},
+      "pbQuality": {
+        "repeatedShare": 0,
+        "movingShare": 0.9813084112149533,
+        "maxSegmentKph": 21.60000000000002,
+        "hasTeleportGap": false
+      },
+      "activityType": "running"
+    }
   }
 };
