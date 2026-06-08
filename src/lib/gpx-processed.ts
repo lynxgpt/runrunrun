@@ -187,6 +187,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "first-run-after-holiday-trip-aborted-due-14737174154": {
@@ -329,6 +334,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "lunch-run-14737201661": {
@@ -573,6 +583,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "afternoon-run-14737228449": {
@@ -872,6 +887,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "??",
+      "country": "Unknown"
     }
   },
   "afternoon-run-14737183589": {
@@ -1086,6 +1105,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "run-13433736397": {
@@ -1324,6 +1348,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "run-13441737874": {
@@ -1593,6 +1622,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "run-13451942159": {
@@ -2229,6 +2263,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "??",
+      "country": "Unknown"
     }
   },
   "sprint-try-13463080850": {
@@ -2302,6 +2340,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "run-13475249312": {
@@ -2407,6 +2450,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "run-13484062189": {
@@ -2627,6 +2675,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "run-13497348820": {
@@ -2896,6 +2949,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NY",
+      "city": "Manhattan"
     }
   },
   "run-13513779925": {
@@ -3748,6 +3807,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "run-13543430964": {
@@ -3950,6 +4014,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "run-13551717252": {
@@ -4146,6 +4215,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "run-13566129284": {
@@ -4372,6 +4446,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "3-13576826295": {
@@ -5500,6 +5579,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "??",
+      "country": "Unknown"
     }
   },
   "run-13620417805": {
@@ -5715,6 +5798,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "run-13636364719": {
@@ -5899,6 +5987,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "run-13654045258": {
@@ -6113,6 +6206,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "run-13669566048": {
@@ -6382,6 +6480,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "FL"
     }
   },
   "run-13682569537": {
@@ -6832,6 +6935,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "??",
+      "country": "Unknown"
     }
   },
   "run-13728418649": {
@@ -7179,6 +7286,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "run-13744928359": {
@@ -7370,6 +7482,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "run-13762788859": {
@@ -7849,6 +7966,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NY",
+      "city": "Brooklyn"
     }
   },
   "run-13791246934": {
@@ -8027,6 +8150,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "run-13808084646": {
@@ -8284,6 +8412,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "run-13837633853": {
@@ -8812,6 +8945,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "2-13857266913": {
@@ -9069,6 +9207,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "run-13876254946": {
@@ -9265,6 +9408,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "run-13892658656": {
@@ -9863,6 +10011,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NY"
     }
   },
   "run-13922094049": {
@@ -10108,6 +10261,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "run-13931651950": {
@@ -10437,6 +10595,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NY",
+      "city": "Manhattan"
     }
   },
   "run-13966290727": {
@@ -11091,6 +11255,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "LA"
     }
   },
   "run-13982671579": {
@@ -11281,6 +11450,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "LA"
     }
   },
   "run-14016204988": {
@@ -11459,6 +11633,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "run-14034777630": {
@@ -11643,6 +11822,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "run-14072909359": {
@@ -11857,6 +12041,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "run-14081674353": {
@@ -12084,6 +12273,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NY",
+      "city": "Manhattan"
     }
   },
   "run-14100496597": {
@@ -12256,6 +12451,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "run-14121831047": {
@@ -12537,6 +12737,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "run-14139516325": {
@@ -12890,6 +13095,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "run-14165368226": {
@@ -13533,6 +13743,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "run-14193815591": {
@@ -13952,6 +14167,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "??",
+      "country": "Unknown"
     }
   },
   "run-14209038777": {
@@ -14185,6 +14404,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "GA"
     }
   },
   "run-14222840776": {
@@ -14424,6 +14648,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "VA"
     }
   },
   "run-14257505627": {
@@ -14993,6 +15222,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "??",
+      "country": "Unknown"
     }
   },
   "run-14277977480": {
@@ -15159,6 +15392,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "run-14296101190": {
@@ -15819,6 +16057,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NY",
+      "city": "Brooklyn"
     }
   },
   "run-14327874351": {
@@ -16112,6 +16356,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NY",
+      "city": "Manhattan"
     }
   },
   "2-15324609383": {
@@ -16357,6 +16607,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "run-14338879259": {
@@ -16554,6 +16809,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "run-14379562863": {
@@ -17376,6 +17636,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NY"
     }
   },
   "run-14400654643": {
@@ -17549,6 +17814,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "run-14473159151": {
@@ -17794,6 +18064,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "run-14493850213": {
@@ -18015,6 +18290,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "run-14513588170": {
@@ -18308,6 +18588,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "UT"
     }
   },
   "run-14524902301": {
@@ -18643,6 +18928,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "WY"
     }
   },
   "run-14534865309": {
@@ -19068,6 +19358,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "WY"
     }
   },
   "run-14545937562": {
@@ -19433,6 +19728,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "WY"
     }
   },
   "run-14556501645": {
@@ -20063,6 +20363,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "WY"
     }
   },
   "run-14634172928": {
@@ -20308,6 +20613,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "run-14645450289": {
@@ -20583,6 +20893,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "evening-run-14667737027": {
@@ -20960,6 +21275,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "interval-tuesday-14689420086": {
@@ -21187,6 +21507,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "fart-lek-14725832895": {
@@ -21402,6 +21727,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "weekly-long-14739061268": {
@@ -21948,6 +22278,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "run-14760707327": {
@@ -22199,6 +22534,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "run-14781113994": {
@@ -22401,6 +22741,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "evening-run-14790828732": {
@@ -22579,6 +22924,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NY",
+      "city": "Brooklyn"
     }
   },
   "weekly-long-14811110138": {
@@ -23311,6 +23662,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "interval-tuesday-14833764524": {
@@ -23633,6 +23989,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "morning-run-14860117292": {
@@ -23830,6 +24191,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "roasted-14876024487": {
@@ -24032,6 +24398,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "compare-14882498874": {
@@ -24222,6 +24593,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "taco-tuesday-14906534107": {
@@ -24425,6 +24801,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "weekly-long-14958779542": {
@@ -25266,6 +25647,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "WA"
     }
   },
   "zone-2-14974128587": {
@@ -25649,6 +26035,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "WA"
     }
   },
   "lunch-run-14987429942": {
@@ -26063,6 +26454,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "WA"
     }
   },
   "recovery-15041689539": {
@@ -26416,6 +26812,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "WA"
     }
   },
   "weekly-long-15064184428": {
@@ -27190,6 +27591,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "WA"
     }
   },
   "interval-tuesday-15128405471": {
@@ -27405,6 +27811,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "interval-crisp-tuesday-15197996896": {
@@ -27608,6 +28019,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "weekly-kind-of-long-15215679112": {
@@ -27919,6 +28335,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NY",
+      "city": "Manhattan"
     }
   },
   "weekly-kind-of-long-15619323922": {
@@ -28109,6 +28531,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "tempo-15246529531": {
@@ -28306,6 +28733,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NY",
+      "city": "Brooklyn"
     }
   },
   "interval-15304042318": {
@@ -28539,6 +28972,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "easy-15313533827": {
@@ -28844,6 +29282,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "weekly-looong-15320040579": {
@@ -29798,6 +30241,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NY",
+      "city": "Manhattan"
     }
   },
   "interval-tuesday-15359534059": {
@@ -30031,6 +30480,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "afternoon-run-15370050312": {
@@ -30161,6 +30615,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "evening-run-15371476873": {
@@ -30520,6 +30979,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "??",
+      "country": "Unknown"
     }
   },
   "run-15383211944": {
@@ -30710,6 +31173,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "weekly-long-15401664360": {
@@ -31370,6 +31838,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NY"
     }
   },
   "afternoon-run-15438693660": {
@@ -31796,6 +32269,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": true
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "??",
+      "country": "Unknown"
     }
   },
   "run-15472644965": {
@@ -32360,6 +32837,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States"
     }
   },
   "interval-tuesday-15518961033": {
@@ -32629,6 +33110,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "evening-run-15552270046": {
@@ -32928,6 +33414,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "weekly-not-very-long-15561794874": {
@@ -33528,6 +34019,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "interval-tuesday-15599761130": {
@@ -33731,6 +34227,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "afternoon-run-15610329019": {
@@ -34096,6 +34597,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "??",
+      "country": "Unknown"
     }
   },
   "weekly-long-15644788734": {
@@ -34678,6 +35183,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "GB",
+      "country": "United Kingdom"
     }
   },
   "morning-run-15691069335": {
@@ -35079,6 +35588,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "FR",
+      "country": "France"
     }
   },
   "Skoga_Falls": {
@@ -35817,6 +36330,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "trailrun"
+    },
+    "location": {
+      "countryCode": "IS",
+      "country": "Iceland"
     }
   },
   "interval-tuesday-15751879664": {
@@ -36002,6 +36519,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "evening-run-15769631391": {
@@ -36373,6 +36895,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NY",
+      "city": "Manhattan"
     }
   },
   "tempo-15791132536": {
@@ -36594,6 +37122,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NY",
+      "city": "Manhattan"
     }
   },
   "night-run-15838162676": {
@@ -36821,6 +37355,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "evening-run-15848000761": {
@@ -37048,6 +37587,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "interval-thuesday-15860730482": {
@@ -37311,6 +37855,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "weekly-long-15891685507": {
@@ -37983,6 +38532,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "PA"
     }
   },
   "evening-run-15916589349": {
@@ -38246,6 +38800,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "night-run-15938260568": {
@@ -38485,6 +39044,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "shake-out-16033671436": {
@@ -38633,6 +39197,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "jc-5k-16041791208": {
@@ -38806,6 +39375,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "afternoon-run-16079179784": {
@@ -38918,6 +39492,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "mp-16143290429": {
@@ -39278,6 +39857,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "??",
+      "country": "Unknown"
     }
   },
   "interval-16164831451": {
@@ -39589,6 +40172,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "afternoon-run-16174015038": {
@@ -39816,6 +40404,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "Beehive": {
@@ -40054,6 +40647,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "trailrun"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "ME"
     }
   },
   "Acadia_carriage_roads": {
@@ -40928,6 +41526,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "cycling"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "ME"
     }
   },
   "long-interval-16227784214": {
@@ -41390,6 +41993,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "evening-run-16237295864": {
@@ -41586,6 +42194,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "weekly-long-16266092522": {
@@ -42258,6 +42871,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "evening-run-16286885478": {
@@ -42478,6 +43096,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "evening-run-16298007160": {
@@ -42729,6 +43352,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NY",
+      "city": "Manhattan"
     }
   },
   "afternoon-run-16315503706": {
@@ -42968,6 +43597,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NY",
+      "city": "Manhattan"
     }
   },
   "afternoon-run-16378056716": {
@@ -43177,6 +43812,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "afternoon-run-16398147079": {
@@ -43657,6 +44297,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NJ"
     }
   },
   "afternoon-run-16438391743": {
@@ -43950,6 +44595,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "PA"
     }
   },
   "afternoon-run-16450106167": {
@@ -44484,6 +45134,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "PA"
     }
   },
   "afternoon-run-16498641156": {
@@ -44837,6 +45492,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NY"
     }
   },
   "afternoon-run-16518333870": {
@@ -45215,6 +45875,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NY"
     }
   },
   "afternoon-run-16537169088": {
@@ -45779,6 +46444,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "??",
+      "country": "Unknown"
     }
   },
   "afternoon-run-16555482750": {
@@ -46006,6 +46675,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NY",
+      "city": "Queens"
     }
   },
   "afternoon-run-16575046256": {
@@ -46299,6 +46974,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "??",
+      "country": "Unknown"
     }
   },
   "night-run-16615515418": {
@@ -46471,6 +47150,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "??",
+      "country": "Unknown"
     }
   },
   "night-run-16634907980": {
@@ -46680,6 +47363,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "??",
+      "country": "Unknown"
     }
   },
   "i-16651061254": {
@@ -46918,6 +47605,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "??",
+      "country": "Unknown"
     }
   },
   "afternoon-run-16669151216": {
@@ -47338,6 +48029,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NY",
+      "city": "Brooklyn"
     }
   },
   "afternoon-run-16708000039": {
@@ -47601,6 +48298,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "??",
+      "country": "Unknown"
     }
   },
   "afternoon-run-16715634618": {
@@ -47786,6 +48487,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NY",
+      "city": "Queens"
     }
   },
   "evening-run-16726039930": {
@@ -48001,6 +48708,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "??",
+      "country": "Unknown"
     }
   },
   "afternoon-run-16762158023": {
@@ -48222,6 +48933,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "??",
+      "country": "Unknown"
     }
   },
   "i-16779219917": {
@@ -48618,6 +49333,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NY",
+      "city": "Brooklyn"
     }
   },
   "afternoon-run-16788355061": {
@@ -48929,6 +49650,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NY",
+      "city": "Queens"
     }
   },
   "long-16805717036": {
@@ -49619,6 +50346,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "??",
+      "country": "Unknown"
     }
   },
   "night-run-16825538567": {
@@ -49725,6 +50456,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "??",
+      "country": "Unknown"
     }
   },
   "morning-run-16837439050": {
@@ -50115,6 +50850,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NY",
+      "city": "Manhattan"
     }
   },
   "morning-run-16845468105": {
@@ -50348,6 +51089,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "MX",
+      "country": "Mexico"
     }
   },
   "morning-run-16885443622": {
@@ -50538,6 +51283,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "MX",
+      "country": "Mexico"
     }
   },
   "afternoon-run-16962283458": {
@@ -50789,6 +51538,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "??",
+      "country": "Unknown"
     }
   },
   "afternoon-run-16983523095": {
@@ -50974,6 +51727,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "??",
+      "country": "Unknown"
     }
   },
   "afternoon-run-16994341185": {
@@ -51394,6 +52151,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NY",
+      "city": "Queens"
     }
   },
   "afternoon-run-17038531172": {
@@ -51633,6 +52396,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "??",
+      "country": "Unknown"
     }
   },
   "afternoon-run-17053170884": {
@@ -52143,6 +52910,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NY",
+      "city": "Manhattan"
     }
   },
   "afternoon-run-17084758502": {
@@ -52358,6 +53131,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "??",
+      "country": "Unknown"
     }
   },
   "afternoon-run-17143602718": {
@@ -52748,6 +53525,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "??",
+      "country": "Unknown"
     }
   },
   "afternoon-run-17197139902": {
@@ -52975,6 +53756,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "??",
+      "country": "Unknown"
     }
   },
   "afternoon-run-17220802254": {
@@ -53166,6 +53951,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "??",
+      "country": "Unknown"
     }
   },
   "afternoon-run-17242836090": {
@@ -53754,6 +54543,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NY",
+      "city": "Manhattan"
     }
   },
   "afternoon-run-17275266944": {
@@ -53957,6 +54752,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "??",
+      "country": "Unknown"
     }
   },
   "afternoon-run-17299652019": {
@@ -54214,6 +55013,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NY",
+      "city": "Queens"
     }
   },
   "afternoon-run-17322270905": {
@@ -54411,6 +55216,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "??",
+      "country": "Unknown"
     }
   },
   "afternoon-run-17344738804": {
@@ -54680,6 +55489,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "??",
+      "country": "Unknown"
     }
   },
   "afternoon-run-17356679662": {
@@ -54889,6 +55702,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "??",
+      "country": "Unknown"
     }
   },
   "morning-run-17373716844": {
@@ -55061,6 +55878,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "??",
+      "country": "Unknown"
     }
   },
   "afternoon-run-17389092903": {
@@ -55661,6 +56482,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NY",
+      "city": "Brooklyn"
     }
   },
   "afternoon-run-17420273770": {
@@ -55900,6 +56727,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NY"
     }
   },
   "t-17453848055": {
@@ -56181,6 +57013,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "??",
+      "country": "Unknown"
     }
   },
   "long-1-17477316478": {
@@ -57010,6 +57846,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NY",
+      "city": "Brooklyn"
     }
   },
   "evening-run-17534733796": {
@@ -57176,6 +58018,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "??",
+      "country": "Unknown"
     }
   },
   "t-17534211801": {
@@ -57391,6 +58237,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "??",
+      "country": "Unknown"
     }
   },
   "long-17559478474": {
@@ -58165,6 +59015,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "CA"
     }
   },
   "afternoon-run-17571802701": {
@@ -58579,6 +59434,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "CA"
     }
   },
   "evening-run-17583633562": {
@@ -58920,6 +59780,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States"
     }
   },
   "afternoon-run-17595716432": {
@@ -59310,6 +60174,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States"
     }
   },
   "afternoon-run-17608442477": {
@@ -59645,6 +60513,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "CA"
     }
   },
   "morning-run-17627720292": {
@@ -59920,6 +60793,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "CA"
     }
   },
   "evening-run-17655624188": {
@@ -60219,6 +61097,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "CA"
     }
   },
   "long-17679611720": {
@@ -60988,6 +61871,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NY",
+      "city": "Manhattan"
     }
   },
   "i-17713548999": {
@@ -61287,6 +62176,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NY",
+      "city": "Queens"
     }
   },
   "long-17735532162": {
@@ -62242,6 +63137,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NY",
+      "city": "Manhattan"
     }
   },
   "afternoon-run-17760572734": {
@@ -62595,6 +63496,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NY",
+      "city": "Queens"
     }
   },
   "evening-run-17797236470": {
@@ -62978,6 +63885,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NY",
+      "city": "Queens"
     }
   },
   "long-17822488749": {
@@ -64215,6 +65128,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NY",
+      "city": "Brooklyn"
     }
   },
   "night-run-17872646670": {
@@ -64369,6 +65288,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "??",
+      "country": "Unknown"
     }
   },
   "long-17894509408": {
@@ -65137,6 +66060,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "??",
+      "country": "Unknown"
     }
   },
   "night-run-17933034234": {
@@ -65593,6 +66520,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NY",
+      "city": "Queens"
     }
   },
   "afternoon-run-17966408470": {
@@ -65832,6 +66765,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "??",
+      "country": "Unknown"
     }
   },
   "long-7-17980924738": {
@@ -66961,6 +67898,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NY",
+      "city": "Manhattan"
     }
   },
   "long-8-18072448520": {
@@ -67651,6 +68594,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NY",
+      "city": "Manhattan"
     }
   },
   "afternoon-run-18111656948": {
@@ -67914,6 +68863,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NY",
+      "city": "Queens"
     }
   },
   "long-9-18164090984": {
@@ -68544,6 +69499,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "US",
+      "country": "United States",
+      "region": "NY",
+      "city": "Brooklyn"
     }
   },
   "afternoon-run-18204634143": {
@@ -68795,6 +69756,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "??",
+      "country": "Unknown"
     }
   },
   "evening-run-18219590640": {
@@ -69028,6 +69993,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "??",
+      "country": "Unknown"
     }
   },
   "afternoon-run-18270486740": {
@@ -69206,6 +70175,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "??",
+      "country": "Unknown"
     }
   },
   "morning-run-18336532280": {
@@ -69378,6 +70351,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "CA",
+      "country": "Canada"
     }
   },
   "morning-run-18364602479": {
@@ -70826,6 +71803,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "CA",
+      "country": "Canada"
     }
   },
   "afternoon-run-18391236895": {
@@ -70998,6 +71979,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "CA",
+      "country": "Canada"
     }
   },
   "lunch-run-18444210432": {
@@ -71254,6 +72239,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "CA",
+      "country": "Canada"
     }
   },
   "morning-run-18532839389": {
@@ -71523,6 +72512,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "??",
+      "country": "Unknown"
     }
   },
   "afternoon-run-18576249897": {
@@ -71918,6 +72911,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "CA",
+      "country": "Canada"
     }
   },
   "morning-run-18615816075": {
@@ -71967,6 +72964,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "JP",
+      "country": "Japan"
     }
   },
   "morning-run-18667903277": {
@@ -72519,6 +73520,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "JP",
+      "country": "Japan"
     }
   },
   "lunch-run-18817992510": {
@@ -72752,6 +73757,10 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running"
+    },
+    "location": {
+      "countryCode": "KR",
+      "country": "South Korea"
     }
   }
 };
