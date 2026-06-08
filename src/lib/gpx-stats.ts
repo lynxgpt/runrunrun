@@ -365,7 +365,9 @@ function displayLocationForNotable(loc: ActivityLocation): {
 } {
   let displayRegion = loc.region;
   const hinted = lookupDisplayCityHint(loc);
-  let city = hinted?.city ?? null;
+  // Use display-city-hint first, then fall back to the city already stored
+  // on the location object (set by geo-lookup.mjs for non-US countries).
+  let city = hinted?.city ?? loc.city ?? null;
   if (hinted?.region) displayRegion = hinted.region;
 
   if (
@@ -926,6 +928,22 @@ export const nycBoroughsVisited: GeoRow[] = (() => {
       days: v.days.size,
       km: +v.km.toFixed(1),
     }))
+    .sort((a, b) => b.km - a.km);
+})();
+
+// Canada city-level breakdown — mirrors nycBoroughsVisited for Canada.
+export const canadaCitiesVisited: GeoRow[] = (() => {
+  const map = new Map<string, { km: number; days: Set<string> }>();
+  for (const t of tracks) {
+    const loc = locationFor(t);
+    if (loc.countryCode !== "CA" || !loc.city) continue;
+    const entry = map.get(loc.city) ?? { km: 0, days: new Set() };
+    entry.km += t.stats.distanceKm;
+    entry.days.add(isoDate(dateOf(t)));
+    map.set(loc.city, entry);
+  }
+  return [...map.entries()]
+    .map(([name, v]) => ({ name, code: name, days: v.days.size, km: +v.km.toFixed(1) }))
     .sort((a, b) => b.km - a.km);
 })();
 

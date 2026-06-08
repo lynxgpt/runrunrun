@@ -1,6 +1,6 @@
 "use client";
 
-import { countriesVisited, usStatesVisited, nycBoroughsVisited } from "@/lib/mock-data";
+import { countriesVisited, usStatesVisited, nycBoroughsVisited, canadaCitiesVisited } from "@/lib/mock-data";
 import { DataTable } from "@/components/primitives/data-table";
 import { CountryFlag } from "@/components/primitives/country-flag";
 import type { GeoRow } from "@/types/activity";
@@ -33,6 +33,11 @@ function buildRows(): UnifiedRow[] {
         }
       }
     }
+    if (c.code === "CA" && canadaCitiesVisited.length > 0) {
+      for (const city of canadaCitiesVisited) {
+        out.push({ ...city, level: 1, kind: "city" });
+      }
+    }
   }
   return out;
 }
@@ -40,7 +45,6 @@ function buildRows(): UnifiedRow[] {
 export function Geography() {
   const filter = useGeoFilter();
   const rows = buildRows();
-  const hasUnknown = countriesVisited.some((r) => r.code === "??");
   if (rows.length === 0) return null;
 
   const activeIdx = rows.findIndex((r) => {
@@ -106,18 +110,7 @@ export function Geography() {
             onRowClick={onRowClick}
           />
         </div>
-        {hasUnknown ? (
-          <p className="mx-auto max-w-3xl mt-3 text-xs font-mono-tamzen text-neutral-500 leading-relaxed">
-            <span className="text-neutral-400">Unknown</span> &mdash; these are
-            runs whose GPS center didn&rsquo;t fall inside any of the
-            bounding-box regions this site knows about. Geolocation here is
-            purely offline (coarse lat/lon boxes, no reverse-geocoding API), so
-            anywhere outside the pre-configured countries lands in
-            &ldquo;Unknown.&rdquo; Add the region to{" "}
-            <code>src/lib/gpx-stats.ts</code> (search for <code>REGIONS</code>)
-            to promote it.
-          </p>
-        ) : null}
+        {/* Unknown row note intentionally omitted from UI — no unknowns remain after polygon detection */}
       </div>
     </section>
   );

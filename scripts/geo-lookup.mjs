@@ -354,6 +354,65 @@ function detectNycBorough(lat, lon) {
 }
 
 // ---------------------------------------------------------------------------
+// Canadian city detection — bbox list ordered most-specific first.
+// region = ISO 3166-2 province code (without "CA-" prefix).
+
+const CANADA_CITIES = [
+  // British Columbia
+  { city: "Squamish",     region: "BC", minLat: 49.60, maxLat: 49.86, minLon: -123.30, maxLon: -122.90 },
+  { city: "Whistler",     region: "BC", minLat: 50.07, maxLat: 50.17, minLon: -122.99, maxLon: -122.91 },
+  { city: "Burnaby",      region: "BC", minLat: 49.20, maxLat: 49.32, minLon: -122.98, maxLon: -122.84 },
+  { city: "Coquitlam",    region: "BC", minLat: 49.22, maxLat: 49.36, minLon: -122.91, maxLon: -122.62 },
+  { city: "Vancouver",    region: "BC", minLat: 49.10, maxLat: 49.38, minLon: -123.30, maxLon: -122.98 },
+  { city: "Manning Park", region: "BC", minLat: 48.95, maxLat: 49.20, minLon: -121.10, maxLon: -120.50 },
+  { city: "Penticton",    region: "BC", minLat: 49.44, maxLat: 49.56, minLon: -119.72, maxLon: -119.50 },
+  { city: "Kelowna",      region: "BC", minLat: 49.82, maxLat: 49.96, minLon: -119.62, maxLon: -119.36 },
+  { city: "Victoria",     region: "BC", minLat: 48.30, maxLat: 48.56, minLon: -123.70, maxLon: -123.20 },
+  // Alberta
+  { city: "Calgary",      region: "AB", minLat: 50.84, maxLat: 51.20, minLon: -114.35, maxLon: -113.85 },
+  { city: "Edmonton",     region: "AB", minLat: 53.38, maxLat: 53.68, minLon: -113.75, maxLon: -113.28 },
+  // Ontario
+  { city: "Toronto",      region: "ON", minLat: 43.58, maxLat: 43.86, minLon: -79.64, maxLon: -79.12 },
+  { city: "Ottawa",       region: "ON", minLat: 45.26, maxLat: 45.54, minLon: -75.85, maxLon: -75.53 },
+  // Quebec
+  { city: "Montreal",     region: "QC", minLat: 45.40, maxLat: 45.70, minLon: -73.98, maxLon: -73.47 },
+  { city: "Quebec City",  region: "QC", minLat: 46.70, maxLat: 46.95, minLon: -71.45, maxLon: -71.10 },
+];
+
+function detectCanadianCity(lat, lon) {
+  for (const c of CANADA_CITIES) {
+    if (lat >= c.minLat && lat <= c.maxLat && lon >= c.minLon && lon <= c.maxLon) {
+      return { city: c.city, region: c.region };
+    }
+  }
+  return null;
+}
+
+// ---------------------------------------------------------------------------
+// US state fallback — for coastal/island points that world-atlas misses at
+// 10m resolution (Manhattan island, Miami Beach, barrier islands, etc.).
+// Uses us-atlas/states-10m.json which has finer US-specific detail.
+
+function tryUsStateFallback(lat, lon) {
+  const states = loadStateFeatures();
+  const pt = point([lon, lat]);
+  for (const sf of states) {
+    if (booleanPointInPolygon(pt, sf)) {
+      const fips = String(sf.id).padStart(2, "0");
+      const stateCode = FIPS_TO_STATE[fips];
+      if (!stateCode) continue;
+      const result = { countryCode: "US", country: "United States", region: stateCode };
+      if (stateCode === "NY") {
+        const borough = detectNycBorough(lat, lon);
+        if (borough) result.city = borough;
+      }
+      return result;
+    }
+  }
+  return null;
+}
+
+// ---------------------------------------------------------------------------
 // Load geodata (lazy, cached)
 
 let _countryFeatures = null;
@@ -390,7 +449,7 @@ function loadStateFeatures() {
 export function detectLocation(lat, lon) {
   const pt = point([lon, lat]);
 
-  // 1. Find the country
+  // 1. Try world-atlas country polygon detection (10m resolution).
   const countries = loadCountryFeatures();
   let matched = null;
   for (const f of countries) {
@@ -400,37 +459,36 @@ export function detectLocation(lat, lon) {
     }
   }
 
+  // 2. World-atlas misses narrow islands/coastal strips at 10m resolution
+  //    (Manhattan, Miami Beach, Charleston SC harbor, etc.).
+  //    Fall back to us-atlas state polygons which have better US detail.
   if (!matched) {
+    const usResult = tryUsStateFallback(lat, lon);
+    if (usResult) return usResult;
+    // Still unknown — caller should retry with a different coordinate (e.g. startLat/startLon).
     return { countryCode: "??", country: "Unknown" };
   }
 
   const numericId = String(matched.id).padStart(3, "0");
   const info = NUMERIC_TO_ALPHA2[numericId];
   if (!info) {
-    // Fallback: use the name from the feature
     return { countryCode: "??", country: matched.properties?.name ?? "Unknown" };
   }
 
   const result = { countryCode: info.alpha2, country: info.name };
 
-  // 2. For US points, find the state
+  // 3. For US: resolve state (prefer us-atlas for accuracy), then NYC borough.
   if (info.alpha2 === "US") {
-    const states = loadStateFeatures();
-    for (const sf of states) {
-      if (booleanPointInPolygon(pt, sf)) {
-        const fips = String(sf.id).padStart(2, "0");
-        const stateCode = FIPS_TO_STATE[fips];
-        if (stateCode) {
-          result.region = stateCode;
-          // 3. For NY state, additionally try to detect the NYC borough
-          if (stateCode === "NY") {
-            const borough = detectNycBorough(lat, lon);
-            if (borough) result.city = borough;
-          }
-        }
-        break;
-      }
-    }
+    const usResult = tryUsStateFallback(lat, lon);
+    if (usResult) return usResult;
+    // World-atlas confirmed US but us-atlas missed state — return country only.
+    return result;
+  }
+
+  // 4. For Canada: resolve city/province.
+  if (info.alpha2 === "CA") {
+    const cityInfo = detectCanadianCity(lat, lon);
+    if (cityInfo) return { ...result, ...cityInfo };
   }
 
   return result;

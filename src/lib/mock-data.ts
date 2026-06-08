@@ -22,5 +22,6 @@ export {
   countriesVisited,
   usStatesVisited,
   nycBoroughsVisited,
+  canadaCitiesVisited,
   streakYears,
 } from "./gpx-stats";

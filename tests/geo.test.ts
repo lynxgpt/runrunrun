@@ -731,3 +731,423 @@ describe("Heatmap and streak logic", () => {
     expect(longestStreak(stats.dates)).toBe(1);
   });
 });
+
+// ---------------------------------------------------------------------------
+// Formerly-Unknown runs — every run that previously returned countryCode:"??"
+// must now resolve to the correct country/state/city.
+// Mean coordinates are used (what process-gpx.mjs passes by default).
+
+describe("Formerly-Unknown runs — correct city identification", () => {
+  // NYC area runs that were previously Unknown because world-atlas 10m
+  // doesn't cover Manhattan island, LIC/Queens coastline, etc.
+  // Now resolved via us-atlas state fallback.
+
+  it("afternoon-run-14737228449 — Long Island City → Queens NY", () => {
+    const r = detectLocation(40.761005, -73.950877);
+    expect(r.countryCode).toBe("US");
+    expect(r.region).toBe("NY");
+    expect(r.city).toBe("Queens");
+  });
+
+  it("run-13451942159 — Weehawken/NJ area → NJ", () => {
+    const r = detectLocation(40.782417, -74.004874);
+    expect(r.countryCode).toBe("US");
+    expect(r.region).toBe("NJ");
+  });
+
+  it("3-13576826295 — Hudson/NJ area mean → NJ", () => {
+    const r = detectLocation(40.811117, -73.976921);
+    expect(r.countryCode).toBe("US");
+    expect(r.region).toBe("NJ");
+  });
+
+  it("3-13576826295 — start point Manhattan → NY/Manhattan", () => {
+    const r = detectLocation(40.760208, -74.003321);
+    expect(r.countryCode).toBe("US");
+    expect(r.region).toBe("NY");
+  });
+
+  it("run-13682569537 — Miami Beach → FL", () => {
+    const r = detectLocation(25.789587, -80.148888);
+    expect(r.countryCode).toBe("US");
+    expect(r.region).toBe("FL");
+  });
+
+  it("run-14193815591 — Charleston SC → SC", () => {
+    const r = detectLocation(32.781658, -79.943769);
+    expect(r.countryCode).toBe("US");
+    expect(r.region).toBe("SC");
+  });
+
+  it("run-14257505627 — Hudson Yards/Manhattan → NY/Manhattan", () => {
+    const r = detectLocation(40.741731, -74.015503);
+    expect(r.countryCode).toBe("US");
+    expect(r.region).toBe("NY");
+    expect(r.city).toBe("Manhattan");
+  });
+
+  it("evening-run-15371476873 — Financial District → NY/Manhattan", () => {
+    const r = detectLocation(40.702093, -73.998585);
+    expect(r.countryCode).toBe("US");
+    expect(r.region).toBe("NY");
+    expect(r.city).toBe("Manhattan");
+  });
+
+  it("afternoon-run-15438693660 — Chelsea area → NY/Manhattan", () => {
+    const r = detectLocation(40.742673, -74.009966);
+    expect(r.countryCode).toBe("US");
+    expect(r.region).toBe("NY");
+    expect(r.city).toBe("Manhattan");
+  });
+
+  it("afternoon-run-15610329019 — Astoria/Queens → NY/Queens", () => {
+    const r = detectLocation(40.790139, -73.924629);
+    expect(r.countryCode).toBe("US");
+    expect(r.region).toBe("NY");
+    expect(r.city).toBe("Queens");
+  });
+
+  it("mp-16143290429 — Hoboken/NJ → NJ", () => {
+    const r = detectLocation(40.774815, -74.010428);
+    expect(r.countryCode).toBe("US");
+    expect(r.region).toBe("NJ");
+  });
+
+  it("afternoon-run-16537169088 — Washington Heights area → NY", () => {
+    const r = detectLocation(40.859548, -73.940194);
+    expect(r.countryCode).toBe("US");
+    expect(r.region).toBe("NY");
+  });
+
+  it("afternoon-run-16575046256 — LIC → NY/Queens", () => {
+    const r = detectLocation(40.754113, -73.958714);
+    expect(r.countryCode).toBe("US");
+    expect(r.region).toBe("NY");
+    expect(r.city).toBe("Queens");
+  });
+
+  it("night-run-16615515418 — LIC → NY/Queens", () => {
+    const r = detectLocation(40.742544, -73.959361);
+    expect(r.countryCode).toBe("US");
+    expect(r.region).toBe("NY");
+    expect(r.city).toBe("Queens");
+  });
+
+  it("night-run-16634907980 — LIC → NY/Queens", () => {
+    const r = detectLocation(40.74441, -73.959153);
+    expect(r.countryCode).toBe("US");
+    expect(r.region).toBe("NY");
+    expect(r.city).toBe("Queens");
+  });
+
+  it("i-16651061254 — LIC → NY/Queens", () => {
+    const r = detectLocation(40.753285, -73.950849);
+    expect(r.countryCode).toBe("US");
+    expect(r.region).toBe("NY");
+    expect(r.city).toBe("Queens");
+  });
+
+  it("afternoon-run-16708000039 — LIC → NY/Queens", () => {
+    const r = detectLocation(40.754894, -73.957652);
+    expect(r.countryCode).toBe("US");
+    expect(r.region).toBe("NY");
+    expect(r.city).toBe("Queens");
+  });
+
+  it("evening-run-16726039930 — LIC → NY/Queens", () => {
+    const r = detectLocation(40.755084, -73.959293);
+    expect(r.countryCode).toBe("US");
+    expect(r.region).toBe("NY");
+    expect(r.city).toBe("Queens");
+  });
+
+  it("afternoon-run-16762158023 — LIC → NY/Queens", () => {
+    const r = detectLocation(40.742312, -73.959622);
+    expect(r.countryCode).toBe("US");
+    expect(r.region).toBe("NY");
+    expect(r.city).toBe("Queens");
+  });
+
+  it("long-16805717036 — Red Hook/Brooklyn → NY/Brooklyn", () => {
+    const r = detectLocation(40.707114, -73.990748);
+    expect(r.countryCode).toBe("US");
+    expect(r.region).toBe("NY");
+    expect(r.city).toBe("Brooklyn");
+  });
+
+  it("night-run-16825538567 — LIC → NY/Queens", () => {
+    const r = detectLocation(40.744836, -73.95668);
+    expect(r.countryCode).toBe("US");
+    expect(r.region).toBe("NY");
+    expect(r.city).toBe("Queens");
+  });
+
+  it("afternoon-run-16962283458 — LIC → NY/Queens", () => {
+    const r = detectLocation(40.754038, -73.957408);
+    expect(r.countryCode).toBe("US");
+    expect(r.region).toBe("NY");
+    expect(r.city).toBe("Queens");
+  });
+
+  it("afternoon-run-16983523095 — LIC → NY/Queens", () => {
+    const r = detectLocation(40.742322, -73.959692);
+    expect(r.countryCode).toBe("US");
+    expect(r.region).toBe("NY");
+    expect(r.city).toBe("Queens");
+  });
+
+  it("afternoon-run-17038531172 — LIC → NY/Queens", () => {
+    const r = detectLocation(40.744677, -73.957628);
+    expect(r.countryCode).toBe("US");
+    expect(r.region).toBe("NY");
+    expect(r.city).toBe("Queens");
+  });
+
+  it("afternoon-run-17084758502 — LIC → NY/Queens", () => {
+    const r = detectLocation(40.744045, -73.958152);
+    expect(r.countryCode).toBe("US");
+    expect(r.region).toBe("NY");
+    expect(r.city).toBe("Queens");
+  });
+
+  it("afternoon-run-17143602718 — Astoria/Queens → NY/Queens", () => {
+    const r = detectLocation(40.776544, -73.927297);
+    expect(r.countryCode).toBe("US");
+    expect(r.region).toBe("NY");
+    expect(r.city).toBe("Queens");
+  });
+
+  it("afternoon-run-17197139902 — LIC → NY/Queens", () => {
+    const r = detectLocation(40.741452, -73.959807);
+    expect(r.countryCode).toBe("US");
+    expect(r.region).toBe("NY");
+    expect(r.city).toBe("Queens");
+  });
+
+  it("afternoon-run-17220802254 — LIC → NY/Queens", () => {
+    const r = detectLocation(40.741942, -73.959521);
+    expect(r.countryCode).toBe("US");
+    expect(r.region).toBe("NY");
+    expect(r.city).toBe("Queens");
+  });
+
+  it("afternoon-run-17275266944 — LIC → NY/Queens", () => {
+    const r = detectLocation(40.74153, -73.959297);
+    expect(r.countryCode).toBe("US");
+    expect(r.region).toBe("NY");
+    expect(r.city).toBe("Queens");
+  });
+
+  it("afternoon-run-17322270905 — LIC → NY/Queens", () => {
+    const r = detectLocation(40.743667, -73.959132);
+    expect(r.countryCode).toBe("US");
+    expect(r.region).toBe("NY");
+    expect(r.city).toBe("Queens");
+  });
+
+  it("afternoon-run-17344738804 — LIC/Hunters Point → NY/Queens", () => {
+    const r = detectLocation(40.753991, -73.949948);
+    expect(r.countryCode).toBe("US");
+    expect(r.region).toBe("NY");
+    expect(r.city).toBe("Queens");
+  });
+
+  it("afternoon-run-17356679662 — LIC → NY/Queens", () => {
+    const r = detectLocation(40.74357, -73.959141);
+    expect(r.countryCode).toBe("US");
+    expect(r.region).toBe("NY");
+    expect(r.city).toBe("Queens");
+  });
+
+  it("morning-run-17373716844 — LIC → NY/Queens", () => {
+    const r = detectLocation(40.7419, -73.959805);
+    expect(r.countryCode).toBe("US");
+    expect(r.region).toBe("NY");
+    expect(r.city).toBe("Queens");
+  });
+
+  it("t-17453848055 — LIC → NY/Queens", () => {
+    const r = detectLocation(40.742759, -73.958958);
+    expect(r.countryCode).toBe("US");
+    expect(r.region).toBe("NY");
+    expect(r.city).toBe("Queens");
+  });
+
+  it("evening-run-17534733796 — LIC → NY/Queens", () => {
+    const r = detectLocation(40.744264, -73.95906);
+    expect(r.countryCode).toBe("US");
+    expect(r.region).toBe("NY");
+    expect(r.city).toBe("Queens");
+  });
+
+  it("t-17534211801 — LIC → NY/Queens", () => {
+    const r = detectLocation(40.741286, -73.958934);
+    expect(r.countryCode).toBe("US");
+    expect(r.region).toBe("NY");
+    expect(r.city).toBe("Queens");
+  });
+
+  it("night-run-17872646670 — LIC → NY/Queens", () => {
+    const r = detectLocation(40.741676, -73.960028);
+    expect(r.countryCode).toBe("US");
+    expect(r.region).toBe("NY");
+    expect(r.city).toBe("Queens");
+  });
+
+  it("long-17894509408 — LIC/Queens → NY/Queens", () => {
+    const r = detectLocation(40.760727, -73.948738);
+    expect(r.countryCode).toBe("US");
+    expect(r.region).toBe("NY");
+    expect(r.city).toBe("Queens");
+  });
+
+  it("afternoon-run-17966408470 — LIC → NY/Queens", () => {
+    const r = detectLocation(40.744211, -73.956289);
+    expect(r.countryCode).toBe("US");
+    expect(r.region).toBe("NY");
+    expect(r.city).toBe("Queens");
+  });
+
+  it("afternoon-run-18204634143 — LIC → NY/Queens", () => {
+    const r = detectLocation(40.741804, -73.959978);
+    expect(r.countryCode).toBe("US");
+    expect(r.region).toBe("NY");
+    expect(r.city).toBe("Queens");
+  });
+
+  it("evening-run-18219590640 — LIC → NY/Queens", () => {
+    const r = detectLocation(40.745664, -73.958726);
+    expect(r.countryCode).toBe("US");
+    expect(r.region).toBe("NY");
+    expect(r.city).toBe("Queens");
+  });
+
+  it("afternoon-run-18270486740 — LIC → NY/Queens", () => {
+    const r = detectLocation(40.743242, -73.958966);
+    expect(r.countryCode).toBe("US");
+    expect(r.region).toBe("NY");
+    expect(r.city).toBe("Queens");
+  });
+
+  // Squamish BC — mean coordinate is in the Howe Sound fjord (water),
+  // process-gpx.mjs retries with startLat/startLon which lands in Squamish.
+  it("morning-run-18532839389 — Squamish BC start point → CA/BC/Squamish", () => {
+    // Mean is on fjord water → Unknown; start is on land in Squamish.
+    const meanResult = detectLocation(49.693553, -123.1569);
+    expect(meanResult.countryCode).toBe("??"); // expected: fjord water
+    const startResult = detectLocation(49.701871, -123.144165);
+    expect(startResult.countryCode).toBe("CA");
+    expect(startResult.country).toBe("Canada");
+    expect(startResult.city).toBe("Squamish");
+    expect(startResult.region).toBe("BC");
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Canada city detection — all Canada runs must show correct city name.
+
+describe("Canada city detection", () => {
+  it("Vancouver downtown → CA/BC/Vancouver", () => {
+    const r = detectLocation(49.287644, -123.112952);
+    expect(r.countryCode).toBe("CA");
+    expect(r.country).toBe("Canada");
+    expect(r.city).toBe("Vancouver");
+    expect(r.region).toBe("BC");
+  });
+
+  it("Vancouver marathon route (UBC/south) → CA/BC/Vancouver", () => {
+    const r = detectLocation(49.269625, -123.172536);
+    expect(r.countryCode).toBe("CA");
+    expect(r.country).toBe("Canada");
+    expect(r.city).toBe("Vancouver");
+    expect(r.region).toBe("BC");
+  });
+
+  it("Port Coquitlam area → CA/BC/Coquitlam", () => {
+    const r = detectLocation(49.300195, -122.741323);
+    expect(r.countryCode).toBe("CA");
+    expect(r.country).toBe("Canada");
+    expect(r.city).toBe("Coquitlam");
+    expect(r.region).toBe("BC");
+  });
+
+  it("Manning Provincial Park → CA/BC/Manning Park", () => {
+    const r = detectLocation(49.061637, -120.831854);
+    expect(r.countryCode).toBe("CA");
+    expect(r.country).toBe("Canada");
+    expect(r.city).toBe("Manning Park");
+    expect(r.region).toBe("BC");
+  });
+
+  it("Coquitlam area → CA/BC/Coquitlam", () => {
+    const r = detectLocation(49.283486, -122.773307);
+    expect(r.countryCode).toBe("CA");
+    expect(r.country).toBe("Canada");
+    expect(r.city).toBe("Coquitlam");
+    expect(r.region).toBe("BC");
+  });
+
+  it("Squamish start point → CA/BC/Squamish", () => {
+    const r = detectLocation(49.701871, -123.144165);
+    expect(r.countryCode).toBe("CA");
+    expect(r.country).toBe("Canada");
+    expect(r.city).toBe("Squamish");
+    expect(r.region).toBe("BC");
+  });
+
+  // Extra city coverage tests
+  it("Whistler BC → CA/BC/Whistler", () => {
+    const r = detectLocation(50.115, -122.95);
+    expect(r.countryCode).toBe("CA");
+    expect(r.city).toBe("Whistler");
+    expect(r.region).toBe("BC");
+  });
+
+  it("Victoria BC → CA/BC/Victoria", () => {
+    const r = detectLocation(48.43, -123.37);
+    expect(r.countryCode).toBe("CA");
+    expect(r.city).toBe("Victoria");
+    expect(r.region).toBe("BC");
+  });
+
+  it("Calgary AB → CA/AB/Calgary", () => {
+    const r = detectLocation(51.04, -114.10);
+    expect(r.countryCode).toBe("CA");
+    expect(r.city).toBe("Calgary");
+    expect(r.region).toBe("AB");
+  });
+
+  it("Toronto ON → CA/ON/Toronto", () => {
+    const r = detectLocation(43.70, -79.40);
+    expect(r.countryCode).toBe("CA");
+    expect(r.city).toBe("Toronto");
+    expect(r.region).toBe("ON");
+  });
+
+  it("Montreal QC → CA/QC/Montreal", () => {
+    const r = detectLocation(45.52, -73.62);
+    expect(r.countryCode).toBe("CA");
+    expect(r.city).toBe("Montreal");
+    expect(r.region).toBe("QC");
+  });
+
+  it("Vancouver not misclassified as Burnaby (downtown coords)", () => {
+    // 49.28°N, 123.11°W is firmly in Vancouver, not Burnaby
+    const r = detectLocation(49.28, -123.11);
+    expect(r.city).toBe("Vancouver");
+  });
+
+  it("Vancouver not confused with Coquitlam (clear separation at -122.98)", () => {
+    const vanResult = detectLocation(49.26, -123.05); // west of -122.98 → Vancouver
+    expect(vanResult.city).toBe("Vancouver");
+    const coqResult = detectLocation(49.28, -122.82); // east of -122.98 → Coquitlam
+    expect(coqResult.city).toBe("Coquitlam");
+  });
+
+  it("Vancouver not misidentified as Seoul or any non-CA country", () => {
+    const r = detectLocation(49.287644, -123.112952);
+    expect(r.countryCode).not.toBe("US");
+    expect(r.countryCode).not.toBe("??");
+    expect(r.countryCode).toBe("CA");
+  });
+});

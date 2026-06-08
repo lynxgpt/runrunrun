@@ -410,10 +410,18 @@ function main() {
   }
 
   // Attach geo location to each track using polygon-based detection.
+  // Primary: use mean GPS coordinates (best centroid for the whole run).
+  // Fallback: if mean returns Unknown (e.g. run crosses water), retry with
+  // the start point which is always on land at the trailhead/start.
   for (const t of tracks) {
-    const lat = t.stats.meanLat ?? (t.stats.bbox.minLat + t.stats.bbox.maxLat) / 2;
-    const lon = t.stats.meanLon ?? (t.stats.bbox.minLon + t.stats.bbox.maxLon) / 2;
-    t.location = detectLocation(lat, lon);
+    const meanLat = t.stats.meanLat ?? (t.stats.bbox.minLat + t.stats.bbox.maxLat) / 2;
+    const meanLon = t.stats.meanLon ?? (t.stats.bbox.minLon + t.stats.bbox.maxLon) / 2;
+    let loc = detectLocation(meanLat, meanLon);
+    if (loc.countryCode === "??" && t.stats.startLat != null && t.stats.startLon != null) {
+      const startLoc = detectLocation(t.stats.startLat, t.stats.startLon);
+      if (startLoc.countryCode !== "??") loc = startLoc;
+    }
+    t.location = loc;
   }
 
   // Write the summary TS module — lightweight enough to bundle.
