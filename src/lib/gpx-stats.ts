@@ -8,8 +8,10 @@ import rawMeta from "../../public/strava-meta.json";
 import {
   buildPaceDistributionFromSamples,
 } from "./pace-distribution";
-const usCountiesAtlas = require("us-atlas/counties-10m.json");
-const { feature } = require("topojson-client");
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const usCountiesAtlas = require("us-atlas/counties-10m.json") as import("topojson-specification").Topology;
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const { feature } = require("topojson-client") as typeof import("topojson-client");
 
 interface StravaMeta {
   tempC?: number;
@@ -174,10 +176,13 @@ const NYC_BOROUGHS = new Set([
   "Staten Island",
 ]);
 
-const US_COUNTY_FEATURES = feature(
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const US_COUNTY_FEATURES = ((feature as any)(
   usCountiesAtlas,
-  usCountiesAtlas.objects.counties,
-).features as Array<{
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (usCountiesAtlas as any).objects.counties,
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+) as any).features as Array<{
   id: string | number;
   properties: { name: string };
   geometry: {
