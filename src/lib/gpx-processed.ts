@@ -46,10 +46,18 @@ export interface GpxStats {
   };
 }
 
+export interface GpxLocation {
+  countryCode: string;
+  country: string;
+  region?: string;
+  city?: string;
+}
+
 export interface GpxSummary {
   id: string;
   name: string;
   stats: GpxStats;
+  location?: GpxLocation;
 }
 
 export interface GpxTrack extends GpxSummary {
