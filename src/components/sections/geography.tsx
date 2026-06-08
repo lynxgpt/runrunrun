@@ -1,6 +1,6 @@
 "use client";
 
-import { countriesVisited, usStatesVisited, nycBoroughsVisited, canadaCitiesVisited } from "@/lib/mock-data";
+import { countriesVisited, usStatesVisited, nycBoroughsVisited } from "@/lib/mock-data";
 import { DataTable } from "@/components/primitives/data-table";
 import { CountryFlag } from "@/components/primitives/country-flag";
 import type { GeoRow } from "@/types/activity";
@@ -31,11 +31,6 @@ function buildRows(): UnifiedRow[] {
             out.push({ ...b, level: 2, kind: "city" });
           }
         }
-      }
-    }
-    if (c.code === "CA" && canadaCitiesVisited.length > 0) {
-      for (const city of canadaCitiesVisited) {
-        out.push({ ...city, level: 1, kind: "city" });
       }
     }
   }
