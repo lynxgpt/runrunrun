@@ -7,13 +7,46 @@ import { toggleDay, useGeoFilter } from "@/lib/geo-filter";
 const DOW_LABELS = ["M", "T", "W", "T", "F", "S", "S"];
 const MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-// Streak years don't align with calendar years — generate the 12-month
-// label row dynamically from the year's start date so the axis matches
-// whatever month the streak began.
-function monthLabelsFrom(startIso: string): string[] {
+// Compute the x position (in SVG units) where each calendar month label should
+// appear.  The old approach spaced them evenly across 53 columns which
+// accumulated ~1 month of drift by mid-year because real months aren't equal.
+// Instead we find the actual column that contains the 1st of each month.
+const LABEL_W = 20;
+const CELL_SIZE = 13;
+const CELL_GAP = 2;
+const WEEKS = 53;
+
+function monthAxisPositions(startIso: string): Array<{ label: string; x: number }> {
   const start = new Date(startIso + "T00:00:00Z");
-  const base = start.getUTCMonth();
-  return Array.from({ length: 12 }, (_, i) => MONTH_NAMES[(base + i) % 12]);
+  const startYear = start.getUTCFullYear();
+  const startMonth = start.getUTCMonth();
+
+  const out: Array<{ label: string; x: number }> = [];
+  for (let i = 0; i < 12; i++) {
+    const month = (startMonth + i) % 12;
+    const year = startYear + Math.floor((startMonth + i) / 12);
+
+    // Day index within this streak year (0-based).
+    // For the first label use day 0 (the actual start date) so it anchors
+    // correctly even when the streak began mid-month.
+    let dayIndex: number;
+    if (i === 0) {
+      dayIndex = 0;
+    } else {
+      const firstOfMonth = new Date(Date.UTC(year, month, 1));
+      dayIndex = Math.round((firstOfMonth.getTime() - start.getTime()) / 86_400_000);
+    }
+    if (dayIndex >= 365) break;
+
+    // Replicate the cell-placement formula from the render loop.
+    const d = new Date(Date.UTC(year, month, i === 0 ? start.getUTCDate() : 1));
+    const dow = (d.getUTCDay() + 6) % 7; // 0=Mon … 6=Sun
+    const week = Math.floor((dayIndex + (7 - dow)) / 7) % WEEKS;
+    const x = LABEL_W + week * (CELL_SIZE + CELL_GAP) + Math.floor(CELL_SIZE / 2);
+
+    out.push({ label: MONTH_NAMES[month], x });
+  }
+  return out;
 }
 
 // Map km -> greyscale fill. Empty -> neutral-900.
@@ -25,10 +58,10 @@ function cellFill(km: number, max: number) {
 
 export function HeatmapYear({ data }: { data: StreakYearHeatmap }) {
   const filter = useGeoFilter();
-  const cellSize = 13;
-  const gap = 2;
-  const labelW = 20;
-  const weeks = 53;
+  const cellSize = CELL_SIZE;
+  const gap = CELL_GAP;
+  const labelW = LABEL_W;
+  const weeks = WEEKS;
   const rows = 7;
   const width = labelW + weeks * (cellSize + gap);
   const height = rows * (cellSize + gap) + 20;
@@ -121,20 +154,17 @@ export function HeatmapYear({ data }: { data: StreakYearHeatmap }) {
             </g>
           );
         })}
-        {monthLabelsFrom(data.cells[0]?.date ?? "2024-01-01").map((m, i) => {
-          const x = labelW + (i * (weeks - 1) / 11) * (cellSize + gap) + cellSize;
-          return (
-            <text
-              key={m + i}
-              x={x}
-              y={rows * (cellSize + gap) + 12}
-              className="fill-neutral-500 font-tamzen-sm"
-              fontSize={9}
-            >
-              {m}
-            </text>
-          );
-        })}
+        {monthAxisPositions(data.cells[0]?.date ?? "2024-01-01").map(({ label, x }, i) => (
+          <text
+            key={label + i}
+            x={x}
+            y={rows * (cellSize + gap) + 12}
+            className="fill-neutral-500 font-tamzen-sm"
+            fontSize={9}
+          >
+            {label}
+          </text>
+        ))}
       </svg>
     </div>
   );
