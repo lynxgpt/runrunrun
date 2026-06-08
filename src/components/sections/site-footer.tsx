@@ -1,29 +1,30 @@
 import { siteContent } from "@/lib/content";
+import { Heart } from "lucide-react";
 
 export function SiteFooter() {
   return (
     <footer className="text-center mt-16 text-xs font-mono-tamzen text-neutral-500 space-y-1">
-      {siteContent.footer.map((line, i) => {
-        if (line.url && line.linkText) {
-          // Inline link: plain prefix + underlined linkText only
-          return (
-            <p key={i}>
-              {line.text}
-              <a
-                href={line.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline hover:text-neutral-300"
-              >
-                {line.linkText}
-              </a>
-            </p>
-          );
-        }
-        if (line.url) {
-          // Whole line is a link
-          return (
-            <p key={i}>
+      <p className="inline-flex items-center justify-center gap-1.5">
+        <span>Made with</span>
+        <Heart aria-label="love" className="h-3 w-3 text-neutral-400" strokeWidth={1.8} />
+        <span>by Claude</span>
+      </p>
+      {siteContent.footer.map((line, i) =>
+        line.url ? (
+          <p key={i}>
+            {line.linkText ? (
+              <>
+                {line.text}
+                <a
+                  href={line.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:text-neutral-300"
+                >
+                  {line.linkText}
+                </a>
+              </>
+            ) : (
               <a
                 href={line.url}
                 target="_blank"
@@ -32,11 +33,12 @@ export function SiteFooter() {
               >
                 {line.text}
               </a>
-            </p>
-          );
-        }
-        return <p key={i}>{line.text}</p>;
-      })}
+            )}
+          </p>
+        ) : (
+          <p key={i}>{line.text}</p>
+        ),
+      )}
     </footer>
   );
 }

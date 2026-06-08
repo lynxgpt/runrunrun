@@ -13,7 +13,7 @@
 // .env.local in place with the new token pair (Strava rotates both on
 // refresh).
 
-import { readFileSync, writeFileSync, existsSync, mkdirSync, readdirSync } from "node:fs";
+import { readFileSync, writeFileSync, existsSync, mkdirSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
@@ -24,6 +24,23 @@ const ENV_PATH = join(ROOT, ".env.local");
 const GPX_DIR = join(ROOT, "public", "gpx");
 const PHOTOS_DIR = join(ROOT, "public", "photos");
 const META_PATH = join(ROOT, "public", "strava-meta.json");
+
+// Strava API limits for this app:
+//   Overall: 200 requests / 15 minutes, 2,000 / day
+//   Read:    100 requests / 15 minutes, 1,000 / day
+// Keep reads below the stricter 100 / 15 minutes bucket.
+const STRAVA_READ_LIMIT_PER_15_MIN = 100;
+const STRAVA_READ_WINDOW_MS = 15 * 60 * 1000;
+const STRAVA_READ_GAP_MS = Math.ceil(STRAVA_READ_WINDOW_MS / STRAVA_READ_LIMIT_PER_15_MIN);
+let nextStravaReadAt = 0;
+
+async function waitForStravaReadSlot() {
+  const now = Date.now();
+  if (now < nextStravaReadAt) {
+    await new Promise((r) => setTimeout(r, nextStravaReadAt - now));
+  }
+  nextStravaReadAt = Date.now() + STRAVA_READ_GAP_MS;
+}
 
 // ──────────────────────────────────────────────────────────────── env ──
 function parseEnv(src) {
@@ -76,6 +93,7 @@ for (const k of need) {
 
 // ────────────────────────────────────────────────────────────── auth ──
 async function strava(path, { method = "GET", token, body, qs } = {}) {
+  await waitForStravaReadSlot();
   const url = new URL(`https://www.strava.com${path}`);
   if (qs) for (const [k, v] of Object.entries(qs)) url.searchParams.set(k, String(v));
   const headers = { Authorization: `Bearer ${token}` };
@@ -122,41 +140,21 @@ async function refreshTokenIfNeeded() {
 }
 
 // ─────────────────────────────────────────────────── fetch activities ──
-
-// Extract activity IDs already on disk from filenames like "name-12345678.gpx"
-function existingActivityIds() {
-  if (!existsSync(GPX_DIR)) return new Set();
-  return new Set(
-    readdirSync(GPX_DIR)
-      .filter((f) => f.endsWith(".gpx"))
-      .map((f) => { const m = f.match(/-(\d+)\.gpx$/); return m?.[1] ?? null; })
-      .filter(Boolean),
-  );
-}
-
-// Fetch only activities newer than what we already have.
-// Strava returns activities newest-first; we stop the moment we see a known ID.
-async function listNewRuns(token) {
-  const known = existingActivityIds();
-  const newActs = [];
+async function listAllRuns(token) {
+  const all = [];
   let page = 1;
   while (true) {
     console.log(`• listing page ${page}...`);
     const chunk = await strava("/api/v3/athlete/activities", {
       token,
-      qs: { per_page: 50, page },
+      qs: { per_page: 200, page },
     });
-    if (!chunk.length) break;
-    let done = false;
-    for (const a of chunk) {
-      if (known.has(String(a.id))) { done = true; break; }
-      newActs.push(a);
-    }
-    if (done || chunk.length < 50) break;
+    all.push(...chunk);
+    if (chunk.length < 200) break;
     page++;
   }
-  console.log(`• ${newActs.length} new activities (${known.size} already on disk)`);
-  return newActs;
+  console.log(`• found ${all.length} total activities`);
+  return all;
 }
 
 async function fetchStreams(id, token) {
@@ -226,6 +224,7 @@ function slugify(s, id) {
 
 // ─────────────────────────────────────────────────── photos + meta ──
 async function fetchFirstPhoto(activityId, token) {
+  await waitForStravaReadSlot();
   const url = new URL(`https://www.strava.com/api/v3/activities/${activityId}/photos`);
   url.searchParams.set("photo_sources", "true");
   url.searchParams.set("size", "800");
@@ -263,29 +262,56 @@ function saveMeta(meta) {
   if (!existsSync(PHOTOS_DIR)) mkdirSync(PHOTOS_DIR, { recursive: true });
   const token = await refreshTokenIfNeeded();
 
-  const acts = await listNewRuns(token);
-  // Keep road runs only (type === "Run"). Trail runs, rides, etc. excluded.
-  const runs = acts.filter((a) => a.type === "Run");
-  const excluded = acts.length - runs.length;
-  if (excluded) console.log(`• excluded ${excluded} non-Run activities`);
+  const acts = await listAllRuns(token);
+  // Keep run-like activities only. Strava's `type` field distinguishes:
+  //   "Run" → road/path running
+  //   "TrailRun" → trail running
+  //   "VirtualRun", "Ride", "Hike", "Walk", ... → excluded
+  const longRuns = acts.filter((a) => a.type === "Run" || a.type === "TrailRun");
 
-  if (!runs.length) {
-    console.log("• nothing new to pull.");
+  // Summarize what got filtered out so the excluded buckets are visible.
+  const typeCounts = {};
+  for (const a of acts) typeCounts[a.type] = (typeCounts[a.type] ?? 0) + 1;
+  const excluded = Object.entries(typeCounts)
+    .filter(([t]) => t !== "Run" && t !== "TrailRun")
+    .map(([t, n]) => `${n} ${t}`)
+    .join(", ");
+  console.log(
+    `• ${longRuns.length} Run/TrailRun activities (excluded: ${excluded || "none"})`,
+  );
+
+  if (!longRuns.length) {
+    console.log("\nNo Run/TrailRun activities found.");
     return;
   }
 
   let written = 0;
+  let skipped = 0;
+  // Activities for which we still need to fetch/check metadata (all runs)
   const metaQueue = [];
 
-  for (const a of runs) {
+  for (const a of longRuns) {
     const filename = slugify(a.name, a.id);
     const dest = join(GPX_DIR, filename);
     const stem = filename.replace(/\.gpx$/, "");
+    if (existsSync(dest)) {
+      skipped++;
+      metaQueue.push({ a, stem });
+      continue;
+    }
     console.log(`• fetching streams for "${a.name}" (${a.id})...`);
     try {
       const streams = await fetchStreams(a.id, token);
-      const gpx = buildGpx({ id: a.id, name: a.name, startDate: a.start_date, streams });
-      if (!gpx) { console.log(`  ↳ no GPS data, skipping`); continue; }
+      const gpx = buildGpx({
+        id: a.id,
+        name: a.name,
+        startDate: a.start_date,
+        streams,
+      });
+      if (!gpx) {
+        console.log(`  ↳ no GPS data, skipping`);
+        continue;
+      }
       writeFileSync(dest, gpx);
       written++;
       console.log(`  ↳ wrote ${filename}`);
@@ -293,11 +319,9 @@ function saveMeta(meta) {
     } catch (e) {
       console.error(`  ↳ failed: ${e.message}`);
     }
-    // Rate-limit: stay well under 100/15min
-    await new Promise((r) => setTimeout(r, 500));
   }
 
-  console.log(`\n${written} new GPX files written`);
+  console.log(`\n${written} new GPX files, ${skipped} already present`);
 
   // ── Metadata + photos ─────────────────────────────────────────────
   const existingMeta = loadMeta();

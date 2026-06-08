@@ -5,30 +5,14 @@ import yaml from "js-yaml";
 export interface FooterLine {
   text: string;
   url?: string;
-  /** If set, only this portion is underlined/linked; `text` renders as plain prefix. */
   linkText?: string;
 }
 
 export interface SiteContent {
   header: {
     name: string;
-    /** Subtitle below the title. "" = hidden. Omit key = auto date range. */
-    subtitle?: string;
   };
   foreword: string[];
-  sections?: {
-    daily_log?: {
-      /** Italic line below "DAILY LOG". "" = hidden. */
-      subtitle?: string;
-    };
-    notable_runs?: {
-      captions?: {
-        longest?: string;
-        personal_bests?: string;
-        elevation?: string;
-      };
-    };
-  };
   footer: FooterLine[];
 }
 
@@ -43,4 +27,6 @@ function loadContent(): SiteContent {
   return parsed as SiteContent;
 }
 
+// Read at module evaluation time — Next.js server components import this
+// module once per build, so the file is read exactly once.
 export const siteContent: SiteContent = loadContent();

@@ -9,6 +9,7 @@ export interface ActivityLocation {
   countryCode: string;
   region?: string;
   city?: string;
+  county?: string;
   lat?: number;
   lon?: number;
 }
@@ -41,7 +42,10 @@ export interface Activity {
 
 export interface NotableRun {
   rank: number;
+  displayRank?: string;
   date: string;
+  dateIso?: string;
+  dateMonth?: string;
   distanceKm: number;
   movingSec: number;
   paceSecPerKm: number;
@@ -50,6 +54,8 @@ export interface NotableRun {
   weather: WeatherCondition;
   title?: string;
   location: ActivityLocation;
+  displayLocationPrimary?: string;
+  displayLocationSecondary?: string;
   gpxPath?: string;
   /** Key into `gpxTracks` when this run has a real GPS trace. */
   gpxId?: string;
@@ -86,9 +92,22 @@ export interface AnnualMileage {
   km: number;
 }
 
+export interface MonthlyMileage {
+  month: string; // YYYY-MM
+  label: string;
+  km: number;
+  monthIndex: number;
+  marker?: "half-star" | "star";
+}
+
 export interface HistogramBucket {
   label: string;
   count: number;
+}
+
+export interface DistanceFrequencyPoint {
+  km: number;
+  frequency: number;
 }
 
 export interface GeoRow {

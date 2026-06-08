@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Jost } from "next/font/google";
+import { PageVisitTracker } from "@/components/analytics/page-visit-tracker";
+import "flag-icons/css/flag-icons.min.css";
 import "./globals.css";
 
 const jost = Jost({
@@ -12,6 +14,10 @@ const jost = Jost({
 export const metadata: Metadata = {
   title: "run run run",
   description: "a running log derived directly from GPX files.",
+  icons: {
+    icon: [{ url: "/icon.jpeg", type: "image/jpeg" }],
+    shortcut: [{ url: "/icon.jpeg", type: "image/jpeg" }],
+  },
 };
 
 // Inline pre-hydration script: set data-theme from localStorage before first paint
@@ -27,6 +33,7 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeInit }} />
       </head>
       <body className="min-h-full antialiased font-sans">
+        <PageVisitTracker />
         {children}
       </body>
     </html>

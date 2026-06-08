@@ -24,7 +24,10 @@ import {
 } from "node:fs";
 import { join, dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { detectLocation } from "./geo-lookup.mjs";
+import {
+  buildElapsedDistanceTimeline,
+  personalBestElapsedPaces,
+} from "./pb-window.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, "..");
@@ -35,6 +38,7 @@ const OUT_TS = join(ROOT, "src", "lib", "gpx-processed.ts");
 const TARGET_POINTS = 500;
 const MAX_SAMPLE_GAP_SEC = 15;
 const MIN_MOVING_MPS = 0.4;
+const PACE_FILTER_LOW_MPS = 1.5;
 
 function haversineKm(a, b) {
   const R = 6371.0088;
@@ -81,10 +85,112 @@ function downsample(points, target) {
   return out;
 }
 
+function interpolateDistanceAt(timeline, movingSec) {
+  if (!timeline.length) return 0;
+  if (movingSec <= 0) return 0;
+  const last = timeline[timeline.length - 1];
+  if (movingSec >= last.movingSec) return last.distanceKm;
+  for (let i = 1; i < timeline.length; i += 1) {
+    const start = timeline[i - 1];
+    const end = timeline[i];
+    if (movingSec > end.movingSec) continue;
+    const spanSec = end.movingSec - start.movingSec;
+    if (spanSec <= 0) return end.distanceKm;
+    const ratio = (movingSec - start.movingSec) / spanSec;
+    return start.distanceKm + (end.distanceKm - start.distanceKm) * ratio;
+  }
+  return last.distanceKm;
+}
+
+// HR zone boundaries (max bpm for zones 0-2; zone 3 is everything above zone 2)
+const HR_ZONE_MAX = [139, 159, 166];
+
+function hrZoneSecFromPoints(points) {
+  const zones = [0, 0, 0, 0];
+  for (let i = 1; i < points.length; i++) {
+    const a = points[i - 1];
+    const b = points[i];
+    if (a.hr == null || b.hr == null || !a.time || !b.time) continue;
+    const dt = (Date.parse(b.time) - Date.parse(a.time)) / 1000;
+    if (dt <= 0 || dt > MAX_SAMPLE_GAP_SEC) continue;
+    const segKm = haversineKm(a, b);
+    if ((segKm * 1000) / dt < MIN_MOVING_MPS) continue;
+    const hr = (a.hr + b.hr) / 2;
+    const z = HR_ZONE_MAX.findIndex((max) => hr <= max);
+    zones[z === -1 ? 3 : z] += dt;
+  }
+  return zones.map(Math.round);
+}
+
+function minutePacesFromMovingTimeline(timeline) {
+  if (timeline.length < 2) return [];
+  const totalMovingSec = timeline[timeline.length - 1].movingSec;
+  const fullMinutes = Math.floor(totalMovingSec / 60);
+  const paces = [];
+  for (let minute = 0; minute < fullMinutes; minute += 1) {
+    const startSec = minute * 60;
+    const endSec = startSec + 60;
+    const kmCovered =
+      interpolateDistanceAt(timeline, endSec) -
+      interpolateDistanceAt(timeline, startSec);
+    if (kmCovered <= 0) continue;
+    paces.push(60 / kmCovered);
+  }
+  return paces;
+}
+
+function overlappingSec(seg, startSec, endSec) {
+  return Math.max(0, Math.min(seg.endMovingSec, endSec) - Math.max(seg.startMovingSec, startSec));
+}
+
+function minutePaceQualityFromMovingTimeline(timeline, movingSegments) {
+  if (timeline.length < 2) return [];
+  const totalMovingSec = timeline[timeline.length - 1].movingSec;
+  const fullMinutes = Math.floor(totalMovingSec / 60);
+  const details = [];
+  for (let minute = 0; minute < fullMinutes; minute += 1) {
+    const startSec = minute * 60;
+    const endSec = startSec + 60;
+    const kmCovered =
+      interpolateDistanceAt(timeline, endSec) -
+      interpolateDistanceAt(timeline, startSec);
+    if (kmCovered <= 0) continue;
+
+    let lowSpeedSec = 0;
+    let skippedBeforeSec = 0;
+    for (const seg of movingSegments) {
+      const overlap = overlappingSec(seg, startSec, endSec);
+      if (overlap <= 0) continue;
+      if (seg.mps < PACE_FILTER_LOW_MPS) lowSpeedSec += overlap;
+      skippedBeforeSec += seg.skippedBeforeSec;
+    }
+
+    details.push({
+      paceSecPerKm: 60 / kmCovered,
+      lowSpeedSec: +lowSpeedSec.toFixed(3),
+      skippedBeforeSec: +skippedBeforeSec.toFixed(3),
+    });
+  }
+  return details;
+}
+
 function aggregate(points, gpxName) {
   let totalKm = 0;
   let movingSec = 0;
   let gainM = 0;
+  let sumLat = 0;
+  let sumLon = 0;
+
+  for (let i = 0; i < points.length; i++) {
+    sumLat += points[i].lat;
+    sumLon += points[i].lon;
+  }
+
+  const timeline = [{ movingSec: 0, distanceKm: 0 }];
+  const movingSegments = [];
+  let movingSecAcc = 0;
+  let distanceKmAcc = 0;
+  let skippedBeforeSec = 0;
 
   for (let i = 1; i < points.length; i++) {
     const a = points[i - 1];
@@ -96,7 +202,24 @@ function aggregate(points, gpxName) {
       const dt = (Date.parse(b.time) - Date.parse(a.time)) / 1000;
       if (dt > 0 && dt <= MAX_SAMPLE_GAP_SEC) {
         const mps = (segKm * 1000) / dt;
-        if (mps >= MIN_MOVING_MPS) movingSec += dt;
+        if (mps >= MIN_MOVING_MPS) {
+          const startMovingSec = movingSecAcc;
+          movingSec += dt;
+          movingSecAcc += dt;
+          movingSegments.push({
+            startMovingSec,
+            endMovingSec: movingSecAcc,
+            mps,
+            skippedBeforeSec,
+          });
+          skippedBeforeSec = 0;
+        } else {
+          skippedBeforeSec += dt;
+        }
+        distanceKmAcc += segKm;
+        timeline.push({ movingSec: movingSecAcc, distanceKm: distanceKmAcc });
+      } else if (dt > 0) {
+        skippedBeforeSec += dt;
       }
     }
 
@@ -138,22 +261,24 @@ function aggregate(points, gpxName) {
     endTime: points[points.length - 1]?.time ?? null,
     startLat: +points[0].lat.toFixed(6),
     startLon: +points[0].lon.toFixed(6),
+    meanLat: +(sumLat / points.length).toFixed(6),
+    meanLon: +(sumLon / points.length).toFixed(6),
     bbox,
+    paceSamples: minutePacesFromMovingTimeline(timeline),
+    paceSampleDetails: minutePaceQualityFromMovingTimeline(timeline, movingSegments),
+    hrZoneSec: hrZoneSecFromPoints(points),
   };
 }
 
 function processFile(path, id) {
   const xml = readFileSync(path, "utf8");
   const name = matchStr(xml, /<trk>\s*<name>([^<]+)<\/name>/) ?? id;
+  const activityType = matchStr(xml, /<trk>[\s\S]*?<type>([^<]+)<\/type>/)?.toLowerCase().trim() ?? "running";
   const all = parseTrkpts(xml);
   if (!all.length) throw new Error(`No trkpt in ${path}`);
   const stats = aggregate(all, name);
-
-  // Detect location using real polygon data (bbox centroid).
-  const meanLat = (stats.bbox.minLat + stats.bbox.maxLat) / 2;
-  const meanLon = (stats.bbox.minLon + stats.bbox.maxLon) / 2;
-  const location = detectLocation(meanLat, meanLon);
-
+  const pbTimeline = buildElapsedDistanceTimeline(all, haversineKm);
+  stats.pbElapsedPaceSecPerKm = personalBestElapsedPaces(pbTimeline);
   const sampled = downsample(all, TARGET_POINTS);
   const cumKm = [0];
   for (let i = 1; i < sampled.length; i++) {
@@ -168,7 +293,31 @@ function processFile(path, id) {
     km: +cumKm[i].toFixed(3),
     t: t0Ms != null && p.time ? Math.round((Date.parse(p.time) - t0Ms) / 1000) : null,
   }));
-  return { id, name, stats, location, rawPointCount: all.length, points };
+
+  let repeatedSteps = 0;
+  let maxSegmentKph = 0;
+  let hasTeleportGap = false;
+
+  for (let i = 1; i < points.length; i++) {
+    const prev = points[i - 1];
+    const curr = points[i];
+    const dt = curr.t - prev.t;
+    const dk = curr.km - prev.km;
+    if (curr.lat === prev.lat && curr.lon === prev.lon) repeatedSteps += 1;
+    const kph = dt > 0 ? (dk / dt) * 3600 : 0;
+    if (kph > maxSegmentKph) maxSegmentKph = kph;
+    if (dt >= 600 && dk >= 1) hasTeleportGap = true;
+  }
+
+  stats.pbQuality = {
+    repeatedShare: repeatedSteps / Math.max(points.length - 1, 1),
+    movingShare: stats.elapsedSec ? stats.movingSec / stats.elapsedSec : 0,
+    maxSegmentKph,
+    hasTeleportGap,
+  };
+  stats.activityType = activityType;
+
+  return { id, name, stats, rawPointCount: all.length, points };
 }
 
 // Cross-source dedup. See commentary below.
@@ -261,7 +410,7 @@ function main() {
 
   // Write the summary TS module — lightweight enough to bundle.
   const summaries = Object.fromEntries(
-    tracks.map((t) => [t.id, { id: t.id, name: t.name, stats: t.stats, location: t.location }]),
+    tracks.map((t) => [t.id, { id: t.id, name: t.name, stats: t.stats }]),
   );
   const header = `// AUTO-GENERATED by scripts/process-gpx.mjs — do not edit.
 // Metric-only. Duration uses MOVING time (stops excluded).
@@ -291,21 +440,30 @@ export interface GpxStats {
   endTime: string | null;
   startLat?: number;
   startLon?: number;
+  meanLat?: number;
+  meanLon?: number;
   bbox: { minLat: number; maxLat: number; minLon: number; maxLon: number };
-}
-
-export interface GpxLocation {
-  countryCode: string;
-  country: string;
-  region?: string;
-  city?: string;
+  activityType?: string;
+  paceSamples?: number[];
+  paceSampleDetails?: {
+    paceSecPerKm: number;
+    lowSpeedSec: number;
+    skippedBeforeSec: number;
+  }[];
+  pbElapsedPaceSecPerKm?: Record<string, number>;
+  hrZoneSec?: number[];
+  pbQuality?: {
+    repeatedShare: number;
+    movingShare: number;
+    maxSegmentKph: number;
+    hasTeleportGap: boolean;
+  };
 }
 
 export interface GpxSummary {
   id: string;
   name: string;
   stats: GpxStats;
-  location?: GpxLocation;
 }
 
 export interface GpxTrack extends GpxSummary {

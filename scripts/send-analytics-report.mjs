@@ -1,0 +1,379 @@
+#!/usr/bin/env node
+
+const ACCOUNT_ID = "b3c5ab2228da670f1164d69763bdb46f";
+const DATABASE_ID = "889c6a2a-03bc-4ef1-b34c-b6548bb28148";
+const DEFAULT_FROM = "Runrunrun Analytics <onboarding@resend.dev>";
+const DEFAULT_LOGS_REPO = "lynxgpt/run_logs";
+
+const {
+  CLOUDFLARE_API_TOKEN,
+  RESEND_API_KEY,
+  ANALYTICS_REPORT_TO,
+  ANALYTICS_REPORT_FROM = DEFAULT_FROM,
+  RUN_LOGS_TOKEN,
+  RUN_LOGS_REPO = DEFAULT_LOGS_REPO,
+} = process.env;
+
+for (const [name, value] of Object.entries({
+  CLOUDFLARE_API_TOKEN,
+})) {
+  if (!value) {
+    console.error(`Missing required env var: ${name}`);
+    process.exit(1);
+  }
+}
+
+if (!RUN_LOGS_TOKEN && (!RESEND_API_KEY || !ANALYTICS_REPORT_TO)) {
+  console.error("Missing report destination: set RUN_LOGS_TOKEN or both RESEND_API_KEY and ANALYTICS_REPORT_TO.");
+  process.exit(1);
+}
+
+const since = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+const reportDay = new Intl.DateTimeFormat("en-CA", {
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit",
+  timeZone: "America/New_York",
+}).format(new Date()).replaceAll("-", "");
+const reportDate = new Intl.DateTimeFormat("en-US", {
+  dateStyle: "medium",
+  timeStyle: "short",
+  timeZone: "America/New_York",
+}).format(new Date());
+const easternSecondFormatter = new Intl.DateTimeFormat("en-US", {
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit",
+  hour: "2-digit",
+  minute: "2-digit",
+  second: "2-digit",
+  hour12: false,
+  timeZone: "America/New_York",
+  timeZoneName: "short",
+});
+
+const sql = `
+WITH recent AS (
+  SELECT *
+  FROM visits
+  WHERE created_at >= datetime('now', '-24 hours')
+),
+ordered AS (
+  SELECT
+    recent.*,
+    LAG(created_at) OVER (
+      PARTITION BY session_id
+      ORDER BY created_at
+    ) AS previous_seen
+  FROM recent
+),
+marked AS (
+  SELECT
+    ordered.*,
+    CASE
+      WHEN previous_seen IS NULL THEN 1
+      WHEN strftime('%s', created_at) - strftime('%s', previous_seen) > 300 THEN 1
+      ELSE 0
+    END AS starts_new_visit
+  FROM ordered
+),
+visitized AS (
+  SELECT
+    marked.*,
+    SUM(starts_new_visit) OVER (
+      PARTITION BY session_id
+      ORDER BY created_at
+      ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+    ) AS visit_number
+  FROM marked
+),
+sessions AS (
+  SELECT
+    session_id,
+    visit_number,
+    MIN(created_at) AS first_seen,
+    MAX(created_at) AS last_seen,
+    COUNT(*) AS events,
+    SUM(CASE WHEN event = 'page_view' THEN 1 ELSE 0 END) AS page_views,
+    MAX(duration_sec) AS max_duration_sec,
+    GROUP_CONCAT(DISTINCT path) AS paths,
+    MAX(origin) AS origin,
+    MAX(country) AS country,
+    MAX(region) AS region,
+    MAX(city) AS city,
+    MAX(timezone) AS timezone,
+    MAX(user_agent) AS user_agent,
+    MAX(device_json) AS device_json
+  FROM visitized
+  GROUP BY session_id, visit_number
+)
+SELECT *
+FROM sessions
+WHERE
+  user_agent NOT LIKE '%PowerShell/%'
+  AND device_json NOT LIKE '%"test"%'
+ORDER BY last_seen DESC
+LIMIT 50;
+`;
+
+async function queryD1(sqlText) {
+  const res = await fetch(
+    `https://api.cloudflare.com/client/v4/accounts/${ACCOUNT_ID}/d1/database/${DATABASE_ID}/query`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${CLOUDFLARE_API_TOKEN}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ sql: sqlText }),
+    },
+  );
+
+  const json = await res.json();
+  if (!res.ok || !json.success) {
+    throw new Error(`Cloudflare D1 query failed: ${JSON.stringify(json.errors ?? json)}`);
+  }
+  return json.result?.[0]?.results ?? [];
+}
+
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
+}
+
+function parseDevice(row) {
+  try {
+    return JSON.parse(row.device_json || "{}");
+  } catch {
+    return {};
+  }
+}
+
+function fmtDuration(sec) {
+  const n = Number(sec) || 0;
+  if (n < 60) return `${n}s`;
+  const minutes = Math.floor(n / 60);
+  const seconds = n % 60;
+  return `${minutes}m ${seconds}s`;
+}
+
+function fmtEasternSecond(sqliteUtc) {
+  if (!sqliteUtc) return "";
+  return easternSecondFormatter.format(new Date(`${sqliteUtc.replace(" ", "T")}Z`));
+}
+
+function browserLabel(userAgent) {
+  const ua = userAgent || "";
+  const firefox = ua.match(/Firefox\/([\d.]+)/);
+  const chrome = ua.match(/Chrome\/([\d.]+)/);
+  const safari = ua.match(/Version\/([\d.]+).*Safari/);
+  const edge = ua.match(/Edg\/([\d.]+)/);
+  if (edge) return `Edge ${edge[1]}`;
+  if (firefox) return `Firefox ${firefox[1]}`;
+  if (chrome) return `Chrome ${chrome[1]}`;
+  if (safari) return `Safari ${safari[1]}`;
+  return "Unknown";
+}
+
+function osLabel(userAgent, device) {
+  const ua = userAgent || "";
+  if (/Windows NT 10/.test(ua)) return "Windows 10/11";
+  if (/Mac OS X/.test(ua)) return "macOS";
+  if (/Android/.test(ua)) return "Android";
+  if (/iPhone|iPad/.test(ua)) return "iOS/iPadOS";
+  return device.platform || "Unknown";
+}
+
+function renderHtml(rows) {
+  const bodyRows = rows.length
+    ? rows.map((row) => {
+      const device = parseDevice(row);
+      return `
+        <tr>
+          <td>${escapeHtml(fmtEasternSecond(row.first_seen))}</td>
+          <td>${escapeHtml(fmtEasternSecond(row.last_seen))}</td>
+          <td>${escapeHtml(row.page_views)}</td>
+          <td>${escapeHtml(row.events)}</td>
+          <td>${escapeHtml(row.max_duration_sec ?? 0)}</td>
+          <td>${escapeHtml(fmtDuration(row.max_duration_sec))}</td>
+          <td>${escapeHtml([row.city, row.region, row.country].filter(Boolean).join(", "))}</td>
+          <td>${escapeHtml(browserLabel(row.user_agent))}</td>
+          <td>${escapeHtml(osLabel(row.user_agent, device))}</td>
+          <td>${escapeHtml(device.viewport || "")}</td>
+          <td>${escapeHtml(row.paths || "")}</td>
+        </tr>
+      `;
+    }).join("")
+    : `<tr><td colspan="11">No visits in the last 24 hours.</td></tr>`;
+
+  return `
+<!doctype html>
+<html>
+  <body style="font-family: ui-monospace, SFMono-Regular, Consolas, monospace; color: #111;">
+    <h2>Runrunrun Analytics</h2>
+    <p>Generated ${escapeHtml(reportDate)}. Window starts ${escapeHtml(since)}.</p>
+    <table cellspacing="0" cellpadding="6" border="1" style="border-collapse: collapse; font-size: 12px;">
+      <thead>
+        <tr>
+          <th>First seen EDT/EST</th>
+          <th>Last seen EDT/EST</th>
+          <th>Page views</th>
+          <th>Events</th>
+          <th>Max stay seconds</th>
+          <th>Max stay</th>
+          <th>IP location</th>
+          <th>Browser</th>
+          <th>OS</th>
+          <th>Viewport</th>
+          <th>Paths</th>
+        </tr>
+      </thead>
+      <tbody>${bodyRows}</tbody>
+    </table>
+  </body>
+</html>
+`;
+}
+
+function renderText(rows) {
+  if (!rows.length) return `Runrunrun Analytics\n\nNo visits in the last 24 hours.\n`;
+  return [
+    "Runrunrun Analytics",
+    `Generated ${reportDate}`,
+    "",
+    ...rows.map((row) => {
+      const device = parseDevice(row);
+      return [
+        `${fmtEasternSecond(row.first_seen)} first seen Eastern | ${fmtEasternSecond(row.last_seen)} last seen Eastern`,
+        `${row.page_views} page views | ${row.events} events | ${row.max_duration_sec ?? 0} seconds | ${fmtDuration(row.max_duration_sec)}`,
+        `${[row.city, row.region, row.country].filter(Boolean).join(", ")} | ${browserLabel(row.user_agent)} | ${osLabel(row.user_agent, device)} | ${device.viewport || ""}`,
+        `${row.paths || ""}`,
+      ].join("\n");
+    }),
+  ].join("\n\n");
+}
+
+function renderMarkdown(rows) {
+  const header = [
+    `# Runrunrun Analytics`,
+    "",
+    `Generated: ${reportDate}`,
+    `Window starts: ${since}`,
+    "",
+  ];
+
+  if (!rows.length) {
+    return [...header, "No visits in the last 24 hours.", ""].join("\n");
+  }
+
+  const table = [
+    "| First seen Eastern | Last seen Eastern | Page views | Events | Max stay | IP location | Browser | OS | Viewport | Paths |",
+    "| --- | --- | ---: | ---: | --- | --- | --- | --- | --- | --- |",
+    ...rows.map((row) => {
+      const device = parseDevice(row);
+      const cells = [
+        fmtEasternSecond(row.first_seen),
+        fmtEasternSecond(row.last_seen),
+        row.page_views,
+        row.events,
+        fmtDuration(row.max_duration_sec),
+        [row.city, row.region, row.country].filter(Boolean).join(", "),
+        browserLabel(row.user_agent),
+        osLabel(row.user_agent, device),
+        device.viewport || "",
+        row.paths || "",
+      ];
+      return `| ${cells.map(markdownCell).join(" | ")} |`;
+    }),
+  ];
+
+  return [...header, ...table, ""].join("\n");
+}
+
+function markdownCell(value) {
+  return String(value ?? "").replaceAll("|", "\\|").replaceAll("\n", " ");
+}
+
+async function sendEmail(rows) {
+  const subject = `Runrunrun analytics: ${rows.length} session${rows.length === 1 ? "" : "s"} in 24h`;
+  const res = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${RESEND_API_KEY}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      from: ANALYTICS_REPORT_FROM,
+      to: [ANALYTICS_REPORT_TO],
+      subject,
+      html: renderHtml(rows),
+      text: renderText(rows),
+    }),
+  });
+
+  const json = await res.json();
+  if (!res.ok) {
+    throw new Error(`Resend email failed: ${JSON.stringify(json)}`);
+  }
+  console.log(`Sent analytics report to configured recipient. Resend id: ${json.id}`);
+}
+
+async function githubRequest(path, options = {}) {
+  const res = await fetch(`https://api.github.com${path}`, {
+    ...options,
+    headers: {
+      Accept: "application/vnd.github+json",
+      Authorization: `Bearer ${RUN_LOGS_TOKEN}`,
+      "Content-Type": "application/json",
+      "X-GitHub-Api-Version": "2022-11-28",
+      ...options.headers,
+    },
+  });
+
+  const text = await res.text();
+  const json = text ? JSON.parse(text) : null;
+  if (!res.ok) {
+    throw new Error(`GitHub request failed: ${res.status} ${JSON.stringify(json)}`);
+  }
+  return json;
+}
+
+async function upsertRunLogIssue(rows) {
+  const [owner, repo] = RUN_LOGS_REPO.split("/");
+  if (!owner || !repo) {
+    throw new Error("RUN_LOGS_REPO must use owner/repo format.");
+  }
+
+  const title = `issue_${reportDay}`;
+  const body = renderMarkdown(rows);
+  const query = encodeURIComponent(`repo:${RUN_LOGS_REPO} is:issue in:title ${title}`);
+  const search = await githubRequest(`/search/issues?q=${query}`);
+  const existing = search.items?.find((issue) => issue.title === title);
+
+  if (existing) {
+    await githubRequest(`/repos/${owner}/${repo}/issues/${existing.number}`, {
+      method: "PATCH",
+      body: JSON.stringify({ body, state: "open" }),
+    });
+    console.log(`Updated private analytics issue: ${existing.html_url}`);
+    return existing.html_url;
+  }
+
+  const created = await githubRequest(`/repos/${owner}/${repo}/issues`, {
+    method: "POST",
+    body: JSON.stringify({ title, body }),
+  });
+  console.log(`Created private analytics issue: ${created.html_url}`);
+  return created.html_url;
+}
+
+const rows = await queryD1(sql);
+if (RUN_LOGS_TOKEN) {
+  await upsertRunLogIssue(rows);
+}
+if (RESEND_API_KEY && ANALYTICS_REPORT_TO) {
+  await sendEmail(rows);
+}

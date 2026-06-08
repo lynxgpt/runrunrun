@@ -11,6 +11,7 @@ import { GpxMap } from "@/components/charts/gpx-map";
 import { GpxElevation } from "@/components/charts/gpx-elevation";
 import { GpxPace } from "@/components/charts/gpx-pace";
 import { GpxHeartRate } from "@/components/charts/gpx-heartrate";
+import { CountryFlag } from "@/components/primitives/country-flag";
 import { prefetchTrack, useGpxTrack } from "@/lib/use-gpx-track";
 import { setGeoFilter, useGeoFilter } from "@/lib/geo-filter";
 
@@ -35,6 +36,8 @@ const WEATHER_ICON: Record<WeatherCondition, React.ComponentType<{ className?: s
 // top-10. When they scroll past row 10, we preload the next 10, and so on.
 const PAGE = 10;
 const INITIAL_PRELOAD = 20;
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const HALF_MARATHON_GPX_ID = "run-14165368226";
 
 export function NotableRuns() {
   const visibleTabs = TABS.filter((t) => (notableRuns[t.id] ?? []).length > 0);
@@ -45,6 +48,10 @@ export function NotableRuns() {
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const filterKey =
     filter.kind === "none" ? "none" : `${filter.kind}:${filter.code}`;
+
+  useEffect(() => {
+    if (filter.kind === "day") setCategory("longest");
+  }, [filter.kind]);
 
   const onTabKey = (e: React.KeyboardEvent<HTMLButtonElement>, idx: number) => {
     if (e.key !== "ArrowRight" && e.key !== "ArrowLeft" && e.key !== "Home" && e.key !== "End") return;
@@ -96,6 +103,7 @@ export function NotableRuns() {
           const active = category === t.id;
           return (
             <button
+              type="button"
               key={t.id}
               ref={(el) => {
                 tabRefs.current[i] = el;
@@ -120,12 +128,15 @@ export function NotableRuns() {
           );
         })}
       </div>
-      <p className="text-center text-xs italic text-neutral-500 font-mono-tamzen mb-2">
-        {tab.caption}
+      <p
+        className="pointer-events-none text-center text-xs italic text-neutral-500 font-mono-tamzen mb-2 invisible"
+        aria-hidden="true"
+      >
+        {tab.caption ?? "\u00A0"}
       </p>
       {filter.kind !== "none" ? (
         <p className="text-center text-xs font-mono-tamzen text-neutral-400 mb-4">
-          filtered to {filter.kind === "country" ? "country" : "state"}:{" "}
+          filtered to {filter.kind}:{" "}
           <span className="text-neutral-100">{filter.name}</span>
           {" · "}
           <button
@@ -160,6 +171,8 @@ function applyFilter(
     if (filter.kind === "country") return r.location.countryCode === filter.code;
     if (filter.kind === "state") return r.location.region === filter.code;
     if (filter.kind === "city") return r.location.city === filter.code;
+    if (filter.kind === "month") return r.dateMonth === filter.code;
+    if (filter.kind === "day") return r.dateIso === filter.code;
     return true;
   });
   return matched.map((r, i) => ({ ...r, rank: i + 1 }));
@@ -210,13 +223,39 @@ function Panel({ rows, category }: PanelProps) {
           highlightedIndex={selectedIdx}
           onRowClick={(_, i) => setSelectedIdx(i)}
           columns={[
-            { key: "rank", header: "RANK", cell: (r: NotableRun) => `#${r.rank}` },
-            { key: "date", header: "DATE", cell: (r: NotableRun) => r.date },
+            {
+              key: "rank",
+              header: category === "personal-bests" ? "PB" : "RANK",
+              cell: (r: NotableRun) =>
+                category === "personal-bests" ? (r.displayRank ?? "") : `#${r.rank}`,
+            },
+            {
+              key: "date",
+              header: "DATE",
+              cell: (r: NotableRun) => {
+                const isHalfMarathon = category === "longest" && r.gpxId === HALF_MARATHON_GPX_ID;
+                return (
+                  <span className={cn(isHalfMarathon && "text-[#c9bd93]")}>
+                    {r.date}
+                    {isHalfMarathon ? (
+                      <span className="ml-2 text-[10px] tracking-wide text-[#d0c69d]">HM</span>
+                    ) : null}
+                  </span>
+                );
+              },
+            },
             {
               key: "distance",
               header: "DISTANCE",
               align: "right",
-              cell: (r: NotableRun) => formatKm(r.distanceKm, 2),
+              cell: (r: NotableRun) => {
+                const isHalfMarathon = category === "longest" && r.gpxId === HALF_MARATHON_GPX_ID;
+                return (
+                  <span className={cn(isHalfMarathon && "text-[#c9bd93]")}>
+                    {formatKm(r.distanceKm, 2)}
+                  </span>
+                );
+              },
             },
           ]}
         />
@@ -247,7 +286,7 @@ function MapPanel({ run }: { run: NotableRun }) {
           <GpxMap track={track} width={200} height={200} />
         ) : (
           <svg viewBox="0 0 200 200" className="absolute inset-0 h-full w-full">
-            <rect width="200" height="200" fill="#0d0d0d" />
+            <rect width="200" height="200" fill="var(--chart-surface-strong)" />
             <text
               x="100"
               y="100"
@@ -309,18 +348,8 @@ function ChartsPanel({ run }: { run: NotableRun }) {
 }
 
 // ISO 3166 alpha-2 → regional indicator emoji (AQ has no flag → snowflake).
-function codeToFlag(code?: string) {
-  if (!code || code.length !== 2) return "";
-  if (code.toUpperCase() === "AQ") return "\u2744\uFE0F";
-  if (code === "??") return "";
-  return String.fromCodePoint(
-    ...[...code.toUpperCase()].map((c) => 0x1f1e6 + (c.charCodeAt(0) - 65)),
-  );
-}
-
 function DetailsPanel({ run }: { run: NotableRun }) {
   const Icon = WEATHER_ICON[run.weather];
-  const flag = codeToFlag(run.location.countryCode);
   return (
     <div className="flex flex-col items-start gap-4 font-mono-tamzen text-sm">
       <h3 className="font-sans text-lg font-bold text-neutral-100">
@@ -345,17 +374,16 @@ function DetailsPanel({ run }: { run: NotableRun }) {
       ) : null}
       <div>
         <div className="font-sans text-lg font-bold text-neutral-100 flex items-center gap-2">
-          {flag ? <span aria-hidden className="text-base">{flag}</span> : null}
-          <span>{run.location.city ?? run.location.country}</span>
+          <CountryFlag code={run.location.countryCode} className="text-base leading-none shrink-0" />
+          <span>{run.displayLocationPrimary ?? run.location.city ?? run.location.county ?? run.location.country}</span>
         </div>
         <div className="text-xs uppercase text-neutral-500">
-          {run.location.region ? `${run.location.region} · ` : ""}
-          {run.location.country.toUpperCase()}
+          {run.displayLocationSecondary ?? `${run.location.region ? `${run.location.region} · ` : ""}${run.location.country.toUpperCase()}`}
         </div>
       </div>
       {run.photoPath ? (
         <a
-          href={`/runrunrun${run.photoPath}`}
+          href={`${basePath}${run.photoPath}`}
           target="_blank"
           rel="noopener noreferrer"
           className="font-sans font-bold text-neutral-100 underline hover:text-neutral-300 text-sm"

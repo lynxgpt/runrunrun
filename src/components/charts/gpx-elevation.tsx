@@ -33,8 +33,8 @@ export function GpxElevation({ track, width = 360, height = 80 }: GpxElevationPr
       className="w-full h-full"
       preserveAspectRatio="none"
     >
-      <path d={area} fill="#1a1a1a" />
-      <path d={line} stroke="#ededed" strokeWidth={1} fill="none" />
+      <path d={area} fill="var(--chart-area)" />
+      <path d={line} stroke="var(--chart-line)" strokeWidth={1} fill="none" />
       <text
         x={2}
         y={plotH - ((maxEle - minEle) / eleRange) * (plotH * 0.85) - 3}

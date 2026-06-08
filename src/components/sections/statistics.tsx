@@ -1,15 +1,19 @@
 import { ChartCard } from "@/components/primitives/chart-card";
+import { DistanceFlowChart } from "@/components/charts/distance-flow-chart";
+import { MonthlyDistanceChart } from "@/components/charts/monthly-distance-chart";
 import { PolarClock } from "@/components/charts/polar-clock";
 import { RadarChart } from "@/components/charts/radar-chart";
-import { DensityChart } from "@/components/charts/density-chart";
 import { HorizontalBars } from "@/components/charts/horizontal-bars";
+import { PaceDistributionToggle } from "@/components/sections/pace-distribution-toggle";
 import {
   avgByWeekday,
+  filteredPaceDistribution,
   heartRateZones,
+  monthlyMileage,
   paceDistribution,
+  runDistanceFlow,
   workoutByTime,
 } from "@/lib/mock-data";
-import { formatPace } from "@/lib/format";
 
 export function Statistics() {
   return (
@@ -18,41 +22,42 @@ export function Statistics() {
         STATISTICS
       </h2>
 
-      <div className="grid gap-12 md:grid-cols-2 mb-16">
-        <ChartCard
-          title="WORKOUT ACTIVITY BY TIME"
-          caption="distribution of start times across the day"
-        >
+      <div className="grid items-stretch gap-12 md:grid-cols-2 xl:grid-cols-4 mb-16">
+        <ChartCard title="MONTHLY DISTANCE" caption="it's too cold then it's too hot" showCaption fixedChartHeight className="h-full">
+          <MonthlyDistanceChart data={monthlyMileage} />
+        </ChartCard>
+
+        <ChartCard title="WHAT TIME" caption="get up at 7 to run?" showCaption fixedChartHeight className="h-full">
           <PolarClock data={workoutByTime} />
         </ChartCard>
 
-        <ChartCard
-          title="AVERAGE DAILY DISTANCE BY DAY"
-          caption="kilometers by day of week"
-        >
+        <ChartCard title="DAILY DISTANCE" fixedChartHeight className="h-full">
           <RadarChart
             data={avgByWeekday}
             labels={["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]}
           />
         </ChartCard>
 
-        <ChartCard
-          title="PACE DISTRIBUTION"
-          caption="distribution of pace (per minute of running)"
-        >
-          <DensityChart
-            bins={paceDistribution.bins}
-            axisLabels={paceDistribution.axisLabels}
-            meanBin={Math.round(paceDistribution.bins.length * 0.55)}
-            medianBin={Math.round(paceDistribution.bins.length * 0.5)}
-            meanLabel={`mean: ${formatPace(paceDistribution.meanSec)}`}
-            medianLabel={`median: ${formatPace(paceDistribution.medianSec)}`}
+        <ChartCard title="RUN DISTANCES" fixedChartHeight className="h-full">
+          <DistanceFlowChart data={runDistanceFlow} />
+        </ChartCard>
+      </div>
+
+      <div className="grid gap-12 md:grid-cols-2 xl:grid-cols-2 mb-16">
+        <ChartCard title="PACE DISTRIBUTION">
+          <PaceDistributionToggle
+            original={paceDistribution}
+            filtered={filteredPaceDistribution}
           />
         </ChartCard>
 
-        <ChartCard title="HEART RATE ZONES" caption="time in zone (seconds)">
-          <HorizontalBars data={heartRateZones.map((z) => ({ label: z.label, sub: z.bpm, value: z.count }))} />
+        <ChartCard title="HEART RATE ZONES">
+          <HorizontalBars data={heartRateZones.map((z) => ({ label: z.label, sub: z.bpm, value: z.pct ?? 0 }))} unit="%" />
         </ChartCard>
+
+        {/* EQUIPMENT: hidden — no shoe data in GPX files. */}
+        {/* TEMPERATURE + WEATHER CONDITIONS: hidden — GPX has no ambient
+            temp or sky cover. Would need a weather-API join at pull time. */}
       </div>
     </section>
   );

@@ -10,9 +10,12 @@ export type GeoFilter =
   | { kind: "none" }
   | { kind: "country"; code: string; name: string }
   | { kind: "state"; code: string; name: string }
-  | { kind: "city"; code: string; name: string };
+  | { kind: "city"; code: string; name: string }
+  | { kind: "month"; code: string; name: string }
+  | { kind: "day"; code: string; name: string };
 
-let current: GeoFilter = { kind: "none" };
+const GEO_FILTER_NONE: GeoFilter = { kind: "none" };
+let current: GeoFilter = GEO_FILTER_NONE;
 const listeners = new Set<() => void>();
 
 function notify() {
@@ -53,10 +56,26 @@ export function toggleCity(code: string, name: string) {
   }
 }
 
+export function toggleMonth(code: string, name: string) {
+  if (current.kind === "month" && current.code === code) {
+    setGeoFilter({ kind: "none" });
+  } else {
+    setGeoFilter({ kind: "month", code, name });
+  }
+}
+
+export function toggleDay(code: string, name: string) {
+  if (current.kind === "day" && current.code === code) {
+    setGeoFilter({ kind: "none" });
+  } else {
+    setGeoFilter({ kind: "day", code, name });
+  }
+}
+
 export function useGeoFilter(): GeoFilter {
   return useSyncExternalStore(
     subscribe,
     () => current,
-    () => ({ kind: "none" }) as GeoFilter,
+    () => GEO_FILTER_NONE,
   );
 }

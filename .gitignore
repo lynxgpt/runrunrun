@@ -47,6 +47,7 @@ next-env.d.ts
 
 # Local temp files
 temp/
+source/
 
 # local npm cache
 .npm-cache/

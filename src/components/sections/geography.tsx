@@ -2,28 +2,18 @@
 
 import { countriesVisited, usStatesVisited, nycBoroughsVisited } from "@/lib/mock-data";
 import { DataTable } from "@/components/primitives/data-table";
+import { CountryFlag } from "@/components/primitives/country-flag";
 import type { GeoRow } from "@/types/activity";
 import { formatNumber } from "@/lib/format";
 import { toggleCity, toggleCountry, toggleState, useGeoFilter } from "@/lib/geo-filter";
 
-// ISO 3166 alpha-2 → regional indicator emoji. Antarctica (AQ) has no flag,
-// so we draw a snowflake there.
-function codeToFlag(code?: string) {
-  if (!code || code.length !== 2) return "";
-  if (code.toUpperCase() === "AQ") return "\u2744\uFE0F";
-  if (code === "??") return "";
-  const cc = code.toUpperCase();
-  return String.fromCodePoint(
-    ...[...cc].map((c) => 0x1f1e6 + (c.charCodeAt(0) - 65)),
-  );
-}
-
-// State codes → flag image path. NEXT_PUBLIC_BASE_PATH is "" in dev, "/runrunrun" in prod.
+// State codes → local flag image path (relative, no basePath prefix).
 // Uses regional/cultural flags: Cascadia Republic for WA, Bear Flag for CA.
-const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const STATE_FLAG_IMG: Record<string, string> = {
-  WA: `${BASE}/images/flag-wa-cascadia.svg`,
-  CA: `${BASE}/images/flag-ca.svg`,
+  WA: `${basePath}/images/flag-wa-cascadia.svg`,
+  CA: `${basePath}/images/flag-ca.svg`,
+  WY: `${basePath}/images/flag-wy.svg`,
 };
 
 type Kind = "country" | "state" | "city";
@@ -70,11 +60,11 @@ export function Geography() {
           style={{ paddingLeft: r.level * 20 }}
         >
           {r.level === 0 ? (
-            <span aria-hidden className="text-base leading-none">{codeToFlag(r.code)}</span>
+            <CountryFlag code={r.code} className="text-base leading-none shrink-0" />
           ) : r.level === 1 && r.code && STATE_FLAG_IMG[r.code] ? (
             // State with a flag image (Cascadia/WA, Bear Flag/CA, …)
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={STATE_FLAG_IMG[r.code]} alt="" aria-hidden className="h-5 w-auto opacity-90 inline-block" />
+            <img src={STATE_FLAG_IMG[r.code]} alt="" aria-hidden className="h-3.5 w-auto opacity-80 inline-block" />
           ) : (
             <span aria-hidden className="text-neutral-600">└</span>
           )}
@@ -105,7 +95,7 @@ export function Geography() {
   return (
     <section>
       <div className="mb-8">
-        <h2 className="text-center font-sans text-xl font-medium uppercase tracking-wide text-neutral-100 mb-6">
+        <h2 className="text-center font-sans text-xl font-medium uppercase tracking-wide text-neutral-100 mb-1">
           WHERE I RAN
         </h2>
         <div className="mx-auto max-w-3xl">

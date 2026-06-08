@@ -1,0 +1,30 @@
+name: Deploy Analytics Worker
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "analytics-worker/**"
+      - ".github/workflows/deploy-analytics-worker.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: analytics-worker
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy Worker
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          workingDirectory: analytics-worker
+          command: deploy

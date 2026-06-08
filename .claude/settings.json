@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"C:/Users/lingf/Documents/New project\" && git diff --quiet && git diff --cached --quiet || (git add -A && git commit -m \"Auto-commit on stop\" && git push)",
+            "statusMessage": "Pushing changes..."
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -5,60 +5,27 @@
 
 # ── HEADER ────────────────────────────────────────────────────────────────────
 # The large title shown at the top of the page.
+# Supports: plain text, any length.
 header:
   name: "RUN RUN RUN"
-  # Subtitle line below the title.
-  # Set to "" to hide entirely.
-  # Leave this key out (delete the line) to auto-show "runs logged from X to Y".
-  # Example:  subtitle: "a running log"
-  subtitle: ""
 
 # ── FOREWORD ──────────────────────────────────────────────────────────────────
 # Prose shown below the streak hero numbers.
-# Add or remove "- ..." lines freely. Each entry becomes one paragraph.
+# Supports: any number of paragraphs (add or remove "- ..." lines freely).
+# Inline `backtick code` is rendered in a monospace style.
+# No bold, italic, or links — plain text + backtick only.
 foreword:
-  - "My running log "
-  - "To be hallucinated... "
-  - "Fulfilled by Claude "
-
-# ── SECTIONS ──────────────────────────────────────────────────────────────────
-# Second-line subtitles shown under each section heading.
-# Set any subtitle to "" to hide it.
-sections:
-  daily_log:
-    # Shown in smaller italic text below "DAILY LOG".
-    # Example: "every. single. day."
-    subtitle: ""
-
-  notable_runs:
-    # Captions shown in smaller italic text below each tab button.
-    # Set to "" to hide individual captions.
-    captions:
-      longest: "runs ranked by distance"
-      personal_bests: "fastest pace per race distance"
-      elevation: "most vert in a single run"
+  - "This is my running log. Although at this moment I still haven't figured out the point of running, I have already gone quite far..."
 
 # ── FOOTER ────────────────────────────────────────────────────────────────────
 # Lines shown at the bottom of the page.
-# Each entry supports:
-#   text:      (required) plain text — or the prefix before a link
-#   url:       (optional) makes part (or all) of the line clickable
-#   linkText:  (optional) the clickable/underlined portion of the line
-#              If url is set but linkText is omitted, the entire text becomes the link.
-#
-# Examples:
-#   Plain text only:
-#     - text: "Made with ♥"
-#
-#   Whole line is a link (entire text underlined):
-#     - text: "nodaysoff.run"
-#       url: "https://nodaysoff.run"
-#
-#   Inline link — only the linkText part is underlined:
-#     - text: "Replicated from "
-#       linkText: "nodaysoff.run"
-#       url: "https://nodaysoff.run"
+# Supports: any number of lines. Each line has:
+#   text: (required) the display text
+#   url:  (optional) makes the line a clickable link
 footer:
   - text: "Replicated from "
     linkText: "nodaysoff.run"
     url: "https://nodaysoff.run"
+  - text: "Map imagery: "
+    linkText: "Powered by Esri"
+    url: "https://www.esri.com/"
