@@ -35200,7 +35200,9 @@ export const gpxSummaries: Record<string, GpxSummary> = {
     },
     "location": {
       "countryCode": "GB",
-      "country": "United Kingdom"
+      "country": "United Kingdom",
+      "city": "Greater London",
+      "region": "England"
     }
   },
   "morning-run-15691069335": {
@@ -35605,7 +35607,9 @@ export const gpxSummaries: Record<string, GpxSummary> = {
     },
     "location": {
       "countryCode": "FR",
-      "country": "France"
+      "country": "France",
+      "city": "Paris",
+      "region": "Île-de-France"
     }
   },
   "Skoga_Falls": {
@@ -36347,7 +36351,9 @@ export const gpxSummaries: Record<string, GpxSummary> = {
     },
     "location": {
       "countryCode": "IS",
-      "country": "Iceland"
+      "country": "Iceland",
+      "city": "Rangárþing eystra",
+      "region": "Southern Region"
     }
   },
   "interval-tuesday-15751879664": {
@@ -51126,7 +51132,9 @@ export const gpxSummaries: Record<string, GpxSummary> = {
     },
     "location": {
       "countryCode": "MX",
-      "country": "Mexico"
+      "country": "Mexico",
+      "city": "Mexico City",
+      "region": "Mexico City"
     }
   },
   "morning-run-16885443622": {
@@ -51320,7 +51328,9 @@ export const gpxSummaries: Record<string, GpxSummary> = {
     },
     "location": {
       "countryCode": "MX",
-      "country": "Mexico"
+      "country": "Mexico",
+      "city": "Mexico City",
+      "region": "Mexico City"
     }
   },
   "afternoon-run-16962283458": {
@@ -73055,7 +73065,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
     },
     "location": {
       "countryCode": "JP",
-      "country": "Japan"
+      "country": "Japan",
+      "city": "Chiyoda"
     }
   },
   "morning-run-18667903277": {
@@ -73611,7 +73622,9 @@ export const gpxSummaries: Record<string, GpxSummary> = {
     },
     "location": {
       "countryCode": "JP",
-      "country": "Japan"
+      "country": "Japan",
+      "city": "Fujikawaguchiko",
+      "region": "Yamanashi Prefecture"
     }
   },
   "lunch-run-18817992510": {
@@ -73848,7 +73861,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
     },
     "location": {
       "countryCode": "KR",
-      "country": "South Korea"
+      "country": "South Korea",
+      "city": "Seoul"
     }
   }
 };

@@ -35,6 +35,70 @@ const ROOT = resolve(__dirname, "..");
 const GPX_DIR = join(ROOT, "public", "gpx");
 const TRACKS_DIR = join(ROOT, "public", "tracks");
 const OUT_TS = join(ROOT, "src", "lib", "gpx-processed.ts");
+const GEOCODE_CACHE_FILE = join(__dirname, ".geocode-cache.json");
+
+// ---------------------------------------------------------------------------
+// Nominatim reverse geocoding — used to auto-detect city for non-US runs.
+// Results are cached in scripts/.geocode-cache.json so subsequent runs are
+// instant and the workflow doesn't hammer the API on every build.
+
+let _geocodeCache = null;
+
+function loadGeocodeCache() {
+  if (_geocodeCache) return _geocodeCache;
+  try {
+    _geocodeCache = JSON.parse(readFileSync(GEOCODE_CACHE_FILE, "utf8"));
+  } catch {
+    _geocodeCache = {};
+  }
+  return _geocodeCache;
+}
+
+function saveGeocodeCache() {
+  if (_geocodeCache) {
+    writeFileSync(GEOCODE_CACHE_FILE, JSON.stringify(_geocodeCache, null, 2));
+  }
+}
+
+/**
+ * Reverse geocode a coordinate to city + region using Nominatim OSM.
+ * Cached by rounded coordinate (0.01° ≈ 1 km precision — good enough for city).
+ * Returns { city: string|null, region: string|null }.
+ */
+async function reverseGeocodeCity(lat, lon) {
+  const cache = loadGeocodeCache();
+  // Round to 2 decimal places (~1 km) for cache key
+  const key = `${lat.toFixed(2)},${lon.toFixed(2)}`;
+  if (cache[key] !== undefined) return cache[key];
+
+  try {
+    const url =
+      `https://nominatim.openstreetmap.org/reverse` +
+      `?lat=${lat}&lon=${lon}&format=json&zoom=10&addressdetails=1`;
+    const res = await fetch(url, {
+      headers: {
+        "User-Agent": "RunRunRun/1.0 personal-running-stats-site",
+        "Accept-Language": "en",
+      },
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    const addr = data.address ?? {};
+    // Prefer city > town > municipality > village > county for display
+    const city =
+      addr.city ?? addr.town ?? addr.municipality ?? addr.village ?? addr.county ?? null;
+    // Region: state > province > state_district
+    const region = addr.state ?? addr.province ?? addr.state_district ?? null;
+    const result = { city, region };
+    cache[key] = result;
+    return result;
+  } catch (err) {
+    console.warn(`  [geocode] Nominatim failed for ${lat},${lon}: ${err.message}`);
+    const result = { city: null, region: null };
+    cache[key] = result; // cache failures too to avoid hammering on errors
+    return result;
+  }
+}
 
 const TARGET_POINTS = 500;
 const MAX_SAMPLE_GAP_SEC = 15;
@@ -375,7 +439,7 @@ function dedupe(tracks) {
   return { kept, dropped };
 }
 
-function main() {
+async function main() {
   const files = readdirSync(GPX_DIR).filter((f) => f.toLowerCase().endsWith(".gpx"));
   if (!files.length) {
     console.error("No .gpx files found in public/gpx/");
@@ -413,6 +477,7 @@ function main() {
   // Primary: use mean GPS coordinates (best centroid for the whole run).
   // Fallback: if mean returns Unknown (e.g. run crosses water), retry with
   // the start point which is always on land at the trailhead/start.
+  // For non-US runs without a city, auto-detect via Nominatim reverse geocoding.
   for (const t of tracks) {
     const meanLat = t.stats.meanLat ?? (t.stats.bbox.minLat + t.stats.bbox.maxLat) / 2;
     const meanLon = t.stats.meanLon ?? (t.stats.bbox.minLon + t.stats.bbox.maxLon) / 2;
@@ -421,8 +486,16 @@ function main() {
       const startLoc = detectLocation(t.stats.startLat, t.stats.startLon);
       if (startLoc.countryCode !== "??") loc = startLoc;
     }
+    // Auto-detect city for non-US runs that don't already have one.
+    // US runs use county/borough lookup instead; Canada uses bbox detection.
+    if (loc.countryCode !== "??" && loc.countryCode !== "US" && !loc.city) {
+      const geo = await reverseGeocodeCity(meanLat, meanLon);
+      if (geo.city) loc = { ...loc, city: geo.city };
+      if (geo.region && !loc.region) loc = { ...loc, region: geo.region };
+    }
     t.location = loc;
   }
+  saveGeocodeCache();
 
   // Write the summary TS module — lightweight enough to bundle.
   const summaries = Object.fromEntries(
@@ -515,4 +588,4 @@ export const gpxSummaries: Record<string, GpxSummary> = ${JSON.stringify(
   }
 }
 
-main();
+main().catch((err) => { console.error(err); process.exit(1); });

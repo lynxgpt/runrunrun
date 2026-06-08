@@ -1,0 +1,34 @@
+{
+  "51.50,-0.11": {
+    "city": "Greater London",
+    "region": "England"
+  },
+  "48.86,2.30": {
+    "city": "Paris",
+    "region": "Île-de-France"
+  },
+  "63.55,-19.50": {
+    "city": "Rangárþing eystra",
+    "region": "Southern Region"
+  },
+  "19.44,-99.15": {
+    "city": "Mexico City",
+    "region": "Mexico City"
+  },
+  "19.42,-99.17": {
+    "city": "Mexico City",
+    "region": "Mexico City"
+  },
+  "35.69,139.76": {
+    "city": "Chiyoda",
+    "region": null
+  },
+  "35.52,138.76": {
+    "city": "Fujikawaguchiko",
+    "region": "Yamanashi Prefecture"
+  },
+  "37.54,126.92": {
+    "city": "Seoul",
+    "region": null
+  }
+}
