@@ -73141,5 +73141,56 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running"
     }
+  },
+  "night-run-18860162327": {
+    "id": "night-run-18860162327",
+    "name": "Night Run",
+    "stats": {
+      "name": "Night Run",
+      "distanceKm": 0.408,
+      "movingSec": 112,
+      "elapsedSec": 112,
+      "paceSecPerKm": 275,
+      "elevationM": 2,
+      "avgHr": 126,
+      "startTime": "2026-06-10T04:28:22.000Z",
+      "endTime": "2026-06-10T04:30:14.000Z",
+      "startLat": 49.289944,
+      "startLon": -122.785073,
+      "meanLat": 49.290369,
+      "meanLon": -122.78452,
+      "bbox": {
+        "minLat": 49.289671,
+        "maxLat": 49.291083,
+        "minLon": -122.785078,
+        "maxLon": -122.783859
+      },
+      "paceSamples": [
+        249.65758998373167
+      ],
+      "paceSampleDetails": [
+        {
+          "paceSecPerKm": 249.65758998373167,
+          "lowSpeedSec": 0,
+          "skippedBeforeSec": 0
+        }
+      ],
+      "hrZoneSec": [
+        110,
+        1,
+        1,
+        0
+      ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 260.7815593818961
+      },
+      "pbQuality": {
+        "repeatedShare": 0,
+        "movingShare": 1,
+        "maxSegmentKph": 25.200000000000024,
+        "hasTeleportGap": false
+      },
+      "activityType": "running"
+    }
   }
 };
