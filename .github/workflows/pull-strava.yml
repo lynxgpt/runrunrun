@@ -61,13 +61,28 @@ jobs:
 
       - name: Rotate Strava tokens (if PAT configured)
         if: ${{ env.HAS_ROTATE_PAT == 'true' }}
+        # A rotation problem must not block publishing data we already pulled.
+        # It is reported loudly below and in the job summary instead.
+        continue-on-error: true
         env:
           GH_TOKEN: ${{ secrets.STRAVA_ROTATE_PAT }}
         run: |
           # Read new tokens from .env.local and push them back as secrets.
           ACCESS=$(grep '^STRAVA_ACCESS_TOKEN=' .env.local | cut -d= -f2-)
           REFRESH=$(grep '^STRAVA_REFRESH_TOKEN=' .env.local | cut -d= -f2-)
-          gh secret set STRAVA_ACCESS_TOKEN --body "$ACCESS" --repo "$GITHUB_REPOSITORY"
+          if ! gh secret set STRAVA_ACCESS_TOKEN --body "$ACCESS" --repo "$GITHUB_REPOSITORY" 2>&1; then
+            {
+              echo "### ⚠️ Strava token rotation failed"
+              echo ""
+              echo "\`STRAVA_ROTATE_PAT\` could not write repo secrets. The usual cause is a"
+              echo "PAT generated under an account without admin on this repo — it must be"
+              echo "created as the repo owner, with \`repo\` + \`workflow\` scope."
+              echo ""
+              echo "Data still published. But if Strava rotated the refresh token, the next"
+              echo "scheduled run will fail — re-run \`scripts/reauth-strava.mjs\` to recover."
+            } >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
           gh secret set STRAVA_REFRESH_TOKEN --body "$REFRESH" --repo "$GITHUB_REPOSITORY"
 
       - name: Remove .env.local before committing
