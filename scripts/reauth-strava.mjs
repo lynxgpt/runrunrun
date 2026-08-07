@@ -54,11 +54,11 @@ fs.writeFileSync(ENV, src
   .replace(/^STRAVA_REFRESH_TOKEN=.*$/m, `STRAVA_REFRESH_TOKEN=${tok.refresh_token}`));
 console.log("✓ .env.local updated");
 
-// The default gh login only has pull on this repo; the admin token lives in
-// the `lynxgpt` remote URL.
-const GH_TOKEN = execFileSync("git", ["remote", "get-url", "lynxgpt"], { encoding: "utf8" })
+// The gh CLI login may not have admin on this repo; the admin token is
+// embedded in the origin remote URL.
+const GH_TOKEN = execFileSync("git", ["remote", "get-url", "origin"], { encoding: "utf8" })
   .match(/https:\/\/([^@]+)@/)?.[1];
-if (!GH_TOKEN) { console.error("✗ no admin token on the lynxgpt remote; set secrets via the web UI"); process.exit(1); }
+if (!GH_TOKEN) { console.error("✗ no admin token on the origin remote; set secrets via the web UI"); process.exit(1); }
 
 for (const [name, value] of [["STRAVA_ACCESS_TOKEN", tok.access_token], ["STRAVA_REFRESH_TOKEN", tok.refresh_token]]) {
   execFileSync("gh", ["secret", "set", name, "--body", value, "--repo", REPO], { env: { ...process.env, GH_TOKEN } });
