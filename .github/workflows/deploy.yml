@@ -6,6 +6,12 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [master, main]
+  # The daily Strava pull commits with GITHUB_TOKEN, and pushes made with that
+  # token deliberately do not fire `push` events — otherwise the data commits
+  # would never reach Pages. Chain off the pull workflow instead.
+  workflow_run:
+    workflows: ["Pull Strava Activities"]
+    types: [completed]
   workflow_dispatch:
 
 permissions:
@@ -21,6 +27,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # Don't publish off a failed pull; other triggers always proceed.
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
