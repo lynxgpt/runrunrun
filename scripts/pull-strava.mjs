@@ -129,13 +129,35 @@ async function refreshTokenIfNeeded() {
     body,
   });
   if (!res.ok) {
-    throw new Error(`Refresh failed ${res.status}: ${await res.text()}`);
+    const text = await res.text();
+    if (/refresh_token/.test(text) && /invalid/.test(text)) {
+      throw new Error(
+        `Refresh failed ${res.status}: ${text}\n\n` +
+          `  The stored refresh token is no longer valid — re-authorization is\n` +
+          `  required. This is NOT a Strava outage and retrying will not help.\n\n` +
+          `  Fix: run scripts/reauth-strava.mjs (see the header of that file).\n`
+      );
+    }
+    throw new Error(`Refresh failed ${res.status}: ${text}`);
   }
   const j = await res.json();
+  const refreshBefore = env.STRAVA_REFRESH_TOKEN;
   env.STRAVA_ACCESS_TOKEN = j.access_token;
   env.STRAVA_REFRESH_TOKEN = j.refresh_token;
   writeEnv(env, envSrc);
   console.log("• token refreshed, .env.local updated");
+
+  // Rotation only sticks if the workflow can write the new value back to the
+  // repo secrets, which needs STRAVA_ROTATE_PAT. Without it a changed token is
+  // silently discarded and the next run fails with "refresh_token invalid" —
+  // exactly how this broke in July 2026. Make that visible when it matters.
+  if (j.refresh_token !== refreshBefore && process.env.CI && process.env.HAS_ROTATE_PAT !== "true") {
+    console.error(
+      `\n!! Strava issued a NEW refresh token, but STRAVA_ROTATE_PAT is not set,\n` +
+        `!! so it cannot be saved. The next scheduled run WILL fail.\n` +
+        `!! Fix: add STRAVA_ROTATE_PAT, or re-run scripts/reauth-strava.mjs.\n`
+    );
+  }
   return j.access_token;
 }
 
