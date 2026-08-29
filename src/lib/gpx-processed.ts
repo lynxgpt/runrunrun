@@ -77354,5 +77354,86 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running"
     }
+  },
+  "morning-run-19945351237": {
+    "id": "morning-run-19945351237",
+    "name": "Morning Run",
+    "stats": {
+      "name": "Morning Run",
+      "distanceKm": 0.926,
+      "movingSec": 373,
+      "elapsedSec": 2851,
+      "paceSecPerKm": 403,
+      "elevationM": 14,
+      "avgHr": 129,
+      "startTime": "2026-08-29T07:30:45.000Z",
+      "endTime": "2026-08-29T08:18:16.000Z",
+      "startLat": 50.451663,
+      "startLon": 30.526932,
+      "meanLat": 50.451545,
+      "meanLon": 30.527774,
+      "bbox": {
+        "minLat": 50.449355,
+        "maxLat": 50.453481,
+        "minLon": 30.525419,
+        "maxLon": 30.528663
+      },
+      "paceSamples": [
+        425.98571844647523,
+        467.920933187126,
+        272.63414663643533,
+        366.8618180551526,
+        1743.9592473191096,
+        1159.998466976219
+      ],
+      "paceSampleDetails": [
+        {
+          "paceSecPerKm": 425.98571844647523,
+          "lowSpeedSec": 40,
+          "skippedBeforeSec": 646
+        },
+        {
+          "paceSecPerKm": 467.920933187126,
+          "lowSpeedSec": 1,
+          "skippedBeforeSec": 1256
+        },
+        {
+          "paceSecPerKm": 272.63414663643533,
+          "lowSpeedSec": 2,
+          "skippedBeforeSec": 161
+        },
+        {
+          "paceSecPerKm": 366.8618180551526,
+          "lowSpeedSec": 26,
+          "skippedBeforeSec": 34
+        },
+        {
+          "paceSecPerKm": 1743.9592473191096,
+          "lowSpeedSec": 60,
+          "skippedBeforeSec": 117
+        },
+        {
+          "paceSecPerKm": 1159.998466976219,
+          "lowSpeedSec": 60,
+          "skippedBeforeSec": 28
+        }
+      ],
+      "hrZoneSec": [
+        373,
+        0,
+        0,
+        0
+      ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 485.4093879133802
+      },
+      "pbQuality": {
+        "repeatedShare": 0.702,
+        "movingShare": 0.13083128726762538,
+        "maxSegmentKph": 21.6,
+        "hasTeleportGap": false
+      },
+      "activityType": "running"
+    }
   }
 };
