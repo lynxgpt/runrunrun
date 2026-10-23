@@ -8,10 +8,15 @@ import rawMeta from "../../public/strava-meta.json";
 import {
   buildPaceDistributionFromSamples,
 } from "./pace-distribution";
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const worldAtlas = require("world-atlas/countries-10m.json");
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const usAtlas = require("us-atlas/states-10m.json");
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const usCountiesAtlas = require("us-atlas/counties-10m.json");
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const { feature } = require("topojson-client");
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const isoCountries = require("i18n-iso-countries");
 
 interface StravaMeta {
@@ -511,7 +516,7 @@ function manhattanEastLon(lat: number): number {
   return s[0][1];
 }
 
-function locationFor(t: GpxSummary): ActivityLocation {
+export function locationFor(t: GpxSummary): ActivityLocation {
   const { minLat, maxLat, minLon, maxLon } = t.stats.bbox;
   const lat = t.stats.meanLat ?? (minLat + maxLat) / 2;
   const lon = t.stats.meanLon ?? (minLon + maxLon) / 2;
