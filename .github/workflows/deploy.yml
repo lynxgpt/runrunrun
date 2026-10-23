@@ -5,7 +5,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [master, main]
+    branches: [main]
   # The daily Strava pull commits with GITHUB_TOKEN, and pushes made with that
   # token deliberately do not fire `push` events — otherwise the data commits
   # would never reach Pages. Chain off the pull workflow instead.
