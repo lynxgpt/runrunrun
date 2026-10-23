@@ -8,6 +8,15 @@ export function SiteFooter() {
         <span>Made with</span>
         <Heart aria-label="love" className="h-3 w-3 text-neutral-400" strokeWidth={1.8} />
         <span>by Claude</span>
+        <span aria-hidden="true">·</span>
+        <a
+          href="https://lynxgpt.github.io/subway_time/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline hover:text-neutral-300"
+        >
+          subway time
+        </a>
       </p>
       {siteContent.footer.map((line, i) =>
         line.url ? (
