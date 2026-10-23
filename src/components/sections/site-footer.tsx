@@ -46,13 +46,13 @@ export function SiteFooter() {
         <Heart aria-label="love" className="h-3 w-3 text-neutral-400" strokeWidth={1.8} />
         <span>by Claude</span>
       </p>
-      <p className="flex items-center justify-center gap-1.5">
-        <span>My other Claude projects:</span>
+      <p className="flex flex-wrap items-center justify-center gap-x-1.5">
+        <span className="whitespace-nowrap">My other Claude projects:</span>
         <a
           href="https://lynxgpt.github.io/subway_time/"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1 underline hover:text-neutral-300"
+          className="inline-flex items-center gap-1 whitespace-nowrap underline hover:text-neutral-300"
         >
           <SubwayCatIcon />
           subway time
