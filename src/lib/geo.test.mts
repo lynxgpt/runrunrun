@@ -372,7 +372,7 @@ test("NYC borough detection: Queens (Flushing) → Queens", () => {
   assert.equal(r.city, "Queens");
 });
 
-test("NYC borough detection: Bronx → Bronx", { todo: "inside the 40.700–40.880 band, east of Manhattan is split Queens/Brooklyn by latitude only" }, () => {
+test("NYC borough detection: Bronx → Bronx", () => {
   const r = at(40.85, -73.87);
   assert.equal(r.city, "Bronx");
 });

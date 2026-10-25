@@ -571,7 +571,11 @@ export function locationFor(t: GpxSummary): ActivityLocation {
       if (lon <= manhattanEastLon(lat)) {
         return { ...c, region: s?.region, city: "Manhattan", lat, lon };
       }
-      const city = lat > 40.726 ? "Queens" : "Brooklyn";
+      // East of Manhattan: county polygons separate Brooklyn / Queens / Bronx;
+      // a mean in the East River has no county, so keep the latitude split.
+      const byCounty = s?.region === "NY" ? nycBoroughAt(lat, lon) : null;
+      const city =
+        byCounty && byCounty !== "Manhattan" ? byCounty : lat > 40.726 ? "Queens" : "Brooklyn";
       return { ...c, region: s?.region, city, lat, lon };
     }
   }
