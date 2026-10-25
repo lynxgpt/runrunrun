@@ -78,9 +78,11 @@ run at it. Respect what is already there:
 - **`src/lib/geo.test.mts` is the guardrail — 121 coordinate cases against real runs.** Run it
   before and after any geo change. It was ported off the retired `master` branch, which is the
   only reason that branch mattered.
-- **Known gaps, already documented as 3 `todo` cases** — do not report these as new discoveries:
-  the borough band is hardcoded to lat 40.700–40.880 and only ever yields Manhattan / Queens /
-  Brooklyn, so Prospect Park, the Bronx and Staten Island fall through; and a run whose mean point
+- Outside the 40.700–40.880 band, NY runs take their borough from the county polygon (Kings →
+  Brooklyn, Richmond → Staten Island, …), so Prospect Park and Coney Island land in Brooklyn.
+- **Known gaps, already documented as a `todo` case** — do not report these as new discoveries:
+  inside the band, east of Manhattan is split Queens / Brooklyn by latitude only, so an in-band
+  Bronx run comes out "Queens"; and a run whose mean point
   lands in the Hudson can take its state from an offshore start point and come out "NJ / Bergen"
   (`weekly-long-14739061268`, `weekly-not-very-long-15561794874`).
 - Relabeling runs changes the owner's history. Audit every affected run and show the diff before

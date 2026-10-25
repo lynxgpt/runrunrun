@@ -362,7 +362,7 @@ test("NYC borough detection: Manhattan (Central Park) → Manhattan", () => {
   assert.equal(r.city, "Manhattan");
 });
 
-test("NYC borough detection: Brooklyn (Prospect Park) → Brooklyn", { todo: "main has no Bronx/Staten Island borough and its band starts at lat 40.700 — see geo gap note" }, () => {
+test("NYC borough detection: Brooklyn (Prospect Park) → Brooklyn", () => {
   const r = at(40.66, -73.97);
   assert.equal(r.city, "Brooklyn");
 });
@@ -372,12 +372,12 @@ test("NYC borough detection: Queens (Flushing) → Queens", () => {
   assert.equal(r.city, "Queens");
 });
 
-test("NYC borough detection: Bronx → Bronx", { todo: "main has no Bronx/Staten Island borough and its band starts at lat 40.700 — see geo gap note" }, () => {
+test("NYC borough detection: Bronx → Bronx", { todo: "inside the 40.700–40.880 band, east of Manhattan is split Queens/Brooklyn by latitude only" }, () => {
   const r = at(40.85, -73.87);
   assert.equal(r.city, "Bronx");
 });
 
-test("NYC borough detection: Staten Island → Staten Island", { todo: "main has no Bronx/Staten Island borough and its band starts at lat 40.700 — see geo gap note" }, () => {
+test("NYC borough detection: Staten Island → Staten Island", () => {
   const r = at(40.57, -74.15);
   assert.equal(r.city, "Staten Island");
 });
