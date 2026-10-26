@@ -455,11 +455,12 @@ test("Border and edge cases: Luxembourg (49.61, 6.13) → LU", () => {
 // ------------------------------------------------------------------------
 // Formerly-Unknown runs — correct city identification
 
-test("Formerly-Unknown runs — correct city identification: afternoon-run-14737228449 — Long Island City → Queens NY", () => {
+test("Formerly-Unknown runs — correct city identification: afternoon-run-14737228449 — Long Island City → NY/Manhattan by route", () => {
+  // Route minutes: Manhattan 42. Relabelled from the old mean-point expectation.
   const r = run("afternoon-run-14737228449"); // mean point: 40.761005, -73.950877
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NY");
-  assert.equal(r.city, "Queens");
+  assert.equal(r.city, "Manhattan");
 });
 
 test("Formerly-Unknown runs — correct city identification: run-13451942159 — Weehawken/NJ area → NJ", () => {
@@ -468,10 +469,12 @@ test("Formerly-Unknown runs — correct city identification: run-13451942159 —
   assert.equal(r.region, "NJ");
 });
 
-test("Formerly-Unknown runs — correct city identification: 3-13576826295 — Hudson/NJ area mean → NJ", () => {
+test("Formerly-Unknown runs — correct city identification: 3-13576826295 — Hudson/NJ area mean → NY/Manhattan by route", () => {
+  // Route minutes: Manhattan 91, Edgewater 36, Weehawken 19. Relabelled from the old mean-point expectation.
   const r = run("3-13576826295"); // mean point: 40.811117, -73.976921
   assert.equal(r.countryCode, "US");
-  assert.equal(r.region, "NJ");
+  assert.equal(r.region, "NY");
+  assert.equal(r.city, "Manhattan");
 });
 
 test("Formerly-Unknown runs — correct city identification: 3-13576826295 — start point Manhattan → NY/Manhattan", () => {
@@ -499,11 +502,12 @@ test("Formerly-Unknown runs — correct city identification: run-14257505627 —
   assert.equal(r.city, "Manhattan");
 });
 
-test("Formerly-Unknown runs — correct city identification: evening-run-15371476873 — Financial District → NY/Manhattan", () => {
+test("Formerly-Unknown runs — correct city identification: evening-run-15371476873 — Financial District → NY/Brooklyn by route", () => {
+  // Route minutes: Brooklyn 32, Manhattan 20. Relabelled from the old mean-point expectation.
   const r = run("evening-run-15371476873"); // mean point: 40.702093, -73.998585
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NY");
-  assert.equal(r.city, "Manhattan");
+  assert.equal(r.city, "Brooklyn");
 });
 
 test("Formerly-Unknown runs — correct city identification: afternoon-run-15438693660 — Chelsea area → NY/Manhattan", () => {
@@ -513,11 +517,12 @@ test("Formerly-Unknown runs — correct city identification: afternoon-run-15438
   assert.equal(r.city, "Manhattan");
 });
 
-test("Formerly-Unknown runs — correct city identification: afternoon-run-15610329019 — Astoria/Queens → NY/Queens", () => {
+test("Formerly-Unknown runs — correct city identification: afternoon-run-15610329019 — Astoria/Queens → NY/Manhattan by route", () => {
+  // Route minutes: Manhattan 46, Queens 7. Relabelled from the old mean-point expectation.
   const r = run("afternoon-run-15610329019"); // mean point: 40.790139, -73.924629
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NY");
-  assert.equal(r.city, "Queens");
+  assert.equal(r.city, "Manhattan");
 });
 
 test("Formerly-Unknown runs — correct city identification: mp-16143290429 — Hoboken/NJ → NJ", () => {
@@ -532,11 +537,12 @@ test("Formerly-Unknown runs — correct city identification: afternoon-run-16537
   assert.equal(r.region, "NY");
 });
 
-test("Formerly-Unknown runs — correct city identification: afternoon-run-16575046256 — LIC → NY/Queens", () => {
+test("Formerly-Unknown runs — correct city identification: afternoon-run-16575046256 — LIC → NY/Manhattan by route", () => {
+  // Route minutes: Manhattan 21, Queens 20. Relabelled from the old mean-point expectation.
   const r = run("afternoon-run-16575046256"); // mean point: 40.754113, -73.958714
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NY");
-  assert.equal(r.city, "Queens");
+  assert.equal(r.city, "Manhattan");
 });
 
 test("Formerly-Unknown runs — correct city identification: night-run-16615515418 — LIC → NY/Queens", () => {
@@ -567,11 +573,12 @@ test("Formerly-Unknown runs — correct city identification: afternoon-run-16708
   assert.equal(r.city, "Queens");
 });
 
-test("Formerly-Unknown runs — correct city identification: evening-run-16726039930 — LIC → NY/Queens", () => {
+test("Formerly-Unknown runs — correct city identification: evening-run-16726039930 — LIC → NY/Manhattan by route", () => {
+  // Route minutes: Manhattan 19, Queens 9. Relabelled from the old mean-point expectation.
   const r = run("evening-run-16726039930"); // mean point: 40.755084, -73.959293
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NY");
-  assert.equal(r.city, "Queens");
+  assert.equal(r.city, "Manhattan");
 });
 
 test("Formerly-Unknown runs — correct city identification: afternoon-run-16762158023 — LIC → NY/Queens", () => {
@@ -581,11 +588,12 @@ test("Formerly-Unknown runs — correct city identification: afternoon-run-16762
   assert.equal(r.city, "Queens");
 });
 
-test("Formerly-Unknown runs — correct city identification: long-16805717036 — Red Hook/Brooklyn → NY/Brooklyn", () => {
+test("Formerly-Unknown runs — correct city identification: long-16805717036 — Red Hook/Brooklyn → NY/Manhattan by route", () => {
+  // Route minutes: Manhattan 60, Brooklyn 47. Relabelled from the old mean-point expectation.
   const r = run("long-16805717036"); // mean point: 40.707114, -73.990748
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NY");
-  assert.equal(r.city, "Brooklyn");
+  assert.equal(r.city, "Manhattan");
 });
 
 test("Formerly-Unknown runs — correct city identification: night-run-16825538567 — LIC → NY/Queens", () => {
@@ -595,11 +603,12 @@ test("Formerly-Unknown runs — correct city identification: night-run-168255385
   assert.equal(r.city, "Queens");
 });
 
-test("Formerly-Unknown runs — correct city identification: afternoon-run-16962283458 — LIC → NY/Queens", () => {
+test("Formerly-Unknown runs — correct city identification: afternoon-run-16962283458 — LIC → NY/Manhattan by route", () => {
+  // Route minutes: Manhattan 18, Queens 16. Relabelled from the old mean-point expectation.
   const r = run("afternoon-run-16962283458"); // mean point: 40.754038, -73.957408
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NY");
-  assert.equal(r.city, "Queens");
+  assert.equal(r.city, "Manhattan");
 });
 
 test("Formerly-Unknown runs — correct city identification: afternoon-run-16983523095 — LIC → NY/Queens", () => {
@@ -707,11 +716,12 @@ test("Formerly-Unknown runs — correct city identification: night-run-178726466
   assert.equal(r.city, "Queens");
 });
 
-test("Formerly-Unknown runs — correct city identification: long-17894509408 — LIC/Queens → NY/Queens", () => {
+test("Formerly-Unknown runs — correct city identification: long-17894509408 — LIC/Queens → NY/Manhattan by route", () => {
+  // Route minutes: Manhattan 90, Queens 30. Relabelled from the old mean-point expectation.
   const r = run("long-17894509408"); // mean point: 40.760727, -73.948738
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NY");
-  assert.equal(r.city, "Queens");
+  assert.equal(r.city, "Manhattan");
 });
 
 test("Formerly-Unknown runs — correct city identification: afternoon-run-17966408470 — LIC → NY/Queens", () => {
@@ -740,4 +750,39 @@ test("Formerly-Unknown runs — correct city identification: afternoon-run-18270
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NY");
   assert.equal(r.city, "Queens");
+});
+
+
+// ------------------------------------------------------------------------
+// Whole-route labels for runs the old mean-point rule got wrong
+
+test("Route labels: run-14400654643 — 5 km loop on the Weehawken waterfront → NJ/Weehawken", () => {
+  const r = run("run-14400654643");
+  assert.equal(r.region, "NJ");
+  assert.equal(r.city, "Weehawken");
+});
+
+test("Route labels: 3-13576826295 — George Washington Bridge loop, most minutes in Manhattan → NY/Manhattan", () => {
+  const r = run("3-13576826295");
+  assert.equal(r.region, "NY");
+  assert.equal(r.city, "Manhattan");
+});
+
+test("Route labels: run-15472644965 — Rockaway, mean point offshore → NY/Queens", () => {
+  const r = run("run-15472644965");
+  assert.equal(r.region, "NY");
+  assert.equal(r.city, "Queens");
+});
+
+test("Route labels: morning-run-19904347579 — Strava gave no city → DE/Dresden", () => {
+  const r = run("morning-run-19904347579");
+  assert.equal(r.countryCode, "DE");
+  assert.equal(r.city, "Dresden");
+});
+
+test("Route labels: morning-run-18364602479 — Vancouver marathon → CA/British Columbia/Vancouver", () => {
+  const r = run("morning-run-18364602479");
+  assert.equal(r.countryCode, "CA");
+  assert.equal(r.region, "British Columbia");
+  assert.equal(r.city, "Vancouver");
 });

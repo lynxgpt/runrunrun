@@ -74,7 +74,17 @@ async function main() {
         addr = offlineAddress(s.lat, s.lon);
         usedFallback = true;
       }
-      places.push(normalize(addr));
+      const place = normalize(addr);
+      // No town in OSM's answer (open country, a park): name the nearest
+      // GeoNames town instead of leaving only the county.
+      if (place && !place.city) {
+        const near = normalize(offlineAddress(s.lat, s.lon));
+        if (near?.countryCode === place.countryCode) place.city = near.city;
+        // Still nothing: a BC electoral area names its places, e.g.
+        // "Area H (Manning Park/Tulameen/Siwash)" → "Manning Park".
+        place.city ??= /^Area [A-Z] \(([^/)]+)/.exec(addr.city ?? "")?.[1] ?? null;
+      }
+      places.push(place);
     }
     // Outside NYC: the start point's place gets every moving minute.
     while (!perMinute && places.length && places.length < samples.length) places.push(places[0]);

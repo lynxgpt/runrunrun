@@ -198,7 +198,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -361,7 +361,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -626,14 +626,14 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
           "stateCode": "NJ",
           "state": "New Jersey",
           "county": "Hudson County",
-          "city": "Hoboken"
+          "city": "Weehawken"
         },
         "split": [
           {
@@ -641,24 +641,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "country": "United States",
             "stateCode": "NJ",
             "state": "New Jersey",
-            "city": "Hoboken",
-            "minutes": 26
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
             "city": "Weehawken",
-            "minutes": 4
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
-            "city": "Jersey City",
-            "minutes": 3
+            "minutes": 33
           }
         ]
       }
@@ -962,7 +946,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -1456,7 +1440,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -1746,14 +1730,14 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
           "stateCode": "NJ",
           "state": "New Jersey",
           "county": "Hudson County",
-          "city": "Hoboken"
+          "city": "Weehawken"
         },
         "split": [
           {
@@ -1761,16 +1745,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "country": "United States",
             "stateCode": "NJ",
             "state": "New Jersey",
-            "city": "Hoboken",
-            "minutes": 28
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
             "city": "Weehawken",
-            "minutes": 9
+            "minutes": 37
           }
         ]
       }
@@ -2411,7 +2387,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -2427,31 +2403,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NJ",
             "state": "New Jersey",
             "city": "Weehawken",
-            "minutes": 40
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
-            "city": "Guttenberg",
-            "minutes": 38
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
-            "city": "West New York",
-            "minutes": 13
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
-            "city": "Fairview",
-            "minutes": 7
+            "minutes": 98
           }
         ]
       }
@@ -2545,15 +2497,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NJ",
             "state": "New Jersey",
             "city": "Weehawken",
-            "minutes": 3
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
-            "city": "Hoboken",
-            "minutes": 2
+            "minutes": 5
           }
         ]
       }
@@ -3194,7 +3138,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -4067,14 +4011,14 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
           "stateCode": "NJ",
           "state": "New Jersey",
           "county": "Hudson County",
-          "city": "Jersey City"
+          "city": "Weehawken"
         },
         "split": [
           {
@@ -4082,32 +4026,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "country": "United States",
             "stateCode": "NJ",
             "state": "New Jersey",
-            "city": "Jersey City",
-            "minutes": 53
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
-            "city": "Hoboken",
-            "minutes": 44
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
-            "city": "New York City",
-            "minutes": 29
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
             "city": "Weehawken",
-            "minutes": 8
+            "minutes": 134
           }
         ]
       }
@@ -4778,7 +4698,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -4794,15 +4714,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NJ",
             "state": "New Jersey",
             "city": "Weehawken",
-            "minutes": 28
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
-            "city": "Union City",
-            "minutes": 2
+            "minutes": 30
           }
         ]
       }
@@ -5935,7 +5847,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -5958,6 +5870,14 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "country": "United States",
             "stateCode": "NJ",
             "state": "New Jersey",
+            "city": "Edgewater",
+            "minutes": 36
+          },
+          {
+            "countryCode": "US",
+            "country": "United States",
+            "stateCode": "NJ",
+            "state": "New Jersey",
             "city": "Weehawken",
             "minutes": 19
           },
@@ -5967,39 +5887,15 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NJ",
             "state": "New Jersey",
             "city": "Fort Lee",
-            "minutes": 18
+            "minutes": 12
           },
           {
             "countryCode": "US",
             "country": "United States",
             "stateCode": "NJ",
             "state": "New Jersey",
-            "city": "Edgewater",
-            "minutes": 16
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
-            "city": "Guttenberg",
-            "minutes": 13
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
-            "city": "Fairview",
-            "minutes": 9
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
-            "city": "Cliffside Park",
-            "minutes": 7
+            "city": "North Bergen",
+            "minutes": 10
           },
           {
             "countryCode": "US",
@@ -6007,7 +5903,15 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NJ",
             "state": "New Jersey",
             "city": "West New York",
-            "minutes": 7
+            "minutes": 10
+          },
+          {
+            "countryCode": "US",
+            "country": "United States",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Guttenberg",
+            "minutes": 2
           }
         ]
       }
@@ -6227,14 +6131,14 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
           "stateCode": "NJ",
           "state": "New Jersey",
           "county": "Hudson County",
-          "city": "Hoboken"
+          "city": "Weehawken"
         },
         "split": [
           {
@@ -6242,16 +6146,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "country": "United States",
             "stateCode": "NJ",
             "state": "New Jersey",
-            "city": "Hoboken",
-            "minutes": 17
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
             "city": "Weehawken",
-            "minutes": 11
+            "minutes": 28
           }
         ]
       }
@@ -6675,7 +6571,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -6965,7 +6861,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -7436,7 +7332,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -7452,15 +7348,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "FL",
             "state": "Florida",
             "city": "Miami Beach",
-            "minutes": 59
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "FL",
-            "state": "Florida",
-            "city": "Miami",
-            "minutes": 8
+            "minutes": 67
           }
         ]
       }
@@ -8524,7 +8412,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -8540,7 +8428,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Brooklyn",
-            "minutes": 61
+            "minutes": 65
           },
           {
             "countryCode": "US",
@@ -8548,7 +8436,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Manhattan",
-            "minutes": 11
+            "minutes": 7
           }
         ]
       }
@@ -9009,14 +8897,14 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
           "stateCode": "NJ",
           "state": "New Jersey",
           "county": "Hudson County",
-          "city": "Hoboken"
+          "city": "Weehawken"
         },
         "split": [
           {
@@ -9024,16 +8912,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "country": "United States",
             "stateCode": "NJ",
             "state": "New Jersey",
-            "city": "Hoboken",
-            "minutes": 27
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
             "city": "Weehawken",
-            "minutes": 8
+            "minutes": 35
           }
         ]
       }
@@ -9566,7 +9446,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -9582,23 +9462,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NJ",
             "state": "New Jersey",
             "city": "Jersey City",
-            "minutes": 62
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
-            "city": "Bayonne",
-            "minutes": 12
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
-            "city": "New York City",
-            "minutes": 6
+            "minutes": 80
           }
         ]
       }
@@ -10702,8 +10566,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
           "country": "United States",
           "stateCode": "NY",
           "state": "New York",
-          "county": "Putnam County",
-          "city": "Town of Philipstown"
+          "county": "Dutchess County",
+          "city": "Dutchess Junction"
         },
         "split": [
           {
@@ -10711,24 +10575,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "country": "United States",
             "stateCode": "NY",
             "state": "New York",
-            "city": "Town of Philipstown",
-            "minutes": 79
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NY",
-            "state": "New York",
-            "city": "Town of Fishkill",
-            "minutes": 8
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NY",
-            "state": "New York",
-            "city": "Village of Cold Spring",
-            "minutes": 5
+            "city": "Dutchess Junction",
+            "minutes": 92
           }
         ]
       }
@@ -13986,15 +13834,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NJ",
             "state": "New Jersey",
             "city": "Weehawken",
-            "minutes": 39
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
-            "city": "West New York",
-            "minutes": 12
+            "minutes": 51
           }
         ]
       }
@@ -17658,14 +17498,14 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
           "stateCode": "NJ",
           "state": "New Jersey",
           "county": "Hudson County",
-          "city": "Hoboken"
+          "city": "Jersey City"
         },
         "split": [
           {
@@ -17673,24 +17513,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "country": "United States",
             "stateCode": "NJ",
             "state": "New Jersey",
-            "city": "Hoboken",
-            "minutes": 21
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
             "city": "Jersey City",
-            "minutes": 9
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
-            "city": "Weehawken",
-            "minutes": 3
+            "minutes": 33
           }
         ]
       }
@@ -20122,7 +19946,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
           "stateCode": "WY",
           "state": "Wyoming",
           "county": "Sublette County",
-          "city": null
+          "city": "Pinedale"
         },
         "split": [
           {
@@ -20130,7 +19954,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "country": "United States",
             "stateCode": "WY",
             "state": "Wyoming",
-            "city": null,
+            "city": "Pinedale",
             "minutes": 48
           }
         ]
@@ -20576,16 +20400,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "country": "United States",
             "stateCode": "WY",
             "state": "Wyoming",
-            "city": null,
-            "minutes": 44
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "WY",
-            "state": "Wyoming",
             "city": "Jackson",
-            "minutes": 19
+            "minutes": 63
           }
         ]
       }
@@ -20962,7 +20778,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
           "stateCode": "WY",
           "state": "Wyoming",
           "county": "Teton County",
-          "city": null
+          "city": "Jackson"
         },
         "split": [
           {
@@ -20970,7 +20786,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "country": "United States",
             "stateCode": "WY",
             "state": "Wyoming",
-            "city": null,
+            "city": "Jackson",
             "minutes": 53
           }
         ]
@@ -22175,7 +21991,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
           "stateCode": "NJ",
           "state": "New Jersey",
           "county": "Hudson County",
-          "city": "Hoboken"
+          "city": "Weehawken"
         },
         "split": [
           {
@@ -22183,24 +21999,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "country": "United States",
             "stateCode": "NJ",
             "state": "New Jersey",
-            "city": "Hoboken",
-            "minutes": 18
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
-            "city": "Jersey City",
-            "minutes": 17
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
             "city": "Weehawken",
-            "minutes": 3
+            "minutes": 38
           }
         ]
       }
@@ -22582,7 +22382,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -22598,15 +22398,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NJ",
             "state": "New Jersey",
             "city": "Weehawken",
-            "minutes": 46
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
-            "city": "Union City",
-            "minutes": 9
+            "minutes": 55
           }
         ]
       }
@@ -23074,7 +22866,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -23648,7 +23440,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
           "stateCode": "NJ",
           "state": "New Jersey",
           "county": "Bergen County",
-          "city": "Englewood Cliffs"
+          "city": "Edgewater"
         },
         "split": [
           {
@@ -23656,40 +23448,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "country": "United States",
             "stateCode": "NJ",
             "state": "New Jersey",
-            "city": "Englewood Cliffs",
-            "minutes": 30
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
-            "city": "Alpine",
-            "minutes": 26
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
-            "city": "Tenafly",
-            "minutes": 13
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
-            "city": "Fort Lee",
-            "minutes": 11
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
             "city": "Edgewater",
-            "minutes": 3
+            "minutes": 83
           }
         ]
       }
@@ -24367,7 +24127,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -25127,7 +24887,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
           "stateCode": "NJ",
           "state": "New Jersey",
           "county": "Essex County",
-          "city": "West Orange"
+          "city": "Short Hills"
         },
         "split": [
           {
@@ -25135,40 +24895,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "country": "United States",
             "stateCode": "NJ",
             "state": "New Jersey",
-            "city": "West Orange",
-            "minutes": 67
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
-            "city": "Maplewood",
-            "minutes": 19
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
             "city": "Short Hills",
-            "minutes": 13
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
-            "city": "Montclair",
-            "minutes": 13
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
-            "city": "South Orange",
-            "minutes": 2
+            "minutes": 114
           }
         ]
       }
@@ -25713,7 +25441,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -26378,7 +26106,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
           "stateCode": "NJ",
           "state": "New Jersey",
           "county": "Hudson County",
-          "city": "Hoboken"
+          "city": "Weehawken"
         },
         "split": [
           {
@@ -26386,16 +26114,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "country": "United States",
             "stateCode": "NJ",
             "state": "New Jersey",
-            "city": "Hoboken",
-            "minutes": 19
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
             "city": "Weehawken",
-            "minutes": 7
+            "minutes": 26
           }
         ]
       }
@@ -28080,7 +27800,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -28454,7 +28174,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -28470,15 +28190,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "WA",
             "state": "Washington",
             "city": "Seattle",
-            "minutes": 32
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "WA",
-            "state": "Washington",
-            "city": "White Center",
-            "minutes": 19
+            "minutes": 51
           }
         ]
       }
@@ -29264,7 +28976,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
           "stateCode": "WA",
           "state": "Washington",
           "county": "King County",
-          "city": "Mercer Island"
+          "city": "Seattle"
         },
         "split": [
           {
@@ -29272,40 +28984,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "country": "United States",
             "stateCode": "WA",
             "state": "Washington",
-            "city": "Mercer Island",
-            "minutes": 43
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "WA",
-            "state": "Washington",
             "city": "Seattle",
-            "minutes": 33
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "WA",
-            "state": "Washington",
-            "city": "Bellevue",
-            "minutes": 18
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "WA",
-            "state": "Washington",
-            "city": "Medina",
-            "minutes": 17
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "WA",
-            "state": "Washington",
-            "city": "Clyde Hill",
-            "minutes": 10
+            "minutes": 121
           }
         ]
       }
@@ -29525,7 +29205,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -29749,7 +29429,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -30308,23 +29988,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NJ",
             "state": "New Jersey",
             "city": "Jersey City",
-            "minutes": 19
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
-            "city": "Union City",
-            "minutes": 3
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
-            "city": "Hoboken",
-            "minutes": 2
+            "minutes": 24
           }
         ]
       }
@@ -30780,7 +30444,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -31106,14 +30770,14 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
           "stateCode": "NJ",
           "state": "New Jersey",
           "county": "Hudson County",
-          "city": "Hoboken"
+          "city": "Weehawken"
         },
         "split": [
           {
@@ -31121,16 +30785,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "country": "United States",
             "stateCode": "NJ",
             "state": "New Jersey",
-            "city": "Hoboken",
-            "minutes": 35
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
             "city": "Weehawken",
-            "minutes": 8
+            "minutes": 43
           }
         ]
       }
@@ -32494,7 +32150,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -32874,14 +32530,14 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
           "stateCode": "NY",
           "state": "New York",
-          "county": "New York County",
-          "city": "Manhattan"
+          "county": "Kings County",
+          "city": "Brooklyn"
         },
         "split": [
           {
@@ -32889,16 +32545,16 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "country": "United States",
             "stateCode": "NY",
             "state": "New York",
-            "city": "Manhattan",
-            "minutes": 49
+            "city": "Brooklyn",
+            "minutes": 32
           },
           {
             "countryCode": "US",
             "country": "United States",
             "stateCode": "NY",
             "state": "New York",
-            "city": "Brooklyn",
-            "minutes": 3
+            "city": "Manhattan",
+            "minutes": 20
           }
         ]
       }
@@ -34229,7 +33885,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -34828,7 +34484,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
           "country": "United States",
           "stateCode": "NY",
           "state": "New York",
-          "county": "Nassau County",
+          "county": "Queens County",
           "city": "Queens"
         },
         "split": [
@@ -34845,7 +34501,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "country": "United States",
             "stateCode": "NY",
             "state": "New York",
-            "city": "City of Long Beach",
+            "city": "Long Beach",
             "minutes": 19
           },
           {
@@ -34853,7 +34509,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "country": "United States",
             "stateCode": "NY",
             "state": "New York",
-            "city": "Village of Atlantic Beach",
+            "city": "Atlantic Beach",
             "minutes": 16
           },
           {
@@ -34869,7 +34525,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "country": "United States",
             "stateCode": "NY",
             "state": "New York",
-            "city": "Village of Lawrence",
+            "city": "Lawrence",
             "minutes": 3
           }
         ]
@@ -35464,14 +35120,14 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
           "stateCode": "NJ",
           "state": "New Jersey",
           "county": "Hudson County",
-          "city": "Guttenberg"
+          "city": "North Bergen"
         },
         "split": [
           {
@@ -35479,48 +35135,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "country": "United States",
             "stateCode": "NJ",
             "state": "New Jersey",
-            "city": "Guttenberg",
-            "minutes": 13
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
-            "city": "Fairview",
-            "minutes": 10
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
-            "city": "Weehawken",
-            "minutes": 9
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
-            "city": "West New York",
-            "minutes": 7
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
-            "city": "Union City",
-            "minutes": 2
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
             "city": "North Bergen",
-            "minutes": 1
+            "minutes": 42
           }
         ]
       }
@@ -36132,7 +35748,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
           "stateCode": "NJ",
           "state": "New Jersey",
           "county": "Bergen County",
-          "city": "Alpine"
+          "city": "Englewood Cliffs"
         },
         "split": [
           {
@@ -36140,24 +35756,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "country": "United States",
             "stateCode": "NJ",
             "state": "New Jersey",
-            "city": "Alpine",
-            "minutes": 53
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
             "city": "Englewood Cliffs",
-            "minutes": 25
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
-            "city": "Tenafly",
-            "minutes": 14
+            "minutes": 92
           }
         ]
       }
@@ -36365,7 +35965,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -36751,7 +36351,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -36767,7 +36367,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Manhattan",
-            "minutes": 45
+            "minutes": 46
           },
           {
             "countryCode": "US",
@@ -36775,7 +36375,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 8
+            "minutes": 7
           }
         ]
       }
@@ -37369,7 +36969,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
           "stateCode": "ENG",
           "state": "England",
           "county": null,
-          "city": "Greater London"
+          "city": "London"
         },
         "split": [
           {
@@ -37377,24 +36977,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "country": "United Kingdom",
             "stateCode": "ENG",
             "state": "England",
-            "city": "Greater London",
-            "minutes": 42
-          },
-          {
-            "countryCode": "GB",
-            "country": "United Kingdom",
-            "stateCode": "ENG",
-            "state": "England",
-            "city": "City of Westminster",
-            "minutes": 27
-          },
-          {
-            "countryCode": "GB",
-            "country": "United Kingdom",
-            "stateCode": "ENG",
-            "state": "England",
-            "city": "City of London",
-            "minutes": 20
+            "city": "London",
+            "minutes": 89
           }
         ]
       }
@@ -37800,39 +37384,23 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "FR",
           "country": "France",
-          "stateCode": null,
-          "state": "Île-de-France",
+          "stateCode": "IDF",
+          "state": "Ile-de-France",
           "county": null,
-          "city": "Paris 16 Passy"
+          "city": "Paris"
         },
         "split": [
           {
             "countryCode": "FR",
             "country": "France",
-            "stateCode": null,
-            "state": "Île-de-France",
-            "city": "Paris 16 Passy",
-            "minutes": 30
-          },
-          {
-            "countryCode": "FR",
-            "country": "France",
-            "stateCode": null,
-            "state": "Île-de-France",
-            "city": "Paris 08 Élysée",
-            "minutes": 21
-          },
-          {
-            "countryCode": "FR",
-            "country": "France",
-            "stateCode": null,
-            "state": "Île-de-France",
-            "city": "Paris 07 Palais-Bourbon",
-            "minutes": 8
+            "stateCode": "IDF",
+            "state": "Ile-de-France",
+            "city": "Paris",
+            "minutes": 59
           }
         ]
       }
@@ -38575,14 +38143,14 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "trailrun",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "IS",
           "country": "Iceland",
           "stateCode": null,
           "state": null,
-          "county": null,
-          "city": null
+          "county": "Rangárþing eystra",
+          "city": "Skógar"
         },
         "split": [
           {
@@ -38590,7 +38158,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "country": "Iceland",
             "stateCode": null,
             "state": null,
-            "city": null,
+            "city": "Skógar",
             "minutes": 115
           }
         ]
@@ -38781,7 +38349,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -39173,7 +38741,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -39663,7 +39231,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -39911,14 +39479,14 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
           "stateCode": "NJ",
           "state": "New Jersey",
           "county": "Hudson County",
-          "city": "Hoboken"
+          "city": "Weehawken"
         },
         "split": [
           {
@@ -39926,16 +39494,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "country": "United States",
             "stateCode": "NJ",
             "state": "New Jersey",
-            "city": "Hoboken",
-            "minutes": 18
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
             "city": "Weehawken",
-            "minutes": 12
+            "minutes": 30
           }
         ]
       }
@@ -40903,7 +40463,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
           "stateCode": "PA",
           "state": "Pennsylvania",
           "county": "Lebanon County",
-          "city": "Swatara Township"
+          "city": "Jonestown"
         },
         "split": [
           {
@@ -40911,32 +40471,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "country": "United States",
             "stateCode": "PA",
             "state": "Pennsylvania",
-            "city": "Swatara Township",
-            "minutes": 42
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "PA",
-            "state": "Pennsylvania",
-            "city": "Pine Grove Township",
-            "minutes": 22
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "PA",
-            "state": "Pennsylvania",
-            "city": "Union Township",
-            "minutes": 22
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "PA",
-            "state": "Pennsylvania",
-            "city": "Bethel Township",
-            "minutes": 18
+            "city": "Jonestown",
+            "minutes": 104
           }
         ]
       }
@@ -41464,7 +41000,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -41480,15 +41016,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NJ",
             "state": "New Jersey",
             "city": "Weehawken",
-            "minutes": 27
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
-            "city": "Hoboken",
-            "minutes": 5
+            "minutes": 32
           }
         ]
       }
@@ -41835,7 +41363,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -41851,23 +41379,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NJ",
             "state": "New Jersey",
             "city": "Jersey City",
-            "minutes": 14
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
-            "city": "Hoboken",
-            "minutes": 4
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
-            "city": "New York City",
-            "minutes": 3
+            "minutes": 21
           }
         ]
       }
@@ -41984,7 +41496,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -42365,7 +41877,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -42381,23 +41893,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NJ",
             "state": "New Jersey",
             "city": "Weehawken",
-            "minutes": 33
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
-            "city": "Guttenberg",
-            "minutes": 10
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
-            "city": "West New York",
-            "minutes": 9
+            "minutes": 52
           }
         ]
       }
@@ -42713,7 +42209,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -42961,14 +42457,14 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
           "stateCode": "NJ",
           "state": "New Jersey",
           "county": "Hudson County",
-          "city": "Hoboken"
+          "city": "Weehawken"
         },
         "split": [
           {
@@ -42976,24 +42472,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "country": "United States",
             "stateCode": "NJ",
             "state": "New Jersey",
-            "city": "Hoboken",
-            "minutes": 23
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
-            "city": "Jersey City",
-            "minutes": 4
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
             "city": "Weehawken",
-            "minutes": 3
+            "minutes": 30
           }
         ]
       }
@@ -43236,7 +42716,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "trailrun",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -44131,7 +43611,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "cycling",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -44831,7 +44311,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -44847,23 +44327,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NJ",
             "state": "New Jersey",
             "city": "Weehawken",
-            "minutes": 13
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
-            "city": "West New York",
-            "minutes": 9
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
-            "city": "Union City",
-            "minutes": 3
+            "minutes": 25
           }
         ]
       }
@@ -45781,7 +45245,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -46053,7 +45517,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -46313,7 +45777,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -46543,7 +46007,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -47044,7 +46508,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -47060,31 +46524,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NJ",
             "state": "New Jersey",
             "city": "Weehawken",
-            "minutes": 50
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
-            "city": "West New York",
-            "minutes": 11
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
-            "city": "Guttenberg",
-            "minutes": 10
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NJ",
-            "state": "New Jersey",
-            "city": "Union City",
-            "minutes": 1
+            "minutes": 72
           }
         ]
       }
@@ -47382,7 +46822,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -47937,7 +47377,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -47953,15 +47393,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "PA",
             "state": "Pennsylvania",
             "city": "Philadelphia",
-            "minutes": 60
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "PA",
-            "state": "Pennsylvania",
-            "city": "Bala Cynwyd",
-            "minutes": 21
+            "minutes": 81
           }
         ]
       }
@@ -48319,7 +47751,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -48718,7 +48150,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -48734,23 +48166,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Beacon",
-            "minutes": 43
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NY",
-            "state": "New York",
-            "city": "Newburgh",
-            "minutes": 11
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NY",
-            "state": "New York",
-            "city": "Balmville",
-            "minutes": 1
+            "minutes": 55
           }
         ]
       }
@@ -49319,7 +48735,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -49575,14 +48991,14 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
           "stateCode": "NY",
           "state": "New York",
-          "county": "Queens County",
-          "city": "Queens"
+          "county": "Kings County",
+          "city": "Brooklyn"
         },
         "split": [
           {
@@ -49590,24 +49006,16 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "country": "United States",
             "stateCode": "NY",
             "state": "New York",
-            "city": "Queens",
-            "minutes": 26
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NY",
-            "state": "New York",
-            "city": "Manhattan",
-            "minutes": 2
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NY",
-            "state": "New York",
             "city": "Brooklyn",
-            "minutes": 2
+            "minutes": 17
+          },
+          {
+            "countryCode": "US",
+            "country": "United States",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 13
           }
         ]
       }
@@ -49905,7 +49313,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -49921,7 +49329,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Manhattan",
-            "minutes": 30
+            "minutes": 21
           },
           {
             "countryCode": "US",
@@ -49929,7 +49337,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 11
+            "minutes": 20
           }
         ]
       }
@@ -50106,7 +49514,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -50122,15 +49530,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 18
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NY",
-            "state": "New York",
-            "city": "Manhattan",
-            "minutes": 3
+            "minutes": 21
           }
         ]
       }
@@ -50344,7 +49744,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -50360,15 +49760,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 17
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NY",
-            "state": "New York",
-            "city": "Manhattan",
-            "minutes": 10
+            "minutes": 27
           }
         ]
       }
@@ -50611,14 +50003,14 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
           "stateCode": "NY",
           "state": "New York",
-          "county": "New York County",
-          "city": "Manhattan"
+          "county": "Queens County",
+          "city": "Queens"
         },
         "split": [
           {
@@ -50626,16 +50018,16 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "country": "United States",
             "stateCode": "NY",
             "state": "New York",
-            "city": "Manhattan",
-            "minutes": 29
+            "city": "Queens",
+            "minutes": 31
           },
           {
             "countryCode": "US",
             "country": "United States",
             "stateCode": "NY",
             "state": "New York",
-            "city": "Queens",
-            "minutes": 3
+            "city": "Manhattan",
+            "minutes": 1
           }
         ]
       }
@@ -51060,7 +50452,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -51076,7 +50468,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Brooklyn",
-            "minutes": 49
+            "minutes": 52
           },
           {
             "countryCode": "US",
@@ -51084,7 +50476,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 11
+            "minutes": 9
           },
           {
             "countryCode": "US",
@@ -51092,7 +50484,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Manhattan",
-            "minutes": 2
+            "minutes": 1
           }
         ]
       }
@@ -51360,14 +50752,14 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
           "stateCode": "NY",
           "state": "New York",
-          "county": "New York County",
-          "city": "Manhattan"
+          "county": "Queens County",
+          "city": "Queens"
         },
         "split": [
           {
@@ -51375,16 +50767,16 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "country": "United States",
             "stateCode": "NY",
             "state": "New York",
-            "city": "Manhattan",
-            "minutes": 25
+            "city": "Queens",
+            "minutes": 18
           },
           {
             "countryCode": "US",
             "country": "United States",
             "stateCode": "NY",
             "state": "New York",
-            "city": "Queens",
-            "minutes": 11
+            "city": "Manhattan",
+            "minutes": 18
           }
         ]
       }
@@ -51574,7 +50966,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -51590,15 +50982,15 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 19
+            "minutes": 18
           },
           {
             "countryCode": "US",
             "country": "United States",
             "stateCode": "NY",
             "state": "New York",
-            "city": "Manhattan",
-            "minutes": 4
+            "city": "Brooklyn",
+            "minutes": 5
           }
         ]
       }
@@ -51818,7 +51210,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -51834,7 +51226,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Manhattan",
-            "minutes": 20
+            "minutes": 19
           },
           {
             "countryCode": "US",
@@ -51842,7 +51234,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 8
+            "minutes": 9
           }
         ]
       }
@@ -52068,7 +51460,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -52084,15 +51476,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 26
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NY",
-            "state": "New York",
-            "city": "Manhattan",
-            "minutes": 3
+            "minutes": 29
           }
         ]
       }
@@ -52493,7 +51877,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -52509,7 +51893,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Brooklyn",
-            "minutes": 48
+            "minutes": 52
           },
           {
             "countryCode": "US",
@@ -52517,15 +51901,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 9
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NY",
-            "state": "New York",
-            "city": "Manhattan",
-            "minutes": 1
+            "minutes": 6
           }
         ]
       }
@@ -52841,7 +52217,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -52857,15 +52233,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 36
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NY",
-            "state": "New York",
-            "city": "Manhattan",
-            "minutes": 4
+            "minutes": 25
           },
           {
             "countryCode": "US",
@@ -52873,7 +52241,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Brooklyn",
-            "minutes": 4
+            "minutes": 19
           }
         ]
       }
@@ -53568,7 +52936,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -53584,7 +52952,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Manhattan",
-            "minutes": 79
+            "minutes": 60
           },
           {
             "countryCode": "US",
@@ -53592,7 +52960,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Brooklyn",
-            "minutes": 28
+            "minutes": 47
           }
         ]
       }
@@ -53703,7 +53071,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -53719,15 +53087,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 5
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NY",
-            "state": "New York",
-            "city": "Manhattan",
-            "minutes": 5
+            "minutes": 10
           }
         ]
       }
@@ -54122,7 +53482,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -54376,31 +53736,23 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "MX",
           "country": "Mexico",
-          "stateCode": null,
+          "stateCode": "CMX",
           "state": "Mexico City",
           "county": null,
-          "city": "Cuauhtémoc"
+          "city": "Mexico City"
         },
         "split": [
           {
             "countryCode": "MX",
             "country": "Mexico",
-            "stateCode": null,
-            "state": "Mexico City",
-            "city": "Cuauhtémoc",
-            "minutes": 29
-          },
-          {
-            "countryCode": "MX",
-            "country": "Mexico",
-            "stateCode": null,
+            "stateCode": "CMX",
             "state": "Mexico City",
             "city": "Mexico City",
-            "minutes": 2
+            "minutes": 31
           }
         ]
       }
@@ -54595,22 +53947,22 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "MX",
           "country": "Mexico",
-          "stateCode": null,
+          "stateCode": "CMX",
           "state": "Mexico City",
           "county": null,
-          "city": "Benito Juarez"
+          "city": "Mexico City"
         },
         "split": [
           {
             "countryCode": "MX",
             "country": "Mexico",
-            "stateCode": null,
+            "stateCode": "CMX",
             "state": "Mexico City",
-            "city": "Benito Juarez",
+            "city": "Mexico City",
             "minutes": 24
           }
         ]
@@ -54867,7 +54219,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -54883,7 +54235,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Manhattan",
-            "minutes": 22
+            "minutes": 18
           },
           {
             "countryCode": "US",
@@ -54891,7 +54243,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 12
+            "minutes": 16
           }
         ]
       }
@@ -55081,7 +54433,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -55097,15 +54449,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 18
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NY",
-            "state": "New York",
-            "city": "Manhattan",
-            "minutes": 5
+            "minutes": 23
           }
         ]
       }
@@ -55530,7 +54874,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -55546,7 +54890,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Brooklyn",
-            "minutes": 35
+            "minutes": 46
           },
           {
             "countryCode": "US",
@@ -55554,15 +54898,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 24
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NY",
-            "state": "New York",
-            "city": "Manhattan",
-            "minutes": 3
+            "minutes": 16
           }
         ]
       }
@@ -55806,7 +55142,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -55822,15 +55158,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 23
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NY",
-            "state": "New York",
-            "city": "Manhattan",
-            "minutes": 9
+            "minutes": 32
           }
         ]
       }
@@ -56345,7 +55673,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -56361,7 +55689,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Manhattan",
-            "minutes": 63
+            "minutes": 59
           },
           {
             "countryCode": "US",
@@ -56369,7 +55697,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 14
+            "minutes": 18
           }
         ]
       }
@@ -56589,7 +55917,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -56605,15 +55933,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 18
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NY",
-            "state": "New York",
-            "city": "Manhattan",
-            "minutes": 10
+            "minutes": 28
           }
         ]
       }
@@ -57008,7 +56328,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -57024,7 +56344,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 47
+            "minutes": 55
           },
           {
             "countryCode": "US",
@@ -57032,7 +56352,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Manhattan",
-            "minutes": 10
+            "minutes": 2
           }
         ]
       }
@@ -57264,7 +56584,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -57280,15 +56600,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 28
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NY",
-            "state": "New York",
-            "city": "Manhattan",
-            "minutes": 2
+            "minutes": 30
           }
         ]
       }
@@ -57484,7 +56796,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -57500,15 +56812,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 20
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NY",
-            "state": "New York",
-            "city": "Manhattan",
-            "minutes": 4
+            "minutes": 24
           }
         ]
       }
@@ -58101,7 +57405,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -58117,7 +57421,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Manhattan",
-            "minutes": 79
+            "minutes": 72
           },
           {
             "countryCode": "US",
@@ -58125,7 +57429,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 11
+            "minutes": 18
           }
         ]
       }
@@ -58333,7 +57637,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -58349,15 +57653,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 24
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NY",
-            "state": "New York",
-            "city": "Manhattan",
-            "minutes": 2
+            "minutes": 26
           }
         ]
       }
@@ -58619,7 +57915,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -58635,15 +57931,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 29
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NY",
-            "state": "New York",
-            "city": "Manhattan",
-            "minutes": 3
+            "minutes": 21
           },
           {
             "countryCode": "US",
@@ -58651,7 +57939,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Brooklyn",
-            "minutes": 3
+            "minutes": 14
           }
         ]
       }
@@ -58853,7 +58141,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -58869,15 +58157,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 24
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NY",
-            "state": "New York",
-            "city": "Manhattan",
-            "minutes": 1
+            "minutes": 25
           }
         ]
       }
@@ -59151,14 +58431,14 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
           "stateCode": "NY",
           "state": "New York",
-          "county": "New York County",
-          "city": "Manhattan"
+          "county": "Queens County",
+          "city": "Queens"
         },
         "split": [
           {
@@ -59166,16 +58446,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "country": "United States",
             "stateCode": "NY",
             "state": "New York",
-            "city": "Manhattan",
-            "minutes": 32
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NY",
-            "state": "New York",
             "city": "Queens",
-            "minutes": 5
+            "minutes": 37
           }
         ]
       }
@@ -59389,7 +58661,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -59405,15 +58677,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 20
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NY",
-            "state": "New York",
-            "city": "Manhattan",
-            "minutes": 7
+            "minutes": 27
           }
         ]
       }
@@ -59590,7 +58854,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -59606,7 +58870,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 16
+            "minutes": 20
           },
           {
             "countryCode": "US",
@@ -59614,7 +58878,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Manhattan",
-            "minutes": 5
+            "minutes": 1
           }
         ]
       }
@@ -60219,7 +59483,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -60235,7 +59499,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Manhattan",
-            "minutes": 51
+            "minutes": 53
           },
           {
             "countryCode": "US",
@@ -60243,7 +59507,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Brooklyn",
-            "minutes": 30
+            "minutes": 33
           },
           {
             "countryCode": "US",
@@ -60251,7 +59515,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 11
+            "minutes": 6
           }
         ]
       }
@@ -60495,7 +59759,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -61647,7 +60911,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -61834,7 +61098,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -61850,15 +61114,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 18
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NY",
-            "state": "New York",
-            "city": "Manhattan",
-            "minutes": 2
+            "minutes": 20
           }
         ]
       }
@@ -62873,14 +62129,14 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
           "stateCode": "CA",
           "state": "California",
           "county": "San Diego County",
-          "city": "Encinitas"
+          "city": "Solana Beach"
         },
         "split": [
           {
@@ -62888,24 +62144,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "country": "United States",
             "stateCode": "CA",
             "state": "California",
-            "city": "Encinitas",
-            "minutes": 65
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "CA",
-            "state": "California",
-            "city": "Carlsbad",
-            "minutes": 48
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "CA",
-            "state": "California",
             "city": "Solana Beach",
-            "minutes": 8
+            "minutes": 121
           }
         ]
       }
@@ -63324,7 +62564,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -63686,14 +62926,14 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
           "stateCode": "CA",
           "state": "California",
           "county": "San Diego County",
-          "city": "Del Mar"
+          "city": "San Diego"
         },
         "split": [
           {
@@ -63701,7 +62941,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "country": "United States",
             "stateCode": "CA",
             "state": "California",
-            "city": "Del Mar",
+            "city": "San Diego",
             "minutes": 49
           }
         ]
@@ -64097,14 +63337,14 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
           "stateCode": "CA",
           "state": "California",
           "county": "San Diego County",
-          "city": "Del Mar"
+          "city": "San Diego"
         },
         "split": [
           {
@@ -64112,7 +63352,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "country": "United States",
             "stateCode": "CA",
             "state": "California",
-            "city": "Del Mar",
+            "city": "San Diego",
             "minutes": 57
           }
         ]
@@ -64453,7 +63693,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -64469,23 +63709,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "CA",
             "state": "California",
             "city": "San Diego",
-            "minutes": 24
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "CA",
-            "state": "California",
-            "city": "Del Mar",
-            "minutes": 16
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "CA",
-            "state": "California",
-            "city": null,
-            "minutes": 8
+            "minutes": 48
           }
         ]
       }
@@ -64765,7 +63989,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -65085,14 +64309,14 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
           "stateCode": "CA",
           "state": "California",
           "county": "San Diego County",
-          "city": "Coronado"
+          "city": "San Diego"
         },
         "split": [
           {
@@ -65100,16 +64324,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "country": "United States",
             "stateCode": "CA",
             "state": "California",
-            "city": "Coronado",
-            "minutes": 22
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "CA",
-            "state": "California",
             "city": "San Diego",
-            "minutes": 20
+            "minutes": 42
           }
         ]
       }
@@ -65883,7 +65099,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -66203,7 +65419,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -66219,7 +65435,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Brooklyn",
-            "minutes": 32
+            "minutes": 36
           },
           {
             "countryCode": "US",
@@ -66227,7 +65443,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 10
+            "minutes": 6
           }
         ]
       }
@@ -67187,7 +66403,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -67561,7 +66777,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -67577,7 +66793,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Brooklyn",
-            "minutes": 40
+            "minutes": 44
           },
           {
             "countryCode": "US",
@@ -67585,15 +66801,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 10
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NY",
-            "state": "New York",
-            "city": "Manhattan",
-            "minutes": 1
+            "minutes": 7
           }
         ]
       }
@@ -67981,7 +67189,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -67997,7 +67205,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Manhattan",
-            "minutes": 43
+            "minutes": 40
           },
           {
             "countryCode": "US",
@@ -68005,7 +67213,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 13
+            "minutes": 16
           }
         ]
       }
@@ -69247,7 +68455,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -69263,7 +68471,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Brooklyn",
-            "minutes": 173
+            "minutes": 176
           },
           {
             "countryCode": "US",
@@ -69279,7 +68487,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Manhattan",
-            "minutes": 5
+            "minutes": 2
           }
         ]
       }
@@ -69438,7 +68646,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -69454,15 +68662,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 15
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NY",
-            "state": "New York",
-            "city": "Manhattan",
-            "minutes": 3
+            "minutes": 18
           }
         ]
       }
@@ -70235,7 +69435,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -70251,7 +69451,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Manhattan",
-            "minutes": 113
+            "minutes": 90
           },
           {
             "countryCode": "US",
@@ -70259,7 +69459,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 7
+            "minutes": 30
           }
         ]
       }
@@ -70720,7 +69920,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -70736,7 +69936,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Brooklyn",
-            "minutes": 45
+            "minutes": 54
           },
           {
             "countryCode": "US",
@@ -70744,15 +69944,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 21
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NY",
-            "state": "New York",
-            "city": "Manhattan",
-            "minutes": 2
+            "minutes": 14
           }
         ]
       }
@@ -70996,7 +70188,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -71012,15 +70204,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 25
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NY",
-            "state": "New York",
-            "city": "Manhattan",
-            "minutes": 7
+            "minutes": 32
           }
         ]
       }
@@ -72154,7 +71338,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -72170,7 +71354,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Manhattan",
-            "minutes": 149
+            "minutes": 136
           },
           {
             "countryCode": "US",
@@ -72178,7 +71362,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 31
+            "minutes": 44
           }
         ]
       }
@@ -72873,7 +72057,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -72889,7 +72073,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Manhattan",
-            "minutes": 98
+            "minutes": 94
           },
           {
             "countryCode": "US",
@@ -72897,7 +72081,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 9
+            "minutes": 13
           }
         ]
       }
@@ -73165,7 +72349,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -73181,7 +72365,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 32
+            "minutes": 21
           },
           {
             "countryCode": "US",
@@ -73189,15 +72373,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Brooklyn",
-            "minutes": 3
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NY",
-            "state": "New York",
-            "city": "Manhattan",
-            "minutes": 1
+            "minutes": 15
           }
         ]
       }
@@ -73832,7 +73008,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -73848,7 +73024,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Brooklyn",
-            "minutes": 55
+            "minutes": 96
           },
           {
             "countryCode": "US",
@@ -73856,7 +73032,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Manhattan",
-            "minutes": 42
+            "minutes": 1
           }
         ]
       }
@@ -74112,7 +73288,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -74128,7 +73304,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 26
+            "minutes": 33
           },
           {
             "countryCode": "US",
@@ -74136,7 +73312,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Manhattan",
-            "minutes": 8
+            "minutes": 1
           }
         ]
       }
@@ -74374,14 +73550,14 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
           "stateCode": "NY",
           "state": "New York",
-          "county": "New York County",
-          "city": "Manhattan"
+          "county": "Queens County",
+          "city": "Queens"
         },
         "split": [
           {
@@ -74389,16 +73565,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "country": "United States",
             "stateCode": "NY",
             "state": "New York",
-            "city": "Manhattan",
-            "minutes": 23
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NY",
-            "state": "New York",
             "city": "Queens",
-            "minutes": 8
+            "minutes": 31
           }
         ]
       }
@@ -74581,7 +73749,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -74597,7 +73765,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 15
+            "minutes": 21
           },
           {
             "countryCode": "US",
@@ -74605,7 +73773,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Manhattan",
-            "minutes": 7
+            "minutes": 1
           }
         ]
       }
@@ -74782,31 +73950,23 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "CA",
           "country": "Canada",
-          "stateCode": null,
+          "stateCode": "BC",
           "state": "British Columbia",
-          "county": null,
+          "county": "Metro Vancouver Regional District",
           "city": "Vancouver"
         },
         "split": [
           {
             "countryCode": "CA",
             "country": "Canada",
-            "stateCode": null,
+            "stateCode": "BC",
             "state": "British Columbia",
             "city": "Vancouver",
-            "minutes": 16
-          },
-          {
-            "countryCode": "CA",
-            "country": "Canada",
-            "stateCode": null,
-            "state": "British Columbia",
-            "city": "North Vancouver",
-            "minutes": 5
+            "minutes": 21
           }
         ]
       }
@@ -76275,15 +75435,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "BC",
             "state": "British Columbia",
             "city": "Vancouver",
-            "minutes": 173
-          },
-          {
-            "countryCode": "CA",
-            "country": "Canada",
-            "stateCode": "BC",
-            "state": "British Columbia",
-            "city": "Electoral Area A",
-            "minutes": 60
+            "minutes": 233
           }
         ]
       }
@@ -76460,22 +75612,22 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "CA",
           "country": "Canada",
-          "stateCode": null,
+          "stateCode": "BC",
           "state": "British Columbia",
-          "county": null,
-          "city": "River Springs"
+          "county": "Metro Vancouver Regional District",
+          "city": "Coquitlam"
         },
         "split": [
           {
             "countryCode": "CA",
             "country": "Canada",
-            "stateCode": null,
+            "stateCode": "BC",
             "state": "British Columbia",
-            "city": "River Springs",
+            "city": "Coquitlam",
             "minutes": 21
           }
         ]
@@ -76737,22 +75889,22 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "CA",
           "country": "Canada",
-          "stateCode": null,
-          "state": null,
-          "county": null,
-          "city": null
+          "stateCode": "BC",
+          "state": "British Columbia",
+          "county": "Regional District of Okanagan-Similkameen",
+          "city": "Manning Park"
         },
         "split": [
           {
             "countryCode": "CA",
             "country": "Canada",
-            "stateCode": null,
-            "state": null,
-            "city": null,
+            "stateCode": "BC",
+            "state": "British Columbia",
+            "city": "Manning Park",
             "minutes": 35
           }
         ]
@@ -77027,20 +76179,20 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "CA",
           "country": "Canada",
-          "stateCode": null,
+          "stateCode": "BC",
           "state": "British Columbia",
-          "county": null,
+          "county": "Squamish-Lillooet Regional District",
           "city": "Squamish"
         },
         "split": [
           {
             "countryCode": "CA",
             "country": "Canada",
-            "stateCode": null,
+            "stateCode": "BC",
             "state": "British Columbia",
             "city": "Squamish",
             "minutes": 37
@@ -77443,39 +76595,23 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "CA",
           "country": "Canada",
-          "stateCode": null,
+          "stateCode": "BC",
           "state": "British Columbia",
-          "county": null,
-          "city": "River Springs"
+          "county": "Metro Vancouver Regional District",
+          "city": "Coquitlam"
         },
         "split": [
           {
             "countryCode": "CA",
             "country": "Canada",
-            "stateCode": null,
-            "state": "British Columbia",
-            "city": "River Springs",
-            "minutes": 27
-          },
-          {
-            "countryCode": "CA",
-            "country": "Canada",
-            "stateCode": null,
+            "stateCode": "BC",
             "state": "British Columbia",
             "city": "Coquitlam",
-            "minutes": 20
-          },
-          {
-            "countryCode": "CA",
-            "country": "Canada",
-            "stateCode": null,
-            "state": "British Columbia",
-            "city": "Port Coquitlam",
-            "minutes": 11
+            "minutes": 58
           }
         ]
       }
@@ -77529,22 +76665,22 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "JP",
           "country": "Japan",
-          "stateCode": null,
-          "state": "Tokyo",
+          "stateCode": "13",
+          "state": null,
           "county": null,
-          "city": "Kanda-jinbōchō"
+          "city": "Chiyoda"
         },
         "split": [
           {
             "countryCode": "JP",
             "country": "Japan",
-            "stateCode": null,
-            "state": "Tokyo",
-            "city": "Kanda-jinbōchō",
+            "stateCode": "13",
+            "state": null,
+            "city": "Chiyoda",
             "minutes": 1
           }
         ]
@@ -78102,31 +77238,23 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "JP",
           "country": "Japan",
-          "stateCode": null,
-          "state": "Yamanashi",
-          "county": null,
-          "city": "Fuji-yoshida"
+          "stateCode": "19",
+          "state": null,
+          "county": "Minamitsuru County",
+          "city": "Fujikawaguchiko"
         },
         "split": [
           {
             "countryCode": "JP",
             "country": "Japan",
-            "stateCode": null,
-            "state": "Yamanashi",
-            "city": "Fuji-yoshida",
-            "minutes": 66
-          },
-          {
-            "countryCode": "JP",
-            "country": "Japan",
-            "stateCode": null,
-            "state": "Yamanashi",
-            "city": "Narusawa",
-            "minutes": 18
+            "stateCode": "19",
+            "state": null,
+            "city": "Fujikawaguchiko",
+            "minutes": 84
           }
         ]
       }
@@ -78364,31 +77492,23 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "KR",
           "country": "South Korea",
-          "stateCode": null,
-          "state": "Seoul",
+          "stateCode": "11",
+          "state": null,
           "county": null,
-          "city": "Yongsan-dong"
+          "city": "Seoul"
         },
         "split": [
           {
             "countryCode": "KR",
             "country": "South Korea",
-            "stateCode": null,
-            "state": "Seoul",
-            "city": "Yongsan-dong",
-            "minutes": 21
-          },
-          {
-            "countryCode": "KR",
-            "country": "South Korea",
-            "stateCode": null,
-            "state": "Seoul",
+            "stateCode": "11",
+            "state": null,
             "city": "Seoul",
-            "minutes": 10
+            "minutes": 31
           }
         ]
       }
@@ -78620,22 +77740,22 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "CA",
           "country": "Canada",
-          "stateCode": null,
+          "stateCode": "BC",
           "state": "British Columbia",
-          "county": null,
-          "city": "River Springs"
+          "county": "Metro Vancouver Regional District",
+          "city": "Coquitlam"
         },
         "split": [
           {
             "countryCode": "CA",
             "country": "Canada",
-            "stateCode": null,
+            "stateCode": "BC",
             "state": "British Columbia",
-            "city": "River Springs",
+            "city": "Coquitlam",
             "minutes": 30
           }
         ]
@@ -78692,20 +77812,20 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "CA",
           "country": "Canada",
-          "stateCode": null,
+          "stateCode": "BC",
           "state": "British Columbia",
-          "county": null,
+          "county": "Metro Vancouver Regional District",
           "city": "Coquitlam"
         },
         "split": [
           {
             "countryCode": "CA",
             "country": "Canada",
-            "stateCode": null,
+            "stateCode": "BC",
             "state": "British Columbia",
             "city": "Coquitlam",
             "minutes": 1
@@ -78976,39 +78096,23 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "CA",
           "country": "Canada",
-          "stateCode": null,
+          "stateCode": "BC",
           "state": "British Columbia",
-          "county": null,
-          "city": "Greektown"
+          "county": "Metro Vancouver Regional District",
+          "city": "Vancouver"
         },
         "split": [
-          {
-            "countryCode": "CA",
-            "country": "Canada",
-            "stateCode": null,
-            "state": "British Columbia",
-            "city": "Greektown",
-            "minutes": 17
-          },
-          {
-            "countryCode": "CA",
-            "country": "Canada",
-            "stateCode": null,
-            "state": "British Columbia",
-            "city": "Vancouver",
-            "minutes": 12
-          },
           {
             "countryCode": "CA",
             "country": "Canada",
             "stateCode": "BC",
             "state": "British Columbia",
             "city": "Vancouver",
-            "minutes": 7
+            "minutes": 36
           }
         ]
       }
@@ -79258,20 +78362,20 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "CA",
           "country": "Canada",
-          "stateCode": null,
+          "stateCode": "BC",
           "state": "British Columbia",
-          "county": null,
+          "county": "Thompson-Nicola Regional District",
           "city": "Kamloops"
         },
         "split": [
           {
             "countryCode": "CA",
             "country": "Canada",
-            "stateCode": null,
+            "stateCode": "BC",
             "state": "British Columbia",
             "city": "Kamloops",
             "minutes": 33
@@ -79512,20 +78616,20 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "CA",
           "country": "Canada",
-          "stateCode": null,
+          "stateCode": "AB",
           "state": "Alberta",
-          "county": null,
+          "county": "Town of Canmore",
           "city": "Canmore"
         },
         "split": [
           {
             "countryCode": "CA",
             "country": "Canada",
-            "stateCode": null,
+            "stateCode": "AB",
             "state": "Alberta",
             "city": "Canmore",
             "minutes": 31
@@ -79959,7 +79063,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -80158,7 +79262,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -80174,7 +79278,15 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 22
+            "minutes": 11
+          },
+          {
+            "countryCode": "US",
+            "country": "United States",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Brooklyn",
+            "minutes": 11
           }
         ]
       }
@@ -80430,7 +79542,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -80446,7 +79558,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 32
+            "minutes": 20
           },
           {
             "countryCode": "US",
@@ -80454,15 +79566,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Brooklyn",
-            "minutes": 1
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NY",
-            "state": "New York",
-            "city": "Manhattan",
-            "minutes": 1
+            "minutes": 14
           }
         ]
       }
@@ -80657,7 +79761,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -80673,15 +79777,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 20
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NY",
-            "state": "New York",
-            "city": "Manhattan",
-            "minutes": 4
+            "minutes": 24
           }
         ]
       }
@@ -81117,7 +80213,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -81358,7 +80454,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -81374,15 +80470,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 21
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NY",
-            "state": "New York",
-            "city": "Manhattan",
-            "minutes": 8
+            "minutes": 29
           }
         ]
       }
@@ -81505,7 +80593,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -81521,15 +80609,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 11
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NY",
-            "state": "New York",
-            "city": "Manhattan",
-            "minutes": 1
+            "minutes": 12
           }
         ]
       }
@@ -81755,7 +80835,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -81771,15 +80851,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 25
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NY",
-            "state": "New York",
-            "city": "Manhattan",
-            "minutes": 4
+            "minutes": 29
           }
         ]
       }
@@ -81884,7 +80956,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -81900,15 +80972,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 7
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NY",
-            "state": "New York",
-            "city": "Manhattan",
-            "minutes": 2
+            "minutes": 9
           }
         ]
       }
@@ -82188,7 +81252,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -82520,7 +81584,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -82536,15 +81600,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 35
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NY",
-            "state": "New York",
-            "city": "Manhattan",
-            "minutes": 9
+            "minutes": 44
           }
         ]
       }
@@ -82715,7 +81771,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -82731,15 +81787,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Queens",
-            "minutes": 18
-          },
-          {
-            "countryCode": "US",
-            "country": "United States",
-            "stateCode": "NY",
-            "state": "New York",
-            "city": "Manhattan",
-            "minutes": 2
+            "minutes": 20
           }
         ]
       }
@@ -83175,12 +82223,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "DK",
           "country": "Denmark",
-          "stateCode": null,
-          "state": "Capital Region",
+          "stateCode": "84",
+          "state": "Capital Region of Denmark",
           "county": null,
           "city": "Copenhagen"
         },
@@ -83188,8 +82236,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
           {
             "countryCode": "DK",
             "country": "Denmark",
-            "stateCode": null,
-            "state": "Capital Region",
+            "stateCode": "84",
+            "state": "Capital Region of Denmark",
             "city": "Copenhagen",
             "minutes": 64
           }
@@ -83477,11 +82525,11 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "DE",
           "country": "Germany",
-          "stateCode": null,
+          "stateCode": "SN",
           "state": "Saxony",
           "county": null,
           "city": "Dresden"
@@ -83490,7 +82538,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
           {
             "countryCode": "DE",
             "country": "Germany",
-            "stateCode": null,
+            "stateCode": "SN",
             "state": "Saxony",
             "city": "Dresden",
             "minutes": 39
@@ -83579,12 +82627,12 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "UA",
           "country": "Ukraine",
-          "stateCode": null,
-          "state": "Kyiv City",
+          "stateCode": "30",
+          "state": null,
           "county": null,
           "city": "Kyiv"
         },
@@ -83592,8 +82640,8 @@ export const gpxSummaries: Record<string, GpxSummary> = {
           {
             "countryCode": "UA",
             "country": "Ukraine",
-            "stateCode": null,
-            "state": "Kyiv City",
+            "stateCode": "30",
+            "state": null,
             "city": "Kyiv",
             "minutes": 6
           }
@@ -83827,22 +82875,22 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "PL",
           "country": "Poland",
-          "stateCode": null,
-          "state": "Lesser Poland",
+          "stateCode": "12",
+          "state": "Lesser Poland Voivodeship",
           "county": null,
-          "city": "Kraków"
+          "city": "Krakow"
         },
         "split": [
           {
             "countryCode": "PL",
             "country": "Poland",
-            "stateCode": null,
-            "state": "Lesser Poland",
-            "city": "Kraków",
+            "stateCode": "12",
+            "state": "Lesser Poland Voivodeship",
+            "city": "Krakow",
             "minutes": 30
           }
         ]
@@ -84081,22 +83129,22 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "PL",
           "country": "Poland",
-          "stateCode": null,
-          "state": "Lesser Poland",
+          "stateCode": "12",
+          "state": "Lesser Poland Voivodeship",
           "county": null,
-          "city": "Kraków"
+          "city": "Krakow"
         },
         "split": [
           {
             "countryCode": "PL",
             "country": "Poland",
-            "stateCode": null,
-            "state": "Lesser Poland",
-            "city": "Kraków",
+            "stateCode": "12",
+            "state": "Lesser Poland Voivodeship",
+            "city": "Krakow",
             "minutes": 31
           }
         ]
@@ -84383,22 +83431,22 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "PL",
           "country": "Poland",
-          "stateCode": null,
-          "state": "Lesser Poland",
+          "stateCode": "12",
+          "state": "Lesser Poland Voivodeship",
           "county": null,
-          "city": "Kraków"
+          "city": "Krakow"
         },
         "split": [
           {
             "countryCode": "PL",
             "country": "Poland",
-            "stateCode": null,
-            "state": "Lesser Poland",
-            "city": "Kraków",
+            "stateCode": "12",
+            "state": "Lesser Poland Voivodeship",
+            "city": "Krakow",
             "minutes": 39
           }
         ]
@@ -84673,21 +83721,21 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "SE",
           "country": "Sweden",
-          "stateCode": null,
-          "state": "Stockholm",
-          "county": null,
+          "stateCode": "AB",
+          "state": null,
+          "county": "Stockholm County",
           "city": "Stockholm"
         },
         "split": [
           {
             "countryCode": "SE",
             "country": "Sweden",
-            "stateCode": null,
-            "state": "Stockholm",
+            "stateCode": "AB",
+            "state": null,
             "city": "Stockholm",
             "minutes": 37
           }
@@ -84945,21 +83993,21 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "SE",
           "country": "Sweden",
-          "stateCode": null,
-          "state": "Stockholm",
-          "county": null,
+          "stateCode": "AB",
+          "state": null,
+          "county": "Stockholm County",
           "city": "Stockholm"
         },
         "split": [
           {
             "countryCode": "SE",
             "country": "Sweden",
-            "stateCode": null,
-            "state": "Stockholm",
+            "stateCode": "AB",
+            "state": null,
             "city": "Stockholm",
             "minutes": 34
           }
@@ -85126,22 +84174,22 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "SE",
           "country": "Sweden",
-          "stateCode": null,
-          "state": "Stockholm",
-          "county": null,
-          "city": "Märsta"
+          "stateCode": "AB",
+          "state": null,
+          "county": "Stockholm County",
+          "city": "Sigtuna"
         },
         "split": [
           {
             "countryCode": "SE",
             "country": "Sweden",
-            "stateCode": null,
-            "state": "Stockholm",
-            "city": "Märsta",
+            "stateCode": "AB",
+            "state": null,
+            "city": "Sigtuna",
             "minutes": 19
           }
         ]
@@ -85374,7 +84422,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -85682,7 +84730,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -86020,7 +85068,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -86641,7 +85689,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -86937,7 +85985,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -87702,7 +86750,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -87718,7 +86766,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Manhattan",
-            "minutes": 89
+            "minutes": 85
           },
           {
             "countryCode": "US",
@@ -87726,7 +86774,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
             "stateCode": "NY",
             "state": "New York",
             "city": "Brooklyn",
-            "minutes": 27
+            "minutes": 31
           }
         ]
       }
@@ -88602,7 +87650,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -88952,7 +88000,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -89302,7 +88350,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -89670,7 +88718,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -89954,7 +89002,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -90563,7 +89611,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -90847,7 +89895,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -91185,7 +90233,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -91529,7 +90577,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -91915,7 +90963,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -92205,7 +91253,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -93060,7 +92108,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -93368,7 +92416,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -93640,7 +92688,7 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
@@ -93942,13 +92990,13 @@ export const gpxSummaries: Record<string, GpxSummary> = {
       },
       "activityType": "running",
       "geo": {
-        "status": "fallback",
+        "status": "nominatim",
         "label": {
           "countryCode": "US",
           "country": "United States",
           "stateCode": "CT",
           "state": "Connecticut",
-          "county": "New Haven County",
+          "county": "South Central Connecticut Planning Region",
           "city": "New Haven"
         },
         "split": [

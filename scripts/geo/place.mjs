@@ -24,6 +24,17 @@ const NYC_BOROUGH_BY_COUNTY = {
   "Richmond County": "Staten Island",
 };
 
+// Nominatim's place fields often hold an administrative unit rather than the
+// place itself. Strip the unit wording; drop units that are not a place.
+function placeName(raw) {
+  if (!raw) return null;
+  if (/^Area [A-Z]\b/.test(raw) || / Township$/.test(raw)) return null; // BC electoral areas, US townships
+  return raw
+    .replace(/^(City|Town|Village) of /, "")
+    .replace(/^Greater /, "")
+    .replace(/ (kommun|Municipality)$/, "");
+}
+
 export function normalize(addr) {
   if (!addr?.country_code) return null;
   const countryCode = addr.country_code.toUpperCase();
@@ -31,7 +42,11 @@ export function normalize(addr) {
   const stateCode = iso?.startsWith(`${countryCode}-`) ? iso.slice(countryCode.length + 1) : null;
   const county =
     addr.county ?? (/ County$/.test(addr.city_district ?? "") ? addr.city_district : null);
-  let city = addr.city ?? addr.town ?? addr.village ?? addr.hamlet ?? addr.municipality ?? null;
+  // A New York "Town of …" is a civil township; a village inside it is the place.
+  const town = /^Town of /.test(addr.town ?? "") && addr.village ? addr.village : addr.town;
+  let city =
+    placeName(addr.city) ?? placeName(town) ?? placeName(addr.village) ??
+    placeName(addr.hamlet) ?? placeName(addr.municipality) ?? null;
   // New York City reports as one city; the site labels its boroughs.
   const borough = countryCode === "US" && stateCode === "NY" ? NYC_BOROUGH_BY_COUNTY[county] : null;
   if (borough) city = borough;
@@ -69,13 +84,16 @@ export function summarize(places) {
   const st = vote(inCountry.map(stateKey), start && stateKey(start));
   const inState = inCountry.filter((p) => stateKey(p) === st);
   const sample = inState[0] ?? inCountry[0];
+  // County is voted among the winning city's samples, so the two agree.
+  const city = vote(inState.map((p) => p.city), start?.city);
+  const inCity = city ? inState.filter((p) => p.city === city) : inState;
   const label = {
     countryCode,
     country: sample.country,
     stateCode: inState[0]?.stateCode ?? null,
     state: inState[0]?.state ?? null,
-    county: vote(inState.map((p) => p.county), start?.county),
-    city: vote(inState.map((p) => p.city), start?.city),
+    county: vote(inCity.map((p) => p.county), start?.county),
+    city,
   };
 
   // Minutes per country / state / city, for region totals.
