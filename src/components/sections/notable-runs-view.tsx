@@ -184,9 +184,12 @@ function applyFilter(
 ): NotableRun[] {
   if (filter.kind === "none") return rows;
   const matched = rows.filter((r) => {
-    if (filter.kind === "country") return r.location.countryCode === filter.code;
-    if (filter.kind === "state") return r.location.region === filter.code;
-    if (filter.kind === "city") return r.location.city === filter.code;
+    if (filter.kind === "country")
+      return (r.touched?.countries ?? [r.location.countryCode]).includes(filter.code);
+    if (filter.kind === "state")
+      return (r.touched?.states ?? [r.location.region]).includes(filter.code);
+    if (filter.kind === "city")
+      return (r.touched?.cities ?? [r.location.city]).includes(filter.code);
     if (filter.kind === "month") return r.dateMonth === filter.code;
     if (filter.kind === "day") return r.dateIso === filter.code;
     return true;

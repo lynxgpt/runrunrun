@@ -110,6 +110,13 @@ const US_STATE_BY_FIPS: Record<string, string> = {
 
 
 const NYC_BOROUGHS = new Set(["Brooklyn", "Queens", "Bronx", "Staten Island"]);
+export const OUTSIDE_NYC = "Outside NYC";
+
+// Borough, or OUTSIDE_NYC for the rest of New York State; null elsewhere.
+function nyArea(loc: ActivityLocation): string | null {
+  if (loc.countryCode !== "US" || loc.region !== "NY") return null;
+  return loc.city === "Manhattan" || (loc.city && NYC_BOROUGHS.has(loc.city)) ? loc.city : OUTSIDE_NYC;
+}
 
 // NY county → NYC borough. Only consulted for points already in NY state:
 // Kings, Queens and Richmond are also county names in CA, WA, VA and GA.
@@ -221,7 +228,8 @@ function lookupCountryAt(lat: number, lon: number): { country: string; countryCo
     const numeric = country.id.padStart(3, "0");
     const alpha2 = isoCountries.numericToAlpha2(numeric);
     if (!alpha2) return null;
-    return { country: country.properties.name, countryCode: alpha2 };
+    // US shortened to match "United Kingdom".
+    return { country: alpha2 === "US" ? "United States" : country.properties.name, countryCode: alpha2 };
   }
   return null;
 }
@@ -685,6 +693,11 @@ function toNotableRun(t: GpxSummary, rank: number, weather: WeatherCondition): N
     weather,
     title: t.name,
     location,
+    touched: {
+      countries: [location.countryCode],
+      states: location.region ? [location.region] : [],
+      cities: [nyArea(location) ?? location.city].filter((c): c is string => !!c),
+    },
     displayLocationPrimary: displayLocation.primary,
     displayLocationSecondary: displayLocation.secondary,
     gpxId: t.id,
@@ -988,12 +1001,12 @@ export const usStatesVisited: GeoRow[] = (() => {
 export const nycBoroughsVisited: GeoRow[] = (() => {
   const map = new Map<string, { km: number; days: Set<string> }>();
   for (const t of tracks) {
-    const loc = locationFor(t);
-    if (loc.countryCode !== "US" || loc.region !== "NY" || !loc.city) continue;
-    const entry = map.get(loc.city) ?? { km: 0, days: new Set() };
+    const area = nyArea(locationFor(t));
+    if (!area) continue;
+    const entry = map.get(area) ?? { km: 0, days: new Set() };
     entry.km += t.stats.distanceKm;
     entry.days.add(isoDate(dateOf(t)));
-    map.set(loc.city, entry);
+    map.set(area, entry);
   }
   return [...map.entries()]
     .map(([name, v]) => ({
@@ -1002,7 +1015,8 @@ export const nycBoroughsVisited: GeoRow[] = (() => {
       days: v.days.size,
       km: +v.km.toFixed(1),
     }))
-    .sort((a, b) => b.km - a.km);
+    // Boroughs by km, then everywhere else in the state.
+    .sort((a, b) => (a.code === OUTSIDE_NYC ? 1 : b.code === OUTSIDE_NYC ? -1 : b.km - a.km));
 })();
 
 // ---------------------------------------------------------------------------

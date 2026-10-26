@@ -53,6 +53,8 @@ export interface NotableRun {
   weather: WeatherCondition;
   title?: string;
   location: ActivityLocation;
+  /** Regions the run counts toward in the region filter. */
+  touched?: { countries: string[]; states: string[]; cities: string[] };
   displayLocationPrimary?: string;
   displayLocationSecondary?: string;
   /** Key into `gpxTracks` when this run has a real GPS trace. */
