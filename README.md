@@ -47,10 +47,10 @@ The daily Strava pull does all of this on its own. CI fails if the committed out
 
 ### Where each run was
 
-`scripts/geocode.mjs` samples each run once per minute of moving time and looks every sample up in
-OpenStreetMap's Nominatim service (cached per ~100 m in `data/geo-cache.json`). A run is labelled
-with the place holding most of its minutes; region totals split its distance by minutes spent in
-each place. If Nominatim is unreachable, an offline fallback (world/US boundaries plus GeoNames
+`scripts/geocode.mjs` places each run with OpenStreetMap's Nominatim service (cached per ~100 m in
+`data/geo-cache.json`). A run whose route touches New York City is looked up once per minute of
+moving time and labelled with the place holding most of its minutes, and region totals split its
+distance by minutes spent in each place. Every other run is looked up once, at its start point. If Nominatim is unreachable, an offline fallback (world/US boundaries plus GeoNames
 places) labels the run until the next pull retries it.
 
 ### Edit the visible text

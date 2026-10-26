@@ -77,12 +77,15 @@ not add a second place for text to live.
 
 - **Samples:** one point per minute of **moving** time (stops and recording gaps skipped), plus
   the start point — `movingMinuteSamples()` in `process-gpx.mjs`.
-- **Lookup:** each sample is reverse-geocoded with **Nominatim** (OpenStreetMap), English names,
-  identified User-Agent, ≤ 1 request/second (`scripts/geo/nominatim.mjs`). Answers are cached per
+- **Lookup:** runs whose route touches one of the five NYC boroughs (checked offline, no requests)
+  have **every** sample reverse-geocoded with **Nominatim** (OpenStreetMap); every other run is
+  looked up **once, at its start point**, and all its minutes go there. Owner's rule: per-minute
+  precision is only needed where borough lines and the rivers make one point unreliable.
+  English names, identified User-Agent, ≤ 1 request/second (`scripts/geo/nominatim.mjs`). Answers are cached per
   ~100 m cell in `data/geo-cache.json`, which is committed; never delete it — rebuilding it is
   hours of requests.
-- **Label:** the country, then state, then county / city holding the most samples; ties go to
-  the start point (`scripts/geo/place.mjs`). NYC is labelled by borough (from the county).
+- **Label (NYC runs):** the country, then state, then county / city holding the most samples;
+  ties go to the start point (`scripts/geo/place.mjs`). NYC is labelled by borough (from the county).
 - **Split:** minutes per country / state / city. Region totals in Where I Ran split each run's km
   by those minutes, and a run counts as a day — and matches the region filter — in every region
   it spent a sampled minute in.

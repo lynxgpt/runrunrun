@@ -2,11 +2,12 @@
 // Label every run in data/gpx with where it was run.
 //
 // Each run is sampled once per minute of moving time (plus its start point).
-// Every sample is reverse-geocoded — from data/geo-cache.json when that ~100 m
-// cell is already known, otherwise from Nominatim. The run's label is the
+// Runs whose route touches New York City (checked offline, no requests) have
+// every sample reverse-geocoded — from data/geo-cache.json when that ~100 m
+// cell is already known, otherwise from Nominatim — and are labelled with the
 // country / state / county / city holding the most samples (ties go to the
-// start point); its split is the minutes spent in each city, which the site
-// uses for region totals.
+// start point); their split is the minutes spent in each place. Every other
+// run is looked up once, at its start point, and all its minutes go there.
 //
 // If Nominatim is unreachable, uncached samples use the offline fallback
 // (scripts/geo/offline.mjs) and the run is marked "fallback". Fallback
@@ -22,6 +23,18 @@ import { reverse, NominatimUnavailable } from "./geo/nominatim.mjs";
 import { offlineAddress } from "./geo/offline.mjs";
 import { cellKey, loadCache, saveCache } from "./geo/cache.mjs";
 import { normalize, summarize } from "./geo/place.mjs";
+
+// Per-minute lookups only where borough lines and the Hudson make a single
+// point unreliable: any route with an offline sample inside the five boroughs.
+const NYC_COUNTIES = new Set([
+  "New York County", "Kings County", "Queens County", "Bronx County", "Richmond County",
+]);
+function touchesNyc(samples) {
+  return samples.some((s) => {
+    const a = offlineAddress(s.lat, s.lon);
+    return a["ISO3166-2-lvl4"] === "US-NY" && NYC_COUNTIES.has(a.county);
+  });
+}
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const GPX_DIR = join(ROOT, "data", "gpx");
@@ -41,7 +54,8 @@ async function main() {
     const samples = movingMinuteSamples(parseTrkpts(readFileSync(join(GPX_DIR, f), "utf8")));
     let usedFallback = false;
     const places = [];
-    for (const s of samples) {
+    const perMinute = touchesNyc(samples);
+    for (const s of perMinute ? samples : samples.slice(0, 1)) {
       const key = cellKey(s.lat, s.lon);
       let addr = cache[key];
       if (addr === undefined && online) {
@@ -62,6 +76,8 @@ async function main() {
       }
       places.push(normalize(addr));
     }
+    // Outside NYC: the start point's place gets every moving minute.
+    while (!perMinute && places.length && places.length < samples.length) places.push(places[0]);
     const { label, split } = summarize(places);
     out[id] = { status: usedFallback ? "fallback" : "nominatim", samples: samples.length, label, split };
     const before = previous[id]?.label;
