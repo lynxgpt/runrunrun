@@ -53,7 +53,7 @@ export interface NotableRun {
   weather: WeatherCondition;
   title?: string;
   location: ActivityLocation;
-  /** Regions the run counts toward in the region filter. */
+  /** Every region the run spent at least one sampled moving minute in (plus its label's). */
   touched?: { countries: string[]; states: string[]; cities: string[] };
   displayLocationPrimary?: string;
   displayLocationSecondary?: string;

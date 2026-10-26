@@ -15,13 +15,14 @@ import {
   useGeoFilter,
 } from "@/lib/geo-filter";
 
-// State codes → local flag image path (relative, no basePath prefix).
+// State / province codes → local flag image path.
 // Uses regional/cultural flags: Cascadia Republic for WA, Bear Flag for CA.
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const STATE_FLAG_IMG: Record<string, string> = {
   WA: `${basePath}/images/flag-wa-cascadia.svg`,
   CA: `${basePath}/images/flag-ca.svg`,
   WY: `${basePath}/images/flag-wy.svg`,
+  "British Columbia": `${basePath}/images/flag-bc.svg`,
 };
 
 type Kind = "country" | "state" | "city";
@@ -30,11 +31,12 @@ type UnifiedRow = GeographyRow;
 
 interface GeographyViewProps {
   rows: GeographyRow[];
-  hasUnknown: boolean;
+  // Shown only when some runs could not be placed.
+  unknownNote: string | null;
 }
 
 // Client half of Where I Ran; rows are built at build time by geography.tsx.
-export function GeographyView({ rows: allRows, hasUnknown }: GeographyViewProps) {
+export function GeographyView({ rows: allRows, unknownNote }: GeographyViewProps) {
   const filter = useGeoFilter();
   // Child rows (US → states, New York → boroughs) start collapsed; clicking
   // a parent opens it. Keyed by kind:code.
@@ -148,16 +150,9 @@ export function GeographyView({ rows: allRows, hasUnknown }: GeographyViewProps)
             onRowClick={onRowClick}
           />
         </div>
-        {hasUnknown ? (
+        {unknownNote ? (
           <p className="mx-auto max-w-3xl mt-3 text-xs font-mono-tamzen text-neutral-500 leading-relaxed">
-            <span className="text-neutral-400">Unknown</span> &mdash; these are
-            runs whose GPS center didn&rsquo;t fall inside any of the
-            bounding-box regions this site knows about. Geolocation here is
-            purely offline (coarse lat/lon boxes, no reverse-geocoding API), so
-            anywhere outside the pre-configured countries lands in
-            &ldquo;Unknown.&rdquo; Add the region to{" "}
-            <code>src/lib/gpx-stats.ts</code> (search for <code>REGIONS</code>)
-            to promote it.
+            {unknownNote}
           </p>
         ) : null}
       </div>

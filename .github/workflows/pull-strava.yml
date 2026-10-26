@@ -94,7 +94,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/gpx public/tracks public/photos public/strava-meta.json src/lib/gpx-processed.ts
+          git add data/gpx data/geo.json data/geo-cache.json public/tracks public/photos public/strava-meta.json src/lib/gpx-processed.ts
           if git diff --staged --quiet; then
             echo "No new activities."
           else

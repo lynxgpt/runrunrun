@@ -21,6 +21,7 @@ export {
   equipment,
   countriesVisited,
   usStatesVisited,
+  caProvincesVisited,
   nycBoroughsVisited,
   streakYears,
 } from "./gpx-stats";

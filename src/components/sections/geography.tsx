@@ -1,4 +1,10 @@
-import { countriesVisited, usStatesVisited, nycBoroughsVisited } from "@/lib/mock-data";
+import {
+  caProvincesVisited,
+  countriesVisited,
+  nycBoroughsVisited,
+  usStatesVisited,
+} from "@/lib/mock-data";
+import { siteContent } from "@/lib/content";
 import { GeographyView, type GeographyRow } from "@/components/sections/geography-view";
 
 // Server half: country → state → borough rows, built at build time.
@@ -16,6 +22,9 @@ function buildRows(): GeographyRow[] {
         }
       }
     }
+    if (c.code === "CA") {
+      for (const p of caProvincesVisited) out.push({ ...p, level: 1, kind: "state" });
+    }
   }
   return out;
 }
@@ -24,6 +33,11 @@ export function Geography() {
   const rows = buildRows();
   if (rows.length === 0) return null;
   return (
-    <GeographyView rows={rows} hasUnknown={countriesVisited.some((r) => r.code === "??")} />
+    <GeographyView
+      rows={rows}
+      unknownNote={
+        countriesVisited.some((r) => r.code === "??") ? siteContent.geography.unknownNote : null
+      }
+    />
   );
 }

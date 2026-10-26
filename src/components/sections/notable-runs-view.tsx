@@ -184,6 +184,7 @@ function applyFilter(
 ): NotableRun[] {
   if (filter.kind === "none") return rows;
   const matched = rows.filter((r) => {
+    // A run matches every region it spent real time in, not just its label.
     if (filter.kind === "country")
       return (r.touched?.countries ?? [r.location.countryCode]).includes(filter.code);
     if (filter.kind === "state")

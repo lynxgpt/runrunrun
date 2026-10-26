@@ -8,21 +8,9 @@ import rawMeta from "../../public/strava-meta.json";
 import {
   buildPaceDistributionFromSamples,
 } from "./pace-distribution";
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-const worldAtlas = require("world-atlas/countries-10m.json");
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-const usAtlas = require("us-atlas/states-10m.json");
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-const usCountiesAtlas = require("us-atlas/counties-10m.json");
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-const { feature } = require("topojson-client");
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-const isoCountries = require("i18n-iso-countries");
-
 interface StravaMeta {
   tempC?: number;
   photoPath?: string;
-  city?: string;
 }
 const stravaMeta = rawMeta as Record<string, StravaMeta>;
 import type {
@@ -81,8 +69,9 @@ function niceDate(d: Date): string {
 }
 
 // ---------------------------------------------------------------------------
-// Coarse reverse-geocoding. Each track's bbox-center is tested against a
-// list of known regions; unmatched falls back to "Unknown".
+// Location. Each run's label and per-region split come from data/geo.json
+// (scripts/geocode.mjs: one Nominatim lookup per minute of moving time,
+// majority vote), folded into the summaries by process-gpx.mjs.
 
 const US_STATE_NAME: Record<string, string> = {
   AL: "Alabama", AK: "Alaska", AZ: "Arizona", AR: "Arkansas", CA: "California",
@@ -97,541 +86,118 @@ const US_STATE_NAME: Record<string, string> = {
   VA: "Virginia", WA: "Washington", WV: "West Virginia", WI: "Wisconsin", WY: "Wyoming",
 };
 
-const US_STATE_BY_FIPS: Record<string, string> = {
-  "01": "AL", "02": "AK", "04": "AZ", "05": "AR", "06": "CA", "08": "CO", "09": "CT",
-  "10": "DE", "11": "DC", "12": "FL", "13": "GA", "15": "HI", "16": "ID", "17": "IL",
-  "18": "IN", "19": "IA", "20": "KS", "21": "KY", "22": "LA", "23": "ME", "24": "MD",
-  "25": "MA", "26": "MI", "27": "MN", "28": "MS", "29": "MO", "30": "MT", "31": "NE",
-  "32": "NV", "33": "NH", "34": "NJ", "35": "NM", "36": "NY", "37": "NC", "38": "ND",
-  "39": "OH", "40": "OK", "41": "OR", "42": "PA", "44": "RI", "45": "SC", "46": "SD",
-  "47": "TN", "48": "TX", "49": "UT", "50": "VT", "51": "VA", "53": "WA", "54": "WV",
-  "55": "WI", "56": "WY",
-};
+// US states are keyed by postal code; other countries' provinces by name,
+// which both Nominatim and the offline fallback agree on.
+function regionKey(p: { countryCode: string; stateCode: string | null; state: string | null }): string | null {
+  return p.countryCode === "US" ? (p.stateCode ?? p.state) : (p.state ?? p.stateCode);
+}
 
+export function locationFor(t: GpxSummary): ActivityLocation {
+  const label = t.stats.geo?.label;
+  if (!label) return { country: "Unknown", countryCode: "??" };
+  return {
+    country: label.country,
+    countryCode: label.countryCode,
+    ...(regionKey(label) ? { region: regionKey(label) ?? undefined } : {}),
+    ...(label.city ? { city: label.city } : {}),
+    ...(label.county ? { county: label.county } : {}),
+  };
+}
 
-const NYC_BOROUGHS = new Set(["Brooklyn", "Queens", "Bronx", "Staten Island"]);
+interface RegionShare {
+  countryCode: string;
+  country: string;
+  region: string | null;
+  regionName: string | null;
+  city: string | null;
+  share: number;
+}
+
+// Shares of a run's moving minutes by country / state / city. A run with no
+// geo data counts wholly toward its label (or Unknown).
+function regionShares(t: GpxSummary): RegionShare[] {
+  const split = t.stats.geo?.split ?? [];
+  const total = split.reduce((n, e) => n + e.minutes, 0);
+  if (!total) {
+    const loc = locationFor(t);
+    return [
+      {
+        countryCode: loc.countryCode,
+        country: loc.country,
+        region: loc.region ?? null,
+        regionName: loc.region ?? null,
+        city: loc.city ?? null,
+        share: 1,
+      },
+    ];
+  }
+  return split.map((e) => ({
+    countryCode: e.countryCode,
+    country: e.country,
+    region: regionKey(e),
+    regionName: e.state,
+    city: e.city,
+    share: e.minutes / total,
+  }));
+}
+
+const NYC_BOROUGHS = new Set(["Manhattan", "Brooklyn", "Queens", "Bronx", "Staten Island"]);
 export const OUTSIDE_NYC = "Outside NYC";
 
 // Borough, or OUTSIDE_NYC for the rest of New York State; null elsewhere.
-function nyArea(loc: ActivityLocation): string | null {
-  if (loc.countryCode !== "US" || loc.region !== "NY") return null;
-  return loc.city === "Manhattan" || (loc.city && NYC_BOROUGHS.has(loc.city)) ? loc.city : OUTSIDE_NYC;
+function nyArea(r: { countryCode: string; region: string | null; city: string | null }): string | null {
+  if (r.countryCode !== "US" || r.region !== "NY") return null;
+  return r.city && NYC_BOROUGHS.has(r.city) ? r.city : OUTSIDE_NYC;
 }
 
-// NY county → NYC borough. Only consulted for points already in NY state:
-// Kings, Queens and Richmond are also county names in CA, WA, VA and GA.
-const NYC_BOROUGH_BY_COUNTY: Record<string, string> = {
-  "New York": "Manhattan",
-  Kings: "Brooklyn",
-  Queens: "Queens",
-  Bronx: "Bronx",
-  Richmond: "Staten Island",
-};
+// Countries whose rows expand into states / provinces in Where I Ran.
+const SUBDIVIDED = new Set(["US", "CA"]);
 
-const COUNTRY_FEATURES = feature(
-  worldAtlas,
-  worldAtlas.objects.countries,
-).features as Array<{
-  id: string;
-  properties: { name: string };
-  geometry: {
-    type: "Polygon" | "MultiPolygon";
-    coordinates: number[][][] | number[][][][];
-  };
-}>;
+export interface RegionsTouched {
+  countries: string[];
+  states: string[];
+  cities: string[];
+}
 
-const US_STATE_FEATURES = feature(
-  usAtlas,
-  usAtlas.objects.states,
-).features as Array<{
-  id: string | number;
-  geometry: {
-    type: "Polygon" | "MultiPolygon";
-    coordinates: number[][][] | number[][][][];
-  };
-}>;
-
-const US_COUNTY_FEATURES = feature(
-  usCountiesAtlas,
-  usCountiesAtlas.objects.counties,
-).features as Array<{
-  id: string | number;
-  properties: { name: string };
-  geometry: {
-    type: "Polygon" | "MultiPolygon";
-    coordinates: number[][][] | number[][][][];
-  };
-}>;
-
-const US_COUNTIES = US_COUNTY_FEATURES.map((county) => {
-  const id = String(county.id).padStart(5, "0");
-  const stateFips = id.slice(0, 2);
-  let minLat = Infinity;
-  let maxLat = -Infinity;
-  let minLon = Infinity;
-  let maxLon = -Infinity;
-  const polygons =
-    county.geometry.type === "Polygon"
-      ? [county.geometry.coordinates as number[][][]]
-      : (county.geometry.coordinates as number[][][][]);
-  for (const polygon of polygons) {
-    for (const ring of polygon) {
-      for (const [lon, lat] of ring) {
-        if (lat < minLat) minLat = lat;
-        if (lat > maxLat) maxLat = lat;
-        if (lon < minLon) minLon = lon;
-        if (lon > maxLon) maxLon = lon;
-      }
+function regionsTouched(t: GpxSummary): RegionsTouched {
+  const loc = locationFor(t);
+  const shares = regionShares(t);
+  const sum = (key: (r: RegionShare) => string | null) => {
+    const m = new Map<string, number>();
+    for (const r of shares) {
+      const k = key(r);
+      if (k) m.set(k, (m.get(k) ?? 0) + r.share);
     }
-  }
+    return m;
+  };
+  const touched = (m: Map<string, number>, own: string | undefined) => {
+    const out = [...m].filter(([, v]) => v > 0).map(([k]) => k);
+    if (own && !out.includes(own)) out.push(own);
+    return out;
+  };
   return {
-    ...county,
-    stateFips,
-    centerLat: (minLat + maxLat) / 2,
-    centerLon: (minLon + maxLon) / 2,
+    countries: touched(sum((r) => r.countryCode), loc.countryCode),
+    states: touched(
+      sum((r) => (SUBDIVIDED.has(r.countryCode) ? r.region : null)),
+      SUBDIVIDED.has(loc.countryCode) ? loc.region : undefined,
+    ),
+    cities: [
+      ...touched(sum((r) => r.city), loc.city),
+      ...(shares.some((r) => nyArea(r) === OUTSIDE_NYC) ? [OUTSIDE_NYC] : []),
+    ],
   };
-});
-
-function pointInRing(ring: number[][], point: [number, number]): boolean {
-  let inside = false;
-  for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
-    const [xi, yi] = ring[i];
-    const [xj, yj] = ring[j];
-    const intersects =
-      (yi > point[1]) !== (yj > point[1]) &&
-      point[0] < ((xj - xi) * (point[1] - yi)) / (yj - yi) + xi;
-    if (intersects) inside = !inside;
-  }
-  return inside;
-}
-
-function polygonContainsPoint(polygon: number[][][], point: [number, number]): boolean {
-  if (!pointInRing(polygon[0], point)) return false;
-  for (const hole of polygon.slice(1)) {
-    if (pointInRing(hole, point)) return false;
-  }
-  return true;
-}
-
-function lookupCountryAt(lat: number, lon: number): { country: string; countryCode: string } | null {
-  const point: [number, number] = [lon, lat];
-  for (const country of COUNTRY_FEATURES) {
-    const { geometry } = country;
-    const contains =
-      geometry.type === "Polygon"
-        ? polygonContainsPoint(geometry.coordinates as number[][][], point)
-        : (geometry.coordinates as number[][][][]).some((polygon) =>
-            polygonContainsPoint(polygon, point),
-          );
-    if (!contains) continue;
-
-    const numeric = country.id.padStart(3, "0");
-    const alpha2 = isoCountries.numericToAlpha2(numeric);
-    if (!alpha2) return null;
-    // US shortened to match "United Kingdom".
-    return { country: alpha2 === "US" ? "United States" : country.properties.name, countryCode: alpha2 };
-  }
-  return null;
-}
-
-// Wraps lookupCountryAt with a small offset retry so that GPS coordinates
-// that land just outside a polygon due to coastline precision gaps (common
-// on urban waterfront parks like Long Island City / Gantry Plaza) still
-// resolve to the correct country.
-function lookupCountry(lat: number, lon: number): { country: string; countryCode: string } | null {
-  const direct = lookupCountryAt(lat, lon);
-  if (direct) return direct;
-  // ~1.5 km offsets — enough to clear coastline rounding, too small to cross borders
-  const D = 0.015;
-  for (const [dLat, dLon] of [[D,0],[-D,0],[0,D],[0,-D]] as [number,number][]) {
-    const r = lookupCountryAt(lat + dLat, lon + dLon);
-    if (r) return r;
-  }
-  return null;
-}
-
-function lookupUsState(lat: number, lon: number): { region: string } | null {
-  const point: [number, number] = [lon, lat];
-  for (const state of US_STATE_FEATURES) {
-    const fips = String(state.id).padStart(2, "0");
-    const region = US_STATE_BY_FIPS[fips];
-    if (!region) continue;
-    const contains =
-      state.geometry.type === "Polygon"
-        ? polygonContainsPoint(state.geometry.coordinates as number[][][], point)
-        : (state.geometry.coordinates as number[][][][]).some((polygon) =>
-            polygonContainsPoint(polygon, point),
-          );
-    if (contains) return { region };
-  }
-  return null;
-}
-
-function lookupUsCounty(lat: number, lon: number): { county: string } | null {
-  const point: [number, number] = [lon, lat];
-  for (const county of US_COUNTIES) {
-    const contains =
-      county.geometry.type === "Polygon"
-        ? polygonContainsPoint(county.geometry.coordinates as number[][][], point)
-        : (county.geometry.coordinates as number[][][][]).some((polygon) =>
-            polygonContainsPoint(polygon, point),
-          );
-    if (contains) return { county: county.properties.name };
-  }
-  return null;
-}
-
-function lookupNearestUsCounty(
-  lat: number,
-  lon: number,
-  region?: string,
-): { county: string; region?: string } | null {
-  const stateFips = region
-    ? Object.entries(US_STATE_BY_FIPS).find(([, code]) => code === region)?.[0]
-    : null;
-  let best: { county: string; d2: number; stateFips: string } | null = null;
-  for (const county of US_COUNTIES) {
-    if (stateFips && county.stateFips !== stateFips) continue;
-    const dLat = county.centerLat - lat;
-    const dLon = county.centerLon - lon;
-    const d2 = dLat * dLat + dLon * dLon;
-    if (!best || d2 < best.d2) {
-      best = { county: county.properties.name, d2, stateFips: county.stateFips };
-    }
-  }
-  // About ~55km squared-ish upper bound; enough to catch shore/water means
-  // without inventing counties across a whole state.
-  if (!best || best.d2 >= 0.25) return null;
-  return {
-    county: best.county,
-    region: region ?? US_STATE_BY_FIPS[best.stateFips],
-  };
-}
-
-// Borough from county polygons. Returns null in water (no county polygon).
-function nycBoroughAt(lat: number, lon: number): string | null {
-  const county = lookupUsCounty(lat, lon);
-  return county ? (NYC_BOROUGH_BY_COUNTY[county.county] ?? null) : null;
-}
-
-function nearestUsCountyState(lat: number, lon: number): { region: string } | null {
-  const region = lookupNearestUsCounty(lat, lon)?.region;
-  return region ? { region } : null;
-}
-
-function withUsCountyFallback(
-  loc: ActivityLocation,
-  lat: number,
-  lon: number,
-): ActivityLocation {
-  // Keep NYC on its dedicated borough path; generic county fallback should
-  // only fill in otherwise-unspecified U.S. locations.
-  if (loc.countryCode !== "US" || loc.city) return loc;
-  const county = lookupUsCounty(lat, lon) ?? lookupNearestUsCounty(lat, lon, loc.region);
-  return county ? { ...loc, county: county.county } : loc;
-}
-
-function formatCountyLabel(county: string): string {
-  return /\bCounty$/i.test(county) ? county : `${county} County`;
-}
-
-const DISPLAY_CITY_HINTS: Array<{
-  countryCode: string;
-  region?: string;
-  city: string;
-  lat: number;
-  lon: number;
-  radiusKm: number;
-}> = [
-  { countryCode: "US", region: "NJ", city: "Jersey City", lat: 40.7178, lon: -74.0431, radiusKm: 6.5 },
-  { countryCode: "US", region: "NJ", city: "Hoboken", lat: 40.7440, lon: -74.0324, radiusKm: 4.5 },
-  { countryCode: "US", region: "NJ", city: "Weehawken", lat: 40.7695, lon: -74.0204, radiusKm: 4.5 },
-  { countryCode: "US", region: "NJ", city: "West New York", lat: 40.7879, lon: -74.0143, radiusKm: 3.5 },
-  { countryCode: "US", region: "NJ", city: "West Orange", lat: 40.7987, lon: -74.2390, radiusKm: 7 },
-  { countryCode: "US", region: "NJ", city: "Englewood Cliffs", lat: 40.8859, lon: -73.9521, radiusKm: 5 },
-  { countryCode: "US", region: "NJ", city: "Alpine", lat: 40.9559, lon: -73.9313, radiusKm: 5 },
-  { countryCode: "US", region: "LA", city: "New Orleans", lat: 29.9511, lon: -90.0715, radiusKm: 14 },
-  { countryCode: "US", region: "PA", city: "Philadelphia", lat: 39.9526, lon: -75.1652, radiusKm: 14 },
-  { countryCode: "US", region: "PA", city: "Lebanon", lat: 40.3409, lon: -76.4113, radiusKm: 24 },
-  { countryCode: "US", region: "FL", city: "Miami Beach", lat: 25.7907, lon: -80.1300, radiusKm: 10 },
-  { countryCode: "US", region: "VA", city: "Richmond", lat: 37.5407, lon: -77.4360, radiusKm: 12 },
-  { countryCode: "US", region: "GA", city: "Savannah", lat: 32.0809, lon: -81.0912, radiusKm: 12 },
-  { countryCode: "US", region: "WY", city: "Jackson", lat: 43.4799, lon: -110.7624, radiusKm: 40 },
-  { countryCode: "US", region: "WY", city: "Pinedale", lat: 42.8666, lon: -109.8630, radiusKm: 12 },
-  { countryCode: "US", region: "CA", city: "Palm Springs", lat: 33.8303, lon: -116.5453, radiusKm: 14 },
-  { countryCode: "US", region: "CA", city: "Coronado", lat: 32.6859, lon: -117.1831, radiusKm: 7 },
-  { countryCode: "US", region: "CA", city: "Chula Vista", lat: 32.6401, lon: -117.0842, radiusKm: 14 },
-  { countryCode: "US", region: "CA", city: "Encinitas", lat: 33.0369, lon: -117.2919, radiusKm: 10 },
-  { countryCode: "US", region: "CA", city: "Carlsbad", lat: 33.1581, lon: -117.3506, radiusKm: 12 },
-  { countryCode: "US", region: "NY", city: "Beacon", lat: 41.5048, lon: -73.9696, radiusKm: 10 },
-  { countryCode: "US", region: "NY", city: "Cold Spring", lat: 41.4201, lon: -73.9546, radiusKm: 8 },
-  { countryCode: "US", region: "NY", city: "Lake Placid", lat: 44.2795, lon: -73.9799, radiusKm: 12 },
-  { countryCode: "US", region: "SC", city: "Charleston", lat: 32.7765, lon: -79.9311, radiusKm: 12 },
-  { countryCode: "US", region: "UT", city: "Salt Lake City", lat: 40.7608, lon: -111.8910, radiusKm: 14 },
-  { countryCode: "GB", city: "London", lat: 51.5074, lon: -0.1278, radiusKm: 18 },
-  { countryCode: "FR", city: "Paris", lat: 48.8566, lon: 2.3522, radiusKm: 14 },
-];
-
-function distanceKm(lat0: number, lon0: number, lat1: number, lon1: number): number {
-  const kmPerLat = 111.32;
-  const kmPerLon = 111.32 * Math.cos(((lat0 + lat1) / 2) * (Math.PI / 180));
-  const dLat = (lat1 - lat0) * kmPerLat;
-  const dLon = (lon1 - lon0) * kmPerLon;
-  return Math.sqrt(dLat * dLat + dLon * dLon);
-}
-
-function lookupDisplayCityHint(loc: ActivityLocation): { city: string; region?: string } | null {
-  if (loc.lat == null || loc.lon == null) {
-    return loc.city ? { city: loc.city, region: loc.region } : null;
-  }
-  const lon = loc.lon;
-  const hints = DISPLAY_CITY_HINTS.filter((hint) => {
-    if (hint.countryCode !== loc.countryCode) return false;
-    if (loc.region === "NJ") return hint.region === "NJ";
-    if (hint.region && loc.region && hint.region !== loc.region) {
-      // Allow explicit overrides when the stored region is obviously wrong
-      // but only for far-away outliers like travel runs.
-      const farFromStoredRegion = loc.region === "NJ" && Math.abs(lon) > 100;
-      return farFromStoredRegion;
-    }
-    return true;
-  });
-  let best: { city: string; region?: string; distance: number } | null = null;
-  for (const hint of hints) {
-    const d = distanceKm(loc.lat, loc.lon, hint.lat, hint.lon);
-    if (d > hint.radiusKm) continue;
-    if (!best || d < best.distance) {
-      best = { city: hint.city, region: hint.region, distance: d };
-    }
-  }
-  if (best) return { city: best.city, region: best.region };
-  return loc.city ? { city: loc.city, region: loc.region } : null;
 }
 
 function displayLocationForNotable(loc: ActivityLocation): {
   primary: string;
   secondary: string;
 } {
-  let displayRegion = loc.region;
-  const hinted = lookupDisplayCityHint(loc);
-  let city = hinted?.city ?? null;
-  if (hinted?.region) displayRegion = hinted.region;
-
-  if (
-    !city &&
-    loc.countryCode === "US" &&
-    loc.region !== "NJ" &&
-    loc.lat != null &&
-    loc.lon != null
-  ) {
-    const lat = loc.lat;
-    const lon = loc.lon;
-    const MAN_LAT_MIN = 40.700;
-    const MAN_LAT_MAX = 40.880;
-    if ((loc.region === "NY" || !loc.region) && loc.city && NYC_BOROUGHS.has(loc.city)) {
-      city = loc.city;
-      displayRegion = "NY";
-    } else if (
-      (loc.region === "NY" || !loc.region) &&
-      lat >= MAN_LAT_MIN &&
-      lat <= MAN_LAT_MAX &&
-      lon >= hudsonCenterlineWestOf(lat)
-    ) {
-      city = lon <= manhattanEastLon(lat) ? "Manhattan" : lat > 40.726 ? "Queens" : "Brooklyn";
-      displayRegion = "NY";
-    }
-  }
-
-  let countyLabel: string | null = null;
-  if (!city && loc.countryCode === "US" && loc.lat != null && loc.lon != null) {
-    const exactCounty = lookupUsCounty(loc.lat, loc.lon);
-    const nearestCounty =
-      (loc.region !== "NJ" && loc.county ? { county: loc.county, region: displayRegion } : null) ??
-      (exactCounty ? { county: exactCounty.county, region: displayRegion } : null) ??
-      (loc.region !== "NJ" ? lookupNearestUsCounty(loc.lat, loc.lon, displayRegion) : null);
-    if (nearestCounty) {
-      countyLabel = formatCountyLabel(nearestCounty.county);
-      displayRegion = displayRegion ?? nearestCounty.region;
-    }
-  }
-
-  const primary =
-    city ??
-    countyLabel ??
-    loc.country;
+  const primary = loc.city ?? loc.county ?? loc.country;
   const secondary =
-    displayRegion ? `${displayRegion} · ${loc.country.toUpperCase()}` : loc.country.toUpperCase();
+    loc.countryCode === "US" && loc.region
+      ? `${loc.region} · ${loc.country.toUpperCase()}`
+      : loc.country.toUpperCase();
   return { primary, secondary };
-}
-
-// Piecewise approximation of Manhattan's EAST shoreline (East River edge).
-// Each entry is [latitude, easternmost_land_longitude] going south→north.
-// A centroid west of this line is on Manhattan land; east of it is in the
-// East River (and should be assigned to Queens or Brooklyn, not Manhattan).
-// Source: traced against OpenStreetMap coastline data.
-const MANHATTAN_EAST_SHORE: [number, number][] = [
-  [40.700, -74.010], // South tip / Battery Park
-  [40.702, -73.998], // Staten Island Ferry terminal
-  [40.707, -73.994], // Whitehall / Stone St
-  [40.712, -73.989], // Brooklyn Bridge Manhattan anchorage
-  [40.719, -73.979], // Manhattan Bridge approach
-  [40.727, -73.977], // Williamsburg Bridge approach
-  [40.737, -73.974], // Lower East Side / Delancey
-  [40.750, -73.971], // East Village / 14th St
-  [40.759, -73.967], // Stuyvesant Cove / 23rd St
-  [40.769, -73.960], // Queens-Midtown Tunnel portal / 34th St
-  [40.775, -73.954], // UN Plaza / 42nd St
-  [40.783, -73.948], // Sutton Place / 53rd St
-  [40.793, -73.943], // Lenox Hill / 72nd St
-  [40.803, -73.938], // Carl Schurz Park / 86th St
-  [40.814, -73.934], // East Harlem / 96th St
-  [40.826, -73.930], // East Harlem / 110th St
-  [40.841, -73.926], // RFK Bridge approach / 125th St
-  [40.857, -73.920], // 145th St
-  [40.869, -73.916], // 175th St
-  [40.878, -73.910], // Inwood / north tip
-];
-
-// Western boundary for Manhattan classification — approximately the eastern
-// edge of the NJ waterfront (Hoboken / Weehawken / Fort Lee). Points whose
-// mean longitude is west of this line started from NJ and should not be
-// attributed to Manhattan, even though GPS multipath can push Manhattan
-// tracks ~10–15 m westward into the Hudson. The center-channel would be
-// too aggressive; the NJ waterfront edge is the right cut.
-// Each entry: [latitude, minimum_longitude_to_be_Manhattan].
-// More positive (less negative) = tighter boundary.
-// This sits between the NJ waterfront (~-74.024 to -74.030) and the
-// GPS-offset Manhattan runs (~-74.018), excluding the NJ side.
-const MANHATTAN_WEST_BOUNDARY: [number, number][] = [
-  [40.700, -74.021], // south of Battery Park / Liberty State Park
-  [40.727, -74.022], // Hoboken south level
-  [40.750, -74.022], // Hoboken north / central level
-  [40.765, -74.021], // Weehawken / Port Imperial
-  [40.780, -74.017], // Weehawken Heights / Palisades
-  [40.800, -73.997], // Fort Lee / Palisades cliffs
-  [40.830, -73.965], // Fort Lee north
-  [40.860, -73.942], // Alpine NJ
-  [40.878, -73.929], // Alpine / state line
-];
-
-function hudsonCenterlineWestOf(lat: number): number {
-  const s = MANHATTAN_WEST_BOUNDARY;
-  if (lat <= s[0][0]) return s[0][1];
-  if (lat >= s[s.length - 1][0]) return s[s.length - 1][1];
-  for (let i = 0; i < s.length - 1; i++) {
-    const [lat0, lon0] = s[i];
-    const [lat1, lon1] = s[i + 1];
-    if (lat >= lat0 && lat <= lat1) {
-      const t = (lat - lat0) / (lat1 - lat0);
-      return lon0 + t * (lon1 - lon0);
-    }
-  }
-  return s[0][1];
-}
-
-// Returns the easternmost longitude that is still Manhattan land at a given
-// latitude. Points east of this value are in the East River.
-function manhattanEastLon(lat: number): number {
-  const s = MANHATTAN_EAST_SHORE;
-  if (lat <= s[0][0]) return s[0][1];
-  if (lat >= s[s.length - 1][0]) return s[s.length - 1][1];
-  for (let i = 0; i < s.length - 1; i++) {
-    const [lat0, lon0] = s[i];
-    const [lat1, lon1] = s[i + 1];
-    if (lat >= lat0 && lat <= lat1) {
-      const t = (lat - lat0) / (lat1 - lat0);
-      return lon0 + t * (lon1 - lon0);
-    }
-  }
-  return s[0][1];
-}
-
-export function locationFor(t: GpxSummary): ActivityLocation {
-  const { minLat, maxLat, minLon, maxLon } = t.stats.bbox;
-  const lat = t.stats.meanLat ?? (minLat + maxLat) / 2;
-  const lon = t.stats.meanLon ?? (minLon + maxLon) / 2;
-  // Start point is always on land; use as fallback when mean falls in water.
-  const fbLat = t.stats.startLat ?? lat;
-  const fbLon = t.stats.startLon ?? lon;
-
-  // Classify a coordinate, falling back to the start point if the mean lands
-  // in a water body (rivers, bays) where world-atlas has no polygon.
-  function classify(lt: number, lo: number) {
-    const direct = lookupCountry(lt, lo);
-    const [cLat, cLon] = direct ? [lt, lo] : [fbLat, fbLon];
-    const c = direct ?? lookupCountry(fbLat, fbLon);
-    // A mean just offshore can match a country (lookupCountry retries at
-    // offsets) but no state polygon: try the start point, then the nearest
-    // county centroid.
-    const s =
-      c?.countryCode === "US"
-        ? (lookupUsState(cLat, cLon) ??
-          lookupUsState(fbLat, fbLon) ??
-          nearestUsCountyState(cLat, cLon))
-        : null;
-    return { c, s };
-  }
-
-  // --- Manhattan / East River special case ---
-  const MAN_LAT_MIN = 40.700, MAN_LAT_MAX = 40.880;
-
-  // NJ waterfront early exit: classify by start point when the run clearly
-  // originated on the NJ side (-74.018 lon threshold), because GPS multipath
-  // can drift the mean coordinate eastward into Manhattan territory.
-  if (
-    lat >= MAN_LAT_MIN && lat <= MAN_LAT_MAX &&
-    t.stats.startLon != null && t.stats.startLon < -74.018
-  ) {
-    const { c, s } = classify(fbLat, t.stats.startLon);
-    if (c) return { ...c, region: s?.region, lat, lon };
-  }
-
-  // The state polygon is coarse at the Hudson and can say NJ for a mean in
-  // the water; the start point then decides. An NJ start (Weehawken,
-  // Edgewater waterfront) leaves the band and classifies as NJ below.
-  if (lat >= MAN_LAT_MIN && lat <= MAN_LAT_MAX && lon >= hudsonCenterlineWestOf(lat)) {
-    const { c, s } = classify(lat, lon);
-    const inNy = s?.region !== "NJ" || lookupUsState(fbLat, fbLon)?.region === "NY";
-    if (c && inNy) {
-      if (lon <= manhattanEastLon(lat)) {
-        return { ...c, region: "NY", city: "Manhattan", lat, lon };
-      }
-      // East of Manhattan: county polygons separate Brooklyn / Queens / Bronx;
-      // a mean in the East River has no county, so keep the latitude split.
-      const byCounty = s?.region === "NY" ? nycBoroughAt(lat, lon) : null;
-      const city =
-        byCounty && byCounty !== "Manhattan" ? byCounty : lat > 40.726 ? "Queens" : "Brooklyn";
-      return { ...c, region: "NY", city, lat, lon };
-    }
-  }
-
-  // City from Strava's own geocoding — stored in stats.city by pull-strava.mjs
-  // at fetch time. Works for any city worldwide without hardcoded bboxes.
-  if (t.stats.city) {
-    const { c, s } = classify(lat, lon);
-    // Strava labels Hudson-waterfront NJ runs "Manhattan"; a borough name
-    // only stands when geometry agrees the run is in NY.
-    const boroughOutsideNy =
-      (t.stats.city === "Manhattan" || NYC_BOROUGHS.has(t.stats.city)) && s?.region !== "NY";
-    if (c && !boroughOutsideNy) {
-      const loc = { ...c, region: s?.region, city: t.stats.city, lat, lon };
-      return c.countryCode === "US" ? withUsCountyFallback(loc, lat, lon) : loc;
-    }
-  }
-
-  const { c: country, s: state } = classify(lat, lon);
-  if (country?.countryCode === "US") {
-    // NYC outside the Manhattan band (Prospect Park, Coney Island, Bronx,
-    // Staten Island): borough from county, mean first, then start point.
-    if (state?.region === "NY") {
-      const borough = nycBoroughAt(lat, lon) ?? nycBoroughAt(fbLat, fbLon);
-      if (borough) return { ...country, ...state, city: borough, lat, lon };
-    }
-    if (state) return withUsCountyFallback({ ...country, ...state, lat, lon }, lat, lon);
-    return withUsCountyFallback({ ...country, lat, lon }, lat, lon);
-  }
-  if (country) return { ...country, lat, lon };
-  return { country: "Unknown", countryCode: "??", lat, lon };
 }
 
 // ---------------------------------------------------------------------------
@@ -693,11 +259,7 @@ function toNotableRun(t: GpxSummary, rank: number, weather: WeatherCondition): N
     weather,
     title: t.name,
     location,
-    touched: {
-      countries: [location.countryCode],
-      states: location.region ? [location.region] : [],
-      cities: [nyArea(location) ?? location.city].filter((c): c is string => !!c),
-    },
+    touched: regionsTouched(t),
     displayLocationPrimary: displayLocation.primary,
     displayLocationSecondary: displayLocation.secondary,
     gpxId: t.id,
@@ -946,78 +508,62 @@ export const equipment: { model: string; km: number }[] = [];
 // ---------------------------------------------------------------------------
 // Geography
 
-export const countriesVisited: GeoRow[] = (() => {
-  const map = new Map<string, { km: number; days: Set<string>; code: string }>();
+// Region totals split each run's km by the share of moving minutes spent in
+// each region; a run counts as a day in every region it touched.
+function regionRows(
+  keyOf: (r: RegionShare) => string | null,
+  touchedOf: (t: RegionsTouched) => string[],
+  nameOf: (key: string, r: RegionShare) => string,
+): (GeoRow & { code: string })[] {
+  const map = new Map<string, { name: string; km: number; days: Set<string> }>();
   for (const t of tracks) {
-    const loc = locationFor(t);
-    const entry = map.get(loc.country) ?? { km: 0, days: new Set(), code: loc.countryCode };
-    entry.km += t.stats.distanceKm;
-    entry.days.add(isoDate(dateOf(t)));
-    map.set(loc.country, entry);
+    const day = isoDate(dateOf(t));
+    const touched = new Set(touchedOf(regionsTouched(t)));
+    for (const r of regionShares(t)) {
+      const key = keyOf(r);
+      if (!key) continue;
+      const entry = map.get(key) ?? { name: nameOf(key, r), km: 0, days: new Set<string>() };
+      entry.km += t.stats.distanceKm * r.share;
+      if (touched.has(key)) entry.days.add(day);
+      map.set(key, entry);
+    }
   }
   return [...map.entries()]
-    .map(([name, v]) => ({ name, code: v.code, days: v.days.size, km: +v.km.toFixed(1) }))
+    .map(([code, v]) => ({ name: v.name, code, days: v.days.size, km: +v.km.toFixed(1) }))
     .sort((a, b) => b.km - a.km);
-})();
-
-function usStateForTrack(t: GpxSummary): string | null {
-  const loc = locationFor(t);
-  if (loc.countryCode !== "US") return null;
-  if (loc.region) return loc.region;
-  const { bbox } = t.stats;
-  const lat = t.stats.meanLat ?? (bbox.minLat + bbox.maxLat) / 2;
-  const lon = t.stats.meanLon ?? (bbox.minLon + bbox.maxLon) / 2;
-  return lookupUsState(lat, lon)?.region ?? null;
 }
 
-export const usStatesVisited: GeoRow[] = (() => {
-  const map = new Map<string, { km: number; days: Set<string> }>();
-  for (const t of tracks) {
-    const region = usStateForTrack(t);
-    if (!region) continue;
-    const entry = map.get(region) ?? { km: 0, days: new Set() };
-    entry.km += t.stats.distanceKm;
-    entry.days.add(isoDate(dateOf(t)));
-    map.set(region, entry);
-  }
-  return [...map.entries()]
-    .map(([code, v]) => ({
-      name: US_STATE_NAME[code] ?? code,
-      code,
-      days: v.days.size,
-      km: +v.km.toFixed(1),
-    }))
-    // Sort by km desc, but always pin NJ last.
-    .sort((a, b) => {
-      if (a.code === "NJ") return 1;
-      if (b.code === "NJ") return -1;
-      return b.km - a.km;
-    });
-})();
+export const countriesVisited: GeoRow[] = regionRows(
+  (r) => r.countryCode,
+  (t) => t.countries,
+  (_, r) => r.country,
+);
 
-// NYC boroughs — aggregated by city when a run lands in NY state. Lets us
-// show a third drill-down table (country → state → borough) whenever the
-// user has NYC activity.
-export const nycBoroughsVisited: GeoRow[] = (() => {
-  const map = new Map<string, { km: number; days: Set<string> }>();
-  for (const t of tracks) {
-    const area = nyArea(locationFor(t));
-    if (!area) continue;
-    const entry = map.get(area) ?? { km: 0, days: new Set() };
-    entry.km += t.stats.distanceKm;
-    entry.days.add(isoDate(dateOf(t)));
-    map.set(area, entry);
-  }
-  return [...map.entries()]
-    .map(([name, v]) => ({
-      name,
-      code: name, // use the borough name as the filter code
-      days: v.days.size,
-      km: +v.km.toFixed(1),
-    }))
-    // Boroughs by km, then everywhere else in the state.
-    .sort((a, b) => (a.code === OUTSIDE_NYC ? 1 : b.code === OUTSIDE_NYC ? -1 : b.km - a.km));
-})();
+export const usStatesVisited: GeoRow[] = regionRows(
+  (r) => (r.countryCode === "US" ? r.region : null),
+  (t) => t.states,
+  (code) => US_STATE_NAME[code] ?? code,
+)
+  // Sort by km desc, but always pin NJ last.
+  .sort((a, b) => {
+    if (a.code === "NJ") return 1;
+    if (b.code === "NJ") return -1;
+    return b.km - a.km;
+  });
+
+export const caProvincesVisited: GeoRow[] = regionRows(
+  (r) => (r.countryCode === "CA" ? r.region : null),
+  (t) => t.states,
+  (code, r) => r.regionName ?? code,
+);
+
+// Third drill-down level under New York: the five boroughs, then one row
+// for everywhere else in the state (Hudson Valley, Long Island, upstate).
+export const nycBoroughsVisited: GeoRow[] = regionRows(
+  nyArea,
+  (t) => t.cities,
+  (name) => name,
+).sort((a, b) => (a.code === OUTSIDE_NYC ? 1 : b.code === OUTSIDE_NYC ? -1 : b.km - a.km));
 
 // ---------------------------------------------------------------------------
 // Daily-log heatmaps — one entry per streak year.
