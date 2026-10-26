@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Pull all "Long Run" activities (workout_type === 2) from Strava,
-// reconstruct GPX from streams, write to public/gpx/, then run the
+// reconstruct GPX from streams, write to data/gpx/, then run the
 // processing step so the site picks them up.
 //
 // Requires .env.local with:
@@ -21,7 +21,7 @@ import { spawnSync } from "node:child_process";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
 const ENV_PATH = join(ROOT, ".env.local");
-const GPX_DIR = join(ROOT, "public", "gpx");
+const GPX_DIR = join(ROOT, "data", "gpx");
 const PHOTOS_DIR = join(ROOT, "public", "photos");
 const META_PATH = join(ROOT, "public", "strava-meta.json");
 
@@ -402,7 +402,9 @@ function saveMeta(meta) {
     console.log("• wrote public/strava-meta.json");
   }
 
-  if (written > 0) {
+  // Summaries embed strava-meta (city, temp), so a meta-only change needs a
+  // reprocess too — the deploy no longer reprocesses on its own.
+  if (written > 0 || metaChanged) {
     console.log("• running process-gpx.mjs...");
     const r = spawnSync("node", [join(ROOT, "scripts", "process-gpx.mjs")], {
       stdio: "inherit",

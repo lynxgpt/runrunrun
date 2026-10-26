@@ -1,4 +1,4 @@
-// Everything here is derived from the real GPX files under public/gpx/.
+// Everything here is derived from the real GPX files under data/gpx/.
 // No cloned template numbers, no placeholder history. Add more .gpx files
 // and run `node scripts/process-gpx.mjs` — the page updates automatically.
 

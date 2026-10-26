@@ -1,5 +1,5 @@
 // Derive analytics from whatever GPX tracks are in gpx-processed.ts.
-// Add more .gpx files to public/gpx/, run `node scripts/process-gpx.mjs`,
+// Add more .gpx files to data/gpx/, run `node scripts/process-gpx.mjs`,
 // and the site picks them up automatically. Everything is metric, all
 // durations use MOVING time (stops excluded).
 
@@ -688,7 +688,6 @@ function toNotableRun(t: GpxSummary, rank: number, weather: WeatherCondition): N
     displayLocationPrimary: displayLocation.primary,
     displayLocationSecondary: displayLocation.secondary,
     gpxId: t.id,
-    gpxPath: `/gpx/${t.id}.gpx`,
     ...(meta.photoPath != null ? { photoPath: meta.photoPath } : {}),
   };
 }

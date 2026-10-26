@@ -34,7 +34,6 @@ export interface Activity {
   weather?: WeatherCondition;
   shoe?: string;
   location: ActivityLocation;
-  gpxPath?: string;
   photoPaths?: string[];
   notes?: string;
   treadmill?: boolean;
@@ -56,7 +55,6 @@ export interface NotableRun {
   location: ActivityLocation;
   displayLocationPrimary?: string;
   displayLocationSecondary?: string;
-  gpxPath?: string;
   /** Key into `gpxTracks` when this run has a real GPS trace. */
   gpxId?: string;
   /** Relative path to the activity photo, e.g. "/photos/afternoon-run-123.jpg" */

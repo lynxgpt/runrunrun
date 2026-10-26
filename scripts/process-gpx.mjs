@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Preprocess GPX files under public/gpx into:
+// Preprocess GPX files under data/gpx into:
 //   1. src/lib/gpx-processed.ts  — SUMMARIES only (stats + metadata, no points)
 //   2. public/tracks/<id>.json   — full per-track payload (points, bbox), lazy-loaded by the UI
 //
@@ -31,7 +31,7 @@ import {
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, "..");
-const GPX_DIR = join(ROOT, "public", "gpx");
+const GPX_DIR = join(ROOT, "data", "gpx");
 const TRACKS_DIR = join(ROOT, "public", "tracks");
 const OUT_TS = join(ROOT, "src", "lib", "gpx-processed.ts");
 
@@ -377,7 +377,7 @@ function dedupe(tracks) {
 function main() {
   const files = readdirSync(GPX_DIR).filter((f) => f.toLowerCase().endsWith(".gpx"));
   if (!files.length) {
-    console.error("No .gpx files found in public/gpx/");
+    console.error("No .gpx files found in data/gpx/");
     process.exit(1);
   }
 

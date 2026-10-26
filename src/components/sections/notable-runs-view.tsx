@@ -86,7 +86,7 @@ export function NotableRunsView({ notableRuns, streakStartDate }: NotableRunsVie
           NOTABLE RUNS
         </h2>
         <p className="text-center text-sm font-mono-tamzen text-neutral-500 mt-4">
-          No GPX files loaded. Drop .gpx files into public/gpx/ and run
+          No GPX files loaded. Drop .gpx files into data/gpx/ and run
           <code className="mx-1">node scripts/process-gpx.mjs</code>.
         </p>
       </section>
