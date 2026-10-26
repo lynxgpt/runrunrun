@@ -1,4 +1,9 @@
-import { countriesVisited, usStatesVisited, nycBoroughsVisited } from "@/lib/mock-data";
+import {
+  caProvincesVisited,
+  countriesVisited,
+  nycBoroughsVisited,
+  usStatesVisited,
+} from "@/lib/mock-data";
 import { siteContent } from "@/lib/content";
 import { GeographyView, type GeographyRow } from "@/components/sections/geography-view";
 
@@ -16,6 +21,9 @@ function buildRows(): GeographyRow[] {
           }
         }
       }
+    }
+    if (c.code === "CA") {
+      for (const p of caProvincesVisited) out.push({ ...p, level: 1, kind: "state" });
     }
   }
   return out;

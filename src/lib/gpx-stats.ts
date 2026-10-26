@@ -86,13 +86,19 @@ const US_STATE_NAME: Record<string, string> = {
   VA: "Virginia", WA: "Washington", WV: "West Virginia", WI: "Wisconsin", WY: "Wyoming",
 };
 
+// US states are keyed by postal code; other countries' provinces by name,
+// which both Nominatim and the offline fallback agree on.
+function regionKey(p: { countryCode: string; stateCode: string | null; state: string | null }): string | null {
+  return p.countryCode === "US" ? (p.stateCode ?? p.state) : (p.state ?? p.stateCode);
+}
+
 export function locationFor(t: GpxSummary): ActivityLocation {
   const label = t.stats.geo?.label;
   if (!label) return { country: "Unknown", countryCode: "??" };
   return {
     country: label.country,
     countryCode: label.countryCode,
-    ...(label.stateCode || label.state ? { region: label.stateCode ?? label.state ?? undefined } : {}),
+    ...(regionKey(label) ? { region: regionKey(label) ?? undefined } : {}),
     ...(label.city ? { city: label.city } : {}),
     ...(label.county ? { county: label.county } : {}),
   };
@@ -102,6 +108,7 @@ interface RegionShare {
   countryCode: string;
   country: string;
   region: string | null;
+  regionName: string | null;
   city: string | null;
   share: number;
 }
@@ -118,6 +125,7 @@ function regionShares(t: GpxSummary): RegionShare[] {
         countryCode: loc.countryCode,
         country: loc.country,
         region: loc.region ?? null,
+        regionName: loc.region ?? null,
         city: loc.city ?? null,
         share: 1,
       },
@@ -126,7 +134,8 @@ function regionShares(t: GpxSummary): RegionShare[] {
   return split.map((e) => ({
     countryCode: e.countryCode,
     country: e.country,
-    region: e.stateCode ?? e.state,
+    region: regionKey(e),
+    regionName: e.state,
     city: e.city,
     share: e.minutes / total,
   }));
@@ -140,6 +149,9 @@ function nyArea(r: { countryCode: string; region: string | null; city: string | 
   if (r.countryCode !== "US" || r.region !== "NY") return null;
   return r.city && NYC_BOROUGHS.has(r.city) ? r.city : OUTSIDE_NYC;
 }
+
+// Countries whose rows expand into states / provinces in Where I Ran.
+const SUBDIVIDED = new Set(["US", "CA"]);
 
 export interface RegionsTouched {
   countries: string[];
@@ -165,7 +177,10 @@ function regionsTouched(t: GpxSummary): RegionsTouched {
   };
   return {
     countries: touched(sum((r) => r.countryCode), loc.countryCode),
-    states: touched(sum((r) => (r.countryCode === "US" ? r.region : null)), loc.countryCode === "US" ? loc.region : undefined),
+    states: touched(
+      sum((r) => (SUBDIVIDED.has(r.countryCode) ? r.region : null)),
+      SUBDIVIDED.has(loc.countryCode) ? loc.region : undefined,
+    ),
     cities: [
       ...touched(sum((r) => r.city), loc.city),
       ...(shares.some((r) => nyArea(r) === OUTSIDE_NYC) ? [OUTSIDE_NYC] : []),
@@ -535,6 +550,12 @@ export const usStatesVisited: GeoRow[] = regionRows(
     if (b.code === "NJ") return -1;
     return b.km - a.km;
   });
+
+export const caProvincesVisited: GeoRow[] = regionRows(
+  (r) => (r.countryCode === "CA" ? r.region : null),
+  (t) => t.states,
+  (code, r) => r.regionName ?? code,
+);
 
 // Third drill-down level under New York: the five boroughs, then one row
 // for everywhere else in the state (Hudson Valley, Long Island, upstate).
