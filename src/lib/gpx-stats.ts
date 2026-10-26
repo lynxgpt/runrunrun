@@ -306,6 +306,11 @@ function nycBoroughAt(lat: number, lon: number): string | null {
   return county ? (NYC_BOROUGH_BY_COUNTY[county.county] ?? null) : null;
 }
 
+function nearestUsCountyState(lat: number, lon: number): { region: string } | null {
+  const region = lookupNearestUsCounty(lat, lon)?.region;
+  return region ? { region } : null;
+}
+
 function withUsCountyFallback(
   loc: ActivityLocation,
   lat: number,
@@ -547,7 +552,15 @@ export function locationFor(t: GpxSummary): ActivityLocation {
     const direct = lookupCountry(lt, lo);
     const [cLat, cLon] = direct ? [lt, lo] : [fbLat, fbLon];
     const c = direct ?? lookupCountry(fbLat, fbLon);
-    const s = c?.countryCode === "US" ? lookupUsState(cLat, cLon) : null;
+    // A mean just offshore can match a country (lookupCountry retries at
+    // offsets) but no state polygon: try the start point, then the nearest
+    // county centroid.
+    const s =
+      c?.countryCode === "US"
+        ? (lookupUsState(cLat, cLon) ??
+          lookupUsState(fbLat, fbLon) ??
+          nearestUsCountyState(cLat, cLon))
+        : null;
     return { c, s };
   }
 
@@ -565,18 +578,22 @@ export function locationFor(t: GpxSummary): ActivityLocation {
     if (c) return { ...c, region: s?.region, lat, lon };
   }
 
+  // The state polygon is coarse at the Hudson and can say NJ for a mean in
+  // the water; the start point then decides. An NJ start (Weehawken,
+  // Edgewater waterfront) leaves the band and classifies as NJ below.
   if (lat >= MAN_LAT_MIN && lat <= MAN_LAT_MAX && lon >= hudsonCenterlineWestOf(lat)) {
     const { c, s } = classify(lat, lon);
-    if (c) {
+    const inNy = s?.region !== "NJ" || lookupUsState(fbLat, fbLon)?.region === "NY";
+    if (c && inNy) {
       if (lon <= manhattanEastLon(lat)) {
-        return { ...c, region: s?.region, city: "Manhattan", lat, lon };
+        return { ...c, region: "NY", city: "Manhattan", lat, lon };
       }
       // East of Manhattan: county polygons separate Brooklyn / Queens / Bronx;
       // a mean in the East River has no county, so keep the latitude split.
       const byCounty = s?.region === "NY" ? nycBoroughAt(lat, lon) : null;
       const city =
         byCounty && byCounty !== "Manhattan" ? byCounty : lat > 40.726 ? "Queens" : "Brooklyn";
-      return { ...c, region: s?.region, city, lat, lon };
+      return { ...c, region: "NY", city, lat, lon };
     }
   }
 
@@ -584,7 +601,11 @@ export function locationFor(t: GpxSummary): ActivityLocation {
   // at fetch time. Works for any city worldwide without hardcoded bboxes.
   if (t.stats.city) {
     const { c, s } = classify(lat, lon);
-    if (c) {
+    // Strava labels Hudson-waterfront NJ runs "Manhattan"; a borough name
+    // only stands when geometry agrees the run is in NY.
+    const boroughOutsideNy =
+      (t.stats.city === "Manhattan" || NYC_BOROUGHS.has(t.stats.city)) && s?.region !== "NY";
+    if (c && !boroughOutsideNy) {
       const loc = { ...c, region: s?.region, city: t.stats.city, lat, lon };
       return c.countryCode === "US" ? withUsCountyFallback(loc, lat, lon) : loc;
     }
