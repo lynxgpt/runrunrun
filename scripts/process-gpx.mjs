@@ -23,7 +23,7 @@ import {
   rmSync,
 } from "node:fs";
 import { join, dirname, resolve } from "node:path";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import {
   buildElapsedDistanceTimeline,
   personalBestElapsedPaces,
@@ -174,7 +174,7 @@ function minutePaceQualityFromMovingTimeline(timeline, movingSegments) {
   return details;
 }
 
-function aggregate(points, gpxName) {
+export function aggregate(points, gpxName) {
   let totalKm = 0;
   let movingSec = 0;
   let gainM = 0;
@@ -328,7 +328,7 @@ function isStravaId(id) {
   return /-\d{8,}$/.test(id);
 }
 
-function dedupe(tracks) {
+export function dedupe(tracks) {
   const byTime = tracks.map((t) => ({
     ts: t.stats.startTime ? Date.parse(t.stats.startTime) / 1000 : null,
     track: t,
@@ -502,4 +502,5 @@ export const gpxSummaries: Record<string, GpxSummary> = ${JSON.stringify(
   }
 }
 
-main();
+// Run only as a script, so tests can import dedupe/aggregate.
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) main();
