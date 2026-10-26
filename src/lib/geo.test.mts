@@ -1,50 +1,39 @@
-// Geo regression suite for locationFor().
+// Geo regression suite.
 //
-// These coordinate expectations were ported from the retired `master`
-// branch's vitest suite (tests/geo.test.ts, archived under the
-// archive/master-2026-08-07 tag) and retargeted at main's own locationFor(),
-// which main had no geo coverage for. Each case probes one real coordinate
-// from the run archive; the names are the originals.
+// These cases were ported from the retired `master` branch's vitest suite
+// (tests/geo.test.ts, archived under the archive/master-2026-08-07 tag).
 //
-// The probe sets meanLat/meanLon and startLat/startLon to the same point and
-// leaves stats.city unset, so locationFor() resolves purely from polygon
-// geometry rather than short-circuiting on Strava's own city metadata.
+// - A case named after a run checks that run's stored label (data/geo.json,
+//   from scripts/geocode.mjs), since labels come from the whole route, not
+//   from one coordinate. Its original coordinate (the run's mean point) is
+//   kept in the test body only as a reference.
+// - A case naming a place, not a run, probes the offline fallback classifier
+//   (scripts/geo/offline.mjs), which labels runs while Nominatim is down.
 
 import test from "node:test";
 import assert from "node:assert/strict";
 
+import { offlineAddress } from "../../scripts/geo/offline.mjs";
+import { normalize } from "../../scripts/geo/place.mjs";
 import * as statsModule from "./gpx-stats.ts";
-import type { GpxSummary } from "./gpx-processed.ts";
+import { gpxSummaries } from "./gpx-processed.ts";
 
 const stats = ("default" in statsModule ? statsModule.default : statsModule) as typeof statsModule;
-const { locationFor } = stats;
+
+function run(id: string) {
+  const t = gpxSummaries[id];
+  assert.ok(t, `no summary for ${id}`);
+  const loc = stats.locationFor(t);
+  return { countryCode: loc.countryCode, region: loc.region, city: loc.city };
+}
 
 function at(lat: number, lon: number) {
-  const probe = {
-    id: "probe",
-    stats: {
-      name: "probe",
-      distanceKm: 5,
-      movingSec: 1800,
-      elapsedSec: 1800,
-      paceSecPerKm: 360,
-      elevationM: 0,
-      avgHr: null,
-      startTime: "2026-01-01T12:00:00Z",
-      endTime: "2026-01-01T12:30:00Z",
-      startLat: lat,
-      startLon: lon,
-      meanLat: lat,
-      meanLon: lon,
-      bbox: {
-        minLat: lat - 0.001,
-        maxLat: lat + 0.001,
-        minLon: lon - 0.001,
-        maxLon: lon + 0.001,
-      },
-    },
-  } as unknown as GpxSummary;
-  return locationFor(probe);
+  const p = normalize(offlineAddress(lat, lon));
+  return {
+    countryCode: p?.countryCode ?? "??",
+    region: p?.countryCode === "US" ? (p.stateCode ?? undefined) : (p?.state ?? undefined),
+    city: p?.city ?? undefined,
+  };
 }
 
 
@@ -467,287 +456,287 @@ test("Border and edge cases: Luxembourg (49.61, 6.13) → LU", () => {
 // Formerly-Unknown runs — correct city identification
 
 test("Formerly-Unknown runs — correct city identification: afternoon-run-14737228449 — Long Island City → Queens NY", () => {
-  const r = at(40.761005, -73.950877);
+  const r = run("afternoon-run-14737228449"); // mean point: 40.761005, -73.950877
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NY");
   assert.equal(r.city, "Queens");
 });
 
 test("Formerly-Unknown runs — correct city identification: run-13451942159 — Weehawken/NJ area → NJ", () => {
-  const r = at(40.782417, -74.004874);
+  const r = run("run-13451942159"); // mean point: 40.782417, -74.004874
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NJ");
 });
 
 test("Formerly-Unknown runs — correct city identification: 3-13576826295 — Hudson/NJ area mean → NJ", () => {
-  const r = at(40.811117, -73.976921);
+  const r = run("3-13576826295"); // mean point: 40.811117, -73.976921
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NJ");
 });
 
 test("Formerly-Unknown runs — correct city identification: 3-13576826295 — start point Manhattan → NY/Manhattan", () => {
-  const r = at(40.760208, -74.003321);
+  const r = run("3-13576826295"); // mean point: 40.760208, -74.003321
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NY");
 });
 
 test("Formerly-Unknown runs — correct city identification: run-13682569537 — Miami Beach → FL", () => {
-  const r = at(25.789587, -80.148888);
+  const r = run("run-13682569537"); // mean point: 25.789587, -80.148888
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "FL");
 });
 
 test("Formerly-Unknown runs — correct city identification: run-14193815591 — Charleston SC → SC", () => {
-  const r = at(32.781658, -79.943769);
+  const r = run("run-14193815591"); // mean point: 32.781658, -79.943769
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "SC");
 });
 
 test("Formerly-Unknown runs — correct city identification: run-14257505627 — Hudson Yards/Manhattan → NY/Manhattan", () => {
-  const r = at(40.741731, -74.015503);
+  const r = run("run-14257505627"); // mean point: 40.741731, -74.015503
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NY");
   assert.equal(r.city, "Manhattan");
 });
 
 test("Formerly-Unknown runs — correct city identification: evening-run-15371476873 — Financial District → NY/Manhattan", () => {
-  const r = at(40.702093, -73.998585);
+  const r = run("evening-run-15371476873"); // mean point: 40.702093, -73.998585
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NY");
   assert.equal(r.city, "Manhattan");
 });
 
 test("Formerly-Unknown runs — correct city identification: afternoon-run-15438693660 — Chelsea area → NY/Manhattan", () => {
-  const r = at(40.742673, -74.009966);
+  const r = run("afternoon-run-15438693660"); // mean point: 40.742673, -74.009966
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NY");
   assert.equal(r.city, "Manhattan");
 });
 
 test("Formerly-Unknown runs — correct city identification: afternoon-run-15610329019 — Astoria/Queens → NY/Queens", () => {
-  const r = at(40.790139, -73.924629);
+  const r = run("afternoon-run-15610329019"); // mean point: 40.790139, -73.924629
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NY");
   assert.equal(r.city, "Queens");
 });
 
 test("Formerly-Unknown runs — correct city identification: mp-16143290429 — Hoboken/NJ → NJ", () => {
-  const r = at(40.774815, -74.010428);
+  const r = run("mp-16143290429"); // mean point: 40.774815, -74.010428
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NJ");
 });
 
 test("Formerly-Unknown runs — correct city identification: afternoon-run-16537169088 — Washington Heights area → NY", () => {
-  const r = at(40.859548, -73.940194);
+  const r = run("afternoon-run-16537169088"); // mean point: 40.859548, -73.940194
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NY");
 });
 
 test("Formerly-Unknown runs — correct city identification: afternoon-run-16575046256 — LIC → NY/Queens", () => {
-  const r = at(40.754113, -73.958714);
+  const r = run("afternoon-run-16575046256"); // mean point: 40.754113, -73.958714
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NY");
   assert.equal(r.city, "Queens");
 });
 
 test("Formerly-Unknown runs — correct city identification: night-run-16615515418 — LIC → NY/Queens", () => {
-  const r = at(40.742544, -73.959361);
+  const r = run("night-run-16615515418"); // mean point: 40.742544, -73.959361
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NY");
   assert.equal(r.city, "Queens");
 });
 
 test("Formerly-Unknown runs — correct city identification: night-run-16634907980 — LIC → NY/Queens", () => {
-  const r = at(40.74441, -73.959153);
+  const r = run("night-run-16634907980"); // mean point: 40.74441, -73.959153
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NY");
   assert.equal(r.city, "Queens");
 });
 
 test("Formerly-Unknown runs — correct city identification: i-16651061254 — LIC → NY/Queens", () => {
-  const r = at(40.753285, -73.950849);
+  const r = run("i-16651061254"); // mean point: 40.753285, -73.950849
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NY");
   assert.equal(r.city, "Queens");
 });
 
 test("Formerly-Unknown runs — correct city identification: afternoon-run-16708000039 — LIC → NY/Queens", () => {
-  const r = at(40.754894, -73.957652);
+  const r = run("afternoon-run-16708000039"); // mean point: 40.754894, -73.957652
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NY");
   assert.equal(r.city, "Queens");
 });
 
 test("Formerly-Unknown runs — correct city identification: evening-run-16726039930 — LIC → NY/Queens", () => {
-  const r = at(40.755084, -73.959293);
+  const r = run("evening-run-16726039930"); // mean point: 40.755084, -73.959293
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NY");
   assert.equal(r.city, "Queens");
 });
 
 test("Formerly-Unknown runs — correct city identification: afternoon-run-16762158023 — LIC → NY/Queens", () => {
-  const r = at(40.742312, -73.959622);
+  const r = run("afternoon-run-16762158023"); // mean point: 40.742312, -73.959622
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NY");
   assert.equal(r.city, "Queens");
 });
 
 test("Formerly-Unknown runs — correct city identification: long-16805717036 — Red Hook/Brooklyn → NY/Brooklyn", () => {
-  const r = at(40.707114, -73.990748);
+  const r = run("long-16805717036"); // mean point: 40.707114, -73.990748
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NY");
   assert.equal(r.city, "Brooklyn");
 });
 
 test("Formerly-Unknown runs — correct city identification: night-run-16825538567 — LIC → NY/Queens", () => {
-  const r = at(40.744836, -73.95668);
+  const r = run("night-run-16825538567"); // mean point: 40.744836, -73.95668
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NY");
   assert.equal(r.city, "Queens");
 });
 
 test("Formerly-Unknown runs — correct city identification: afternoon-run-16962283458 — LIC → NY/Queens", () => {
-  const r = at(40.754038, -73.957408);
+  const r = run("afternoon-run-16962283458"); // mean point: 40.754038, -73.957408
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NY");
   assert.equal(r.city, "Queens");
 });
 
 test("Formerly-Unknown runs — correct city identification: afternoon-run-16983523095 — LIC → NY/Queens", () => {
-  const r = at(40.742322, -73.959692);
+  const r = run("afternoon-run-16983523095"); // mean point: 40.742322, -73.959692
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NY");
   assert.equal(r.city, "Queens");
 });
 
 test("Formerly-Unknown runs — correct city identification: afternoon-run-17038531172 — LIC → NY/Queens", () => {
-  const r = at(40.744677, -73.957628);
+  const r = run("afternoon-run-17038531172"); // mean point: 40.744677, -73.957628
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NY");
   assert.equal(r.city, "Queens");
 });
 
 test("Formerly-Unknown runs — correct city identification: afternoon-run-17084758502 — LIC → NY/Queens", () => {
-  const r = at(40.744045, -73.958152);
+  const r = run("afternoon-run-17084758502"); // mean point: 40.744045, -73.958152
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NY");
   assert.equal(r.city, "Queens");
 });
 
 test("Formerly-Unknown runs — correct city identification: afternoon-run-17143602718 — Astoria/Queens → NY/Queens", () => {
-  const r = at(40.776544, -73.927297);
+  const r = run("afternoon-run-17143602718"); // mean point: 40.776544, -73.927297
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NY");
   assert.equal(r.city, "Queens");
 });
 
 test("Formerly-Unknown runs — correct city identification: afternoon-run-17197139902 — LIC → NY/Queens", () => {
-  const r = at(40.741452, -73.959807);
+  const r = run("afternoon-run-17197139902"); // mean point: 40.741452, -73.959807
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NY");
   assert.equal(r.city, "Queens");
 });
 
 test("Formerly-Unknown runs — correct city identification: afternoon-run-17220802254 — LIC → NY/Queens", () => {
-  const r = at(40.741942, -73.959521);
+  const r = run("afternoon-run-17220802254"); // mean point: 40.741942, -73.959521
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NY");
   assert.equal(r.city, "Queens");
 });
 
 test("Formerly-Unknown runs — correct city identification: afternoon-run-17275266944 — LIC → NY/Queens", () => {
-  const r = at(40.74153, -73.959297);
+  const r = run("afternoon-run-17275266944"); // mean point: 40.74153, -73.959297
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NY");
   assert.equal(r.city, "Queens");
 });
 
 test("Formerly-Unknown runs — correct city identification: afternoon-run-17322270905 — LIC → NY/Queens", () => {
-  const r = at(40.743667, -73.959132);
+  const r = run("afternoon-run-17322270905"); // mean point: 40.743667, -73.959132
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NY");
   assert.equal(r.city, "Queens");
 });
 
 test("Formerly-Unknown runs — correct city identification: afternoon-run-17344738804 — LIC/Hunters Point → NY/Queens", () => {
-  const r = at(40.753991, -73.949948);
+  const r = run("afternoon-run-17344738804"); // mean point: 40.753991, -73.949948
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NY");
   assert.equal(r.city, "Queens");
 });
 
 test("Formerly-Unknown runs — correct city identification: afternoon-run-17356679662 — LIC → NY/Queens", () => {
-  const r = at(40.74357, -73.959141);
+  const r = run("afternoon-run-17356679662"); // mean point: 40.74357, -73.959141
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NY");
   assert.equal(r.city, "Queens");
 });
 
 test("Formerly-Unknown runs — correct city identification: morning-run-17373716844 — LIC → NY/Queens", () => {
-  const r = at(40.7419, -73.959805);
+  const r = run("morning-run-17373716844"); // mean point: 40.7419, -73.959805
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NY");
   assert.equal(r.city, "Queens");
 });
 
 test("Formerly-Unknown runs — correct city identification: t-17453848055 — LIC → NY/Queens", () => {
-  const r = at(40.742759, -73.958958);
+  const r = run("t-17453848055"); // mean point: 40.742759, -73.958958
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NY");
   assert.equal(r.city, "Queens");
 });
 
 test("Formerly-Unknown runs — correct city identification: evening-run-17534733796 — LIC → NY/Queens", () => {
-  const r = at(40.744264, -73.95906);
+  const r = run("evening-run-17534733796"); // mean point: 40.744264, -73.95906
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NY");
   assert.equal(r.city, "Queens");
 });
 
 test("Formerly-Unknown runs — correct city identification: t-17534211801 — LIC → NY/Queens", () => {
-  const r = at(40.741286, -73.958934);
+  const r = run("t-17534211801"); // mean point: 40.741286, -73.958934
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NY");
   assert.equal(r.city, "Queens");
 });
 
 test("Formerly-Unknown runs — correct city identification: night-run-17872646670 — LIC → NY/Queens", () => {
-  const r = at(40.741676, -73.960028);
+  const r = run("night-run-17872646670"); // mean point: 40.741676, -73.960028
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NY");
   assert.equal(r.city, "Queens");
 });
 
 test("Formerly-Unknown runs — correct city identification: long-17894509408 — LIC/Queens → NY/Queens", () => {
-  const r = at(40.760727, -73.948738);
+  const r = run("long-17894509408"); // mean point: 40.760727, -73.948738
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NY");
   assert.equal(r.city, "Queens");
 });
 
 test("Formerly-Unknown runs — correct city identification: afternoon-run-17966408470 — LIC → NY/Queens", () => {
-  const r = at(40.744211, -73.956289);
+  const r = run("afternoon-run-17966408470"); // mean point: 40.744211, -73.956289
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NY");
   assert.equal(r.city, "Queens");
 });
 
 test("Formerly-Unknown runs — correct city identification: afternoon-run-18204634143 — LIC → NY/Queens", () => {
-  const r = at(40.741804, -73.959978);
+  const r = run("afternoon-run-18204634143"); // mean point: 40.741804, -73.959978
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NY");
   assert.equal(r.city, "Queens");
 });
 
 test("Formerly-Unknown runs — correct city identification: evening-run-18219590640 — LIC → NY/Queens", () => {
-  const r = at(40.745664, -73.958726);
+  const r = run("evening-run-18219590640"); // mean point: 40.745664, -73.958726
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NY");
   assert.equal(r.city, "Queens");
 });
 
 test("Formerly-Unknown runs — correct city identification: afternoon-run-18270486740 — LIC → NY/Queens", () => {
-  const r = at(40.743242, -73.958966);
+  const r = run("afternoon-run-18270486740"); // mean point: 40.743242, -73.958966
   assert.equal(r.countryCode, "US");
   assert.equal(r.region, "NY");
   assert.equal(r.city, "Queens");

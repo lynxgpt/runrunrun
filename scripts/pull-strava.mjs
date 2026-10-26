@@ -359,17 +359,6 @@ function saveMeta(meta) {
       changed = true;
     }
 
-    // City from Strava's own geocoding (no extra API call needed)
-    if (record.city == null) {
-      const raw = a.location_city ?? null;
-      // Normalize "The Bronx" → "Bronx" to match NYC_BOROUGHS labeling
-      const city = raw === "The Bronx" ? "Bronx" : raw;
-      if (city != null) {
-        record.city = city;
-        changed = true;
-      }
-    }
-
     // Photo
     if (a.total_photo_count > 0 && record.photoPath == null) {
       const photoDest = join(PHOTOS_DIR, `${stem}.jpg`);
@@ -402,14 +391,13 @@ function saveMeta(meta) {
     console.log("• wrote public/strava-meta.json");
   }
 
-  // Summaries embed strava-meta (city, temp), so a meta-only change needs a
-  // reprocess too — the deploy no longer reprocesses on its own.
-  if (written > 0 || metaChanged) {
-    console.log("• running process-gpx.mjs...");
-    const r = spawnSync("node", [join(ROOT, "scripts", "process-gpx.mjs")], {
-      stdio: "inherit",
-      cwd: ROOT,
-    });
+  // Every pull: place new runs, and retry any run labelled offline while
+  // Nominatim was down. Cached cells cost no requests. Then rebuild the
+  // summaries — the deploy does not reprocess on its own. Both are no-ops
+  // (no diff, no commit) when nothing changed.
+  for (const script of ["geocode.mjs", "process-gpx.mjs"]) {
+    console.log(`• running ${script}...`);
+    const r = spawnSync("node", [join(ROOT, "scripts", script)], { stdio: "inherit", cwd: ROOT });
     if (r.status !== 0) process.exit(r.status ?? 1);
   }
 })().catch((e) => {

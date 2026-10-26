@@ -13,6 +13,9 @@ export interface SiteContent {
     name: string;
   };
   foreword: string[];
+  geography: {
+    unknownNote: string;
+  };
   footer: FooterLine[];
 }
 

@@ -46,6 +46,8 @@ time** (stops excluded). Never quietly switch either.
 ```
 Strava ──pull-strava.yml──▶ data/gpx/<id>.gpx     (raw, build-time input only, never published)
                                    │
+                         scripts/geocode.mjs ──▶ data/geo.json, data/geo-cache.json
+                                   │
                         scripts/process-gpx.mjs
                                    ├──▶ src/lib/gpx-processed.ts   (summaries, imported at build)
                                    └──▶ public/tracks/<id>.json    (full points, fetched lazily)
@@ -59,8 +61,8 @@ Strava ──pull-strava.yml──▶ data/gpx/<id>.gpx     (raw, build-time inp
 - `process-gpx.mjs` **deliberately drops duplicates** by clustering on timestamp + distance and
   preferring Strava-ID filenames. A GPX file with no entry in `gpx-processed.ts` is usually
   intentional, not a bug — check the dedupe output before "fixing" it.
-- `public/strava-meta.json` carries per-run photo path and Strava's own city string. That city
-  **wins** over geometry (see below) and is how non-US cities work without hardcoded tables.
+- `public/strava-meta.json` carries per-run photo path and temperature. Strava's city string is
+  **not used** — it was wrong too often, in the US and abroad.
 - The deploy does **not** run `process-gpx.mjs`; it builds from the committed outputs. CI reruns
   it and fails if `gpx-processed.ts` or `public/tracks/` would change, so commit regenerated
   outputs together with any `data/gpx/` or pipeline change.
@@ -73,29 +75,34 @@ All user-facing prose (title, foreword, footer lines) lives in **`content/site.y
 `src/lib/content.ts`. Edit that file, not the components. Do not hardcode copy into JSX, and do
 not add a second place for text to live.
 
-## Geo classification — the fragile part
+## Geo — where each run was
 
-`locationFor()` in `src/lib/gpx-stats.ts` resolves country / state / city / county from polygon
-containment (`us-atlas`, `world-atlas`, `topojson-client`, `i18n-iso-countries`) with a hand-rolled
-`polygonContainsPoint`. This is the most-rewritten code in the repo. Both retired branches took a
-run at it. Respect what is already there:
+`scripts/geocode.mjs` places every run; nothing in the browser or the build does geometry.
 
-- Strava's `stats.city` **short-circuits** city naming. That is deliberate — hardcoded city tables
-  were removed on purpose (`fe67682`). Do not bring `CITY_REGIONS` back.
-- `lookupCountry` retries at ~1.5 km offsets to clear coastline precision gaps; the Hudson
-  centerline and NJ-waterfront early exit exist because GPS multipath drifts river-adjacent runs
-  across the state line. These are not accidents.
-- **`src/lib/geo.test.mts` is the guardrail — 121 coordinate cases against real runs.** Run it
-  before and after any geo change. It was ported off the retired `master` branch, which is the
-  only reason that branch mattered.
-- NY runs take their borough from the county polygon of the mean point (Kings → Brooklyn,
-  Richmond → Staten Island, …). Inside the 40.700–40.880 band, Manhattan still comes from the
-  shoreline line, and the latitude split only applies when the mean is in the East River.
-- **Known gap** — do not report this as a new discovery: a run whose mean point
-  lands in the Hudson can take its state from an offshore start point and come out "NJ / Bergen"
-  (`weekly-long-14739061268`, `weekly-not-very-long-15561794874`).
-- Relabeling runs changes the owner's history. Audit every affected run and show the diff before
-  committing a classification change.
+- **Samples:** one point per minute of **moving** time (stops and recording gaps skipped), plus
+  the start point — `movingMinuteSamples()` in `process-gpx.mjs`.
+- **Lookup:** each sample is reverse-geocoded with **Nominatim** (OpenStreetMap), English names,
+  identified User-Agent, ≤ 1 request/second (`scripts/geo/nominatim.mjs`). Answers are cached per
+  ~100 m cell in `data/geo-cache.json`, which is committed; never delete it — rebuilding it is
+  hours of requests.
+- **Label:** the country, then state, then county / city holding the most samples; ties go to
+  the start point (`scripts/geo/place.mjs`). NYC is labelled by borough (from the county).
+- **Split:** minutes per country / state / city. Region totals in Where I Ran split each run's km
+  by those minutes, and a run counts as a day — and matches the region filter — in every region
+  it spent a sampled minute in.
+- **Fallback:** if Nominatim is unreachable, uncached samples are labelled offline
+  (`scripts/geo/offline.mjs`: world-atlas / us-atlas polygons + the GeoNames places in
+  `data/geonames-cities1000.tsv.gz`) and the run is marked `"fallback"`. Fallback answers are never
+  cached, so every pull re-asks Nominatim until the run is fully online-labelled.
+- **Do not reintroduce** mean-point classification, hardcoded coordinate tables or shorelines,
+  or Strava's city string. Those are what this replaced.
+- `src/lib/geo.test.mts` is the guardrail: run-named cases check stored labels, place-named
+  cases probe the offline classifier. `node scripts/geo-diff.mjs [ref]` lists every relabel; CI
+  posts it on each PR.
+- Relabeling runs changes the owner's history. Run `geo-diff` and show the owner the diff before
+  committing a label change.
+- When running `geocode.mjs` in a sandbox behind a proxy, set `NODE_USE_ENV_PROXY=1` so Node's
+  `fetch` uses it; GitHub Actions needs nothing.
 
 ## Code rules
 
@@ -103,10 +110,6 @@ run at it. Respect what is already there:
   2-space indent.
 - **Tailwind utility classes only — no inline styles.** Mobile-first. Tailwind v4 with oklch
   tokens; shadcn/ui primitives live in `src/components/ui/` and `cn()` in `src/lib/utils.ts`.
-- The five `require()` calls at the top of `gpx-stats.ts` **must stay `require()`** so the
-  topojson payloads resolve at module scope. They carry
-  `// eslint-disable-next-line @typescript-eslint/no-require-imports`. Keep the directives; without
-  them lint fails.
 - Static export only: `output: "export"`, `images.unoptimized`. No server components doing I/O, no
   route handlers, no `next/image` optimizer. Pages serves under a `basePath`, so any runtime URL
   must go through `NEXT_PUBLIC_BASE_PATH` the way `use-gpx-track.ts` does.

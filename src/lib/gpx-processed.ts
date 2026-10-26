@@ -44,7 +44,24 @@ export interface GpxStats {
     maxSegmentKph: number;
     hasTeleportGap: boolean;
   };
-  city?: string;
+  geo?: GpxGeo;
+}
+
+export interface GeoPlace {
+  countryCode: string;
+  country: string;
+  stateCode: string | null;
+  state: string | null;
+  county?: string | null;
+  city: string | null;
+}
+
+export interface GpxGeo {
+  // "fallback" = labelled offline while Nominatim was unreachable; retried next pull.
+  status: "nominatim" | "fallback";
+  label: GeoPlace | null;
+  // Moving minutes per country / state / city.
+  split: (GeoPlace & { minutes: number })[];
 }
 
 export interface GpxSummary {
@@ -180,7 +197,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 13
+          }
+        ]
+      }
     }
   },
   "first-run-after-holiday-trip-aborted-due-14737174154": {
@@ -323,7 +360,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 16
+          }
+        ]
+      }
     }
   },
   "lunch-run-14737201661": {
@@ -568,7 +625,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Hoboken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Hoboken",
+            "minutes": 28
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 5
+          }
+        ]
+      }
     }
   },
   "afternoon-run-14737228449": {
@@ -868,7 +953,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Queens"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 42
+          }
+        ]
+      }
     }
   },
   "afternoon-run-14737183589": {
@@ -1083,7 +1188,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 28
+          }
+        ]
+      }
     }
   },
   "run-13433736397": {
@@ -1322,7 +1447,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 32
+          }
+        ]
+      }
     }
   },
   "run-13441737874": {
@@ -1592,7 +1737,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Hoboken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Hoboken",
+            "minutes": 26
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 11
+          }
+        ]
+      }
     }
   },
   "run-13451942159": {
@@ -2229,7 +2402,59 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Guttenberg"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Guttenberg",
+            "minutes": 43
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 34
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "West New York",
+            "minutes": 10
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Fairview",
+            "minutes": 7
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Union City",
+            "minutes": 4
+          }
+        ]
+      }
     }
   },
   "sprint-try-13463080850": {
@@ -2302,7 +2527,36 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 25.200000000000024,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 4
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Hoboken",
+            "minutes": 1
+          }
+        ]
+      }
     }
   },
   "run-13475249312": {
@@ -2408,7 +2662,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 10
+          }
+        ]
+      }
     }
   },
   "run-13484062189": {
@@ -2629,7 +2903,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 29
+          }
+        ]
+      }
     }
   },
   "run-13497348820": {
@@ -2899,7 +3193,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 37
+          }
+        ]
+      }
     }
   },
   "run-13513779925": {
@@ -3752,7 +4066,51 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Brooklyn"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Hoboken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Hoboken",
+            "minutes": 64
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "New York City",
+            "minutes": 41
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Jersey City",
+            "minutes": 19
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 10
+          }
+        ]
+      }
     }
   },
   "run-13543430964": {
@@ -3955,7 +4313,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 26
+          }
+        ]
+      }
     }
   },
   "run-13551717252": {
@@ -4152,7 +4530,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 25
+          }
+        ]
+      }
     }
   },
   "run-13566129284": {
@@ -4379,7 +4777,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 28
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Union City",
+            "minutes": 2
+          }
+        ]
+      }
     }
   },
   "3-13576826295": {
@@ -5508,7 +5934,91 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 91
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Fort Lee",
+            "minutes": 18
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 17
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Edgewater",
+            "minutes": 16
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Guttenberg",
+            "minutes": 15
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Fairview",
+            "minutes": 9
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Cliffside Park",
+            "minutes": 7
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "West New York",
+            "minutes": 6
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Union City",
+            "minutes": 1
+          }
+        ]
+      }
     }
   },
   "run-13620417805": {
@@ -5724,7 +6234,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Hoboken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Hoboken",
+            "minutes": 15
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 13
+          }
+        ]
+      }
     }
   },
   "run-13636364719": {
@@ -5909,7 +6447,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 23
+          }
+        ]
+      }
     }
   },
   "run-13654045258": {
@@ -6124,7 +6682,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 28
+          }
+        ]
+      }
     }
   },
   "run-13669566048": {
@@ -6393,7 +6971,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 17.99999999999999,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "FL",
+          "state": "Florida",
+          "county": "Miami-Dade County",
+          "city": "Miami Beach"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "FL",
+            "state": "Florida",
+            "city": "Miami Beach",
+            "minutes": 37
+          }
+        ]
+      }
     }
   },
   "run-13682569537": {
@@ -6843,7 +7442,36 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 14.40000000000024,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "FL",
+          "state": "Florida",
+          "county": "Miami-Dade County",
+          "city": "Miami Beach"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "FL",
+            "state": "Florida",
+            "city": "Miami Beach",
+            "minutes": 59
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "FL",
+            "state": "Florida",
+            "city": "Miami",
+            "minutes": 8
+          }
+        ]
+      }
     }
   },
   "run-13728418649": {
@@ -7191,7 +7819,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 50
+          }
+        ]
+      }
     }
   },
   "run-13744928359": {
@@ -7383,7 +8031,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 24
+          }
+        ]
+      }
     }
   },
   "run-13762788859": {
@@ -7863,7 +8531,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Brooklyn"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Kings County",
+          "city": "Brooklyn"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Brooklyn",
+            "minutes": 61
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 11
+          }
+        ]
+      }
     }
   },
   "run-13791246934": {
@@ -8042,7 +8738,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 22
+          }
+        ]
+      }
     }
   },
   "run-13808084646": {
@@ -8300,7 +9016,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Hoboken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Hoboken",
+            "minutes": 26
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 9
+          }
+        ]
+      }
     }
   },
   "run-13837633853": {
@@ -8828,7 +9572,44 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 14.760000000000133,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Jersey City"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Jersey City",
+            "minutes": 49
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "New York City",
+            "minutes": 19
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Bayonne",
+            "minutes": 12
+          }
+        ]
+      }
     }
   },
   "2-13857266913": {
@@ -9086,7 +9867,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 35
+          }
+        ]
+      }
     }
   },
   "run-13876254946": {
@@ -9283,7 +10084,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 25
+          }
+        ]
+      }
     }
   },
   "run-13892658656": {
@@ -9881,7 +10702,36 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 15.97499999999994,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Putnam County",
+          "city": "Cold Spring"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Cold Spring",
+            "minutes": 86
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Cornwall",
+            "minutes": 6
+          }
+        ]
+      }
     }
   },
   "run-13922094049": {
@@ -10127,7 +10977,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 33
+          }
+        ]
+      }
     }
   },
   "run-13931651950": {
@@ -10457,7 +11327,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 47
+          }
+        ]
+      }
     }
   },
   "run-13966290727": {
@@ -11111,7 +12001,36 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 14.400000000000013,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "LA",
+          "state": "Louisiana",
+          "county": "Orleans County",
+          "city": "New Orleans"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "LA",
+            "state": "Louisiana",
+            "city": "New Orleans",
+            "minutes": 69
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "LA",
+            "state": "Louisiana",
+            "city": "Metairie",
+            "minutes": 32
+          }
+        ]
+      }
     }
   },
   "run-13982671579": {
@@ -11301,7 +12220,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 25.200000000000422,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "LA",
+          "state": "Louisiana",
+          "county": "Orleans County",
+          "city": "New Orleans"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "LA",
+            "state": "Louisiana",
+            "city": "New Orleans",
+            "minutes": 24
+          }
+        ]
+      }
     }
   },
   "run-14016204988": {
@@ -11480,7 +12420,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 22
+          }
+        ]
+      }
     }
   },
   "run-14034777630": {
@@ -11665,7 +12625,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 23
+          }
+        ]
+      }
     }
   },
   "run-14072909359": {
@@ -11880,7 +12860,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 28
+          }
+        ]
+      }
     }
   },
   "run-14081674353": {
@@ -12108,7 +13108,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 30
+          }
+        ]
+      }
     }
   },
   "run-14100496597": {
@@ -12281,7 +13301,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 21
+          }
+        ]
+      }
     }
   },
   "run-14121831047": {
@@ -12563,7 +13603,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 39
+          }
+        ]
+      }
     }
   },
   "run-14139516325": {
@@ -12917,7 +13977,51 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 34
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "West New York",
+            "minutes": 11
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Guttenberg",
+            "minutes": 4
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Union City",
+            "minutes": 2
+          }
+        ]
+      }
     }
   },
   "run-14165368226": {
@@ -13561,7 +14665,51 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Brooklyn"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Jersey City"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Jersey City",
+            "minutes": 65
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Hoboken",
+            "minutes": 16
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Bayonne",
+            "minutes": 11
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "New York City",
+            "minutes": 7
+          }
+        ]
+      }
     }
   },
   "run-14193815591": {
@@ -13980,7 +15128,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 13.371428571428574,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "SC",
+          "state": "South Carolina",
+          "county": "Charleston County",
+          "city": "Charleston"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "SC",
+            "state": "South Carolina",
+            "city": "Charleston",
+            "minutes": 62
+          }
+        ]
+      }
     }
   },
   "run-14209038777": {
@@ -14213,7 +15382,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 16.200000000000614,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "GA",
+          "state": "Georgia",
+          "county": "Chatham County",
+          "city": "Savannah"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "GA",
+            "state": "Georgia",
+            "city": "Savannah",
+            "minutes": 31
+          }
+        ]
+      }
     }
   },
   "run-14222840776": {
@@ -14452,7 +15642,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 17.100000000000115,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "VA",
+          "state": "Virginia",
+          "county": "Richmond County",
+          "city": "Richmond"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "VA",
+            "state": "Virginia",
+            "city": "Richmond",
+            "minutes": 32
+          }
+        ]
+      }
     }
   },
   "run-14257505627": {
@@ -15022,7 +16233,51 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 50
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Hoboken",
+            "minutes": 28
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 5
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "New York City",
+            "minutes": 4
+          }
+        ]
+      }
     }
   },
   "run-14277977480": {
@@ -15189,7 +16444,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 20
+          }
+        ]
+      }
     }
   },
   "run-14296101190": {
@@ -15850,7 +17125,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Brooklyn"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Kings County",
+          "city": "Brooklyn"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Brooklyn",
+            "minutes": 102
+          }
+        ]
+      }
     }
   },
   "run-14327874351": {
@@ -16144,7 +17439,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 41
+          }
+        ]
+      }
     }
   },
   "2-15324609383": {
@@ -16390,7 +17705,43 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Brooklyn"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Hoboken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Hoboken",
+            "minutes": 26
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 4
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "New York City",
+            "minutes": 3
+          }
+        ]
+      }
     }
   },
   "run-14338879259": {
@@ -16588,7 +17939,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 25
+          }
+        ]
+      }
     }
   },
   "run-14379562863": {
@@ -17411,7 +18782,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 94
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Bronx",
+            "minutes": 35
+          }
+        ]
+      }
     }
   },
   "run-14400654643": {
@@ -17585,7 +18984,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 21
+          }
+        ]
+      }
     }
   },
   "run-14473159151": {
@@ -17831,7 +19250,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 33
+          }
+        ]
+      }
     }
   },
   "run-14493850213": {
@@ -18053,7 +19492,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 29
+          }
+        ]
+      }
     }
   },
   "run-14513588170": {
@@ -18346,7 +19805,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 15.119999999999933,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "UT",
+          "state": "Utah",
+          "county": "Salt Lake County",
+          "city": "Salt Lake City"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "UT",
+            "state": "Utah",
+            "city": "Salt Lake City",
+            "minutes": 41
+          }
+        ]
+      }
     }
   },
   "run-14524902301": {
@@ -18681,7 +20161,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 13.799999999999812,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "WY",
+          "state": "Wyoming",
+          "county": "Sublette County",
+          "city": "Pinedale"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "WY",
+            "state": "Wyoming",
+            "city": "Pinedale",
+            "minutes": 48
+          }
+        ]
+      }
     }
   },
   "run-14534865309": {
@@ -19106,7 +20607,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 17.099999999999717,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "WY",
+          "state": "Wyoming",
+          "county": "Teton County",
+          "city": "Jackson"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "WY",
+            "state": "Wyoming",
+            "city": "Jackson",
+            "minutes": 63
+          }
+        ]
+      }
     }
   },
   "run-14545937562": {
@@ -19471,7 +20993,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 11.828571428571724,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "WY",
+          "state": "Wyoming",
+          "county": "Teton County",
+          "city": "Jackson"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "WY",
+            "state": "Wyoming",
+            "city": "Jackson",
+            "minutes": 53
+          }
+        ]
+      }
     }
   },
   "run-14556501645": {
@@ -20101,7 +21644,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 14.399999999999997,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "WY",
+          "state": "Wyoming",
+          "county": "Teton County",
+          "city": null
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "WY",
+            "state": "Wyoming",
+            "city": null,
+            "minutes": 97
+          }
+        ]
+      }
     }
   },
   "run-14634172928": {
@@ -20347,7 +21911,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 33
+          }
+        ]
+      }
     }
   },
   "run-14645450289": {
@@ -20623,7 +22207,43 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Brooklyn"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Hoboken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Hoboken",
+            "minutes": 28
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "New York City",
+            "minutes": 6
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 4
+          }
+        ]
+      }
     }
   },
   "evening-run-14667737027": {
@@ -21001,7 +22621,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 46
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Union City",
+            "minutes": 9
+          }
+        ]
+      }
     }
   },
   "interval-tuesday-14689420086": {
@@ -21229,7 +22877,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 30
+          }
+        ]
+      }
     }
   },
   "fart-lek-14725832895": {
@@ -21445,7 +23113,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 28
+          }
+        ]
+      }
     }
   },
   "weekly-long-14739061268": {
@@ -21991,7 +23679,60 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 14.760000000000133,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Bergen County",
+          "city": "Englewood Cliffs"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Englewood Cliffs",
+            "minutes": 33
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Fort Lee",
+            "minutes": 17
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Alpine",
+            "minutes": 14
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Yonkers",
+            "minutes": 13
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Tenafly",
+            "minutes": 6
+          }
+        ]
+      }
     }
   },
   "run-14760707327": {
@@ -22243,7 +23984,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 34
+          }
+        ]
+      }
     }
   },
   "run-14781113994": {
@@ -22446,7 +24207,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 26
+          }
+        ]
+      }
     }
   },
   "evening-run-14790828732": {
@@ -22625,7 +24406,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Brooklyn"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Kings County",
+          "city": "Brooklyn"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Brooklyn",
+            "minutes": 22
+          }
+        ]
+      }
     }
   },
   "weekly-long-14811110138": {
@@ -23357,7 +25158,60 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 14.399999999999785,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Essex County",
+          "city": "West Orange"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "West Orange",
+            "minutes": 54
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "South Orange",
+            "minutes": 35
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Millburn",
+            "minutes": 12
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Maplewood",
+            "minutes": 9
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Montclair",
+            "minutes": 4
+          }
+        ]
+      }
     }
   },
   "interval-tuesday-14833764524": {
@@ -23680,7 +25534,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 46
+          }
+        ]
+      }
     }
   },
   "morning-run-14860117292": {
@@ -23878,7 +25752,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 25
+          }
+        ]
+      }
     }
   },
   "roasted-14876024487": {
@@ -24081,7 +25975,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 26
+          }
+        ]
+      }
     }
   },
   "compare-14882498874": {
@@ -24272,7 +26186,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 24
+          }
+        ]
+      }
     }
   },
   "taco-tuesday-14906534107": {
@@ -24476,7 +26410,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Hoboken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Hoboken",
+            "minutes": 18
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 8
+          }
+        ]
+      }
     }
   },
   "weekly-long-14958779542": {
@@ -25318,7 +27280,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Seattle"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "WA",
+          "state": "Washington",
+          "county": "King County",
+          "city": "Seattle"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "WA",
+            "state": "Washington",
+            "city": "Seattle",
+            "minutes": 105
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "WA",
+            "state": "Washington",
+            "city": "Bainbridge Island",
+            "minutes": 27
+          }
+        ]
+      }
     }
   },
   "zone-2-14974128587": {
@@ -25702,7 +27692,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Seattle"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "WA",
+          "state": "Washington",
+          "county": "King County",
+          "city": "Seattle"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "WA",
+            "state": "Washington",
+            "city": "Seattle",
+            "minutes": 56
+          }
+        ]
+      }
     }
   },
   "lunch-run-14987429942": {
@@ -26117,7 +28127,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Seattle"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "WA",
+          "state": "Washington",
+          "county": "King County",
+          "city": "Seattle"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "WA",
+            "state": "Washington",
+            "city": "Seattle",
+            "minutes": 61
+          }
+        ]
+      }
     }
   },
   "recovery-15041689539": {
@@ -26471,7 +28501,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Seattle"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "WA",
+          "state": "Washington",
+          "county": "King County",
+          "city": "Seattle"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "WA",
+            "state": "Washington",
+            "city": "Seattle",
+            "minutes": 32
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "WA",
+            "state": "Washington",
+            "city": "White Center",
+            "minutes": 19
+          }
+        ]
+      }
     }
   },
   "weekly-long-15064184428": {
@@ -27246,7 +29304,83 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Seattle"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "WA",
+          "state": "Washington",
+          "county": "King County",
+          "city": "Mercer Island"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "WA",
+            "state": "Washington",
+            "city": "Mercer Island",
+            "minutes": 39
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "WA",
+            "state": "Washington",
+            "city": "Clyde Hill",
+            "minutes": 30
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "WA",
+            "state": "Washington",
+            "city": "Yarrow Point",
+            "minutes": 14
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "WA",
+            "state": "Washington",
+            "city": "Columbia City",
+            "minutes": 14
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "WA",
+            "state": "Washington",
+            "city": "Seattle",
+            "minutes": 11
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "WA",
+            "state": "Washington",
+            "city": "Newport",
+            "minutes": 9
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "WA",
+            "state": "Washington",
+            "city": "Medina",
+            "minutes": 2
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "WA",
+            "state": "Washington",
+            "city": "Bellevue",
+            "minutes": 2
+          }
+        ]
+      }
     }
   },
   "interval-tuesday-15128405471": {
@@ -27462,7 +29596,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 28
+          }
+        ]
+      }
     }
   },
   "interval-crisp-tuesday-15197996896": {
@@ -27666,7 +29820,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 26
+          }
+        ]
+      }
     }
   },
   "weekly-kind-of-long-15215679112": {
@@ -27978,7 +30152,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 44
+          }
+        ]
+      }
     }
   },
   "weekly-kind-of-long-15619323922": {
@@ -28168,7 +30362,36 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 26.400000000000006,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Hoboken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Hoboken",
+            "minutes": 19
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Jersey City",
+            "minutes": 5
+          }
+        ]
+      }
     }
   },
   "tempo-15246529531": {
@@ -28366,7 +30589,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Brooklyn"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Kings County",
+          "city": "Brooklyn"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Brooklyn",
+            "minutes": 25
+          }
+        ]
+      }
     }
   },
   "interval-15304042318": {
@@ -28600,7 +30843,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 31
+          }
+        ]
+      }
     }
   },
   "easy-15313533827": {
@@ -28906,7 +31169,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Hoboken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Hoboken",
+            "minutes": 34
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 9
+          }
+        ]
+      }
     }
   },
   "weekly-looong-15320040579": {
@@ -29861,7 +32152,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 151
+          }
+        ]
+      }
     }
   },
   "interval-tuesday-15359534059": {
@@ -30095,7 +32406,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 31
+          }
+        ]
+      }
     }
   },
   "afternoon-run-15370050312": {
@@ -30226,7 +32557,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 14
+          }
+        ]
+      }
     }
   },
   "evening-run-15371476873": {
@@ -30586,7 +32937,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 49
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Brooklyn",
+            "minutes": 3
+          }
+        ]
+      }
     }
   },
   "run-15383211944": {
@@ -30777,7 +33156,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 24
+          }
+        ]
+      }
     }
   },
   "weekly-long-15401664360": {
@@ -31438,7 +33837,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 98
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Fort Lee",
+            "minutes": 4
+          }
+        ]
+      }
     }
   },
   "afternoon-run-15438693660": {
@@ -31865,7 +34292,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": true
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 54
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Hoboken",
+            "minutes": 9
+          }
+        ]
+      }
     }
   },
   "run-15472644965": {
@@ -32430,7 +34885,43 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Queens"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Nassau County",
+          "city": "Atlantic Beach"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Atlantic Beach",
+            "minutes": 39
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 33
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Long Beach",
+            "minutes": 14
+          }
+        ]
+      }
     }
   },
   "interval-tuesday-15518961033": {
@@ -32700,7 +35191,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 37
+          }
+        ]
+      }
     }
   },
   "evening-run-15552270046": {
@@ -33000,7 +35511,67 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Guttenberg"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Guttenberg",
+            "minutes": 13
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Fairview",
+            "minutes": 10
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 9
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "West New York",
+            "minutes": 7
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Union City",
+            "minutes": 2
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "North Bergen",
+            "minutes": 1
+          }
+        ]
+      }
     }
   },
   "weekly-not-very-long-15561794874": {
@@ -33600,7 +36171,52 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 11.454545454545428,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Bergen County",
+          "city": "Alpine"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Alpine",
+            "minutes": 38
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Englewood Cliffs",
+            "minutes": 32
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Yonkers",
+            "minutes": 16
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Tenafly",
+            "minutes": 6
+          }
+        ]
+      }
     }
   },
   "interval-tuesday-15599761130": {
@@ -33804,7 +36420,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 26
+          }
+        ]
+      }
     }
   },
   "afternoon-run-15610329019": {
@@ -34170,7 +36806,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Queens"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 45
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 8
+          }
+        ]
+      }
     }
   },
   "weekly-long-15644788734": {
@@ -34752,7 +37416,68 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 32.07272727272723,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "GB",
+          "country": "United Kingdom",
+          "stateCode": null,
+          "state": "England",
+          "county": null,
+          "city": "City of London"
+        },
+        "split": [
+          {
+            "countryCode": "GB",
+            "country": "United Kingdom",
+            "stateCode": null,
+            "state": "England",
+            "city": "City of London",
+            "minutes": 36
+          },
+          {
+            "countryCode": "GB",
+            "country": "United Kingdom",
+            "stateCode": null,
+            "state": "England",
+            "city": "London",
+            "minutes": 26
+          },
+          {
+            "countryCode": "GB",
+            "country": "United Kingdom",
+            "stateCode": null,
+            "state": "England",
+            "city": "City of Westminster",
+            "minutes": 21
+          },
+          {
+            "countryCode": "GB",
+            "country": "United Kingdom",
+            "stateCode": null,
+            "state": "England",
+            "city": "Holborn",
+            "minutes": 3
+          },
+          {
+            "countryCode": "GB",
+            "country": "United Kingdom",
+            "stateCode": null,
+            "state": "England",
+            "city": "Kennington",
+            "minutes": 2
+          },
+          {
+            "countryCode": "GB",
+            "country": "United Kingdom",
+            "stateCode": null,
+            "state": "England",
+            "city": "Shadwell",
+            "minutes": 1
+          }
+        ]
+      }
     }
   },
   "morning-run-15691069335": {
@@ -35153,7 +37878,44 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 19.800000000000217,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "FR",
+          "country": "France",
+          "stateCode": null,
+          "state": "Île-de-France",
+          "county": null,
+          "city": "Paris 16 Passy"
+        },
+        "split": [
+          {
+            "countryCode": "FR",
+            "country": "France",
+            "stateCode": null,
+            "state": "Île-de-France",
+            "city": "Paris 16 Passy",
+            "minutes": 30
+          },
+          {
+            "countryCode": "FR",
+            "country": "France",
+            "stateCode": null,
+            "state": "Île-de-France",
+            "city": "Paris 08 Élysée",
+            "minutes": 21
+          },
+          {
+            "countryCode": "FR",
+            "country": "France",
+            "stateCode": null,
+            "state": "Île-de-France",
+            "city": "Paris 07 Palais-Bourbon",
+            "minutes": 8
+          }
+        ]
+      }
     }
   },
   "Skoga_Falls": {
@@ -35891,7 +38653,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 11.781818181818181,
         "hasTeleportGap": false
       },
-      "activityType": "trailrun"
+      "activityType": "trailrun",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "IS",
+          "country": "Iceland",
+          "stateCode": null,
+          "state": null,
+          "county": null,
+          "city": null
+        },
+        "split": [
+          {
+            "countryCode": "IS",
+            "country": "Iceland",
+            "stateCode": null,
+            "state": null,
+            "city": null,
+            "minutes": 115
+          }
+        ]
+      }
     }
   },
   "interval-tuesday-15751879664": {
@@ -36077,7 +38860,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 23
+          }
+        ]
+      }
     }
   },
   "evening-run-15769631391": {
@@ -36449,7 +39252,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 54
+          }
+        ]
+      }
     }
   },
   "tempo-15791132536": {
@@ -36671,7 +39494,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 29
+          }
+        ]
+      }
     }
   },
   "night-run-15838162676": {
@@ -36899,7 +39742,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 30
+          }
+        ]
+      }
     }
   },
   "evening-run-15848000761": {
@@ -37127,7 +39990,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Hoboken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Hoboken",
+            "minutes": 18
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 12
+          }
+        ]
+      }
     }
   },
   "interval-thuesday-15860730482": {
@@ -37391,7 +40282,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 36
+          }
+        ]
+      }
     }
   },
   "weekly-long-15891685507": {
@@ -38063,7 +40974,52 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 19.349999999999998,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "PA",
+          "state": "Pennsylvania",
+          "county": "Lebanon County",
+          "city": "Fredericksburg"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "PA",
+            "state": "Pennsylvania",
+            "city": "Fredericksburg",
+            "minutes": 43
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "PA",
+            "state": "Pennsylvania",
+            "city": "Pine Grove",
+            "minutes": 34
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "PA",
+            "state": "Pennsylvania",
+            "city": "Jonestown",
+            "minutes": 25
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "PA",
+            "state": "Pennsylvania",
+            "city": "Tower City",
+            "minutes": 2
+          }
+        ]
+      }
     }
   },
   "evening-run-15916589349": {
@@ -38327,7 +41283,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 36
+          }
+        ]
+      }
     }
   },
   "night-run-15938260568": {
@@ -38567,7 +41543,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 32
+          }
+        ]
+      }
     }
   },
   "shake-out-16033671436": {
@@ -38716,7 +41712,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 17
+          }
+        ]
+      }
     }
   },
   "jc-5k-16041791208": {
@@ -38890,7 +41906,43 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Brooklyn"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Hoboken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Hoboken",
+            "minutes": 12
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Jersey City",
+            "minutes": 5
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "New York City",
+            "minutes": 4
+          }
+        ]
+      }
     }
   },
   "afternoon-run-16079179784": {
@@ -39003,7 +42055,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 11
+          }
+        ]
+      }
     }
   },
   "mp-16143290429": {
@@ -39364,7 +42436,51 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 29
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Guttenberg",
+            "minutes": 13
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "West New York",
+            "minutes": 8
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Union City",
+            "minutes": 2
+          }
+        ]
+      }
     }
   },
   "interval-16164831451": {
@@ -39676,7 +42792,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 44
+          }
+        ]
+      }
     }
   },
   "afternoon-run-16174015038": {
@@ -39903,7 +43039,36 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 20.400000000000002,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Hoboken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Hoboken",
+            "minutes": 26
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 4
+          }
+        ]
+      }
     }
   },
   "Beehive": {
@@ -40141,7 +43306,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 10.8,
         "hasTeleportGap": false
       },
-      "activityType": "trailrun"
+      "activityType": "trailrun",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "ME",
+          "state": "Maine",
+          "county": "Hancock County",
+          "city": "Bar Harbor"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "ME",
+            "state": "Maine",
+            "city": "Bar Harbor",
+            "minutes": 32
+          }
+        ]
+      }
     }
   },
   "Acadia_carriage_roads": {
@@ -41015,7 +44201,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 40.628571428571746,
         "hasTeleportGap": false
       },
-      "activityType": "cycling"
+      "activityType": "cycling",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "ME",
+          "state": "Maine",
+          "county": "Hancock County",
+          "city": "Bar Harbor"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "ME",
+            "state": "Maine",
+            "city": "Bar Harbor",
+            "minutes": 138
+          }
+        ]
+      }
     }
   },
   "long-interval-16227784214": {
@@ -41478,7 +44685,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 69
+          }
+        ]
+      }
     }
   },
   "evening-run-16237295864": {
@@ -41675,7 +44902,43 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 13
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "West New York",
+            "minutes": 9
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Union City",
+            "minutes": 3
+          }
+        ]
+      }
     }
   },
   "weekly-long-16266092522": {
@@ -42348,7 +45611,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Brooklyn"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Jersey City"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Jersey City",
+            "minutes": 60
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "New York City",
+            "minutes": 44
+          }
+        ]
+      }
     }
   },
   "evening-run-16286885478": {
@@ -42569,7 +45860,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 29
+          }
+        ]
+      }
     }
   },
   "evening-run-16298007160": {
@@ -42821,7 +46132,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 34
+          }
+        ]
+      }
     }
   },
   "afternoon-run-16315503706": {
@@ -43061,7 +46392,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 32
+          }
+        ]
+      }
     }
   },
   "afternoon-run-16378056716": {
@@ -43271,7 +46622,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 27
+          }
+        ]
+      }
     }
   },
   "afternoon-run-16398147079": {
@@ -43752,7 +47123,51 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NJ",
+          "state": "New Jersey",
+          "county": "Hudson County",
+          "city": "Weehawken"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Weehawken",
+            "minutes": 46
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Guttenberg",
+            "minutes": 13
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "West New York",
+            "minutes": 10
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Union City",
+            "minutes": 3
+          }
+        ]
+      }
     }
   },
   "afternoon-run-16438391743": {
@@ -44045,7 +47460,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 18.000000000000256,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "PA",
+          "state": "Pennsylvania",
+          "county": "Philadelphia County",
+          "city": "Philadelphia"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "PA",
+            "state": "Pennsylvania",
+            "city": "Philadelphia",
+            "minutes": 41
+          }
+        ]
+      }
     }
   },
   "afternoon-run-16450106167": {
@@ -44579,7 +48015,36 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 16.559999999999775,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "PA",
+          "state": "Pennsylvania",
+          "county": "Philadelphia County",
+          "city": "Philadelphia"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "PA",
+            "state": "Pennsylvania",
+            "city": "Philadelphia",
+            "minutes": 60
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "PA",
+            "state": "Pennsylvania",
+            "city": "Bala Cynwyd",
+            "minutes": 21
+          }
+        ]
+      }
     }
   },
   "afternoon-run-16498641156": {
@@ -44932,7 +48397,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 15.59999999999988,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Dutchess County",
+          "city": "Beacon"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Beacon",
+            "minutes": 51
+          }
+        ]
+      }
     }
   },
   "afternoon-run-16518333870": {
@@ -45310,7 +48796,44 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 14.40000000000024,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Dutchess County",
+          "city": "Beacon"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Beacon",
+            "minutes": 43
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Newburgh",
+            "minutes": 11
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Balmville",
+            "minutes": 1
+          }
+        ]
+      }
     }
   },
   "afternoon-run-16537169088": {
@@ -45875,7 +49398,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 74
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NJ",
+            "state": "New Jersey",
+            "city": "Fort Lee",
+            "minutes": 12
+          }
+        ]
+      }
     }
   },
   "afternoon-run-16555482750": {
@@ -46103,7 +49654,43 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Queens"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Queens County",
+          "city": "Queens"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 23
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 5
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Brooklyn",
+            "minutes": 2
+          }
+        ]
+      }
     }
   },
   "afternoon-run-16575046256": {
@@ -46397,7 +49984,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Queens"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 30
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 11
+          }
+        ]
+      }
     }
   },
   "night-run-16615515418": {
@@ -46570,7 +50185,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Queens"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 15
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 6
+          }
+        ]
+      }
     }
   },
   "night-run-16634907980": {
@@ -46780,7 +50423,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Queens"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 27
+          }
+        ]
+      }
     }
   },
   "i-16651061254": {
@@ -47019,7 +50682,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Queens"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 30
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 2
+          }
+        ]
+      }
     }
   },
   "afternoon-run-16669151216": {
@@ -47440,7 +51131,43 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Brooklyn"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Kings County",
+          "city": "Brooklyn"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Brooklyn",
+            "minutes": 49
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 8
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 5
+          }
+        ]
+      }
     }
   },
   "afternoon-run-16708000039": {
@@ -47704,7 +51431,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Queens"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 26
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 10
+          }
+        ]
+      }
     }
   },
   "afternoon-run-16715634618": {
@@ -47890,7 +51645,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Queens"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Queens County",
+          "city": "Queens"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 14
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 9
+          }
+        ]
+      }
     }
   },
   "evening-run-16726039930": {
@@ -48106,7 +51889,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Queens"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 20
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 8
+          }
+        ]
+      }
     }
   },
   "afternoon-run-16762158023": {
@@ -48328,7 +52139,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Queens"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 22
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 7
+          }
+        ]
+      }
     }
   },
   "i-16779219917": {
@@ -48725,7 +52564,43 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Brooklyn"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Kings County",
+          "city": "Brooklyn"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Brooklyn",
+            "minutes": 48
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 9
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 1
+          }
+        ]
+      }
     }
   },
   "afternoon-run-16788355061": {
@@ -49037,7 +52912,43 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Queens"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Queens County",
+          "city": "Queens"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 27
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 13
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Brooklyn",
+            "minutes": 4
+          }
+        ]
+      }
     }
   },
   "long-16805717036": {
@@ -49728,7 +53639,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Brooklyn"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 79
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Brooklyn",
+            "minutes": 28
+          }
+        ]
+      }
     }
   },
   "night-run-16825538567": {
@@ -49835,7 +53774,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Queens"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 7
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 3
+          }
+        ]
+      }
     }
   },
   "morning-run-16837439050": {
@@ -50226,7 +54193,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 57
+          }
+        ]
+      }
     }
   },
   "morning-run-16845468105": {
@@ -50460,7 +54447,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Mexico City"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "MX",
+          "country": "Mexico",
+          "stateCode": null,
+          "state": "Mexico City",
+          "county": null,
+          "city": "Cuauhtémoc"
+        },
+        "split": [
+          {
+            "countryCode": "MX",
+            "country": "Mexico",
+            "stateCode": null,
+            "state": "Mexico City",
+            "city": "Cuauhtémoc",
+            "minutes": 29
+          },
+          {
+            "countryCode": "MX",
+            "country": "Mexico",
+            "stateCode": null,
+            "state": "Mexico City",
+            "city": "Mexico City",
+            "minutes": 2
+          }
+        ]
+      }
     }
   },
   "morning-run-16885443622": {
@@ -50651,7 +54666,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Mexico City"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "MX",
+          "country": "Mexico",
+          "stateCode": null,
+          "state": "Mexico City",
+          "county": null,
+          "city": "Benito Juarez"
+        },
+        "split": [
+          {
+            "countryCode": "MX",
+            "country": "Mexico",
+            "stateCode": null,
+            "state": "Mexico City",
+            "city": "Benito Juarez",
+            "minutes": 24
+          }
+        ]
+      }
     }
   },
   "afternoon-run-16962283458": {
@@ -50903,7 +54938,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Queens"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 22
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 12
+          }
+        ]
+      }
     }
   },
   "afternoon-run-16983523095": {
@@ -51089,7 +55152,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Queens"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 17
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 6
+          }
+        ]
+      }
     }
   },
   "afternoon-run-16994341185": {
@@ -51510,7 +55601,43 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Queens"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Kings County",
+          "city": "Brooklyn"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Brooklyn",
+            "minutes": 35
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 20
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 7
+          }
+        ]
+      }
     }
   },
   "afternoon-run-17038531172": {
@@ -51750,7 +55877,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Queens"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 24
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 8
+          }
+        ]
+      }
     }
   },
   "afternoon-run-17053170884": {
@@ -52261,7 +56416,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 64
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 13
+          }
+        ]
+      }
     }
   },
   "afternoon-run-17084758502": {
@@ -52477,7 +56660,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Queens"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 21
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 7
+          }
+        ]
+      }
     }
   },
   "afternoon-run-17143602718": {
@@ -52868,7 +57079,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Queens"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Queens County",
+          "city": "Queens"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 47
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 10
+          }
+        ]
+      }
     }
   },
   "afternoon-run-17197139902": {
@@ -53096,7 +57335,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Queens"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 20
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 10
+          }
+        ]
+      }
     }
   },
   "afternoon-run-17220802254": {
@@ -53288,7 +57555,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Queens"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 16
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 8
+          }
+        ]
+      }
     }
   },
   "afternoon-run-17242836090": {
@@ -53877,7 +58172,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 79
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 11
+          }
+        ]
+      }
     }
   },
   "afternoon-run-17275266944": {
@@ -54081,7 +58404,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Queens"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 14
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 12
+          }
+        ]
+      }
     }
   },
   "afternoon-run-17299652019": {
@@ -54339,7 +58690,43 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Queens"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Queens County",
+          "city": "Queens"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 22
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 10
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Brooklyn",
+            "minutes": 3
+          }
+        ]
+      }
     }
   },
   "afternoon-run-17322270905": {
@@ -54537,7 +58924,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Queens"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 21
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 4
+          }
+        ]
+      }
     }
   },
   "afternoon-run-17344738804": {
@@ -54807,7 +59222,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Queens"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 33
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 4
+          }
+        ]
+      }
     }
   },
   "afternoon-run-17356679662": {
@@ -55017,7 +59460,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Queens"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 21
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 6
+          }
+        ]
+      }
     }
   },
   "morning-run-17373716844": {
@@ -55190,7 +59661,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Queens"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 16
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 5
+          }
+        ]
+      }
     }
   },
   "afternoon-run-17389092903": {
@@ -55791,7 +60290,43 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Brooklyn"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 52
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Brooklyn",
+            "minutes": 30
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 10
+          }
+        ]
+      }
     }
   },
   "afternoon-run-17420273770": {
@@ -56030,7 +60565,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 16.199999999999815,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Essex County",
+          "city": "Lake Placid"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Lake Placid",
+            "minutes": 32
+          }
+        ]
+      }
     }
   },
   "t-17453848055": {
@@ -56312,7 +60868,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Queens"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 25
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 14
+          }
+        ]
+      }
     }
   },
   "long-1-17477316478": {
@@ -57142,7 +61726,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Brooklyn"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Kings County",
+          "city": "Brooklyn"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Brooklyn",
+            "minutes": 130
+          }
+        ]
+      }
     }
   },
   "evening-run-17534733796": {
@@ -57309,7 +61913,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Queens"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 20
+          }
+        ]
+      }
     }
   },
   "t-17534211801": {
@@ -57525,7 +62149,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Queens"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Queens County",
+          "city": "Queens"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 18
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 10
+          }
+        ]
+      }
     }
   },
   "long-17559478474": {
@@ -58300,7 +62952,43 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "San Diego"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "CA",
+          "state": "California",
+          "county": "San Diego County",
+          "city": "Encinitas"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "CA",
+            "state": "California",
+            "city": "Encinitas",
+            "minutes": 66
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "CA",
+            "state": "California",
+            "city": "Carlsbad",
+            "minutes": 42
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "CA",
+            "state": "California",
+            "city": "Solana Beach",
+            "minutes": 13
+          }
+        ]
+      }
     }
   },
   "afternoon-run-17571802701": {
@@ -58715,7 +63403,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "San Diego"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "CA",
+          "state": "California",
+          "county": "San Diego County",
+          "city": "San Diego"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "CA",
+            "state": "California",
+            "city": "San Diego",
+            "minutes": 61
+          }
+        ]
+      }
     }
   },
   "evening-run-17583633562": {
@@ -59057,7 +63765,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "San Diego"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "CA",
+          "state": "California",
+          "county": "San Diego County",
+          "city": "Del Mar"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "CA",
+            "state": "California",
+            "city": "Del Mar",
+            "minutes": 49
+          }
+        ]
+      }
     }
   },
   "afternoon-run-17595716432": {
@@ -59448,7 +64176,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "San Diego"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "CA",
+          "state": "California",
+          "county": "San Diego County",
+          "city": "Del Mar"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "CA",
+            "state": "California",
+            "city": "Del Mar",
+            "minutes": 57
+          }
+        ]
+      }
     }
   },
   "afternoon-run-17608442477": {
@@ -59784,7 +64532,43 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "San Diego"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "CA",
+          "state": "California",
+          "county": "San Diego County",
+          "city": "San Diego"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "CA",
+            "state": "California",
+            "city": "San Diego",
+            "minutes": 24
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "CA",
+            "state": "California",
+            "city": "Del Mar",
+            "minutes": 16
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "CA",
+            "state": "California",
+            "city": null,
+            "minutes": 8
+          }
+        ]
+      }
     }
   },
   "morning-run-17627720292": {
@@ -60059,7 +64843,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 15.300000000000313,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "CA",
+          "state": "California",
+          "county": "Riverside County",
+          "city": "Palm Springs"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "CA",
+            "state": "California",
+            "city": "Palm Springs",
+            "minutes": 38
+          }
+        ]
+      }
     }
   },
   "evening-run-17655624188": {
@@ -60359,7 +65164,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "San Diego"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "CA",
+          "state": "California",
+          "county": "San Diego County",
+          "city": "Coronado"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "CA",
+            "state": "California",
+            "city": "Coronado",
+            "minutes": 22
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "CA",
+            "state": "California",
+            "city": "San Diego",
+            "minutes": 20
+          }
+        ]
+      }
     }
   },
   "long-17679611720": {
@@ -61129,7 +65962,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 120
+          }
+        ]
+      }
     }
   },
   "i-17713548999": {
@@ -61429,7 +66282,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Queens"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Kings County",
+          "city": "Brooklyn"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Brooklyn",
+            "minutes": 32
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 10
+          }
+        ]
+      }
     }
   },
   "long-17735532162": {
@@ -62385,7 +67266,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 151
+          }
+        ]
+      }
     }
   },
   "afternoon-run-17760572734": {
@@ -62739,7 +67640,43 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Queens"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Kings County",
+          "city": "Brooklyn"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Brooklyn",
+            "minutes": 40
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 10
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 1
+          }
+        ]
+      }
     }
   },
   "evening-run-17797236470": {
@@ -63123,7 +68060,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Queens"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 43
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 13
+          }
+        ]
+      }
     }
   },
   "long-17822488749": {
@@ -64361,7 +69326,43 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Brooklyn"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Kings County",
+          "city": "Brooklyn"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Brooklyn",
+            "minutes": 173
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 13
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 12
+          }
+        ]
+      }
     }
   },
   "night-run-17872646670": {
@@ -64516,7 +69517,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Queens"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 13
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 5
+          }
+        ]
+      }
     }
   },
   "long-17894509408": {
@@ -65285,7 +70314,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Queens"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 113
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 7
+          }
+        ]
+      }
     }
   },
   "night-run-17933034234": {
@@ -65742,7 +70799,43 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Queens"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Kings County",
+          "city": "Brooklyn"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Brooklyn",
+            "minutes": 45
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 21
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 2
+          }
+        ]
+      }
     }
   },
   "afternoon-run-17966408470": {
@@ -65982,7 +71075,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Queens"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 16
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 16
+          }
+        ]
+      }
     }
   },
   "long-7-17980924738": {
@@ -67112,7 +72233,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 155
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 25
+          }
+        ]
+      }
     }
   },
   "long-8-18072448520": {
@@ -67803,7 +72952,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Manhattan"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 98
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 9
+          }
+        ]
+      }
     }
   },
   "afternoon-run-18111656948": {
@@ -68067,7 +73244,43 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Queens"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Queens County",
+          "city": "Queens"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 24
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 9
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Brooklyn",
+            "minutes": 3
+          }
+        ]
+      }
     }
   },
   "long-9-18164090984": {
@@ -68698,7 +73911,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Brooklyn"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Kings County",
+          "city": "Brooklyn"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Brooklyn",
+            "minutes": 55
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 42
+          }
+        ]
+      }
     }
   },
   "afternoon-run-18204634143": {
@@ -68950,7 +74191,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Queens"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 24
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 10
+          }
+        ]
+      }
     }
   },
   "evening-run-18219590640": {
@@ -69184,7 +74453,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Queens"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 31
+          }
+        ]
+      }
     }
   },
   "afternoon-run-18270486740": {
@@ -69363,7 +74652,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Queens"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 19
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 3
+          }
+        ]
+      }
     }
   },
   "morning-run-18336532280": {
@@ -69536,7 +74853,35 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Vancouver"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "CA",
+          "country": "Canada",
+          "stateCode": null,
+          "state": "British Columbia",
+          "county": null,
+          "city": "Vancouver"
+        },
+        "split": [
+          {
+            "countryCode": "CA",
+            "country": "Canada",
+            "stateCode": null,
+            "state": "British Columbia",
+            "city": "Vancouver",
+            "minutes": 16
+          },
+          {
+            "countryCode": "CA",
+            "country": "Canada",
+            "stateCode": null,
+            "state": "British Columbia",
+            "city": "North Vancouver",
+            "minutes": 5
+          }
+        ]
+      }
     }
   },
   "morning-run-18364602479": {
@@ -70985,7 +76330,59 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Vancouver"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "CA",
+          "country": "Canada",
+          "stateCode": null,
+          "state": "British Columbia",
+          "county": null,
+          "city": "Greektown"
+        },
+        "split": [
+          {
+            "countryCode": "CA",
+            "country": "Canada",
+            "stateCode": null,
+            "state": "British Columbia",
+            "city": "Greektown",
+            "minutes": 143
+          },
+          {
+            "countryCode": "CA",
+            "country": "Canada",
+            "stateCode": null,
+            "state": "British Columbia",
+            "city": "Vancouver",
+            "minutes": 35
+          },
+          {
+            "countryCode": "CA",
+            "country": "Canada",
+            "stateCode": null,
+            "state": "British Columbia",
+            "city": "West Vancouver",
+            "minutes": 35
+          },
+          {
+            "countryCode": "CA",
+            "country": "Canada",
+            "stateCode": null,
+            "state": "British Columbia",
+            "city": "Pemberton Heights",
+            "minutes": 18
+          },
+          {
+            "countryCode": "CA",
+            "country": "Canada",
+            "stateCode": null,
+            "state": "British Columbia",
+            "city": "Riley Park",
+            "minutes": 2
+          }
+        ]
+      }
     }
   },
   "afternoon-run-18391236895": {
@@ -71158,7 +76555,27 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "hasTeleportGap": false
       },
       "activityType": "running",
-      "city": "Vancouver"
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "CA",
+          "country": "Canada",
+          "stateCode": null,
+          "state": "British Columbia",
+          "county": null,
+          "city": "River Springs"
+        },
+        "split": [
+          {
+            "countryCode": "CA",
+            "country": "Canada",
+            "stateCode": null,
+            "state": "British Columbia",
+            "city": "River Springs",
+            "minutes": 21
+          }
+        ]
+      }
     }
   },
   "lunch-run-18444210432": {
@@ -71414,7 +76831,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 12.239999999999931,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "CA",
+          "country": "Canada",
+          "stateCode": null,
+          "state": null,
+          "county": null,
+          "city": null
+        },
+        "split": [
+          {
+            "countryCode": "CA",
+            "country": "Canada",
+            "stateCode": null,
+            "state": null,
+            "city": null,
+            "minutes": 35
+          }
+        ]
+      }
     }
   },
   "morning-run-18532839389": {
@@ -71683,7 +77121,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 14.400000000000013,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "CA",
+          "country": "Canada",
+          "stateCode": null,
+          "state": "British Columbia",
+          "county": null,
+          "city": "Squamish"
+        },
+        "split": [
+          {
+            "countryCode": "CA",
+            "country": "Canada",
+            "stateCode": null,
+            "state": "British Columbia",
+            "city": "Squamish",
+            "minutes": 37
+          }
+        ]
+      }
     }
   },
   "afternoon-run-18576249897": {
@@ -72078,7 +77537,44 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 16.45714285714287,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "CA",
+          "country": "Canada",
+          "stateCode": null,
+          "state": "British Columbia",
+          "county": null,
+          "city": "River Springs"
+        },
+        "split": [
+          {
+            "countryCode": "CA",
+            "country": "Canada",
+            "stateCode": null,
+            "state": "British Columbia",
+            "city": "River Springs",
+            "minutes": 27
+          },
+          {
+            "countryCode": "CA",
+            "country": "Canada",
+            "stateCode": null,
+            "state": "British Columbia",
+            "city": "Coquitlam",
+            "minutes": 20
+          },
+          {
+            "countryCode": "CA",
+            "country": "Canada",
+            "stateCode": null,
+            "state": "British Columbia",
+            "city": "Port Coquitlam",
+            "minutes": 11
+          }
+        ]
+      }
     }
   },
   "morning-run-18615816075": {
@@ -72127,7 +77623,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 21.60000000000002,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "JP",
+          "country": "Japan",
+          "stateCode": null,
+          "state": "Tokyo",
+          "county": null,
+          "city": "Kanda-jinbōchō"
+        },
+        "split": [
+          {
+            "countryCode": "JP",
+            "country": "Japan",
+            "stateCode": null,
+            "state": "Tokyo",
+            "city": "Kanda-jinbōchō",
+            "minutes": 1
+          }
+        ]
+      }
     }
   },
   "morning-run-18667903277": {
@@ -72679,7 +78196,36 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 12.959999999999972,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "JP",
+          "country": "Japan",
+          "stateCode": null,
+          "state": "Yamanashi",
+          "county": null,
+          "city": "Fuji-yoshida"
+        },
+        "split": [
+          {
+            "countryCode": "JP",
+            "country": "Japan",
+            "stateCode": null,
+            "state": "Yamanashi",
+            "city": "Fuji-yoshida",
+            "minutes": 66
+          },
+          {
+            "countryCode": "JP",
+            "country": "Japan",
+            "stateCode": null,
+            "state": "Yamanashi",
+            "city": "Narusawa",
+            "minutes": 18
+          }
+        ]
+      }
     }
   },
   "lunch-run-18817992510": {
@@ -72912,7 +78458,36 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 16.200000000000216,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "KR",
+          "country": "South Korea",
+          "stateCode": null,
+          "state": "Seoul",
+          "county": null,
+          "city": "Yongsan-dong"
+        },
+        "split": [
+          {
+            "countryCode": "KR",
+            "country": "South Korea",
+            "stateCode": null,
+            "state": "Seoul",
+            "city": "Yongsan-dong",
+            "minutes": 21
+          },
+          {
+            "countryCode": "KR",
+            "country": "South Korea",
+            "stateCode": null,
+            "state": "Seoul",
+            "city": "Seoul",
+            "minutes": 10
+          }
+        ]
+      }
     }
   },
   "morning-run-18836398708": {
@@ -73139,7 +78714,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 15.59999999999988,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "CA",
+          "country": "Canada",
+          "stateCode": null,
+          "state": "British Columbia",
+          "county": null,
+          "city": "River Springs"
+        },
+        "split": [
+          {
+            "countryCode": "CA",
+            "country": "Canada",
+            "stateCode": null,
+            "state": "British Columbia",
+            "city": "River Springs",
+            "minutes": 30
+          }
+        ]
+      }
     }
   },
   "night-run-18860162327": {
@@ -73190,7 +78786,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 25.200000000000024,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "CA",
+          "country": "Canada",
+          "stateCode": null,
+          "state": "British Columbia",
+          "county": null,
+          "city": "Coquitlam"
+        },
+        "split": [
+          {
+            "countryCode": "CA",
+            "country": "Canada",
+            "stateCode": null,
+            "state": "British Columbia",
+            "city": "Coquitlam",
+            "minutes": 1
+          }
+        ]
+      }
     }
   },
   "night-run-18873887888": {
@@ -73453,7 +79070,36 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 13.680000000000092,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "CA",
+          "country": "Canada",
+          "stateCode": null,
+          "state": "British Columbia",
+          "county": null,
+          "city": "Greektown"
+        },
+        "split": [
+          {
+            "countryCode": "CA",
+            "country": "Canada",
+            "stateCode": null,
+            "state": "British Columbia",
+            "city": "Greektown",
+            "minutes": 23
+          },
+          {
+            "countryCode": "CA",
+            "country": "Canada",
+            "stateCode": null,
+            "state": "British Columbia",
+            "city": "Vancouver",
+            "minutes": 13
+          }
+        ]
+      }
     }
   },
   "evening-run-18953068204": {
@@ -73698,7 +79344,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 18.000000000000416,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "CA",
+          "country": "Canada",
+          "stateCode": null,
+          "state": "British Columbia",
+          "county": null,
+          "city": "Kamloops"
+        },
+        "split": [
+          {
+            "countryCode": "CA",
+            "country": "Canada",
+            "stateCode": null,
+            "state": "British Columbia",
+            "city": "Kamloops",
+            "minutes": 33
+          }
+        ]
+      }
     }
   },
   "morning-run-18999110126": {
@@ -73931,7 +79598,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 22.800000000000153,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "CA",
+          "country": "Canada",
+          "stateCode": null,
+          "state": "Alberta",
+          "county": null,
+          "city": "Canmore"
+        },
+        "split": [
+          {
+            "countryCode": "CA",
+            "country": "Canada",
+            "stateCode": null,
+            "state": "Alberta",
+            "city": "Canmore",
+            "minutes": 31
+          }
+        ]
+      }
     }
   },
   "evening-run-19067597240": {
@@ -74357,7 +80045,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 16.650000000000365,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 63
+          }
+        ]
+      }
     }
   },
   "night-run-20136253555": {
@@ -74535,7 +80244,36 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 13.500000000000112,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Queens County",
+          "city": "Queens"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 17
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 5
+          }
+        ]
+      }
     }
   },
   "night-run-19117989192": {
@@ -74786,7 +80524,44 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 12.600000000000211,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Queens County",
+          "city": "Queens"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 24
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 9
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Brooklyn",
+            "minutes": 1
+          }
+        ]
+      }
     }
   },
   "evening-run-19195845269": {
@@ -74976,7 +80751,36 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 15.59999999999988,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 19
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 5
+          }
+        ]
+      }
     }
   },
   "evening-run-19301596737": {
@@ -75407,7 +81211,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 21.15000000000007,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 64
+          }
+        ]
+      }
     }
   },
   "lunch-run-19434551341": {
@@ -75627,7 +81452,36 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 14.400000000000013,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 25
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 4
+          }
+        ]
+      }
     }
   },
   "evening-run-19508236753": {
@@ -75745,7 +81599,36 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 10.80000000000041,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Queens County",
+          "city": "Queens"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 8
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 4
+          }
+        ]
+      }
     }
   },
   "lunch-run-19531311260": {
@@ -75966,7 +81849,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 15.299999999999914,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 29
+          }
+        ]
+      }
     }
   },
   "evening-run-19557531547": {
@@ -76066,7 +81970,36 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 18.000000000000014,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 6
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 3
+          }
+        ]
+      }
     }
   },
   "morning-run-19557531784": {
@@ -76341,7 +82274,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 18,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 38
+          }
+        ]
+      }
     }
   },
   "evening-run-19605763283": {
@@ -76652,7 +82606,36 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 14.400000000000013,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Queens County",
+          "city": "Queens"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 26
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 18
+          }
+        ]
+      }
     }
   },
   "evening-run-19634198516": {
@@ -76818,7 +82801,36 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 14.400000000000013,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 15
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Queens",
+            "minutes": 5
+          }
+        ]
+      }
     }
   },
   "afternoon-run-19823047602": {
@@ -77249,7 +83261,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 12.857142857143039,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "DK",
+          "country": "Denmark",
+          "stateCode": null,
+          "state": "Capital Region",
+          "county": null,
+          "city": "Copenhagen"
+        },
+        "split": [
+          {
+            "countryCode": "DK",
+            "country": "Denmark",
+            "stateCode": null,
+            "state": "Capital Region",
+            "city": "Copenhagen",
+            "minutes": 64
+          }
+        ]
+      }
     }
   },
   "morning-run-19904347579": {
@@ -77530,7 +83563,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 15.120000000000015,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "DE",
+          "country": "Germany",
+          "stateCode": null,
+          "state": "Saxony",
+          "county": null,
+          "city": "Dresden"
+        },
+        "split": [
+          {
+            "countryCode": "DE",
+            "country": "Germany",
+            "stateCode": null,
+            "state": "Saxony",
+            "city": "Dresden",
+            "minutes": 39
+          }
+        ]
+      }
     }
   },
   "morning-run-19945351237": {
@@ -77611,7 +83665,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 21.6,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "UA",
+          "country": "Ukraine",
+          "stateCode": null,
+          "state": "Kyiv City",
+          "county": null,
+          "city": "Kyiv"
+        },
+        "split": [
+          {
+            "countryCode": "UA",
+            "country": "Ukraine",
+            "stateCode": null,
+            "state": "Kyiv City",
+            "city": "Kyiv",
+            "minutes": 6
+          }
+        ]
+      }
     }
   },
   "evening-run-19979721009": {
@@ -77838,7 +83913,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 16.200000000000014,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "PL",
+          "country": "Poland",
+          "stateCode": null,
+          "state": "Lesser Poland",
+          "county": null,
+          "city": "Kraków"
+        },
+        "split": [
+          {
+            "countryCode": "PL",
+            "country": "Poland",
+            "stateCode": null,
+            "state": "Lesser Poland",
+            "city": "Kraków",
+            "minutes": 30
+          }
+        ]
+      }
     }
   },
   "evening-run-19993993549": {
@@ -78071,7 +84167,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 15.300000000000313,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "PL",
+          "country": "Poland",
+          "stateCode": null,
+          "state": "Lesser Poland",
+          "county": null,
+          "city": "Kraków"
+        },
+        "split": [
+          {
+            "countryCode": "PL",
+            "country": "Poland",
+            "stateCode": null,
+            "state": "Lesser Poland",
+            "city": "Kraków",
+            "minutes": 31
+          }
+        ]
+      }
     }
   },
   "evening-run-20023572991": {
@@ -78352,7 +84469,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 12.600000000000001,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "PL",
+          "country": "Poland",
+          "stateCode": null,
+          "state": "Lesser Poland",
+          "county": null,
+          "city": "Kraków"
+        },
+        "split": [
+          {
+            "countryCode": "PL",
+            "country": "Poland",
+            "stateCode": null,
+            "state": "Lesser Poland",
+            "city": "Kraków",
+            "minutes": 39
+          }
+        ]
+      }
     }
   },
   "morning-run-20042727362": {
@@ -78621,7 +84759,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 19.799999999999418,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "SE",
+          "country": "Sweden",
+          "stateCode": null,
+          "state": "Stockholm",
+          "county": null,
+          "city": "Stockholm"
+        },
+        "split": [
+          {
+            "countryCode": "SE",
+            "country": "Sweden",
+            "stateCode": null,
+            "state": "Stockholm",
+            "city": "Stockholm",
+            "minutes": 37
+          }
+        ]
+      }
     }
   },
   "morning-run-20056211881": {
@@ -78872,7 +85031,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 14.400000000000013,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "SE",
+          "country": "Sweden",
+          "stateCode": null,
+          "state": "Stockholm",
+          "county": null,
+          "city": "Stockholm"
+        },
+        "split": [
+          {
+            "countryCode": "SE",
+            "country": "Sweden",
+            "stateCode": null,
+            "state": "Stockholm",
+            "city": "Stockholm",
+            "minutes": 34
+          }
+        ]
+      }
     }
   },
   "morning-run-20086661990": {
@@ -79032,7 +85212,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 16.200000000000014,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "SE",
+          "country": "Sweden",
+          "stateCode": null,
+          "state": "Stockholm",
+          "county": null,
+          "city": "Märsta"
+        },
+        "split": [
+          {
+            "countryCode": "SE",
+            "country": "Sweden",
+            "stateCode": null,
+            "state": "Stockholm",
+            "city": "Märsta",
+            "minutes": 19
+          }
+        ]
+      }
     }
   },
   "morning-run-20086662333": {
@@ -79259,7 +85460,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 16.199999999999815,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Kings County",
+          "city": "Brooklyn"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Brooklyn",
+            "minutes": 30
+          }
+        ]
+      }
     }
   },
   "morning-run-20103226187": {
@@ -79546,7 +85768,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 12.959999999999852,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Kings County",
+          "city": "Brooklyn"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Brooklyn",
+            "minutes": 40
+          }
+        ]
+      }
     }
   },
   "evening-run-20137163494": {
@@ -79863,7 +86106,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 15.120000000000251,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Kings County",
+          "city": "Brooklyn"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Brooklyn",
+            "minutes": 45
+          }
+        ]
+      }
     }
   },
   "evening-run-20151062912": {
@@ -80463,7 +86727,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 12.763636363636357,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Kings County",
+          "city": "Brooklyn"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Brooklyn",
+            "minutes": 92
+          }
+        ]
+      }
     }
   },
   "morning-run-20185238935": {
@@ -80738,7 +87023,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 14.400000000000013,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Kings County",
+          "city": "Brooklyn"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Brooklyn",
+            "minutes": 38
+          }
+        ]
+      }
     }
   },
   "afternoon-run-20207378240": {
@@ -81482,7 +87788,36 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 18.514285714285734,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "New York County",
+          "city": "Manhattan"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Manhattan",
+            "minutes": 89
+          },
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Brooklyn",
+            "minutes": 27
+          }
+        ]
+      }
     }
   },
   "morning-run-20243151577": {
@@ -82353,7 +88688,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 15.524999999999789,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Bronx County",
+          "city": "Bronx"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Bronx",
+            "minutes": 137
+          }
+        ]
+      }
     }
   },
   "evening-run-20274460707": {
@@ -82682,7 +89038,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 12.24000000000009,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Kings County",
+          "city": "Brooklyn"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Brooklyn",
+            "minutes": 47
+          }
+        ]
+      }
     }
   },
   "afternoon-run-20303226660": {
@@ -83011,7 +89388,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 13.800000000000079,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Kings County",
+          "city": "Brooklyn"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Brooklyn",
+            "minutes": 47
+          }
+        ]
+      }
     }
   },
   "evening-run-20371250697": {
@@ -83358,7 +89756,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 11.400000000000002,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Kings County",
+          "city": "Brooklyn"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Brooklyn",
+            "minutes": 50
+          }
+        ]
+      }
     }
   },
   "morning-run-20407838847": {
@@ -83621,7 +90040,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 11.52000000000001,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Kings County",
+          "city": "Brooklyn"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Brooklyn",
+            "minutes": 36
+          }
+        ]
+      }
     }
   },
   "afternoon-run-20466904700": {
@@ -84209,7 +90649,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 12.109090909090593,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Kings County",
+          "city": "Brooklyn"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Brooklyn",
+            "minutes": 90
+          }
+        ]
+      }
     }
   },
   "evening-run-20495588181": {
@@ -84472,7 +90933,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 16.199999999999815,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Kings County",
+          "city": "Brooklyn"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Brooklyn",
+            "minutes": 36
+          }
+        ]
+      }
     }
   },
   "afternoon-run-20533791305": {
@@ -84789,7 +91271,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 14.399999999999931,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "MA",
+          "state": "Massachusetts",
+          "county": "Berkshire County",
+          "city": "Williamstown"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "MA",
+            "state": "Massachusetts",
+            "city": "Williamstown",
+            "minutes": 45
+          }
+        ]
+      }
     }
   },
   "afternoon-run-20560653206": {
@@ -85112,7 +91615,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 14.400000000000013,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Kings County",
+          "city": "Brooklyn"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Brooklyn",
+            "minutes": 46
+          }
+        ]
+      }
     }
   },
   "night-run-20603950630": {
@@ -85477,7 +92001,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 11.314285714285695,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Kings County",
+          "city": "Brooklyn"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Brooklyn",
+            "minutes": 53
+          }
+        ]
+      }
     }
   },
   "afternoon-run-20613881852": {
@@ -85746,7 +92291,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 11.69999999999991,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Kings County",
+          "city": "Brooklyn"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Brooklyn",
+            "minutes": 37
+          }
+        ]
+      }
     }
   },
   "afternoon-run-20641395337": {
@@ -86580,7 +93146,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 15.525000000000189,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Kings County",
+          "city": "Brooklyn"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Brooklyn",
+            "minutes": 131
+          }
+        ]
+      }
     }
   },
   "afternoon-run-20667351112": {
@@ -86867,7 +93454,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 16.560000000000414,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Kings County",
+          "city": "Brooklyn"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Brooklyn",
+            "minutes": 40
+          }
+        ]
+      }
     }
   },
   "afternoon-run-20691369266": {
@@ -87118,7 +93726,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 18.000000000000014,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Kings County",
+          "city": "Brooklyn"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Brooklyn",
+            "minutes": 34
+          }
+        ]
+      }
     }
   },
   "afternoon-run-20717614123": {
@@ -87399,7 +94028,28 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         "maxSegmentKph": 13.500000000000012,
         "hasTeleportGap": false
       },
-      "activityType": "running"
+      "activityType": "running",
+      "geo": {
+        "status": "fallback",
+        "label": {
+          "countryCode": "US",
+          "country": "United States of America",
+          "stateCode": "CT",
+          "state": "Connecticut",
+          "county": "New Haven County",
+          "city": "New Haven"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States of America",
+            "stateCode": "CT",
+            "state": "Connecticut",
+            "city": "New Haven",
+            "minutes": 39
+          }
+        ]
+      }
     }
   }
 };

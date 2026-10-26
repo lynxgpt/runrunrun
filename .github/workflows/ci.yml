@@ -16,6 +16,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -25,6 +27,11 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Place-label changes
+        # Relabels change the owner's history; list them on every PR.
+        if: github.event_name == 'pull_request'
+        run: node scripts/geo-diff.mjs origin/${{ github.base_ref }} >> "$GITHUB_STEP_SUMMARY"
 
       - name: Processed GPX data is up to date
         # The deploy builds from the committed outputs without reprocessing.

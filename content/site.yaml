@@ -17,6 +17,11 @@ header:
 foreword:
   - "This is my running log. Although at this moment I still haven't figured out the point of running, I have already gone quite far..."
 
+# ── WHERE I RAN ───────────────────────────────────────────────────────────────
+# Note shown under the geography table when some runs could not be placed.
+geography:
+  unknownNote: "Unknown — runs with no usable GPS trace, so there was nothing to look up. Every other run is placed by looking up where it was, once per minute of moving time, in OpenStreetMap."
+
 # ── FOOTER ────────────────────────────────────────────────────────────────────
 # Lines shown at the bottom of the page.
 # Supports: any number of lines. Each line has:
@@ -29,3 +34,9 @@ footer:
   - text: "Map imagery: "
     linkText: "Powered by Esri"
     url: "https://www.esri.com/"
+  - text: "Place names: "
+    linkText: "© OpenStreetMap contributors"
+    url: "https://www.openstreetmap.org/copyright"
+  - text: "Offline place names: "
+    linkText: "GeoNames (CC BY 4.0)"
+    url: "https://www.geonames.org/"

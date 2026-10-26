@@ -1,0 +1,7208 @@
+{
+ "2-13857266913": {
+  "status": "fallback",
+  "samples": 36,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 35
+   }
+  ]
+ },
+ "2-15324609383": {
+  "status": "fallback",
+  "samples": 34,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Hoboken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Hoboken",
+    "minutes": 26
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 4
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "New York City",
+    "minutes": 3
+   }
+  ]
+ },
+ "3-13576826295": {
+  "status": "fallback",
+  "samples": 181,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 91
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Fort Lee",
+    "minutes": 18
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 17
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Edgewater",
+    "minutes": 16
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Guttenberg",
+    "minutes": 15
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Fairview",
+    "minutes": 9
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Cliffside Park",
+    "minutes": 7
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "West New York",
+    "minutes": 6
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Union City",
+    "minutes": 1
+   }
+  ]
+ },
+ "Acadia_carriage_roads": {
+  "status": "fallback",
+  "samples": 139,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "ME",
+   "state": "Maine",
+   "county": "Hancock County",
+   "city": "Bar Harbor"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "ME",
+    "state": "Maine",
+    "city": "Bar Harbor",
+    "minutes": 138
+   }
+  ]
+ },
+ "Beehive": {
+  "status": "fallback",
+  "samples": 33,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "ME",
+   "state": "Maine",
+   "county": "Hancock County",
+   "city": "Bar Harbor"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "ME",
+    "state": "Maine",
+    "city": "Bar Harbor",
+    "minutes": 32
+   }
+  ]
+ },
+ "Skoga_Falls": {
+  "status": "fallback",
+  "samples": 116,
+  "label": {
+   "countryCode": "IS",
+   "country": "Iceland",
+   "stateCode": null,
+   "state": null,
+   "county": null,
+   "city": null
+  },
+  "split": [
+   {
+    "countryCode": "IS",
+    "country": "Iceland",
+    "stateCode": null,
+    "state": null,
+    "city": null,
+    "minutes": 115
+   }
+  ]
+ },
+ "afternoon-run-14737183589": {
+  "status": "fallback",
+  "samples": 29,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 28
+   }
+  ]
+ },
+ "afternoon-run-14737228449": {
+  "status": "fallback",
+  "samples": 43,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 42
+   }
+  ]
+ },
+ "afternoon-run-15370050312": {
+  "status": "fallback",
+  "samples": 15,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 14
+   }
+  ]
+ },
+ "afternoon-run-15438693660": {
+  "status": "fallback",
+  "samples": 64,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 54
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Hoboken",
+    "minutes": 9
+   }
+  ]
+ },
+ "afternoon-run-15610329019": {
+  "status": "fallback",
+  "samples": 54,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 45
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 8
+   }
+  ]
+ },
+ "afternoon-run-16079179784": {
+  "status": "fallback",
+  "samples": 12,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 11
+   }
+  ]
+ },
+ "afternoon-run-16174015038": {
+  "status": "fallback",
+  "samples": 31,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Hoboken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Hoboken",
+    "minutes": 26
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 4
+   }
+  ]
+ },
+ "afternoon-run-16315503706": {
+  "status": "fallback",
+  "samples": 33,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 32
+   }
+  ]
+ },
+ "afternoon-run-16378056716": {
+  "status": "fallback",
+  "samples": 28,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 27
+   }
+  ]
+ },
+ "afternoon-run-16398147079": {
+  "status": "fallback",
+  "samples": 73,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 46
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Guttenberg",
+    "minutes": 13
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "West New York",
+    "minutes": 10
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Union City",
+    "minutes": 3
+   }
+  ]
+ },
+ "afternoon-run-16438391743": {
+  "status": "fallback",
+  "samples": 42,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "PA",
+   "state": "Pennsylvania",
+   "county": "Philadelphia County",
+   "city": "Philadelphia"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "PA",
+    "state": "Pennsylvania",
+    "city": "Philadelphia",
+    "minutes": 41
+   }
+  ]
+ },
+ "afternoon-run-16450106167": {
+  "status": "fallback",
+  "samples": 82,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "PA",
+   "state": "Pennsylvania",
+   "county": "Philadelphia County",
+   "city": "Philadelphia"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "PA",
+    "state": "Pennsylvania",
+    "city": "Philadelphia",
+    "minutes": 60
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "PA",
+    "state": "Pennsylvania",
+    "city": "Bala Cynwyd",
+    "minutes": 21
+   }
+  ]
+ },
+ "afternoon-run-16498641156": {
+  "status": "fallback",
+  "samples": 52,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Dutchess County",
+   "city": "Beacon"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Beacon",
+    "minutes": 51
+   }
+  ]
+ },
+ "afternoon-run-16518333870": {
+  "status": "fallback",
+  "samples": 56,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Dutchess County",
+   "city": "Beacon"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Beacon",
+    "minutes": 43
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Newburgh",
+    "minutes": 11
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Balmville",
+    "minutes": 1
+   }
+  ]
+ },
+ "afternoon-run-16537169088": {
+  "status": "fallback",
+  "samples": 87,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 74
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Fort Lee",
+    "minutes": 12
+   }
+  ]
+ },
+ "afternoon-run-16555482750": {
+  "status": "fallback",
+  "samples": 31,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Queens County",
+   "city": "Queens"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 23
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 5
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Brooklyn",
+    "minutes": 2
+   }
+  ]
+ },
+ "afternoon-run-16575046256": {
+  "status": "fallback",
+  "samples": 42,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 30
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 11
+   }
+  ]
+ },
+ "afternoon-run-16669151216": {
+  "status": "fallback",
+  "samples": 63,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Kings County",
+   "city": "Brooklyn"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Brooklyn",
+    "minutes": 49
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 8
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 5
+   }
+  ]
+ },
+ "afternoon-run-16708000039": {
+  "status": "fallback",
+  "samples": 37,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 26
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 10
+   }
+  ]
+ },
+ "afternoon-run-16715634618": {
+  "status": "fallback",
+  "samples": 24,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Queens County",
+   "city": "Queens"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 14
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 9
+   }
+  ]
+ },
+ "afternoon-run-16762158023": {
+  "status": "fallback",
+  "samples": 30,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 22
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 7
+   }
+  ]
+ },
+ "afternoon-run-16788355061": {
+  "status": "fallback",
+  "samples": 45,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Queens County",
+   "city": "Queens"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 27
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 13
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Brooklyn",
+    "minutes": 4
+   }
+  ]
+ },
+ "afternoon-run-16962283458": {
+  "status": "fallback",
+  "samples": 35,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 22
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 12
+   }
+  ]
+ },
+ "afternoon-run-16983523095": {
+  "status": "fallback",
+  "samples": 24,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 17
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 6
+   }
+  ]
+ },
+ "afternoon-run-16994341185": {
+  "status": "fallback",
+  "samples": 63,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Kings County",
+   "city": "Brooklyn"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Brooklyn",
+    "minutes": 35
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 20
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 7
+   }
+  ]
+ },
+ "afternoon-run-17038531172": {
+  "status": "fallback",
+  "samples": 33,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 24
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 8
+   }
+  ]
+ },
+ "afternoon-run-17053170884": {
+  "status": "fallback",
+  "samples": 78,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 64
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 13
+   }
+  ]
+ },
+ "afternoon-run-17084758502": {
+  "status": "fallback",
+  "samples": 29,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 21
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 7
+   }
+  ]
+ },
+ "afternoon-run-17143602718": {
+  "status": "fallback",
+  "samples": 58,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Queens County",
+   "city": "Queens"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 47
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 10
+   }
+  ]
+ },
+ "afternoon-run-17197139902": {
+  "status": "fallback",
+  "samples": 31,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 20
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 10
+   }
+  ]
+ },
+ "afternoon-run-17220802254": {
+  "status": "fallback",
+  "samples": 25,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 16
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 8
+   }
+  ]
+ },
+ "afternoon-run-17242836090": {
+  "status": "fallback",
+  "samples": 91,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 79
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 11
+   }
+  ]
+ },
+ "afternoon-run-17275266944": {
+  "status": "fallback",
+  "samples": 27,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 14
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 12
+   }
+  ]
+ },
+ "afternoon-run-17299652019": {
+  "status": "fallback",
+  "samples": 36,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Queens County",
+   "city": "Queens"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 22
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 10
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Brooklyn",
+    "minutes": 3
+   }
+  ]
+ },
+ "afternoon-run-17322270905": {
+  "status": "fallback",
+  "samples": 26,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 21
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 4
+   }
+  ]
+ },
+ "afternoon-run-17344738804": {
+  "status": "fallback",
+  "samples": 38,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 33
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 4
+   }
+  ]
+ },
+ "afternoon-run-17356679662": {
+  "status": "fallback",
+  "samples": 28,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 21
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 6
+   }
+  ]
+ },
+ "afternoon-run-17389092903": {
+  "status": "fallback",
+  "samples": 93,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 52
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Brooklyn",
+    "minutes": 30
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 10
+   }
+  ]
+ },
+ "afternoon-run-17420273770": {
+  "status": "fallback",
+  "samples": 33,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Essex County",
+   "city": "Lake Placid"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Lake Placid",
+    "minutes": 32
+   }
+  ]
+ },
+ "afternoon-run-17571802701": {
+  "status": "fallback",
+  "samples": 62,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "CA",
+   "state": "California",
+   "county": "San Diego County",
+   "city": "San Diego"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "CA",
+    "state": "California",
+    "city": "San Diego",
+    "minutes": 61
+   }
+  ]
+ },
+ "afternoon-run-17595716432": {
+  "status": "fallback",
+  "samples": 58,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "CA",
+   "state": "California",
+   "county": "San Diego County",
+   "city": "Del Mar"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "CA",
+    "state": "California",
+    "city": "Del Mar",
+    "minutes": 57
+   }
+  ]
+ },
+ "afternoon-run-17608442477": {
+  "status": "fallback",
+  "samples": 49,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "CA",
+   "state": "California",
+   "county": "San Diego County",
+   "city": "San Diego"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "CA",
+    "state": "California",
+    "city": "San Diego",
+    "minutes": 24
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "CA",
+    "state": "California",
+    "city": "Del Mar",
+    "minutes": 16
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "CA",
+    "state": "California",
+    "city": null,
+    "minutes": 8
+   }
+  ]
+ },
+ "afternoon-run-17760572734": {
+  "status": "fallback",
+  "samples": 52,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Kings County",
+   "city": "Brooklyn"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Brooklyn",
+    "minutes": 40
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 10
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 1
+   }
+  ]
+ },
+ "afternoon-run-17966408470": {
+  "status": "fallback",
+  "samples": 33,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 16
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 16
+   }
+  ]
+ },
+ "afternoon-run-18111656948": {
+  "status": "fallback",
+  "samples": 37,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Queens County",
+   "city": "Queens"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 24
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 9
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Brooklyn",
+    "minutes": 3
+   }
+  ]
+ },
+ "afternoon-run-18204634143": {
+  "status": "fallback",
+  "samples": 35,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 24
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 10
+   }
+  ]
+ },
+ "afternoon-run-18270486740": {
+  "status": "fallback",
+  "samples": 23,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 19
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 3
+   }
+  ]
+ },
+ "afternoon-run-18391236895": {
+  "status": "fallback",
+  "samples": 22,
+  "label": {
+   "countryCode": "CA",
+   "country": "Canada",
+   "stateCode": null,
+   "state": "British Columbia",
+   "county": null,
+   "city": "River Springs"
+  },
+  "split": [
+   {
+    "countryCode": "CA",
+    "country": "Canada",
+    "stateCode": null,
+    "state": "British Columbia",
+    "city": "River Springs",
+    "minutes": 21
+   }
+  ]
+ },
+ "afternoon-run-18576249897": {
+  "status": "fallback",
+  "samples": 59,
+  "label": {
+   "countryCode": "CA",
+   "country": "Canada",
+   "stateCode": null,
+   "state": "British Columbia",
+   "county": null,
+   "city": "River Springs"
+  },
+  "split": [
+   {
+    "countryCode": "CA",
+    "country": "Canada",
+    "stateCode": null,
+    "state": "British Columbia",
+    "city": "River Springs",
+    "minutes": 27
+   },
+   {
+    "countryCode": "CA",
+    "country": "Canada",
+    "stateCode": null,
+    "state": "British Columbia",
+    "city": "Coquitlam",
+    "minutes": 20
+   },
+   {
+    "countryCode": "CA",
+    "country": "Canada",
+    "stateCode": null,
+    "state": "British Columbia",
+    "city": "Port Coquitlam",
+    "minutes": 11
+   }
+  ]
+ },
+ "afternoon-run-19823047602": {
+  "status": "fallback",
+  "samples": 65,
+  "label": {
+   "countryCode": "DK",
+   "country": "Denmark",
+   "stateCode": null,
+   "state": "Capital Region",
+   "county": null,
+   "city": "Copenhagen"
+  },
+  "split": [
+   {
+    "countryCode": "DK",
+    "country": "Denmark",
+    "stateCode": null,
+    "state": "Capital Region",
+    "city": "Copenhagen",
+    "minutes": 64
+   }
+  ]
+ },
+ "afternoon-run-20207378240": {
+  "status": "fallback",
+  "samples": 117,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 89
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Brooklyn",
+    "minutes": 27
+   }
+  ]
+ },
+ "afternoon-run-20303226660": {
+  "status": "fallback",
+  "samples": 48,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Kings County",
+   "city": "Brooklyn"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Brooklyn",
+    "minutes": 47
+   }
+  ]
+ },
+ "afternoon-run-20466904700": {
+  "status": "fallback",
+  "samples": 91,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Kings County",
+   "city": "Brooklyn"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Brooklyn",
+    "minutes": 90
+   }
+  ]
+ },
+ "afternoon-run-20533791305": {
+  "status": "fallback",
+  "samples": 46,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "MA",
+   "state": "Massachusetts",
+   "county": "Berkshire County",
+   "city": "Williamstown"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "MA",
+    "state": "Massachusetts",
+    "city": "Williamstown",
+    "minutes": 45
+   }
+  ]
+ },
+ "afternoon-run-20560653206": {
+  "status": "fallback",
+  "samples": 47,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Kings County",
+   "city": "Brooklyn"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Brooklyn",
+    "minutes": 46
+   }
+  ]
+ },
+ "afternoon-run-20613881852": {
+  "status": "fallback",
+  "samples": 38,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Kings County",
+   "city": "Brooklyn"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Brooklyn",
+    "minutes": 37
+   }
+  ]
+ },
+ "afternoon-run-20641395337": {
+  "status": "fallback",
+  "samples": 132,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Kings County",
+   "city": "Brooklyn"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Brooklyn",
+    "minutes": 131
+   }
+  ]
+ },
+ "afternoon-run-20667351112": {
+  "status": "fallback",
+  "samples": 41,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Kings County",
+   "city": "Brooklyn"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Brooklyn",
+    "minutes": 40
+   }
+  ]
+ },
+ "afternoon-run-20691369266": {
+  "status": "fallback",
+  "samples": 35,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Kings County",
+   "city": "Brooklyn"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Brooklyn",
+    "minutes": 34
+   }
+  ]
+ },
+ "afternoon-run-20717614123": {
+  "status": "fallback",
+  "samples": 40,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "CT",
+   "state": "Connecticut",
+   "county": "New Haven County",
+   "city": "New Haven"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "CT",
+    "state": "Connecticut",
+    "city": "New Haven",
+    "minutes": 39
+   }
+  ]
+ },
+ "compare-14882498874": {
+  "status": "fallback",
+  "samples": 25,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 24
+   }
+  ]
+ },
+ "easy-15313533827": {
+  "status": "fallback",
+  "samples": 44,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Hoboken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Hoboken",
+    "minutes": 34
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 9
+   }
+  ]
+ },
+ "evening-run-14667737027": {
+  "status": "fallback",
+  "samples": 56,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 46
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Union City",
+    "minutes": 9
+   }
+  ]
+ },
+ "evening-run-14790828732": {
+  "status": "fallback",
+  "samples": 23,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Kings County",
+   "city": "Brooklyn"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Brooklyn",
+    "minutes": 22
+   }
+  ]
+ },
+ "evening-run-15371476873": {
+  "status": "fallback",
+  "samples": 53,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 49
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Brooklyn",
+    "minutes": 3
+   }
+  ]
+ },
+ "evening-run-15552270046": {
+  "status": "fallback",
+  "samples": 43,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Guttenberg"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Guttenberg",
+    "minutes": 13
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Fairview",
+    "minutes": 10
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 9
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "West New York",
+    "minutes": 7
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Union City",
+    "minutes": 2
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "North Bergen",
+    "minutes": 1
+   }
+  ]
+ },
+ "evening-run-15769631391": {
+  "status": "fallback",
+  "samples": 55,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 54
+   }
+  ]
+ },
+ "evening-run-15848000761": {
+  "status": "fallback",
+  "samples": 31,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Hoboken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Hoboken",
+    "minutes": 18
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 12
+   }
+  ]
+ },
+ "evening-run-15916589349": {
+  "status": "fallback",
+  "samples": 37,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 36
+   }
+  ]
+ },
+ "evening-run-16237295864": {
+  "status": "fallback",
+  "samples": 26,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 13
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "West New York",
+    "minutes": 9
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Union City",
+    "minutes": 3
+   }
+  ]
+ },
+ "evening-run-16286885478": {
+  "status": "fallback",
+  "samples": 30,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 29
+   }
+  ]
+ },
+ "evening-run-16298007160": {
+  "status": "fallback",
+  "samples": 35,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 34
+   }
+  ]
+ },
+ "evening-run-16726039930": {
+  "status": "fallback",
+  "samples": 29,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 20
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 8
+   }
+  ]
+ },
+ "evening-run-17534733796": {
+  "status": "fallback",
+  "samples": 21,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 20
+   }
+  ]
+ },
+ "evening-run-17583633562": {
+  "status": "fallback",
+  "samples": 50,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "CA",
+   "state": "California",
+   "county": "San Diego County",
+   "city": "Del Mar"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "CA",
+    "state": "California",
+    "city": "Del Mar",
+    "minutes": 49
+   }
+  ]
+ },
+ "evening-run-17655624188": {
+  "status": "fallback",
+  "samples": 43,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "CA",
+   "state": "California",
+   "county": "San Diego County",
+   "city": "Coronado"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "CA",
+    "state": "California",
+    "city": "Coronado",
+    "minutes": 22
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "CA",
+    "state": "California",
+    "city": "San Diego",
+    "minutes": 20
+   }
+  ]
+ },
+ "evening-run-17797236470": {
+  "status": "fallback",
+  "samples": 57,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 43
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 13
+   }
+  ]
+ },
+ "evening-run-18219590640": {
+  "status": "fallback",
+  "samples": 32,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 31
+   }
+  ]
+ },
+ "evening-run-18953068204": {
+  "status": "fallback",
+  "samples": 34,
+  "label": {
+   "countryCode": "CA",
+   "country": "Canada",
+   "stateCode": null,
+   "state": "British Columbia",
+   "county": null,
+   "city": "Kamloops"
+  },
+  "split": [
+   {
+    "countryCode": "CA",
+    "country": "Canada",
+    "stateCode": null,
+    "state": "British Columbia",
+    "city": "Kamloops",
+    "minutes": 33
+   }
+  ]
+ },
+ "evening-run-18999128487": {
+  "status": "fallback",
+  "samples": 34,
+  "label": {
+   "countryCode": "CA",
+   "country": "Canada",
+   "stateCode": null,
+   "state": "British Columbia",
+   "county": null,
+   "city": "Kamloops"
+  },
+  "split": [
+   {
+    "countryCode": "CA",
+    "country": "Canada",
+    "stateCode": null,
+    "state": "British Columbia",
+    "city": "Kamloops",
+    "minutes": 33
+   }
+  ]
+ },
+ "evening-run-19067597240": {
+  "status": "fallback",
+  "samples": 64,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 63
+   }
+  ]
+ },
+ "evening-run-19195845269": {
+  "status": "fallback",
+  "samples": 25,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 19
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 5
+   }
+  ]
+ },
+ "evening-run-19301596737": {
+  "status": "fallback",
+  "samples": 65,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 64
+   }
+  ]
+ },
+ "evening-run-19508236753": {
+  "status": "fallback",
+  "samples": 13,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Queens County",
+   "city": "Queens"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 8
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 4
+   }
+  ]
+ },
+ "evening-run-19557531547": {
+  "status": "fallback",
+  "samples": 10,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 6
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 3
+   }
+  ]
+ },
+ "evening-run-19605763283": {
+  "status": "fallback",
+  "samples": 45,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Queens County",
+   "city": "Queens"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 26
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 18
+   }
+  ]
+ },
+ "evening-run-19634198516": {
+  "status": "fallback",
+  "samples": 21,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 15
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 5
+   }
+  ]
+ },
+ "evening-run-19979721009": {
+  "status": "fallback",
+  "samples": 31,
+  "label": {
+   "countryCode": "PL",
+   "country": "Poland",
+   "stateCode": null,
+   "state": "Lesser Poland",
+   "county": null,
+   "city": "Kraków"
+  },
+  "split": [
+   {
+    "countryCode": "PL",
+    "country": "Poland",
+    "stateCode": null,
+    "state": "Lesser Poland",
+    "city": "Kraków",
+    "minutes": 30
+   }
+  ]
+ },
+ "evening-run-19993993549": {
+  "status": "fallback",
+  "samples": 32,
+  "label": {
+   "countryCode": "PL",
+   "country": "Poland",
+   "stateCode": null,
+   "state": "Lesser Poland",
+   "county": null,
+   "city": "Kraków"
+  },
+  "split": [
+   {
+    "countryCode": "PL",
+    "country": "Poland",
+    "stateCode": null,
+    "state": "Lesser Poland",
+    "city": "Kraków",
+    "minutes": 31
+   }
+  ]
+ },
+ "evening-run-20023572991": {
+  "status": "fallback",
+  "samples": 40,
+  "label": {
+   "countryCode": "PL",
+   "country": "Poland",
+   "stateCode": null,
+   "state": "Lesser Poland",
+   "county": null,
+   "city": "Kraków"
+  },
+  "split": [
+   {
+    "countryCode": "PL",
+    "country": "Poland",
+    "stateCode": null,
+    "state": "Lesser Poland",
+    "city": "Kraków",
+    "minutes": 39
+   }
+  ]
+ },
+ "evening-run-20137163494": {
+  "status": "fallback",
+  "samples": 46,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Kings County",
+   "city": "Brooklyn"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Brooklyn",
+    "minutes": 45
+   }
+  ]
+ },
+ "evening-run-20151062912": {
+  "status": "fallback",
+  "samples": 93,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Kings County",
+   "city": "Brooklyn"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Brooklyn",
+    "minutes": 92
+   }
+  ]
+ },
+ "evening-run-20274460707": {
+  "status": "fallback",
+  "samples": 48,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Kings County",
+   "city": "Brooklyn"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Brooklyn",
+    "minutes": 47
+   }
+  ]
+ },
+ "evening-run-20371250697": {
+  "status": "fallback",
+  "samples": 51,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Kings County",
+   "city": "Brooklyn"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Brooklyn",
+    "minutes": 50
+   }
+  ]
+ },
+ "evening-run-20495588181": {
+  "status": "fallback",
+  "samples": 37,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Kings County",
+   "city": "Brooklyn"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Brooklyn",
+    "minutes": 36
+   }
+  ]
+ },
+ "fart-lek-14725832895": {
+  "status": "fallback",
+  "samples": 29,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 28
+   }
+  ]
+ },
+ "first-run-after-holiday-trip-aborted-due-14737174154": {
+  "status": "fallback",
+  "samples": 17,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 16
+   }
+  ]
+ },
+ "i-16651061254": {
+  "status": "fallback",
+  "samples": 33,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 30
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 2
+   }
+  ]
+ },
+ "i-16779219917": {
+  "status": "fallback",
+  "samples": 59,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Kings County",
+   "city": "Brooklyn"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Brooklyn",
+    "minutes": 48
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 9
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 1
+   }
+  ]
+ },
+ "i-17713548999": {
+  "status": "fallback",
+  "samples": 43,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Kings County",
+   "city": "Brooklyn"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Brooklyn",
+    "minutes": 32
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 10
+   }
+  ]
+ },
+ "interval-15304042318": {
+  "status": "fallback",
+  "samples": 32,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 31
+   }
+  ]
+ },
+ "interval-16164831451": {
+  "status": "fallback",
+  "samples": 45,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 44
+   }
+  ]
+ },
+ "interval-crisp-tuesday-15197996896": {
+  "status": "fallback",
+  "samples": 27,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 26
+   }
+  ]
+ },
+ "interval-thuesday-15860730482": {
+  "status": "fallback",
+  "samples": 37,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 36
+   }
+  ]
+ },
+ "interval-tuesday-14689420086": {
+  "status": "fallback",
+  "samples": 31,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 30
+   }
+  ]
+ },
+ "interval-tuesday-14833764524": {
+  "status": "fallback",
+  "samples": 47,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 46
+   }
+  ]
+ },
+ "interval-tuesday-15128405471": {
+  "status": "fallback",
+  "samples": 29,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 28
+   }
+  ]
+ },
+ "interval-tuesday-15359534059": {
+  "status": "fallback",
+  "samples": 32,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 31
+   }
+  ]
+ },
+ "interval-tuesday-15518961033": {
+  "status": "fallback",
+  "samples": 38,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 37
+   }
+  ]
+ },
+ "interval-tuesday-15599761130": {
+  "status": "fallback",
+  "samples": 27,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 26
+   }
+  ]
+ },
+ "interval-tuesday-15751879664": {
+  "status": "fallback",
+  "samples": 24,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 23
+   }
+  ]
+ },
+ "jc-5k-16041791208": {
+  "status": "fallback",
+  "samples": 22,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Hoboken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Hoboken",
+    "minutes": 12
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Jersey City",
+    "minutes": 5
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "New York City",
+    "minutes": 4
+   }
+  ]
+ },
+ "long-1-17477316478": {
+  "status": "fallback",
+  "samples": 131,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Kings County",
+   "city": "Brooklyn"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Brooklyn",
+    "minutes": 130
+   }
+  ]
+ },
+ "long-16805717036": {
+  "status": "fallback",
+  "samples": 108,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 79
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Brooklyn",
+    "minutes": 28
+   }
+  ]
+ },
+ "long-17559478474": {
+  "status": "fallback",
+  "samples": 122,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "CA",
+   "state": "California",
+   "county": "San Diego County",
+   "city": "Encinitas"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "CA",
+    "state": "California",
+    "city": "Encinitas",
+    "minutes": 66
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "CA",
+    "state": "California",
+    "city": "Carlsbad",
+    "minutes": 42
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "CA",
+    "state": "California",
+    "city": "Solana Beach",
+    "minutes": 13
+   }
+  ]
+ },
+ "long-17679611720": {
+  "status": "fallback",
+  "samples": 121,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 120
+   }
+  ]
+ },
+ "long-17735532162": {
+  "status": "fallback",
+  "samples": 152,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 151
+   }
+  ]
+ },
+ "long-17822488749": {
+  "status": "fallback",
+  "samples": 199,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Kings County",
+   "city": "Brooklyn"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Brooklyn",
+    "minutes": 173
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 13
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 12
+   }
+  ]
+ },
+ "long-17894509408": {
+  "status": "fallback",
+  "samples": 121,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 113
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 7
+   }
+  ]
+ },
+ "long-7-17980924738": {
+  "status": "fallback",
+  "samples": 181,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 155
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 25
+   }
+  ]
+ },
+ "long-8-18072448520": {
+  "status": "fallback",
+  "samples": 108,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 98
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 9
+   }
+  ]
+ },
+ "long-9-18164090984": {
+  "status": "fallback",
+  "samples": 98,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Kings County",
+   "city": "Brooklyn"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Brooklyn",
+    "minutes": 55
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 42
+   }
+  ]
+ },
+ "long-brooklyn": {
+  "status": "fallback",
+  "samples": 199,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Kings County",
+   "city": "Brooklyn"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Brooklyn",
+    "minutes": 173
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 13
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 12
+   }
+  ]
+ },
+ "long-interval-16227784214": {
+  "status": "fallback",
+  "samples": 70,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 69
+   }
+  ]
+ },
+ "lunch-run-14737201661": {
+  "status": "fallback",
+  "samples": 34,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Hoboken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Hoboken",
+    "minutes": 28
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 5
+   }
+  ]
+ },
+ "lunch-run-14987429942": {
+  "status": "fallback",
+  "samples": 62,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "WA",
+   "state": "Washington",
+   "county": "King County",
+   "city": "Seattle"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "WA",
+    "state": "Washington",
+    "city": "Seattle",
+    "minutes": 61
+   }
+  ]
+ },
+ "lunch-run-18444210432": {
+  "status": "fallback",
+  "samples": 36,
+  "label": {
+   "countryCode": "CA",
+   "country": "Canada",
+   "stateCode": null,
+   "state": null,
+   "county": null,
+   "city": null
+  },
+  "split": [
+   {
+    "countryCode": "CA",
+    "country": "Canada",
+    "stateCode": null,
+    "state": null,
+    "city": null,
+    "minutes": 35
+   }
+  ]
+ },
+ "lunch-run-18817992510": {
+  "status": "fallback",
+  "samples": 32,
+  "label": {
+   "countryCode": "KR",
+   "country": "South Korea",
+   "stateCode": null,
+   "state": "Seoul",
+   "county": null,
+   "city": "Yongsan-dong"
+  },
+  "split": [
+   {
+    "countryCode": "KR",
+    "country": "South Korea",
+    "stateCode": null,
+    "state": "Seoul",
+    "city": "Yongsan-dong",
+    "minutes": 21
+   },
+   {
+    "countryCode": "KR",
+    "country": "South Korea",
+    "stateCode": null,
+    "state": "Seoul",
+    "city": "Seoul",
+    "minutes": 10
+   }
+  ]
+ },
+ "lunch-run-19434551341": {
+  "status": "fallback",
+  "samples": 30,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 25
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 4
+   }
+  ]
+ },
+ "lunch-run-19531311260": {
+  "status": "fallback",
+  "samples": 30,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 29
+   }
+  ]
+ },
+ "morning-run-14860117292": {
+  "status": "fallback",
+  "samples": 26,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 25
+   }
+  ]
+ },
+ "morning-run-15691069335": {
+  "status": "fallback",
+  "samples": 60,
+  "label": {
+   "countryCode": "FR",
+   "country": "France",
+   "stateCode": null,
+   "state": "Île-de-France",
+   "county": null,
+   "city": "Paris 16 Passy"
+  },
+  "split": [
+   {
+    "countryCode": "FR",
+    "country": "France",
+    "stateCode": null,
+    "state": "Île-de-France",
+    "city": "Paris 16 Passy",
+    "minutes": 30
+   },
+   {
+    "countryCode": "FR",
+    "country": "France",
+    "stateCode": null,
+    "state": "Île-de-France",
+    "city": "Paris 08 Élysée",
+    "minutes": 21
+   },
+   {
+    "countryCode": "FR",
+    "country": "France",
+    "stateCode": null,
+    "state": "Île-de-France",
+    "city": "Paris 07 Palais-Bourbon",
+    "minutes": 8
+   }
+  ]
+ },
+ "morning-run-16837439050": {
+  "status": "fallback",
+  "samples": 58,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 57
+   }
+  ]
+ },
+ "morning-run-16845468105": {
+  "status": "fallback",
+  "samples": 32,
+  "label": {
+   "countryCode": "MX",
+   "country": "Mexico",
+   "stateCode": null,
+   "state": "Mexico City",
+   "county": null,
+   "city": "Cuauhtémoc"
+  },
+  "split": [
+   {
+    "countryCode": "MX",
+    "country": "Mexico",
+    "stateCode": null,
+    "state": "Mexico City",
+    "city": "Cuauhtémoc",
+    "minutes": 29
+   },
+   {
+    "countryCode": "MX",
+    "country": "Mexico",
+    "stateCode": null,
+    "state": "Mexico City",
+    "city": "Mexico City",
+    "minutes": 2
+   }
+  ]
+ },
+ "morning-run-16885443622": {
+  "status": "fallback",
+  "samples": 25,
+  "label": {
+   "countryCode": "MX",
+   "country": "Mexico",
+   "stateCode": null,
+   "state": "Mexico City",
+   "county": null,
+   "city": "Benito Juarez"
+  },
+  "split": [
+   {
+    "countryCode": "MX",
+    "country": "Mexico",
+    "stateCode": null,
+    "state": "Mexico City",
+    "city": "Benito Juarez",
+    "minutes": 24
+   }
+  ]
+ },
+ "morning-run-17373716844": {
+  "status": "fallback",
+  "samples": 22,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 16
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 5
+   }
+  ]
+ },
+ "morning-run-17627720292": {
+  "status": "fallback",
+  "samples": 39,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "CA",
+   "state": "California",
+   "county": "Riverside County",
+   "city": "Palm Springs"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "CA",
+    "state": "California",
+    "city": "Palm Springs",
+    "minutes": 38
+   }
+  ]
+ },
+ "morning-run-18336532280": {
+  "status": "fallback",
+  "samples": 22,
+  "label": {
+   "countryCode": "CA",
+   "country": "Canada",
+   "stateCode": null,
+   "state": "British Columbia",
+   "county": null,
+   "city": "Vancouver"
+  },
+  "split": [
+   {
+    "countryCode": "CA",
+    "country": "Canada",
+    "stateCode": null,
+    "state": "British Columbia",
+    "city": "Vancouver",
+    "minutes": 16
+   },
+   {
+    "countryCode": "CA",
+    "country": "Canada",
+    "stateCode": null,
+    "state": "British Columbia",
+    "city": "North Vancouver",
+    "minutes": 5
+   }
+  ]
+ },
+ "morning-run-18364602479": {
+  "status": "fallback",
+  "samples": 234,
+  "label": {
+   "countryCode": "CA",
+   "country": "Canada",
+   "stateCode": null,
+   "state": "British Columbia",
+   "county": null,
+   "city": "Greektown"
+  },
+  "split": [
+   {
+    "countryCode": "CA",
+    "country": "Canada",
+    "stateCode": null,
+    "state": "British Columbia",
+    "city": "Greektown",
+    "minutes": 143
+   },
+   {
+    "countryCode": "CA",
+    "country": "Canada",
+    "stateCode": null,
+    "state": "British Columbia",
+    "city": "Vancouver",
+    "minutes": 35
+   },
+   {
+    "countryCode": "CA",
+    "country": "Canada",
+    "stateCode": null,
+    "state": "British Columbia",
+    "city": "West Vancouver",
+    "minutes": 35
+   },
+   {
+    "countryCode": "CA",
+    "country": "Canada",
+    "stateCode": null,
+    "state": "British Columbia",
+    "city": "Pemberton Heights",
+    "minutes": 18
+   },
+   {
+    "countryCode": "CA",
+    "country": "Canada",
+    "stateCode": null,
+    "state": "British Columbia",
+    "city": "Riley Park",
+    "minutes": 2
+   }
+  ]
+ },
+ "morning-run-18532839389": {
+  "status": "fallback",
+  "samples": 38,
+  "label": {
+   "countryCode": "CA",
+   "country": "Canada",
+   "stateCode": null,
+   "state": "British Columbia",
+   "county": null,
+   "city": "Squamish"
+  },
+  "split": [
+   {
+    "countryCode": "CA",
+    "country": "Canada",
+    "stateCode": null,
+    "state": "British Columbia",
+    "city": "Squamish",
+    "minutes": 37
+   }
+  ]
+ },
+ "morning-run-18615816075": {
+  "status": "fallback",
+  "samples": 2,
+  "label": {
+   "countryCode": "JP",
+   "country": "Japan",
+   "stateCode": null,
+   "state": "Tokyo",
+   "county": null,
+   "city": "Kanda-jinbōchō"
+  },
+  "split": [
+   {
+    "countryCode": "JP",
+    "country": "Japan",
+    "stateCode": null,
+    "state": "Tokyo",
+    "city": "Kanda-jinbōchō",
+    "minutes": 1
+   }
+  ]
+ },
+ "morning-run-18667903277": {
+  "status": "fallback",
+  "samples": 85,
+  "label": {
+   "countryCode": "JP",
+   "country": "Japan",
+   "stateCode": null,
+   "state": "Yamanashi",
+   "county": null,
+   "city": "Fuji-yoshida"
+  },
+  "split": [
+   {
+    "countryCode": "JP",
+    "country": "Japan",
+    "stateCode": null,
+    "state": "Yamanashi",
+    "city": "Fuji-yoshida",
+    "minutes": 66
+   },
+   {
+    "countryCode": "JP",
+    "country": "Japan",
+    "stateCode": null,
+    "state": "Yamanashi",
+    "city": "Narusawa",
+    "minutes": 18
+   }
+  ]
+ },
+ "morning-run-18836398708": {
+  "status": "fallback",
+  "samples": 31,
+  "label": {
+   "countryCode": "CA",
+   "country": "Canada",
+   "stateCode": null,
+   "state": "British Columbia",
+   "county": null,
+   "city": "River Springs"
+  },
+  "split": [
+   {
+    "countryCode": "CA",
+    "country": "Canada",
+    "stateCode": null,
+    "state": "British Columbia",
+    "city": "River Springs",
+    "minutes": 30
+   }
+  ]
+ },
+ "morning-run-18999110126": {
+  "status": "fallback",
+  "samples": 32,
+  "label": {
+   "countryCode": "CA",
+   "country": "Canada",
+   "stateCode": null,
+   "state": "Alberta",
+   "county": null,
+   "city": "Canmore"
+  },
+  "split": [
+   {
+    "countryCode": "CA",
+    "country": "Canada",
+    "stateCode": null,
+    "state": "Alberta",
+    "city": "Canmore",
+    "minutes": 31
+   }
+  ]
+ },
+ "morning-run-19557531784": {
+  "status": "fallback",
+  "samples": 39,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 38
+   }
+  ]
+ },
+ "morning-run-19904347579": {
+  "status": "fallback",
+  "samples": 40,
+  "label": {
+   "countryCode": "DE",
+   "country": "Germany",
+   "stateCode": null,
+   "state": "Saxony",
+   "county": null,
+   "city": "Dresden"
+  },
+  "split": [
+   {
+    "countryCode": "DE",
+    "country": "Germany",
+    "stateCode": null,
+    "state": "Saxony",
+    "city": "Dresden",
+    "minutes": 39
+   }
+  ]
+ },
+ "morning-run-19945351237": {
+  "status": "fallback",
+  "samples": 7,
+  "label": {
+   "countryCode": "UA",
+   "country": "Ukraine",
+   "stateCode": null,
+   "state": "Kyiv City",
+   "county": null,
+   "city": "Kyiv"
+  },
+  "split": [
+   {
+    "countryCode": "UA",
+    "country": "Ukraine",
+    "stateCode": null,
+    "state": "Kyiv City",
+    "city": "Kyiv",
+    "minutes": 6
+   }
+  ]
+ },
+ "morning-run-20042727362": {
+  "status": "fallback",
+  "samples": 38,
+  "label": {
+   "countryCode": "SE",
+   "country": "Sweden",
+   "stateCode": null,
+   "state": "Stockholm",
+   "county": null,
+   "city": "Stockholm"
+  },
+  "split": [
+   {
+    "countryCode": "SE",
+    "country": "Sweden",
+    "stateCode": null,
+    "state": "Stockholm",
+    "city": "Stockholm",
+    "minutes": 37
+   }
+  ]
+ },
+ "morning-run-20056211881": {
+  "status": "fallback",
+  "samples": 35,
+  "label": {
+   "countryCode": "SE",
+   "country": "Sweden",
+   "stateCode": null,
+   "state": "Stockholm",
+   "county": null,
+   "city": "Stockholm"
+  },
+  "split": [
+   {
+    "countryCode": "SE",
+    "country": "Sweden",
+    "stateCode": null,
+    "state": "Stockholm",
+    "city": "Stockholm",
+    "minutes": 34
+   }
+  ]
+ },
+ "morning-run-20086661990": {
+  "status": "fallback",
+  "samples": 20,
+  "label": {
+   "countryCode": "SE",
+   "country": "Sweden",
+   "stateCode": null,
+   "state": "Stockholm",
+   "county": null,
+   "city": "Märsta"
+  },
+  "split": [
+   {
+    "countryCode": "SE",
+    "country": "Sweden",
+    "stateCode": null,
+    "state": "Stockholm",
+    "city": "Märsta",
+    "minutes": 19
+   }
+  ]
+ },
+ "morning-run-20086662333": {
+  "status": "fallback",
+  "samples": 31,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Kings County",
+   "city": "Brooklyn"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Brooklyn",
+    "minutes": 30
+   }
+  ]
+ },
+ "morning-run-20103226187": {
+  "status": "fallback",
+  "samples": 41,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Kings County",
+   "city": "Brooklyn"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Brooklyn",
+    "minutes": 40
+   }
+  ]
+ },
+ "morning-run-20185238935": {
+  "status": "fallback",
+  "samples": 39,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Kings County",
+   "city": "Brooklyn"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Brooklyn",
+    "minutes": 38
+   }
+  ]
+ },
+ "morning-run-20243151577": {
+  "status": "fallback",
+  "samples": 138,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Bronx County",
+   "city": "Bronx"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Bronx",
+    "minutes": 137
+   }
+  ]
+ },
+ "morning-run-20407838847": {
+  "status": "fallback",
+  "samples": 37,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Kings County",
+   "city": "Brooklyn"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Brooklyn",
+    "minutes": 36
+   }
+  ]
+ },
+ "mp-16143290429": {
+  "status": "fallback",
+  "samples": 53,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 29
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Guttenberg",
+    "minutes": 13
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "West New York",
+    "minutes": 8
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Union City",
+    "minutes": 2
+   }
+  ]
+ },
+ "my-first-run-14737230769": {
+  "status": "fallback",
+  "samples": 14,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 13
+   }
+  ]
+ },
+ "night-run-15838162676": {
+  "status": "fallback",
+  "samples": 31,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 30
+   }
+  ]
+ },
+ "night-run-15938260568": {
+  "status": "fallback",
+  "samples": 33,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 32
+   }
+  ]
+ },
+ "night-run-16615515418": {
+  "status": "fallback",
+  "samples": 22,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 15
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 6
+   }
+  ]
+ },
+ "night-run-16634907980": {
+  "status": "fallback",
+  "samples": 28,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 27
+   }
+  ]
+ },
+ "night-run-16825538567": {
+  "status": "fallback",
+  "samples": 11,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 7
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 3
+   }
+  ]
+ },
+ "night-run-17872646670": {
+  "status": "fallback",
+  "samples": 19,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 13
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 5
+   }
+  ]
+ },
+ "night-run-17933034234": {
+  "status": "fallback",
+  "samples": 69,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Kings County",
+   "city": "Brooklyn"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Brooklyn",
+    "minutes": 45
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 21
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 2
+   }
+  ]
+ },
+ "night-run-18860162327": {
+  "status": "fallback",
+  "samples": 2,
+  "label": {
+   "countryCode": "CA",
+   "country": "Canada",
+   "stateCode": null,
+   "state": "British Columbia",
+   "county": null,
+   "city": "Coquitlam"
+  },
+  "split": [
+   {
+    "countryCode": "CA",
+    "country": "Canada",
+    "stateCode": null,
+    "state": "British Columbia",
+    "city": "Coquitlam",
+    "minutes": 1
+   }
+  ]
+ },
+ "night-run-18873887888": {
+  "status": "fallback",
+  "samples": 37,
+  "label": {
+   "countryCode": "CA",
+   "country": "Canada",
+   "stateCode": null,
+   "state": "British Columbia",
+   "county": null,
+   "city": "Greektown"
+  },
+  "split": [
+   {
+    "countryCode": "CA",
+    "country": "Canada",
+    "stateCode": null,
+    "state": "British Columbia",
+    "city": "Greektown",
+    "minutes": 23
+   },
+   {
+    "countryCode": "CA",
+    "country": "Canada",
+    "stateCode": null,
+    "state": "British Columbia",
+    "city": "Vancouver",
+    "minutes": 13
+   }
+  ]
+ },
+ "night-run-19117989192": {
+  "status": "fallback",
+  "samples": 35,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Queens County",
+   "city": "Queens"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 24
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 9
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Brooklyn",
+    "minutes": 1
+   }
+  ]
+ },
+ "night-run-20136253555": {
+  "status": "fallback",
+  "samples": 23,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Queens County",
+   "city": "Queens"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 17
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 5
+   }
+  ]
+ },
+ "night-run-20603950630": {
+  "status": "fallback",
+  "samples": 54,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Kings County",
+   "city": "Brooklyn"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Brooklyn",
+    "minutes": 53
+   }
+  ]
+ },
+ "recovery-15041689539": {
+  "status": "fallback",
+  "samples": 52,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "WA",
+   "state": "Washington",
+   "county": "King County",
+   "city": "Seattle"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "WA",
+    "state": "Washington",
+    "city": "Seattle",
+    "minutes": 32
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "WA",
+    "state": "Washington",
+    "city": "White Center",
+    "minutes": 19
+   }
+  ]
+ },
+ "roasted-14876024487": {
+  "status": "fallback",
+  "samples": 27,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 26
+   }
+  ]
+ },
+ "run-13433736397": {
+  "status": "fallback",
+  "samples": 33,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 32
+   }
+  ]
+ },
+ "run-13441737874": {
+  "status": "fallback",
+  "samples": 38,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Hoboken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Hoboken",
+    "minutes": 26
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 11
+   }
+  ]
+ },
+ "run-13451942159": {
+  "status": "fallback",
+  "samples": 99,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Guttenberg"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Guttenberg",
+    "minutes": 43
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 34
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "West New York",
+    "minutes": 10
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Fairview",
+    "minutes": 7
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Union City",
+    "minutes": 4
+   }
+  ]
+ },
+ "run-13475249312": {
+  "status": "fallback",
+  "samples": 11,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 10
+   }
+  ]
+ },
+ "run-13484062189": {
+  "status": "fallback",
+  "samples": 30,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 29
+   }
+  ]
+ },
+ "run-13497348820": {
+  "status": "fallback",
+  "samples": 38,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 37
+   }
+  ]
+ },
+ "run-13513779925": {
+  "status": "fallback",
+  "samples": 135,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Hoboken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Hoboken",
+    "minutes": 64
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "New York City",
+    "minutes": 41
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Jersey City",
+    "minutes": 19
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 10
+   }
+  ]
+ },
+ "run-13543430964": {
+  "status": "fallback",
+  "samples": 27,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 26
+   }
+  ]
+ },
+ "run-13551717252": {
+  "status": "fallback",
+  "samples": 26,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 25
+   }
+  ]
+ },
+ "run-13566129284": {
+  "status": "fallback",
+  "samples": 31,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 28
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Union City",
+    "minutes": 2
+   }
+  ]
+ },
+ "run-13620417805": {
+  "status": "fallback",
+  "samples": 29,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Hoboken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Hoboken",
+    "minutes": 15
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 13
+   }
+  ]
+ },
+ "run-13636364719": {
+  "status": "fallback",
+  "samples": 24,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 23
+   }
+  ]
+ },
+ "run-13654045258": {
+  "status": "fallback",
+  "samples": 29,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 28
+   }
+  ]
+ },
+ "run-13669566048": {
+  "status": "fallback",
+  "samples": 38,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "FL",
+   "state": "Florida",
+   "county": "Miami-Dade County",
+   "city": "Miami Beach"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "FL",
+    "state": "Florida",
+    "city": "Miami Beach",
+    "minutes": 37
+   }
+  ]
+ },
+ "run-13682569537": {
+  "status": "fallback",
+  "samples": 68,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "FL",
+   "state": "Florida",
+   "county": "Miami-Dade County",
+   "city": "Miami Beach"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "FL",
+    "state": "Florida",
+    "city": "Miami Beach",
+    "minutes": 59
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "FL",
+    "state": "Florida",
+    "city": "Miami",
+    "minutes": 8
+   }
+  ]
+ },
+ "run-13728418649": {
+  "status": "fallback",
+  "samples": 51,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 50
+   }
+  ]
+ },
+ "run-13744928359": {
+  "status": "fallback",
+  "samples": 25,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 24
+   }
+  ]
+ },
+ "run-13762788859": {
+  "status": "fallback",
+  "samples": 73,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Kings County",
+   "city": "Brooklyn"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Brooklyn",
+    "minutes": 61
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 11
+   }
+  ]
+ },
+ "run-13791246934": {
+  "status": "fallback",
+  "samples": 23,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 22
+   }
+  ]
+ },
+ "run-13808084646": {
+  "status": "fallback",
+  "samples": 36,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Hoboken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Hoboken",
+    "minutes": 26
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 9
+   }
+  ]
+ },
+ "run-13837633853": {
+  "status": "fallback",
+  "samples": 81,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Jersey City"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Jersey City",
+    "minutes": 49
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "New York City",
+    "minutes": 19
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Bayonne",
+    "minutes": 12
+   }
+  ]
+ },
+ "run-13876254946": {
+  "status": "fallback",
+  "samples": 26,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 25
+   }
+  ]
+ },
+ "run-13892658656": {
+  "status": "fallback",
+  "samples": 93,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Putnam County",
+   "city": "Cold Spring"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Cold Spring",
+    "minutes": 86
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Cornwall",
+    "minutes": 6
+   }
+  ]
+ },
+ "run-13922094049": {
+  "status": "fallback",
+  "samples": 34,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 33
+   }
+  ]
+ },
+ "run-13931651950": {
+  "status": "fallback",
+  "samples": 48,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 47
+   }
+  ]
+ },
+ "run-13966290727": {
+  "status": "fallback",
+  "samples": 102,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "LA",
+   "state": "Louisiana",
+   "county": "Orleans County",
+   "city": "New Orleans"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "LA",
+    "state": "Louisiana",
+    "city": "New Orleans",
+    "minutes": 69
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "LA",
+    "state": "Louisiana",
+    "city": "Metairie",
+    "minutes": 32
+   }
+  ]
+ },
+ "run-13982671579": {
+  "status": "fallback",
+  "samples": 25,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "LA",
+   "state": "Louisiana",
+   "county": "Orleans County",
+   "city": "New Orleans"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "LA",
+    "state": "Louisiana",
+    "city": "New Orleans",
+    "minutes": 24
+   }
+  ]
+ },
+ "run-14016204988": {
+  "status": "fallback",
+  "samples": 23,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 22
+   }
+  ]
+ },
+ "run-14034777630": {
+  "status": "fallback",
+  "samples": 24,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 23
+   }
+  ]
+ },
+ "run-14072909359": {
+  "status": "fallback",
+  "samples": 29,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 28
+   }
+  ]
+ },
+ "run-14081674353": {
+  "status": "fallback",
+  "samples": 31,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 30
+   }
+  ]
+ },
+ "run-14100496597": {
+  "status": "fallback",
+  "samples": 22,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 21
+   }
+  ]
+ },
+ "run-14121831047": {
+  "status": "fallback",
+  "samples": 40,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 39
+   }
+  ]
+ },
+ "run-14139516325": {
+  "status": "fallback",
+  "samples": 52,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 34
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "West New York",
+    "minutes": 11
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Guttenberg",
+    "minutes": 4
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Union City",
+    "minutes": 2
+   }
+  ]
+ },
+ "run-14165368226": {
+  "status": "fallback",
+  "samples": 100,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Jersey City"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Jersey City",
+    "minutes": 65
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Hoboken",
+    "minutes": 16
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Bayonne",
+    "minutes": 11
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "New York City",
+    "minutes": 7
+   }
+  ]
+ },
+ "run-14193815591": {
+  "status": "fallback",
+  "samples": 63,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "SC",
+   "state": "South Carolina",
+   "county": "Charleston County",
+   "city": "Charleston"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "SC",
+    "state": "South Carolina",
+    "city": "Charleston",
+    "minutes": 62
+   }
+  ]
+ },
+ "run-14209038777": {
+  "status": "fallback",
+  "samples": 32,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "GA",
+   "state": "Georgia",
+   "county": "Chatham County",
+   "city": "Savannah"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "GA",
+    "state": "Georgia",
+    "city": "Savannah",
+    "minutes": 31
+   }
+  ]
+ },
+ "run-14222840776": {
+  "status": "fallback",
+  "samples": 33,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "VA",
+   "state": "Virginia",
+   "county": "Richmond County",
+   "city": "Richmond"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "VA",
+    "state": "Virginia",
+    "city": "Richmond",
+    "minutes": 32
+   }
+  ]
+ },
+ "run-14257505627": {
+  "status": "fallback",
+  "samples": 88,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 50
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Hoboken",
+    "minutes": 28
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 5
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "New York City",
+    "minutes": 4
+   }
+  ]
+ },
+ "run-14277977480": {
+  "status": "fallback",
+  "samples": 21,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 20
+   }
+  ]
+ },
+ "run-14296101190": {
+  "status": "fallback",
+  "samples": 103,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Kings County",
+   "city": "Brooklyn"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Brooklyn",
+    "minutes": 102
+   }
+  ]
+ },
+ "run-14327874351": {
+  "status": "fallback",
+  "samples": 42,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 41
+   }
+  ]
+ },
+ "run-14338879259": {
+  "status": "fallback",
+  "samples": 26,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 25
+   }
+  ]
+ },
+ "run-14379562863": {
+  "status": "fallback",
+  "samples": 130,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 94
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Bronx",
+    "minutes": 35
+   }
+  ]
+ },
+ "run-14400654643": {
+  "status": "fallback",
+  "samples": 22,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 21
+   }
+  ]
+ },
+ "run-14473159151": {
+  "status": "fallback",
+  "samples": 34,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 33
+   }
+  ]
+ },
+ "run-14493850213": {
+  "status": "fallback",
+  "samples": 30,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 29
+   }
+  ]
+ },
+ "run-14513588170": {
+  "status": "fallback",
+  "samples": 42,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "UT",
+   "state": "Utah",
+   "county": "Salt Lake County",
+   "city": "Salt Lake City"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "UT",
+    "state": "Utah",
+    "city": "Salt Lake City",
+    "minutes": 41
+   }
+  ]
+ },
+ "run-14524902301": {
+  "status": "fallback",
+  "samples": 49,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "WY",
+   "state": "Wyoming",
+   "county": "Sublette County",
+   "city": "Pinedale"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "WY",
+    "state": "Wyoming",
+    "city": "Pinedale",
+    "minutes": 48
+   }
+  ]
+ },
+ "run-14534865309": {
+  "status": "fallback",
+  "samples": 64,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "WY",
+   "state": "Wyoming",
+   "county": "Teton County",
+   "city": "Jackson"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "WY",
+    "state": "Wyoming",
+    "city": "Jackson",
+    "minutes": 63
+   }
+  ]
+ },
+ "run-14545937562": {
+  "status": "fallback",
+  "samples": 54,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "WY",
+   "state": "Wyoming",
+   "county": "Teton County",
+   "city": "Jackson"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "WY",
+    "state": "Wyoming",
+    "city": "Jackson",
+    "minutes": 53
+   }
+  ]
+ },
+ "run-14556501645": {
+  "status": "fallback",
+  "samples": 98,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "WY",
+   "state": "Wyoming",
+   "county": "Teton County",
+   "city": null
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "WY",
+    "state": "Wyoming",
+    "city": null,
+    "minutes": 97
+   }
+  ]
+ },
+ "run-14634172928": {
+  "status": "fallback",
+  "samples": 34,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 33
+   }
+  ]
+ },
+ "run-14645450289": {
+  "status": "fallback",
+  "samples": 39,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Hoboken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Hoboken",
+    "minutes": 28
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "New York City",
+    "minutes": 6
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 4
+   }
+  ]
+ },
+ "run-14760707327": {
+  "status": "fallback",
+  "samples": 35,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 34
+   }
+  ]
+ },
+ "run-14781113994": {
+  "status": "fallback",
+  "samples": 27,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 26
+   }
+  ]
+ },
+ "run-15383211944": {
+  "status": "fallback",
+  "samples": 25,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 24
+   }
+  ]
+ },
+ "run-15472644965": {
+  "status": "fallback",
+  "samples": 87,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Nassau County",
+   "city": "Atlantic Beach"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Atlantic Beach",
+    "minutes": 39
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 33
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Long Beach",
+    "minutes": 14
+   }
+  ]
+ },
+ "san-diego-afternoon": {
+  "status": "fallback",
+  "samples": 124,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "CA",
+   "state": "California",
+   "county": "San Diego County",
+   "city": "Encinitas"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "CA",
+    "state": "California",
+    "city": "Encinitas",
+    "minutes": 65
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "CA",
+    "state": "California",
+    "city": "Carlsbad",
+    "minutes": 43
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "CA",
+    "state": "California",
+    "city": "Solana Beach",
+    "minutes": 15
+   }
+  ]
+ },
+ "shake-out-16033671436": {
+  "status": "fallback",
+  "samples": 18,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 17
+   }
+  ]
+ },
+ "sprint-try-13463080850": {
+  "status": "fallback",
+  "samples": 6,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Weehawken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 4
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Hoboken",
+    "minutes": 1
+   }
+  ]
+ },
+ "t-17453848055": {
+  "status": "fallback",
+  "samples": 40,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 25
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 14
+   }
+  ]
+ },
+ "t-17534211801": {
+  "status": "fallback",
+  "samples": 29,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Queens County",
+   "city": "Queens"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 18
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 10
+   }
+  ]
+ },
+ "taco-tuesday-14906534107": {
+  "status": "fallback",
+  "samples": 27,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Hoboken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Hoboken",
+    "minutes": 18
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Weehawken",
+    "minutes": 8
+   }
+  ]
+ },
+ "tempo-15246529531": {
+  "status": "fallback",
+  "samples": 26,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Kings County",
+   "city": "Brooklyn"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Brooklyn",
+    "minutes": 25
+   }
+  ]
+ },
+ "tempo-15791132536": {
+  "status": "fallback",
+  "samples": 30,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 29
+   }
+  ]
+ },
+ "vancouver-marathon-18364602479": {
+  "status": "fallback",
+  "samples": 234,
+  "label": {
+   "countryCode": "CA",
+   "country": "Canada",
+   "stateCode": null,
+   "state": "British Columbia",
+   "county": null,
+   "city": "Greektown"
+  },
+  "split": [
+   {
+    "countryCode": "CA",
+    "country": "Canada",
+    "stateCode": null,
+    "state": "British Columbia",
+    "city": "Greektown",
+    "minutes": 143
+   },
+   {
+    "countryCode": "CA",
+    "country": "Canada",
+    "stateCode": null,
+    "state": "British Columbia",
+    "city": "Vancouver",
+    "minutes": 35
+   },
+   {
+    "countryCode": "CA",
+    "country": "Canada",
+    "stateCode": null,
+    "state": "British Columbia",
+    "city": "West Vancouver",
+    "minutes": 35
+   },
+   {
+    "countryCode": "CA",
+    "country": "Canada",
+    "stateCode": null,
+    "state": "British Columbia",
+    "city": "Pemberton Heights",
+    "minutes": 18
+   },
+   {
+    "countryCode": "CA",
+    "country": "Canada",
+    "stateCode": null,
+    "state": "British Columbia",
+    "city": "Riley Park",
+    "minutes": 2
+   }
+  ]
+ },
+ "weekly-kind-of-long-15215679112": {
+  "status": "fallback",
+  "samples": 45,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 44
+   }
+  ]
+ },
+ "weekly-kind-of-long-15619323922": {
+  "status": "fallback",
+  "samples": 25,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Hoboken"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Hoboken",
+    "minutes": 19
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Jersey City",
+    "minutes": 5
+   }
+  ]
+ },
+ "weekly-long-14739061268": {
+  "status": "fallback",
+  "samples": 84,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Bergen County",
+   "city": "Englewood Cliffs"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Englewood Cliffs",
+    "minutes": 33
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Fort Lee",
+    "minutes": 17
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Alpine",
+    "minutes": 14
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Yonkers",
+    "minutes": 13
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Tenafly",
+    "minutes": 6
+   }
+  ]
+ },
+ "weekly-long-14811110138": {
+  "status": "fallback",
+  "samples": 115,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Essex County",
+   "city": "West Orange"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "West Orange",
+    "minutes": 54
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "South Orange",
+    "minutes": 35
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Millburn",
+    "minutes": 12
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Maplewood",
+    "minutes": 9
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Montclair",
+    "minutes": 4
+   }
+  ]
+ },
+ "weekly-long-14958779542": {
+  "status": "fallback",
+  "samples": 133,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "WA",
+   "state": "Washington",
+   "county": "King County",
+   "city": "Seattle"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "WA",
+    "state": "Washington",
+    "city": "Seattle",
+    "minutes": 105
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "WA",
+    "state": "Washington",
+    "city": "Bainbridge Island",
+    "minutes": 27
+   }
+  ]
+ },
+ "weekly-long-15064184428": {
+  "status": "fallback",
+  "samples": 122,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "WA",
+   "state": "Washington",
+   "county": "King County",
+   "city": "Mercer Island"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "WA",
+    "state": "Washington",
+    "city": "Mercer Island",
+    "minutes": 39
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "WA",
+    "state": "Washington",
+    "city": "Clyde Hill",
+    "minutes": 30
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "WA",
+    "state": "Washington",
+    "city": "Yarrow Point",
+    "minutes": 14
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "WA",
+    "state": "Washington",
+    "city": "Columbia City",
+    "minutes": 14
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "WA",
+    "state": "Washington",
+    "city": "Seattle",
+    "minutes": 11
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "WA",
+    "state": "Washington",
+    "city": "Newport",
+    "minutes": 9
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "WA",
+    "state": "Washington",
+    "city": "Medina",
+    "minutes": 2
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "WA",
+    "state": "Washington",
+    "city": "Bellevue",
+    "minutes": 2
+   }
+  ]
+ },
+ "weekly-long-15401664360": {
+  "status": "fallback",
+  "samples": 103,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 98
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Fort Lee",
+    "minutes": 4
+   }
+  ]
+ },
+ "weekly-long-15644788734": {
+  "status": "fallback",
+  "samples": 90,
+  "label": {
+   "countryCode": "GB",
+   "country": "United Kingdom",
+   "stateCode": null,
+   "state": "England",
+   "county": null,
+   "city": "City of London"
+  },
+  "split": [
+   {
+    "countryCode": "GB",
+    "country": "United Kingdom",
+    "stateCode": null,
+    "state": "England",
+    "city": "City of London",
+    "minutes": 36
+   },
+   {
+    "countryCode": "GB",
+    "country": "United Kingdom",
+    "stateCode": null,
+    "state": "England",
+    "city": "London",
+    "minutes": 26
+   },
+   {
+    "countryCode": "GB",
+    "country": "United Kingdom",
+    "stateCode": null,
+    "state": "England",
+    "city": "City of Westminster",
+    "minutes": 21
+   },
+   {
+    "countryCode": "GB",
+    "country": "United Kingdom",
+    "stateCode": null,
+    "state": "England",
+    "city": "Holborn",
+    "minutes": 3
+   },
+   {
+    "countryCode": "GB",
+    "country": "United Kingdom",
+    "stateCode": null,
+    "state": "England",
+    "city": "Kennington",
+    "minutes": 2
+   },
+   {
+    "countryCode": "GB",
+    "country": "United Kingdom",
+    "stateCode": null,
+    "state": "England",
+    "city": "Shadwell",
+    "minutes": 1
+   }
+  ]
+ },
+ "weekly-long-15891685507": {
+  "status": "fallback",
+  "samples": 105,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "PA",
+   "state": "Pennsylvania",
+   "county": "Lebanon County",
+   "city": "Fredericksburg"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "PA",
+    "state": "Pennsylvania",
+    "city": "Fredericksburg",
+    "minutes": 43
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "PA",
+    "state": "Pennsylvania",
+    "city": "Pine Grove",
+    "minutes": 34
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "PA",
+    "state": "Pennsylvania",
+    "city": "Jonestown",
+    "minutes": 25
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "PA",
+    "state": "Pennsylvania",
+    "city": "Tower City",
+    "minutes": 2
+   }
+  ]
+ },
+ "weekly-long-16266092522": {
+  "status": "fallback",
+  "samples": 105,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Hudson County",
+   "city": "Jersey City"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Jersey City",
+    "minutes": 60
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "New York City",
+    "minutes": 44
+   }
+  ]
+ },
+ "weekly-looong-15320040579": {
+  "status": "fallback",
+  "samples": 152,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 151
+   }
+  ]
+ },
+ "weekly-not-very-long-15561794874": {
+  "status": "fallback",
+  "samples": 93,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "NJ",
+   "state": "New Jersey",
+   "county": "Bergen County",
+   "city": "Alpine"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Alpine",
+    "minutes": 38
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Englewood Cliffs",
+    "minutes": 32
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Yonkers",
+    "minutes": 16
+   },
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "NJ",
+    "state": "New Jersey",
+    "city": "Tenafly",
+    "minutes": 6
+   }
+  ]
+ },
+ "zone-2-14974128587": {
+  "status": "fallback",
+  "samples": 57,
+  "label": {
+   "countryCode": "US",
+   "country": "United States of America",
+   "stateCode": "WA",
+   "state": "Washington",
+   "county": "King County",
+   "city": "Seattle"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States of America",
+    "stateCode": "WA",
+    "state": "Washington",
+    "city": "Seattle",
+    "minutes": 56
+   }
+  ]
+ }
+}

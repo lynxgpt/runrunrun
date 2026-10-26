@@ -53,6 +53,8 @@ export interface NotableRun {
   weather: WeatherCondition;
   title?: string;
   location: ActivityLocation;
+  /** Every region the run spent at least one sampled moving minute in (plus its label's). */
+  touched?: { countries: string[]; states: string[]; cities: string[] };
   displayLocationPrimary?: string;
   displayLocationSecondary?: string;
   /** Key into `gpxTracks` when this run has a real GPS trace. */

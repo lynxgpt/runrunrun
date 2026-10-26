@@ -51,7 +51,7 @@ function haversineKm(a, b) {
   return 2 * R * Math.asin(Math.sqrt(h));
 }
 
-function parseTrkpts(xml) {
+export function parseTrkpts(xml) {
   const pts = [];
   const re = /<trkpt\s+lat="([^"]+)"\s+lon="([^"]+)">([\s\S]*?)<\/trkpt>/g;
   let m;
@@ -172,6 +172,30 @@ function minutePaceQualityFromMovingTimeline(timeline, movingSegments) {
     });
   }
   return details;
+}
+
+// One point per minute of moving time (same moving rule as aggregate), plus
+// the start point first. Geo labels vote with these, so stops and recording
+// gaps carry no weight.
+export function movingMinuteSamples(points) {
+  if (!points.length) return [];
+  const out = [{ lat: points[0].lat, lon: points[0].lon }];
+  let movingAcc = 0;
+  let next = 60;
+  for (let i = 1; i < points.length; i++) {
+    const a = points[i - 1];
+    const b = points[i];
+    if (!a.time || !b.time) continue;
+    const dt = (Date.parse(b.time) - Date.parse(a.time)) / 1000;
+    if (dt <= 0 || dt > MAX_SAMPLE_GAP_SEC) continue;
+    if ((haversineKm(a, b) * 1000) / dt < MIN_MOVING_MPS) continue;
+    movingAcc += dt;
+    while (movingAcc >= next) {
+      out.push({ lat: b.lat, lon: b.lon });
+      next += 60;
+    }
+  }
+  return out;
 }
 
 export function aggregate(points, gpxName) {
@@ -381,11 +405,9 @@ function main() {
     process.exit(1);
   }
 
-  // Load Strava metadata (city names, temps, photos) indexed by track stem.
-  const META_PATH = join(ROOT, "public", "strava-meta.json");
-  const stravaMeta = existsSync(META_PATH)
-    ? JSON.parse(readFileSync(META_PATH, "utf8"))
-    : {};
+  // Where each run was, from scripts/geocode.mjs.
+  const GEO_PATH = join(ROOT, "data", "geo.json");
+  const geo = existsSync(GEO_PATH) ? JSON.parse(readFileSync(GEO_PATH, "utf8")) : {};
 
   // Rebuild tracks dir from scratch so stale entries don't linger.
   if (existsSync(TRACKS_DIR)) rmSync(TRACKS_DIR, { recursive: true, force: true });
@@ -395,9 +417,8 @@ function main() {
     const id = f.replace(/\.gpx$/i, "");
     console.log(`Processing ${f}...`);
     const result = processFile(join(GPX_DIR, f), id);
-    // Enrich with city from Strava (populated by pull-strava.mjs at fetch time).
-    const city = stravaMeta[id]?.city ?? null;
-    if (city != null) result.stats.city = city;
+    const g = geo[id];
+    if (g) result.stats.geo = { status: g.status, label: g.label, split: g.split };
     return result;
   });
   const { kept: tracks, dropped } = dedupe(allTracks);
@@ -468,7 +489,24 @@ export interface GpxStats {
     maxSegmentKph: number;
     hasTeleportGap: boolean;
   };
-  city?: string;
+  geo?: GpxGeo;
+}
+
+export interface GeoPlace {
+  countryCode: string;
+  country: string;
+  stateCode: string | null;
+  state: string | null;
+  county?: string | null;
+  city: string | null;
+}
+
+export interface GpxGeo {
+  // "fallback" = labelled offline while Nominatim was unreachable; retried next pull.
+  status: "nominatim" | "fallback";
+  label: GeoPlace | null;
+  // Moving minutes per country / state / city.
+  split: (GeoPlace & { minutes: number })[];
 }
 
 export interface GpxSummary {
