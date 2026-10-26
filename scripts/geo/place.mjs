@@ -7,12 +7,14 @@ const { feature } = require("topojson-client");
 const isoCountries = require("i18n-iso-countries");
 const worldAtlas = require("world-atlas/countries-10m.json");
 
-// Country names as the site has always shown them (Natural Earth names).
+// Country names: Natural Earth's, with the US shortened to match how the
+// UK already reads ("United Kingdom").
 const COUNTRY_NAME = new Map();
 for (const f of feature(worldAtlas, worldAtlas.objects.countries).features) {
   const a2 = isoCountries.numericToAlpha2(String(f.id).padStart(3, "0"));
   if (a2) COUNTRY_NAME.set(a2, f.properties.name);
 }
+COUNTRY_NAME.set("US", "United States");
 
 const NYC_BOROUGH_BY_COUNTY = {
   "New York County": "Manhattan",
