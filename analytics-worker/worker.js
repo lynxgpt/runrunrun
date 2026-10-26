@@ -47,7 +47,7 @@ function normalizePayload(payload) {
   };
 }
 
-export default {
+const worker = {
   async fetch(request, env) {
     const origin = request.headers.get("Origin") || "";
 
@@ -115,3 +115,5 @@ export default {
     return json({ ok: true }, 202, origin, env);
   },
 };
+
+export default worker;

@@ -14,14 +14,10 @@
     "url": "https://github.com/lynxgpt/runrunrun/issues"
   },
   "keywords": [
-    "claude-code",
-    "website-clone",
-    "reverse-engineering",
-    "nextjs",
-    "ai",
-    "template",
-    "tailwindcss",
-    "shadcn-ui"
+    "running",
+    "gpx",
+    "strava",
+    "nextjs"
   ],
   "engines": {
     "node": ">=24"
@@ -31,7 +27,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "node --test --experimental-strip-types src/lib/pace-distribution.test.mts scripts/pb-window.test.mjs && npm exec -- tsx src/lib/streak-stats.test.mts && npm exec -- tsx src/lib/geo.test.mts",
+    "test": "node --test --experimental-strip-types src/lib/pace-distribution.test.mts scripts/pb-window.test.mjs scripts/process-gpx.test.mjs && npm exec -- tsx src/lib/streak-stats.test.mts && npm exec -- tsx src/lib/geo.test.mts && npm exec -- tsx src/lib/stat-totals.test.mts",
     "typecheck": "tsc --noEmit",
     "check": "npm run lint && npm run typecheck && npm test && npm run build"
   },

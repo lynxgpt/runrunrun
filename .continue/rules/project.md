@@ -19,8 +19,8 @@ that specific change.** If a request seems to conflict with a rule here, ask the
 The README is for the public; this file is for you.
 
 This repo started life as a website-cloning template. That is over — it is a running log now.
-Ignore leftover template scaffolding (`/clone-website`, `docs/research/*`, the Vercel references);
-do not build on it, and do not reintroduce it into this file.
+The template scaffolding (`/clone-website`, `docs/research/*`, Docker, Vercel) has been deleted;
+do not reintroduce it.
 
 ## What this is
 
@@ -44,7 +44,7 @@ time** (stops excluded). Never quietly switch either.
 ## The data pipeline — do not shortcut it
 
 ```
-Strava ──pull-strava.yml──▶ public/gpx/<id>.gpx   (raw, build-time input only)
+Strava ──pull-strava.yml──▶ data/gpx/<id>.gpx     (raw, build-time input only, never published)
                                    │
                         scripts/process-gpx.mjs
                                    ├──▶ src/lib/gpx-processed.ts   (summaries, imported at build)
@@ -61,6 +61,9 @@ Strava ──pull-strava.yml──▶ public/gpx/<id>.gpx   (raw, build-time inp
   intentional, not a bug — check the dedupe output before "fixing" it.
 - `public/strava-meta.json` carries per-run photo path and Strava's own city string. That city
   **wins** over geometry (see below) and is how non-US cities work without hardcoded tables.
+- The deploy does **not** run `process-gpx.mjs`; it builds from the committed outputs. CI reruns
+  it and fails if `gpx-processed.ts` or `public/tracks/` would change, so commit regenerated
+  outputs together with any `data/gpx/` or pipeline change.
 - After changing the pipeline, regenerate and confirm the stats did **not** move. A data shift is
   a thing the owner approves, never a side effect you commit.
 
@@ -103,8 +106,7 @@ run at it. Respect what is already there:
 - The five `require()` calls at the top of `gpx-stats.ts` **must stay `require()`** so the
   topojson payloads resolve at module scope. They carry
   `// eslint-disable-next-line @typescript-eslint/no-require-imports`. Keep the directives; without
-  them lint fails. Same for the `react-hooks/exhaustive-deps` directive in `notable-runs.tsx`,
-  which also opts that effect out of the react-hooks compiler analysis.
+  them lint fails.
 - Static export only: `output: "export"`, `images.unoptimized`. No server components doing I/O, no
   route handlers, no `next/image` optimizer. Pages serves under a `basePath`, so any runtime URL
   must go through `NEXT_PUBLIC_BASE_PATH` the way `use-gpx-track.ts` does.
@@ -116,7 +118,7 @@ run at it. Respect what is already there:
 
 1. **Node 24** (`.nvmrc`, `engines`). On older Node the type-stripping test run misbehaves.
 2. **`npm run check` must exit 0 before you say you are done** — that is lint, typecheck,
-   `npm test`, then build. Lint is clean at 0 errors / 6 warnings; if you see errors, you
+   `npm test`, then build. Lint is clean at 0 errors / 0 warnings; if you see any, you
    introduced them or dropped a directive.
 3. **Verify in the browser before claiming it works.** Run `npm run dev`, load the page, confirm
    the thing you changed actually renders and the route maps still load. Reading your own diff is
@@ -128,8 +130,7 @@ run at it. Respect what is already there:
 5. The owner leaves GitHub to you: push when asked. CI and the Pages deploy both run on push to
    `main`; check they went green rather than assuming.
 6. **After editing this file, run `bash scripts/sync-agent-rules.sh`** to regenerate the
-   per-platform copies. After editing `.claude/skills/*/SKILL.md`, run
-   `node scripts/sync-skills.mjs`.
+   per-platform copies.
 7. Launching a team of agents: give each its own worktree branch and merge at the end, resolving
    conflicts yourself — you hold the full context, not them.
 
@@ -137,12 +138,9 @@ run at it. Respect what is already there:
 
 Don't spend a turn rediscovering these:
 
-- **The deploy ships ~163 MB of unused GPX.** `public/gpx` is a build-time input, but living under
-  `public/` means Next copies all of it into `out/`, so the published site is ~202 MB against
-  a 1 GB Pages cap. Moving the corpus out of `public/` is the fix; it is a pending decision.
 - The repo grows ~1–3 MB per run, permanently, because every refresh commits a new GPX.
-- Three orphan GPX files (`long-brooklyn`, `san-diego-afternoon`,
-  `vancouver-marathon-18364602479`) are dedupe casualties, kept but unused.
+- Four GPX files (`long-brooklyn`, `san-diego-afternoon`, `vancouver-marathon-18364602479`,
+  `evening-run-18999128487`) are dedupe casualties, kept but unused.
 - `TODO.md` is stale and under-marked; treat it as a wish list, not a status board.
 
 ## GitHub Copilot

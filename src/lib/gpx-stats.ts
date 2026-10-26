@@ -1,5 +1,5 @@
 // Derive analytics from whatever GPX tracks are in gpx-processed.ts.
-// Add more .gpx files to public/gpx/, run `node scripts/process-gpx.mjs`,
+// Add more .gpx files to data/gpx/, run `node scripts/process-gpx.mjs`,
 // and the site picks them up automatically. Everything is metric, all
 // durations use MOVING time (stops excluded).
 
@@ -110,6 +110,13 @@ const US_STATE_BY_FIPS: Record<string, string> = {
 
 
 const NYC_BOROUGHS = new Set(["Brooklyn", "Queens", "Bronx", "Staten Island"]);
+export const OUTSIDE_NYC = "Outside NYC";
+
+// Borough, or OUTSIDE_NYC for the rest of New York State; null elsewhere.
+function nyArea(loc: ActivityLocation): string | null {
+  if (loc.countryCode !== "US" || loc.region !== "NY") return null;
+  return loc.city === "Manhattan" || (loc.city && NYC_BOROUGHS.has(loc.city)) ? loc.city : OUTSIDE_NYC;
+}
 
 // NY county → NYC borough. Only consulted for points already in NY state:
 // Kings, Queens and Richmond are also county names in CA, WA, VA and GA.
@@ -221,7 +228,8 @@ function lookupCountryAt(lat: number, lon: number): { country: string; countryCo
     const numeric = country.id.padStart(3, "0");
     const alpha2 = isoCountries.numericToAlpha2(numeric);
     if (!alpha2) return null;
-    return { country: country.properties.name, countryCode: alpha2 };
+    // US shortened to match "United Kingdom".
+    return { country: alpha2 === "US" ? "United States" : country.properties.name, countryCode: alpha2 };
   }
   return null;
 }
@@ -685,10 +693,14 @@ function toNotableRun(t: GpxSummary, rank: number, weather: WeatherCondition): N
     weather,
     title: t.name,
     location,
+    touched: {
+      countries: [location.countryCode],
+      states: location.region ? [location.region] : [],
+      cities: [nyArea(location) ?? location.city].filter((c): c is string => !!c),
+    },
     displayLocationPrimary: displayLocation.primary,
     displayLocationSecondary: displayLocation.secondary,
     gpxId: t.id,
-    gpxPath: `/gpx/${t.id}.gpx`,
     ...(meta.photoPath != null ? { photoPath: meta.photoPath } : {}),
   };
 }
@@ -717,40 +729,6 @@ const PB_BUCKETS: { label: string; minKm: number; tag: string }[] = [
   { label: "Half Marathon", minKm: 21.0975, tag: "HM PB" },
   { label: "Marathon",    minKm: 42.195, tag: "FM PB" },
 ];
-
-// PB-only drift detection: we keep the rest of the site unchanged, but
-// exclude runs whose raw traces show either stop-heavy corrupted motion or
-// a giant mid-run teleport after the watch stopped recording for a while.
-function hasBadPbTrace(t: GpxSummary): boolean {
-  const { bbox, distanceKm, paceSecPerKm, pbQuality } = t.stats;
-  if (!distanceKm) return true;
-  // Diagonal of the bbox in degrees × 111 km/deg ≈ km (rough, equirectangular)
-  const dLat = bbox.maxLat - bbox.minLat;
-  const dLon = bbox.maxLon - bbox.minLon;
-  const bboxDiagKm = Math.sqrt(dLat * dLat + dLon * dLon) * 111;
-  if (bboxDiagKm > distanceKm * 3) return true;
-  // Impossibly fast pace (< 2 min/km = 120 sec/km) → likely GPS jump
-  if (paceSecPerKm != null && paceSecPerKm < 120) return true;
-  if (pbQuality) {
-    const avgKph = paceSecPerKm ? 3600 / paceSecPerKm : null;
-    const stopHeavyDrift =
-      pbQuality.movingShare < 0.55 &&
-      pbQuality.repeatedShare > 0.15 &&
-      pbQuality.maxSegmentKph > 25;
-    const shortRunCorruption =
-      pbQuality.movingShare < 0.4 &&
-      pbQuality.repeatedShare > 0.1 &&
-      pbQuality.maxSegmentKph > 24;
-    const severeSpeedSpike =
-      avgKph != null &&
-      pbQuality.maxSegmentKph > Math.max(40, avgKph * 4);
-    if (stopHeavyDrift || shortRunCorruption || severeSpeedSpike) {
-      return true;
-    }
-    if (pbQuality.hasTeleportGap) return true;
-  }
-  return false;
-}
 
 const personalBests: NotableRun[] = PB_BUCKETS.flatMap((b, i) => {
   const eligible = tracks.filter(
@@ -1023,12 +1001,12 @@ export const usStatesVisited: GeoRow[] = (() => {
 export const nycBoroughsVisited: GeoRow[] = (() => {
   const map = new Map<string, { km: number; days: Set<string> }>();
   for (const t of tracks) {
-    const loc = locationFor(t);
-    if (loc.countryCode !== "US" || loc.region !== "NY" || !loc.city) continue;
-    const entry = map.get(loc.city) ?? { km: 0, days: new Set() };
+    const area = nyArea(locationFor(t));
+    if (!area) continue;
+    const entry = map.get(area) ?? { km: 0, days: new Set() };
     entry.km += t.stats.distanceKm;
     entry.days.add(isoDate(dateOf(t)));
-    map.set(loc.city, entry);
+    map.set(area, entry);
   }
   return [...map.entries()]
     .map(([name, v]) => ({
@@ -1037,7 +1015,8 @@ export const nycBoroughsVisited: GeoRow[] = (() => {
       days: v.days.size,
       km: +v.km.toFixed(1),
     }))
-    .sort((a, b) => b.km - a.km);
+    // Boroughs by km, then everywhere else in the state.
+    .sort((a, b) => (a.code === OUTSIDE_NYC ? 1 : b.code === OUTSIDE_NYC ? -1 : b.km - a.km));
 })();
 
 // ---------------------------------------------------------------------------

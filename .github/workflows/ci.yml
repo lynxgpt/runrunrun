@@ -26,6 +26,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Processed GPX data is up to date
+        # The deploy builds from the committed outputs without reprocessing.
+        run: |
+          node scripts/process-gpx.mjs > /dev/null
+          git diff --exit-code --stat -- src/lib/gpx-processed.ts public/tracks
+
       - name: Lint
         run: npm run lint
 

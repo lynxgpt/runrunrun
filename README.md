@@ -2,12 +2,12 @@
 
 A static running log built with Next.js and published on GitHub Pages.
 
-The site reads GPX files from `public/gpx/`, preprocesses them into lightweight summaries plus per-run JSON payloads, and renders a personal run archive with maps, charts, geography, and daily log views.
+The site reads GPX files from `data/gpx/`, preprocesses them into lightweight summaries plus per-run JSON payloads, and renders a personal run archive with maps, charts, geography, and daily log views.
 
 ## What This Repo Contains
 
 - A Next.js 16 app with static export enabled
-- GPX source files in `public/gpx/`
+- GPX source files in `data/gpx/`
 - Generated track payloads in `public/tracks/`
 - Editable site copy in `content/site.yaml`
 - A GitHub Actions workflow that builds and deploys the site to GitHub Pages
@@ -36,7 +36,7 @@ node scripts/process-gpx.mjs
 
 ### Add or replace runs
 
-1. Drop `.gpx` files into `public/gpx/`
+1. Drop `.gpx` files into `data/gpx/`
 2. Run `node scripts/process-gpx.mjs` locally if you want to preview the processed output
 3. Commit and push
 
