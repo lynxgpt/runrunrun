@@ -111,6 +111,16 @@ const US_STATE_BY_FIPS: Record<string, string> = {
 
 const NYC_BOROUGHS = new Set(["Brooklyn", "Queens", "Bronx", "Staten Island"]);
 
+// NY county → NYC borough. Only consulted for points already in NY state:
+// Kings, Queens and Richmond are also county names in CA, WA, VA and GA.
+const NYC_BOROUGH_BY_COUNTY: Record<string, string> = {
+  "New York": "Manhattan",
+  Kings: "Brooklyn",
+  Queens: "Queens",
+  Bronx: "Bronx",
+  Richmond: "Staten Island",
+};
+
 const COUNTRY_FEATURES = feature(
   worldAtlas,
   worldAtlas.objects.countries,
@@ -290,6 +300,12 @@ function lookupNearestUsCounty(
   };
 }
 
+// Borough from county polygons. Returns null in water (no county polygon).
+function nycBoroughAt(lat: number, lon: number): string | null {
+  const county = lookupUsCounty(lat, lon);
+  return county ? (NYC_BOROUGH_BY_COUNTY[county.county] ?? null) : null;
+}
+
 function withUsCountyFallback(
   loc: ActivityLocation,
   lat: number,
@@ -399,7 +415,10 @@ function displayLocationForNotable(loc: ActivityLocation): {
     const lon = loc.lon;
     const MAN_LAT_MIN = 40.700;
     const MAN_LAT_MAX = 40.880;
-    if (
+    if ((loc.region === "NY" || !loc.region) && loc.city && NYC_BOROUGHS.has(loc.city)) {
+      city = loc.city;
+      displayRegion = "NY";
+    } else if (
       (loc.region === "NY" || !loc.region) &&
       lat >= MAN_LAT_MIN &&
       lat <= MAN_LAT_MAX &&
@@ -407,8 +426,6 @@ function displayLocationForNotable(loc: ActivityLocation): {
     ) {
       city = lon <= manhattanEastLon(lat) ? "Manhattan" : lat > 40.726 ? "Queens" : "Brooklyn";
       displayRegion = "NY";
-    } else if ((loc.region === "NY" || !loc.region) && loc.city && NYC_BOROUGHS.has(loc.city)) {
-      city = loc.city;
     }
   }
 
@@ -554,7 +571,11 @@ export function locationFor(t: GpxSummary): ActivityLocation {
       if (lon <= manhattanEastLon(lat)) {
         return { ...c, region: s?.region, city: "Manhattan", lat, lon };
       }
-      const city = lat > 40.726 ? "Queens" : "Brooklyn";
+      // East of Manhattan: county polygons separate Brooklyn / Queens / Bronx;
+      // a mean in the East River has no county, so keep the latitude split.
+      const byCounty = s?.region === "NY" ? nycBoroughAt(lat, lon) : null;
+      const city =
+        byCounty && byCounty !== "Manhattan" ? byCounty : lat > 40.726 ? "Queens" : "Brooklyn";
       return { ...c, region: s?.region, city, lat, lon };
     }
   }
@@ -571,6 +592,12 @@ export function locationFor(t: GpxSummary): ActivityLocation {
 
   const { c: country, s: state } = classify(lat, lon);
   if (country?.countryCode === "US") {
+    // NYC outside the Manhattan band (Prospect Park, Coney Island, Bronx,
+    // Staten Island): borough from county, mean first, then start point.
+    if (state?.region === "NY") {
+      const borough = nycBoroughAt(lat, lon) ?? nycBoroughAt(fbLat, fbLon);
+      if (borough) return { ...country, ...state, city: borough, lat, lon };
+    }
     if (state) return withUsCountyFallback({ ...country, ...state, lat, lon }, lat, lon);
     return withUsCountyFallback({ ...country, lat, lon }, lat, lon);
   }
