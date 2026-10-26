@@ -196,7 +196,7 @@ function escXml(s) {
   );
 }
 
-function buildGpx({ id, name, startDate, streams }) {
+function buildGpx({ name, startDate, streams }) {
   const latlng = streams.latlng?.data ?? [];
   const alt = streams.altitude?.data ?? [];
   const tsec = streams.time?.data ?? [];

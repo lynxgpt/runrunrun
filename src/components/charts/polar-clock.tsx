@@ -19,37 +19,6 @@ function polarToCartesian(cx: number, cy: number, radius: number, angle: number)
   };
 }
 
-function closedPath(points: { x: number; y: number }[]) {
-  if (!points.length) return "";
-
-  return points
-    .map((point, index) => {
-      const previous = points[(index - 1 + points.length) % points.length];
-      const next = points[(index + 1) % points.length];
-      const startControl = {
-        x: point.x - (next.x - previous.x) / 6,
-        y: point.y - (next.y - previous.y) / 6,
-      };
-      const endControl = {
-        x: point.x + (next.x - previous.x) / 6,
-        y: point.y + (next.y - previous.y) / 6,
-      };
-
-      if (index === 0) return `M${point.x.toFixed(2)},${point.y.toFixed(2)}`;
-      return `C${startControl.x.toFixed(2)},${startControl.y.toFixed(2)} ${endControl.x.toFixed(2)},${endControl.y.toFixed(2)} ${point.x.toFixed(2)},${point.y.toFixed(2)}`;
-    })
-    .join(" ") + " Z";
-}
-
-function annulusPath(cx: number, cy: number, points: PolarPoint[]) {
-  const outer = points.map((point) => polarToCartesian(cx, cy, point.outer, point.angle));
-  const inner = [...points]
-    .reverse()
-    .map((point) => polarToCartesian(cx, cy, point.inner, point.angle));
-
-  return closedPath([...outer, ...inner]);
-}
-
 function segmentPath(cx: number, cy: number, a: PolarPoint, b: PolarPoint) {
   const ao = polarToCartesian(cx, cy, a.outer, a.angle);
   const bo = polarToCartesian(cx, cy, b.outer, b.angle);

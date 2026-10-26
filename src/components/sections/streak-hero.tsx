@@ -1,6 +1,6 @@
 import { streakStats } from "@/lib/mock-data";
 import { StatCell } from "@/components/primitives/stat-cell";
-import { formatNumber, formatThousands } from "@/lib/format";
+import { formatNumber } from "@/lib/format";
 
 export function StreakHero() {
   return (

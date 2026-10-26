@@ -718,40 +718,6 @@ const PB_BUCKETS: { label: string; minKm: number; tag: string }[] = [
   { label: "Marathon",    minKm: 42.195, tag: "FM PB" },
 ];
 
-// PB-only drift detection: we keep the rest of the site unchanged, but
-// exclude runs whose raw traces show either stop-heavy corrupted motion or
-// a giant mid-run teleport after the watch stopped recording for a while.
-function hasBadPbTrace(t: GpxSummary): boolean {
-  const { bbox, distanceKm, paceSecPerKm, pbQuality } = t.stats;
-  if (!distanceKm) return true;
-  // Diagonal of the bbox in degrees × 111 km/deg ≈ km (rough, equirectangular)
-  const dLat = bbox.maxLat - bbox.minLat;
-  const dLon = bbox.maxLon - bbox.minLon;
-  const bboxDiagKm = Math.sqrt(dLat * dLat + dLon * dLon) * 111;
-  if (bboxDiagKm > distanceKm * 3) return true;
-  // Impossibly fast pace (< 2 min/km = 120 sec/km) → likely GPS jump
-  if (paceSecPerKm != null && paceSecPerKm < 120) return true;
-  if (pbQuality) {
-    const avgKph = paceSecPerKm ? 3600 / paceSecPerKm : null;
-    const stopHeavyDrift =
-      pbQuality.movingShare < 0.55 &&
-      pbQuality.repeatedShare > 0.15 &&
-      pbQuality.maxSegmentKph > 25;
-    const shortRunCorruption =
-      pbQuality.movingShare < 0.4 &&
-      pbQuality.repeatedShare > 0.1 &&
-      pbQuality.maxSegmentKph > 24;
-    const severeSpeedSpike =
-      avgKph != null &&
-      pbQuality.maxSegmentKph > Math.max(40, avgKph * 4);
-    if (stopHeavyDrift || shortRunCorruption || severeSpeedSpike) {
-      return true;
-    }
-    if (pbQuality.hasTeleportGap) return true;
-  }
-  return false;
-}
-
 const personalBests: NotableRun[] = PB_BUCKETS.flatMap((b, i) => {
   const eligible = tracks.filter(
     (t) =>

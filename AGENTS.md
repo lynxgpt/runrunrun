@@ -96,8 +96,7 @@ run at it. Respect what is already there:
 - The five `require()` calls at the top of `gpx-stats.ts` **must stay `require()`** so the
   topojson payloads resolve at module scope. They carry
   `// eslint-disable-next-line @typescript-eslint/no-require-imports`. Keep the directives; without
-  them lint fails. Same for the `react-hooks/exhaustive-deps` directive in `notable-runs.tsx`,
-  which also opts that effect out of the react-hooks compiler analysis.
+  them lint fails.
 - Static export only: `output: "export"`, `images.unoptimized`. No server components doing I/O, no
   route handlers, no `next/image` optimizer. Pages serves under a `basePath`, so any runtime URL
   must go through `NEXT_PUBLIC_BASE_PATH` the way `use-gpx-track.ts` does.
@@ -109,7 +108,7 @@ run at it. Respect what is already there:
 
 1. **Node 24** (`.nvmrc`, `engines`). On older Node the type-stripping test run misbehaves.
 2. **`npm run check` must exit 0 before you say you are done** — that is lint, typecheck,
-   `npm test`, then build. Lint is clean at 0 errors / 6 warnings; if you see errors, you
+   `npm test`, then build. Lint is clean at 0 errors / 0 warnings; if you see any, you
    introduced them or dropped a directive.
 3. **Verify in the browser before claiming it works.** Run `npm run dev`, load the page, confirm
    the thing you changed actually renders and the route maps still load. Reading your own diff is

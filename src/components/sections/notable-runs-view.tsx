@@ -56,10 +56,13 @@ export function NotableRunsView({ notableRuns, streakStartDate }: NotableRunsVie
     filter.kind === "none" ? "none" : `${filter.kind}:${filter.code}`;
 
   // Switch to "longest" tab when user selects a specific day in the heatmap.
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => {
+  // Adjusted during render (only when the filter kind changes) rather than
+  // in an effect, so there is no extra render pass.
+  const [prevFilterKind, setPrevFilterKind] = useState(filter.kind);
+  if (filter.kind !== prevFilterKind) {
+    setPrevFilterKind(filter.kind);
     if (filter.kind === "day") setCategory("longest");
-  }, [filter.kind]); // intentional: only react to kind changes
+  }
 
   const onTabKey = (e: React.KeyboardEvent<HTMLButtonElement>, idx: number) => {
     if (e.key !== "ArrowRight" && e.key !== "ArrowLeft" && e.key !== "Home" && e.key !== "End") return;
