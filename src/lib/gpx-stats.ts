@@ -132,6 +132,15 @@ function regionShares(t: GpxSummary): RegionShare[] {
   }));
 }
 
+const NYC_BOROUGHS = new Set(["Manhattan", "Brooklyn", "Queens", "Bronx", "Staten Island"]);
+export const OUTSIDE_NYC = "Outside NYC";
+
+// Borough, or OUTSIDE_NYC for the rest of New York State; null elsewhere.
+function nyArea(r: { countryCode: string; region: string | null; city: string | null }): string | null {
+  if (r.countryCode !== "US" || r.region !== "NY") return null;
+  return r.city && NYC_BOROUGHS.has(r.city) ? r.city : OUTSIDE_NYC;
+}
+
 export interface RegionsTouched {
   countries: string[];
   states: string[];
@@ -157,7 +166,10 @@ function regionsTouched(t: GpxSummary): RegionsTouched {
   return {
     countries: touched(sum((r) => r.countryCode), loc.countryCode),
     states: touched(sum((r) => (r.countryCode === "US" ? r.region : null)), loc.countryCode === "US" ? loc.region : undefined),
-    cities: touched(sum((r) => r.city), loc.city),
+    cities: [
+      ...touched(sum((r) => r.city), loc.city),
+      ...(shares.some((r) => nyArea(r) === OUTSIDE_NYC) ? [OUTSIDE_NYC] : []),
+    ],
   };
 }
 
@@ -524,13 +536,13 @@ export const usStatesVisited: GeoRow[] = regionRows(
     return b.km - a.km;
   });
 
-// NYC boroughs — the third drill-down level under New York.
-const NYC_BOROUGHS = new Set(["Manhattan", "Brooklyn", "Queens", "Bronx", "Staten Island"]);
+// Third drill-down level under New York: the five boroughs, then one row
+// for everywhere else in the state (Hudson Valley, Long Island, upstate).
 export const nycBoroughsVisited: GeoRow[] = regionRows(
-  (r) => (r.countryCode === "US" && r.region === "NY" && r.city && NYC_BOROUGHS.has(r.city) ? r.city : null),
+  nyArea,
   (t) => t.cities,
   (name) => name,
-);
+).sort((a, b) => (a.code === OUTSIDE_NYC ? 1 : b.code === OUTSIDE_NYC ? -1 : b.km - a.km));
 
 // ---------------------------------------------------------------------------
 // Daily-log heatmaps — one entry per streak year.
