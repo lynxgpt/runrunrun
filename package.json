@@ -14,14 +14,10 @@
     "url": "https://github.com/lynxgpt/runrunrun/issues"
   },
   "keywords": [
-    "claude-code",
-    "website-clone",
-    "reverse-engineering",
-    "nextjs",
-    "ai",
-    "template",
-    "tailwindcss",
-    "shadcn-ui"
+    "running",
+    "gpx",
+    "strava",
+    "nextjs"
   ],
   "engines": {
     "node": ">=24"

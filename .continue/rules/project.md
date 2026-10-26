@@ -19,8 +19,8 @@ that specific change.** If a request seems to conflict with a rule here, ask the
 The README is for the public; this file is for you.
 
 This repo started life as a website-cloning template. That is over — it is a running log now.
-Ignore leftover template scaffolding (`/clone-website`, `docs/research/*`, the Vercel references);
-do not build on it, and do not reintroduce it into this file.
+The template scaffolding (`/clone-website`, `docs/research/*`, Docker, Vercel) has been deleted;
+do not reintroduce it.
 
 ## What this is
 
@@ -127,8 +127,7 @@ run at it. Respect what is already there:
 5. The owner leaves GitHub to you: push when asked. CI and the Pages deploy both run on push to
    `main`; check they went green rather than assuming.
 6. **After editing this file, run `bash scripts/sync-agent-rules.sh`** to regenerate the
-   per-platform copies. After editing `.claude/skills/*/SKILL.md`, run
-   `node scripts/sync-skills.mjs`.
+   per-platform copies.
 7. Launching a team of agents: give each its own worktree branch and merge at the end, resolving
    conflicts yourself — you hold the full context, not them.
 
