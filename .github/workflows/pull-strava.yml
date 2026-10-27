@@ -46,6 +46,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        # geocode.mjs and process-gpx.mjs, run at the end of the pull,
+        # need topojson-client, the atlases and the other npm deps.
+        run: npm ci
 
       - name: Write .env.local from secrets
         run: |
