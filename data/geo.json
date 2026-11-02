@@ -3989,6 +3989,60 @@
    }
   ]
  },
+ "morning-run-20822631448": {
+  "status": "nominatim",
+  "samples": 255,
+  "label": {
+   "countryCode": "US",
+   "country": "United States",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Kings County",
+   "city": "Brooklyn"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Brooklyn",
+    "minutes": 120
+   },
+   {
+    "countryCode": "US",
+    "country": "United States",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 91
+   },
+   {
+    "countryCode": "US",
+    "country": "United States",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Queens",
+    "minutes": 22
+   },
+   {
+    "countryCode": "US",
+    "country": "United States",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Bronx",
+    "minutes": 13
+   },
+   {
+    "countryCode": "US",
+    "country": "United States",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "New York",
+    "minutes": 8
+   }
+  ]
+ },
  "mp-16143290429": {
   "status": "nominatim",
   "samples": 53,
