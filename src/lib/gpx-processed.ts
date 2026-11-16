@@ -96828,5 +96828,319 @@ export const gpxSummaries: Record<string, GpxSummary> = {
         ]
       }
     }
+  },
+  "afternoon-run-21002914336": {
+    "id": "afternoon-run-21002914336",
+    "name": "Afternoon Run ⛅",
+    "stats": {
+      "name": "Afternoon Run ⛅",
+      "distanceKm": 8.038,
+      "movingSec": 2518,
+      "elapsedSec": 2759,
+      "paceSecPerKm": 313,
+      "elevationM": 113,
+      "avgHr": 140,
+      "startTime": "2026-11-15T21:14:45.000Z",
+      "endTime": "2026-11-15T22:00:44.000Z",
+      "startLat": 40.672289,
+      "startLon": -73.961126,
+      "meanLat": 40.666249,
+      "meanLon": -73.969118,
+      "bbox": {
+        "minLat": 40.658366,
+        "maxLat": 40.674571,
+        "minLon": -73.977591,
+        "maxLon": -73.960733
+      },
+      "paceSamples": [
+        315.40405782172246,
+        302.5138612055318,
+        302.58965732496716,
+        294.1115332532103,
+        348.9290007375189,
+        319.20205723952006,
+        290.21265444081666,
+        283.63122020786653,
+        319.9837215443095,
+        260.5294673856,
+        301.7095303388767,
+        254.468523479526,
+        308.62342924898445,
+        326.3255282430757,
+        300.1950343267603,
+        347.265835612614,
+        301.4685389741214,
+        294.66495397729534,
+        313.47683190885516,
+        294.62276732693886,
+        286.6200342682309,
+        316.50275477476185,
+        319.80209239861364,
+        302.3465942753176,
+        315.57144035078926,
+        312.80975934558245,
+        320.82930028515216,
+        365.816681075061,
+        316.7068554203086,
+        325.76592406370406,
+        312.87993123283275,
+        314.4539914841351,
+        322.20868666819433,
+        313.60388909646593,
+        281.67993709211606,
+        339.3371861156719,
+        367.82225549364097,
+        318.6430419202948,
+        358.7583780072827,
+        381.1243507071301,
+        346.55195334730604
+      ],
+      "paceSampleDetails": [
+        {
+          "paceSecPerKm": 315.40405782172246,
+          "lowSpeedSec": 3,
+          "skippedBeforeSec": 85
+        },
+        {
+          "paceSecPerKm": 302.5138612055318,
+          "lowSpeedSec": 1,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 302.58965732496716,
+          "lowSpeedSec": 0,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 294.1115332532103,
+          "lowSpeedSec": 0,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 348.9290007375189,
+          "lowSpeedSec": 3,
+          "skippedBeforeSec": 24
+        },
+        {
+          "paceSecPerKm": 319.20205723952006,
+          "lowSpeedSec": 0,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 290.21265444081666,
+          "lowSpeedSec": 0,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 283.63122020786653,
+          "lowSpeedSec": 1,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 319.9837215443095,
+          "lowSpeedSec": 1,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 260.5294673856,
+          "lowSpeedSec": 0,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 301.7095303388767,
+          "lowSpeedSec": 0,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 254.468523479526,
+          "lowSpeedSec": 0,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 308.62342924898445,
+          "lowSpeedSec": 0,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 326.3255282430757,
+          "lowSpeedSec": 0,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 300.1950343267603,
+          "lowSpeedSec": 0,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 347.265835612614,
+          "lowSpeedSec": 0,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 301.4685389741214,
+          "lowSpeedSec": 0,
+          "skippedBeforeSec": 47
+        },
+        {
+          "paceSecPerKm": 294.66495397729534,
+          "lowSpeedSec": 0,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 313.47683190885516,
+          "lowSpeedSec": 0,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 294.62276732693886,
+          "lowSpeedSec": 0,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 286.6200342682309,
+          "lowSpeedSec": 1,
+          "skippedBeforeSec": 72
+        },
+        {
+          "paceSecPerKm": 316.50275477476185,
+          "lowSpeedSec": 0,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 319.80209239861364,
+          "lowSpeedSec": 0,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 302.3465942753176,
+          "lowSpeedSec": 0,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 315.57144035078926,
+          "lowSpeedSec": 0,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 312.80975934558245,
+          "lowSpeedSec": 0,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 320.82930028515216,
+          "lowSpeedSec": 0,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 365.816681075061,
+          "lowSpeedSec": 0,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 316.7068554203086,
+          "lowSpeedSec": 0,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 325.76592406370406,
+          "lowSpeedSec": 0,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 312.87993123283275,
+          "lowSpeedSec": 0,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 314.4539914841351,
+          "lowSpeedSec": 0,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 322.20868666819433,
+          "lowSpeedSec": 0,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 313.60388909646593,
+          "lowSpeedSec": 0,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 281.67993709211606,
+          "lowSpeedSec": 0,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 339.3371861156719,
+          "lowSpeedSec": 0,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 367.82225549364097,
+          "lowSpeedSec": 5,
+          "skippedBeforeSec": 4
+        },
+        {
+          "paceSecPerKm": 318.6430419202948,
+          "lowSpeedSec": 0,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 358.7583780072827,
+          "lowSpeedSec": 1,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 381.1243507071301,
+          "lowSpeedSec": 0,
+          "skippedBeforeSec": 0
+        },
+        {
+          "paceSecPerKm": 346.55195334730604,
+          "lowSpeedSec": 3,
+          "skippedBeforeSec": 6
+        }
+      ],
+      "hrZoneSec": [
+        1071,
+        1438,
+        9,
+        0
+      ],
+      "pbElapsedPaceSecPerKm": {
+        "400m": 270.8050023819348,
+        "1K": 282.32276308776,
+        "5K": 328.9788929154505
+      },
+      "pbQuality": {
+        "repeatedShare": 0.03,
+        "movingShare": 0.9126495106922798,
+        "maxSegmentKph": 18.599999999999817,
+        "hasTeleportGap": false
+      },
+      "activityType": "running",
+      "geo": {
+        "status": "nominatim",
+        "label": {
+          "countryCode": "US",
+          "country": "United States",
+          "stateCode": "NY",
+          "state": "New York",
+          "county": "Kings County",
+          "city": "Brooklyn"
+        },
+        "split": [
+          {
+            "countryCode": "US",
+            "country": "United States",
+            "stateCode": "NY",
+            "state": "New York",
+            "city": "Brooklyn",
+            "minutes": 41
+          }
+        ]
+      }
+    }
   }
 };
