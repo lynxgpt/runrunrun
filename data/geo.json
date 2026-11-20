@@ -1859,6 +1859,28 @@
    }
   ]
  },
+ "afternoon-run-21050834103": {
+  "status": "nominatim",
+  "samples": 31,
+  "label": {
+   "countryCode": "US",
+   "country": "United States",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "Kings County",
+   "city": "Brooklyn"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Brooklyn",
+    "minutes": 30
+   }
+  ]
+ },
  "compare-14882498874": {
   "status": "nominatim",
   "samples": 25,
