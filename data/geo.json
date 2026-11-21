@@ -2675,6 +2675,28 @@
    }
   ]
  },
+ "evening-run-21064576525": {
+  "status": "nominatim",
+  "samples": 39,
+  "label": {
+   "countryCode": "US",
+   "country": "United States",
+   "stateCode": "NY",
+   "state": "New York",
+   "county": "New York County",
+   "city": "Manhattan"
+  },
+  "split": [
+   {
+    "countryCode": "US",
+    "country": "United States",
+    "stateCode": "NY",
+    "state": "New York",
+    "city": "Manhattan",
+    "minutes": 38
+   }
+  ]
+ },
  "fart-lek-14725832895": {
   "status": "nominatim",
   "samples": 29,
